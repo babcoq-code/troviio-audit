@@ -1,0 +1,41 @@
+# ===========================================
+# PICKSY — Variables d'environnement
+# Copie ce fichier en .env et remplis les valeurs
+# NE JAMAIS committer le fichier .env sur GitHub
+# ===========================================
+
+# --- SUPABASE (base de données) ---
+SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
+SUPABASE_ANON_KEY=eyJxxxxxxxxxx...
+SUPABASE_SERVICE_KEY=eyJxxxxxxxxxx...
+
+# --- LLM API ---
+DEEPSEEK_API_KEY=sk-xxxxxxxxxx
+GEMINI_API_KEY=AIzaxxxxxxxxxx
+
+# --- AFFILIATION ---
+AWIN_API_KEY=xxxxxxxxxx
+AMAZON_ASSOCIATE_TAG=picksy-21
+AMAZON_ACCESS_KEY=xxxxxxxxxx
+AMAZON_SECRET_KEY=xxxxxxxxxx
+
+# --- KEEPA (veille prix Amazon) ---
+KEEPA_API_KEY=xxxxxxxxxx
+
+# --- YOUTUBE DATA API ---
+YOUTUBE_API_KEY=AIzaxxxxxxxxxx
+
+# --- BACKEND ---
+SECRET_KEY=changeme-generate-with-openssl-rand-hex-32
+ENVIRONMENT=development
+BACKEND_URL=http://localhost:8000
+
+# --- FIREBASE ---
+FIREBASE_PROJECT_ID=picksy-app
+FIREBASE_CREDENTIALS_PATH=./firebase-credentials.json
+
+# --- REDIS ---
+REDIS_URL=redis://localhost:6379
+
+# --- CORS ---
+ALLOWED_ORIGINS=http://localhost:3000,https://picksy.app

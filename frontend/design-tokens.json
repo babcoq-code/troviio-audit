@@ -1,0 +1,122 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "name": "Picksy Design Tokens v1.0.0",
+  "color": {
+    "brand": {
+      "coral":      "#FF6B5F",
+      "coralDark":  "#E94E43",
+      "coralLight": "#FF9A92",
+      "mint":       "#3ED6A3",
+      "mintDark":   "#1BAE7D",
+      "mintLight":  "#8AF0CC",
+      "blue":       "#4257FF",
+      "blueDark":   "#2638D9",
+      "blueLight":  "#8C98FF",
+      "cream":      "#FFF7ED",
+      "ink":        "#161827",
+      "night":      "#0E1020"
+    },
+    "scale": {
+      "coral":  { "50":"#FFF1F0", "100":"#FFE0DD", "200":"#FFC4BF", "300":"#FFA39D", "400":"#FF847B", "500":"#FF6B5F", "600":"#E5554A", "700":"#BF3F36", "800":"#992A23", "900":"#731B16" },
+      "mint":   { "50":"#EDFCF5", "100":"#D1F7E5", "200":"#A3EFCB", "300":"#6FE4AD", "400":"#4DDB98", "500":"#3ED6A3", "600":"#2EB882", "700":"#219966", "800":"#17734B", "900":"#0E4D33" },
+      "blue":   { "50":"#EEEEFF", "100":"#D9DCFF", "200":"#B3B9FF", "300":"#8D96FF", "400":"#6776FF", "500":"#4257FF", "600":"#3545DB", "700":"#2835B7", "800":"#1E2893", "900":"#141B6F" },
+      "neutral":{ "0":"#FFFFFF", "50":"#FFFBF6", "100":"#FFF7ED", "200":"#EFE3D6", "300":"#D8CEC5", "400":"#AFA79F", "500":"#7F7A76", "600":"#5C5A57", "700":"#3B3A3F", "800":"#242634", "900":"#161827", "950":"#0C0E18" }
+    },
+    "semantic": {
+      "scoreLow":        "#FF6B5F",
+      "scoreMediumLow":  "#FFB347",
+      "scoreMediumHigh": "#4257FF",
+      "scoreHigh":       "#3ED6A3",
+      "warning":         "#FFB020",
+      "danger":          "#FF4D4D"
+    },
+    "gradient": {
+      "coralIntelligence": "linear-gradient(135deg, #FF6B5F 0%, #FFB067 100%)",
+      "mintConfidence":    "linear-gradient(135deg, #3ED6A3 0%, #9AF7D4 100%)",
+      "blueAI":            "linear-gradient(135deg, #4257FF 0%, #8A7CFF 100%)",
+      "hero":              "linear-gradient(135deg, #FF6B5F 0%, #FFB020 42%, #3ED6A3 100%)",
+      "ai":                "linear-gradient(135deg, #4257FF 0%, #8C98FF 45%, #3ED6A3 100%)",
+      "nightGlow":         "linear-gradient(135deg, #0E1020 0%, #1A1C3A 100%)",
+      "warmSurface":       "linear-gradient(180deg, #FFF7ED 0%, #FFFFFF 100%)"
+    },
+    "light": {
+      "background":        "#FFF7ED",
+      "backgroundElevated":"#FFFFFF",
+      "surface":           "#FFFFFF",
+      "surfaceSoft":       "#FFF7ED",
+      "textPrimary":       "#161827",
+      "textSecondary":     "#5C5A57",
+      "textMuted":         "#7F7A76",
+      "textInverse":       "#FFFFFF",
+      "border":            "#EFE3D6",
+      "borderStrong":      "#D8CEC5",
+      "focus":             "#4257FF",
+      "overlay":           "rgba(22, 24, 39, 0.56)"
+    },
+    "dark": {
+      "background":        "#0C0E18",
+      "backgroundElevated":"#161827",
+      "surface":           "#161827",
+      "surfaceSoft":       "#242634",
+      "textPrimary":       "#FFF7ED",
+      "textSecondary":     "#D8CEC5",
+      "textMuted":         "#AFA79F",
+      "textInverse":       "#161827",
+      "border":            "#2B2E3D",
+      "borderStrong":      "#3B3F55",
+      "focus":             "#8C98FF",
+      "overlay":           "rgba(0, 0, 0, 0.64)"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "display": "Sora, 'Plus Jakarta Sans', Inter, sans-serif",
+      "sans":    "Inter, ui-sans-serif, system-ui, -apple-system, sans-serif",
+      "score":   "Nunito, Inter, sans-serif"
+    },
+    "style": {
+      "display-lg": { "font":"Sora", "size":"32px", "weight":700, "line":"38px", "tracking":"-0.5px" },
+      "heading-lg": { "font":"Sora", "size":"20px", "weight":600, "line":"26px", "tracking":"-0.1px" },
+      "heading-md": { "font":"Sora", "size":"18px", "weight":600, "line":"24px", "tracking":"0" },
+      "body-md":    { "font":"Inter", "size":"14px", "weight":400, "line":"21px", "tracking":"0" },
+      "body-sm":    { "font":"Inter", "size":"12px", "weight":400, "line":"18px", "tracking":"0.1px" },
+      "label-lg":   { "font":"Inter", "size":"16px", "weight":600, "line":"20px", "tracking":"0.1px" },
+      "label-sm":   { "font":"Inter", "size":"12px", "weight":600, "line":"16px", "tracking":"0.2px" },
+      "score-lg":   { "font":"Nunito", "size":"36px", "weight":800, "line":"40px", "tracking":"-0.5px" },
+      "score-md":   { "font":"Nunito", "size":"24px", "weight":700, "line":"28px", "tracking":"-0.3px" },
+      "score-sm":   { "font":"Nunito", "size":"16px", "weight":700, "line":"20px", "tracking":"0" },
+      "price":      { "font":"Nunito", "size":"20px", "weight":800, "line":"24px", "tracking":"-0.2px" }
+    }
+  },
+  "spacing": {
+    "1":"4px", "2":"8px", "3":"12px", "4":"16px",
+    "5":"20px", "6":"24px", "8":"32px", "10":"40px",
+    "12":"48px", "16":"64px", "20":"80px"
+  },
+  "radius": {
+    "xs":"6px", "sm":"10px", "md":"14px", "lg":"20px",
+    "xl":"28px", "2xl":"36px", "full":"9999px"
+  },
+  "shadow": {
+    "sm":        "0 4px 12px rgba(22,24,39,0.08)",
+    "md":        "0 12px 32px -8px rgba(22,24,39,0.12)",
+    "lg":        "0 24px 64px -16px rgba(22,24,39,0.18)",
+    "glowCoral": "0 0 28px rgba(255,107,95,0.34)",
+    "glowMint":  "0 0 28px rgba(62,214,163,0.34)",
+    "glowBlue":  "0 0 28px rgba(66,87,255,0.30)"
+  },
+  "animation": {
+    "duration": {
+      "fast":"150ms", "normal":"300ms", "slow":"500ms", "slower":"800ms", "score":"800ms"
+    },
+    "easing": {
+      "default": "cubic-bezier(0.25, 0.1, 0.25, 1.0)",
+      "out":     "cubic-bezier(0.0, 0.0, 0.58, 1.0)",
+      "spring":  "cubic-bezier(0.32, 0.72, 0.0, 1.0)",
+      "bounce":  "cubic-bezier(0.34, 1.56, 0.64, 1.0)",
+      "smooth":  "cubic-bezier(0.4, 0.0, 0.2, 1.0)"
+    }
+  },
+  "zIndex": { "base":0, "raised":10, "sticky":100, "dropdown":300, "overlay":500, "modal":700, "toast":900 },
+  "breakpoint": { "xs":"360px", "sm":"640px", "md":"768px", "lg":"1024px", "xl":"1280px" }
+}

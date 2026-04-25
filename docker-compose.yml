@@ -24,6 +24,8 @@ services:
     depends_on:
       - redis
     restart: always
+    volumes:
+      - ./backend:/app
 
   celery_beat:
     build:
@@ -34,15 +36,8 @@ services:
     depends_on:
       - redis
     restart: always
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    env_file: .env
-    restart: always
+    volumes:
+      - ./backend:/app
 
   redis:
     image: redis:7-alpine

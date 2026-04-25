@@ -1,17 +1,17 @@
 """
-PICKSY — Backend FastAPI Principal
-Fichier : backend/app/main.py
+PICKSY — Point d'entrée FastAPI
 """
 
+import os
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-from app.api.routes import categories, products, chat, recommendations, prices, alerts, wishlist, auth
+from app.api.routes import chat, products, newsletter
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -19,11 +19,12 @@ async def lifespan(app: FastAPI):
     yield
     print("🛑 Picksy Backend arrêté")
 
+
 app = FastAPI(
     title="Picksy API",
-    description="AI-powered home product recommendation engine",
+    description="L'IA anti-regret pour tes achats maison",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
 )
 
 # CORS
@@ -35,16 +36,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Routes
-app.include_router(auth.router, prefix="/auth", tags=["auth"])
-app.include_router(categories.router, prefix="/categories", tags=["categories"])
-app.include_router(products.router, prefix="/products", tags=["products"])
-app.include_router(chat.router, prefix="/chat", tags=["chat"])
-app.include_router(recommendations.router, prefix="/recommendations", tags=["recommendations"])
-app.include_router(prices.router, prefix="/prices", tags=["prices"])
-app.include_router(alerts.router, prefix="/alerts", tags=["alerts"])
-app.include_router(wishlist.router, prefix="/wishlist", tags=["wishlist"])
+# Routers
+app.include_router(chat.router, prefix="/api/chat", tags=["Chat IA"])
+app.include_router(products.router, prefix="/api/products", tags=["Produits"])
+app.include_router(newsletter.router, prefix="/api/newsletter", tags=["Newsletter"])
+
 
 @app.get("/health")
-async def health_check():
-    return {"status": "ok", "app": "Picksy", "version": "1.0.0"}
+async def health():
+    return {"status": "ok", "service": "picksy-backend"}

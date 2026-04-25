@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Couleurs Picksy ── */
+  --color-coral: #FF6B5F;
+  --color-mint: #3ED6A3;
+  --color-blue-ai: #4257FF;
+  --color-cream: #FFF7ED;
+  --color-ink: #161827;
+  --color-night: #0E1020;
+  --color-card-night: #181B2E;
+
+  /* ── Typographies ── */
+  --font-display: 'Sora', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-accent: 'Nunito', sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .gradient-coral {
+    background: linear-gradient(135deg, #FF6B5F 0%, #FFB067 100%);
+  }
+  .gradient-mint {
+    background: linear-gradient(135deg, #3ED6A3 0%, #9AF7D4 100%);
+  }
+  .gradient-blue-ai {
+    background: linear-gradient(135deg, #4257FF 0%, #8A7CFF 100%);
+  }
+}

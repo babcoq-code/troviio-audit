@@ -16,6 +16,18 @@ export function ResultRedirectMessage({ result_id }: ResultRedirectMessageProps)
   useEffect(() => {
     if (!result_id) return;
 
+    // Sauvegarder l'historique du chat dans localStorage pour "Affiner"
+    try {
+      const savedCity = sessionStorage.getItem("picksy_current_history");
+      const savedChatSession = sessionStorage.getItem("picksy_current_chat");
+      if (savedCity) {
+        localStorage.setItem("picksy_history", savedCity);
+        localStorage.setItem("picksy_chat", savedChatSession || "[]");
+        sessionStorage.removeItem("picksy_current_history");
+        sessionStorage.removeItem("picksy_current_chat");
+      }
+    } catch {}
+
     const countdownInterval = window.setInterval(() => {
       setRemainingSeconds((current) => Math.max(current - 1, 0));
     }, 1000);

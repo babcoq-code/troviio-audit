@@ -51,6 +51,28 @@ export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const restored = useRef(false);
+
+  // Restaurer l'historique depuis localStorage (quand on vient de "Affiner")
+  useEffect(() => {
+    if (restored.current) return;
+    restored.current = true;
+    try {
+      const savedHistory = localStorage.getItem("picksy_history");
+      const savedChat = localStorage.getItem("picksy_chat");
+      if (savedHistory && savedChat) {
+        const parsedHistory = JSON.parse(savedHistory);
+        const parsedChat = JSON.parse(savedChat);
+        if (Array.isArray(parsedHistory) && parsedHistory.length > 0) {
+          setHistory(parsedHistory);
+          setChat(parsedChat);
+          // Nettoyer localStorage après restauration
+          localStorage.removeItem("picksy_history");
+          localStorage.removeItem("picksy_chat");
+        }
+      }
+    } catch {}
+  }, []);
 
   useEffect(() => {
     const chatSection = document.getElementById("chat");
@@ -60,15 +82,25 @@ export default function HomePage() {
     const isChatVisible = rect.top < window.innerHeight && rect.bottom > 0;
     if (!isChatVisible) return; // Ne pas scroll si le chat n'est pas visible
 
-    // Scroll du container interne seulement — jamais de scrollIntoView sur chatEndRef
+    // Scroll DIRECT du container interne — pas de scrollIntoView qui peut scroll la page
     const container = chatSection.querySelector(".overflow-y-auto");
     if (!container) return;
     const isNearBottom =
       container.scrollHeight - container.scrollTop - container.clientHeight < 80;
-    if (isNearBottom && chatEndRef.current) {
-      chatEndRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    if (isNearBottom) {
+      container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
     }
   }, [chat]);
+
+  // Sauvegarder l'historique dans sessionStorage pour le récupérer sur la page résultat
+  useEffect(() => {
+    if (history.length > 0) {
+      try {
+        sessionStorage.setItem("picksy_current_history", JSON.stringify(history));
+        sessionStorage.setItem("picksy_current_chat", JSON.stringify(chat));
+      } catch {}
+    }
+  }, [history, chat]);
 
   const handleSend = async (overrideMsg?: string) => {
     const userMsg = (overrideMsg ?? message).trim();

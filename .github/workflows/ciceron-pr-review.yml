@@ -1,0 +1,23 @@
+name: Trigger Cicéron PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [ main ]
+
+jobs:
+  request-review:
+    runs-on: ubuntu-latest
+    name: Notify Dust workspace for Cicéron review
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upsert agent config to Dust
+        uses: dust-tt/dust-github-action@v1
+        with:
+          method: upsert-agent-configs
+          workspace-id: ${{ vars.DUST_WORKSPACE_ID }}
+          api-key: ${{ secrets.DUST_API_KEY }}
+          region: EU
+          agent-configs: |
+            agents/*.yaml

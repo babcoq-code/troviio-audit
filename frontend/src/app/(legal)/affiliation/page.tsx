@@ -73,7 +73,7 @@ export default function AffiliationPage() {
       <h2>6. Contact</h2>
       <p>
         Pour toute question relative à notre politique d'affiliation : 
-        <a href={`mailto:${siteConfig.legalEmail}`}>{siteConfig.legalEmail}</a>.
+        <a href={`mailto:${siteConfig.publisherEmail}`}>{siteConfig.publisherEmail}</a>.
       </p>
     </LegalPage>
   );

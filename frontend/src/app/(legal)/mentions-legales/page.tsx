@@ -28,7 +28,7 @@ export default function MentionsLegalesPage() {
         <li><strong>SIRET :</strong> {publisher.siret}</li>
         <li><strong>Adresse :</strong> {publisher.address}, {publisher.postalCode} {publisher.city}, {publisher.country}</li>
         <li><strong>Téléphone :</strong> {publisher.phone}</li>
-        <li><strong>Email :</strong> {siteConfig.contactEmail}</li>
+        <li><strong>Email :</strong> {siteConfig.publisherEmail}</li>
       </ul>
 
       <h2>2. Directeur de la publication</h2>
@@ -70,7 +70,7 @@ export default function MentionsLegalesPage() {
       <h2>7. Contact</h2>
       <p>
         Pour toute question relative aux mentions légales, vous pouvez nous contacter à 
-        l'adresse email suivante : <a href={`mailto:${siteConfig.legalEmail}`}>{siteConfig.legalEmail}</a>.
+        l'adresse email suivante : <a href={`mailto:${siteConfig.publisherEmail}`}>{siteConfig.publisherEmail}</a>.
       </p>
     </LegalPage>
   );

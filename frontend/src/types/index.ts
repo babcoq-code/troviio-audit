@@ -103,4 +103,20 @@ export interface SiteConfig {
   editorEmail: string;
   directorName: string;
   legalEmail?: string;
+  // Champs objets pour compatibilité pages légales
+  publisher: {
+    name: string;
+    siret: string;
+    address: string;
+    postalCode: string;
+    city: string;
+    country: string;
+    phone: string;
+  };
+  hosting: {
+    name: string;
+    address: string;
+    phone: string;
+    website: string;
+  };
 }

@@ -95,7 +95,7 @@ export default function MethodologiePage() {
       <h2>8. Contact</h2>
       <p>
         Pour toute question sur notre méthodologie ou pour signaler une inexactitude : 
-        <a href={`mailto:${siteConfig.legalEmail}`}>{siteConfig.legalEmail}</a>.
+        <a href={`mailto:${siteConfig.publisherEmail}`}>{siteConfig.publisherEmail}</a>.
       </p>
     </LegalPage>
   );

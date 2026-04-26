@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ScoreRing } from "./ScoreRing";
-import type { Product } from "@/lib/types";
+import type { Product } from "@/types";
 
 const CATEGORY_EMOJI: Record<string, string> = {
   robot_aspirateur: "🤖",
@@ -20,16 +19,11 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   const emoji = Object.entries(CATEGORY_EMOJI).find(([k]) =>
-    product.category.toLowerCase().includes(k)
+    (product.category_slug || "").toLowerCase().includes(k)
   )?.[1] || "🏡";
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -4 }}
-      className="bg-surface rounded-2xl border border-white/5 overflow-hidden transition-all"
-    >
+    <article className="bg-surface rounded-2xl border border-white/5 overflow-hidden transition-all hover:-translate-y-1">
       {/* Image */}
       <div className="relative w-full aspect-[4/3] bg-surface-light overflow-hidden">
         {product.image_url ? (
@@ -45,7 +39,7 @@ export default function ProductCard({ product }: Props) {
         )}
         <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blueberry text-white text-xs font-bold shadow-lg">
           <span>{emoji}</span>
-          <span>{product.category}</span>
+          <span className="capitalize">{product.category_name || product.category_slug}</span>
         </div>
       </div>
 
@@ -56,18 +50,8 @@ export default function ProductCard({ product }: Props) {
             <h3 className="font-bold text-base text-white truncate">{product.name}</h3>
             <p className="text-xs text-muted font-medium">{product.brand}</p>
           </div>
-          <ScoreRing score={product.score || 85} size="sm" />
+          <ScoreRing score={product.estimated_score || 85} size="sm" />
         </div>
-
-        {product.key_features && product.key_features.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {product.key_features.slice(0, 3).map((f, i) => (
-              <span key={i} className="px-2 py-0.5 rounded-md bg-surface-light text-xs text-muted">
-                {f}
-              </span>
-            ))}
-          </div>
-        )}
 
         <div className="flex items-center justify-between pt-1">
           {product.affiliate_url ? (
@@ -77,10 +61,12 @@ export default function ProductCard({ product }: Props) {
               rel="noopener noreferrer"
               className="text-lg font-extrabold text-white hover:text-coral transition-colors"
             >
-              {product.price} <span className="text-coral text-sm">↗</span>
+              {product.price_eur}€ <span className="text-coral text-sm">↗</span>
             </a>
           ) : (
-            <span className="text-sm text-muted">{product.price || "Prix non dispo"}</span>
+            <span className="text-sm text-muted">
+              {product.price_eur ? `${product.price_eur}€` : "Prix non dispo"}
+            </span>
           )}
           <span className="text-xs font-bold text-mint uppercase tracking-wider">
             ● IA vérifiée
@@ -96,6 +82,6 @@ export default function ProductCard({ product }: Props) {
           Voir le prix sur Amazon ✨
         </a>
       </div>
-    </motion.article>
+    </article>
   );
 }

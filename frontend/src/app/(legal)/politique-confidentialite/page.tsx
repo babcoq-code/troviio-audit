@@ -80,7 +80,7 @@ export default function PolitiqueConfidentialitePage() {
         <li>Droit d'opposition (article 21 RGPD).</li>
       </ul>
       <p>
-        Pour exercer vos droits, contactez-nous à : <a href={`mailto:${siteConfig.legalEmail}`}>{siteConfig.legalEmail}</a>. 
+        Pour exercer vos droits, contactez-nous à : <a href={`mailto:${siteConfig.publisherEmail}`}>{siteConfig.publisherEmail}</a>. 
         Vous avez également le droit d'introduire une réclamation auprès de la CNIL.
       </p>
 

@@ -74,7 +74,7 @@ export default function AProposPage() {
               <h2>Contact</h2>
               <p>
                 Une question, une suggestion, une collaboration ? Écrivez-nous à{' '}
-                <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.
+                <a href={`mailto:${siteConfig.publisherEmail}`}>{siteConfig.publisherEmail}</a>.
               </p>
             </section>
           </div>

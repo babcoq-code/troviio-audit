@@ -92,7 +92,7 @@ export default function CookiesPage() {
       <h2>6. Contact</h2>
       <p>
         Pour toute question relative aux cookies, contactez-nous : 
-        <a href={`mailto:${siteConfig.legalEmail}`}>{siteConfig.legalEmail}</a>.
+        <a href={`mailto:${siteConfig.publisherEmail}`}>{siteConfig.publisherEmail}</a>.
       </p>
     </LegalPage>
   );

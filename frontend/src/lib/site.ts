@@ -1,5 +1,20 @@
 import type { SiteConfig } from "@/types"
 
+export type LegalPage = {
+  title: string;
+  href: string;
+  emoji?: string;
+};
+
+export const legalPages: LegalPage[] = [
+  { title: "Mentions légales", href: "/mentions-legales", emoji: "⚖️" },
+  { title: "Politique de confidentialité", href: "/politique-confidentialite", emoji: "🔒" },
+  { title: "Cookies", href: "/cookies", emoji: "🍪" },
+  { title: "Affiliation", href: "/affiliation", emoji: "🤝" },
+  { title: "Méthodologie", href: "/methodologie", emoji: "📊" },
+  { title: "À propos", href: "/a-propos", emoji: "ℹ️" },
+];
+
 export const siteConfig: SiteConfig = {
   name: "Picksy",
   slogan: "C'est l'objet qui s'adapte à TOI, pas l'inverse",
@@ -23,11 +38,28 @@ export const siteConfig: SiteConfig = {
   hostEmail: "support@hostinger.com",
 
   // === CNIL ===
-  cnilNumber: "xxxxx", // Numéro de déclaration CNIL si applicable
+  cnilNumber: "xxxxx",
 
   // === Responsable publication ===
   editorName: "Sébastien Babcoq",
   editorAddress: "Adresse professionnelle à renseigner",
   editorEmail: "contact@picksy.fr",
   directorName: "Sébastien Babcoq",
+
+  // === Objets pour compatibilité pages légales ===
+  publisher: {
+    name: "Sébastien Babcoq",
+    siret: "xxx xxx xxx xxxxx",
+    address: "Adresse professionnelle à renseigner",
+    postalCode: "xxxxx",
+    city: "Ville à renseigner",
+    country: "France",
+    phone: "+33 x xx xx xx xx",
+  },
+  hosting: {
+    name: "Hostinger International Ltd.",
+    address: "61 Lordou Vironos Street, 6023 Larnaca, Chypre",
+    phone: "+370 5 214 1717",
+    website: "https://www.hostinger.com",
+  },
 }

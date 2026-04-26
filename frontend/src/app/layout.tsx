@@ -1,4 +1,6 @@
 import "./globals.css";
+import CookieBanner from "@/components/CookieBanner";
+import { UmamiAnalytics } from "@/components/UmamiAnalytics";
 
 export const metadata = {
   title: "Picksy | Pas le meilleur. Le tien.",
@@ -15,7 +17,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body>
+        <UmamiAnalytics />
+        {children}
+        <CookieBanner />
+      </body>
     </html>
   );
 }

@@ -3,134 +3,121 @@ PICKSY — Routes Produits (detail page)
 """
 
 from __future__ import annotations
+import logging, os
+from datetime import datetime, timedelta, timezone
+from typing import Any, Literal
+from uuid import UUID
 
-import logging
-from typing import Optional
-
-from fastapi import APIRouter, Depends, HTTPException
-
-from app.schemas.product import (
-    ProductDetailResponse,
-    ProductPricesResponse,
-    PlatformPrice,
-    PriceHistoryPoint,
-    ProductRatings,
-    PriceStatus,
-)
-from app.services.price_service import PriceService
-from app.core.supabase import get_supabase_admin
+from fastapi import APIRouter, HTTPException, Request, status
+from pydantic import BaseModel
+from supabase import Client, create_client
 
 logger = logging.getLogger(__name__)
-
 router = APIRouter()
 
 
-def _row_to_detail(row: dict) -> ProductDetailResponse:
-    """Convert a DB row dict to ProductDetailResponse Pydantic model."""
-    ratings = None
-    if row.get("ratings"):
-        if isinstance(row["ratings"], dict):
-            ratings = ProductRatings(**row["ratings"])
-        elif isinstance(row["ratings"], (int, float)):
-            ratings = ProductRatings(overall=float(row["ratings"]))
-
-    return ProductDetailResponse(
-        id=row["id"],
-        slug=row.get("slug", ""),
-        name=row.get("name", ""),
-        brand=row.get("brand", ""),
-        model=row.get("model"),
-        image_url=row.get("image_url"),
-        category_slug=row.get("category_slug", ""),
-        category_name=row.get("category_name", ""),
-        category_emoji=row.get("category_emoji"),
-        estimated_score=row.get("estimated_score"),
-        price_eur=row.get("price_eur"),
-        specs=row.get("specs", {}),
-        use_case_scores=row.get("use_case_scores", {}),
-        test_summary=row.get("test_summary"),
-        verdict=row.get("verdict"),
-        ratings=ratings,
-        why_perfect=row.get("why_perfect"),
-        pros=row.get("pros") or [],
-        cons=row.get("cons") or [],
-        affiliate_url=row.get("affiliate_url"),
-        amazon_asin=row.get("amazon_asin"),
-        source_url=row.get("source_url"),
-        source_title=row.get("source_title"),
-        source_date=row.get("source_date"),
-        prices=None,
+def get_supabase() -> Client:
+    return create_client(
+        os.environ["SUPABASE_URL"],
+        os.environ["SUPABASE_SERVICE_ROLE_KEY"],
     )
 
 
-@router.get("/", response_model=list[ProductDetailResponse])
-async def list_products(
-    category: Optional[str] = None,
-    limit: int = 20,
-    offset: int = 0,
-):
-    """List published products, optionally filtered by category slug."""
-    supabase = get_supabase_admin()
-    query = supabase.from_("v_products_published").select("*")
-    if category:
-        query = query.eq("category_slug", category)
-    result = query.order("estimated_score", desc=True).range(offset, offset + limit - 1).execute()
-    return [_row_to_detail(row) for row in (result.data or [])]
+class ProductRatings(BaseModel):
+    design: float = 0
+    ease_of_use: float = 0
+    performance: float = 0
+    value_for_money: float = 0
+    customer_service: float = 0
 
 
-@router.get("/top5/{category}", response_model=list[ProductDetailResponse])
-async def top5(category: str):
-    """Top 5 products for a given category slug."""
-    supabase = get_supabase_admin()
-    result = (
-        supabase.from_("v_products_published")
-        .select("*")
-        .eq("category_slug", category)
-        .order("estimated_score", desc=True)
-        .limit(5)
-        .execute()
-    )
-    if not result.data:
-        raise HTTPException(404, f"Aucun produit trouvé pour la catégorie '{category}'")
-    return [_row_to_detail(row) for row in result.data]
+class ProductResponse(BaseModel):
+    id: UUID
+    slug: str
+    name: str
+    brand: str
+    category_slug: str
+    price_eur: float
+    estimated_score: float
+    use_case_scores: dict[str, float]
+    pros: list[str]
+    cons: list[str]
+    description: str
+    why_perfect: str
+    rank_label: str
+    test_summary: str
+    verdict: str
+    ratings: ProductRatings
+    image_url: str
+    specs: dict[str, Any]
+    amazon_asin: str | None = None
 
 
-@router.get("/{slug}", response_model=ProductDetailResponse)
-async def get_product_by_slug(slug: str):
-    """Get a single product by its slug."""
-    supabase = get_supabase_admin()
-    result = (
-        supabase.from_("v_products_published")
-        .select("*")
-        .eq("slug", slug)
-        .limit(1)
-        .execute()
-    )
-    if not result.data:
-        raise HTTPException(404, f"Produit introuvable (slug: {slug})")
-    return _row_to_detail(result.data[0])
+class PriceEntry(BaseModel):
+    merchant_name: str
+    merchant_logo_url: str
+    price_eur: float
+    affiliate_url: str
+    in_stock: bool
+    scraped_at: datetime
 
 
-@router.get("/{slug}/prices", response_model=ProductPricesResponse)
-async def get_product_prices(slug: str):
-    """Get prices and price history for a product by slug."""
-    supabase = get_supabase_admin()
+class AffiliateClickPayload(BaseModel):
+    productId: UUID
+    merchantName: str
+    affiliateUrl: str
 
-    # Look up product ID from slug
-    product_result = (
-        supabase.from_("v_products_published")
-        .select("id, slug")
-        .eq("slug", slug)
-        .limit(1)
-        .execute()
-    )
-    if not product_result.data:
-        raise HTTPException(404, f"Produit introuvable (slug: {slug})")
 
-    product_id = product_result.data[0]["id"]
+@router.get("/api/products/{slug}", response_model=ProductResponse)
+async def get_product(slug: str):
+    sb = get_supabase()
+    r = sb.table("products").select("*").eq("slug", slug).single().execute()
+    if not r.data:
+        raise HTTPException(404, "Product not found")
+    return ProductResponse.model_validate(r.data)
 
-    # Fetch prices via PriceService
-    supabase_admin = get_supabase_admin()
-    prices_data = await PriceService.get_product_prices(slug, product_id, supabase_admin)
 
-    return ProductPricesResponse(**prices_data)
+@router.get("/api/products/{slug}/prices", response_model=list[PriceEntry])
+async def get_current_prices(slug: str):
+    sb = get_supabase()
+    prod = sb.table("products").select("id").eq("slug", slug).single().execute()
+    if not prod.data:
+        raise HTTPException(404, "Product not found")
+    pid = prod.data["id"]
+    r = sb.from_("latest_price_by_merchant").select("*").eq("product_id", pid).execute()
+    rows = sorted(r.data or [], key=lambda x: float(x["price_eur"]))
+    return [PriceEntry.model_validate(row) for row in rows]
+
+
+@router.get("/api/products/{slug}/price-history", response_model=list[PriceEntry])
+async def get_price_history(slug: str):
+    sb = get_supabase()
+    prod = sb.table("products").select("id").eq("slug", slug).single().execute()
+    if not prod.data:
+        raise HTTPException(404, "Product not found")
+    pid = prod.data["id"]
+    since = (datetime.now(timezone.utc) - timedelta(weeks=12)).isoformat()
+    r = (sb.table("price_history")
+         .select("merchant_name,merchant_logo_url,price_eur,affiliate_url,in_stock,scraped_at")
+         .eq("product_id", pid)
+         .gte("scraped_at", since)
+         .order("scraped_at", desc=False)
+         .execute())
+    return [PriceEntry.model_validate(row) for row in r.data or []]
+
+
+@router.post("/api/affiliate/click", status_code=201)
+async def track_click(payload: AffiliateClickPayload, request: Request):
+    sb = get_supabase()
+    fwd = request.headers.get("x-forwarded-for", "")
+    ip = fwd.split(",")[0].strip() if fwd else (request.client.host if request.client else None)
+    sb.table("affiliate_clicks").insert({
+        "product_id": str(payload.productId),
+        "merchant_name": payload.merchantName,
+        "affiliate_url": str(payload.affiliateUrl),
+        "user_agent": request.headers.get("user-agent"),
+        "referer": request.headers.get("referer"),
+        "ip_address": ip,
+        "clicked_at": datetime.now(timezone.utc).isoformat(),
+    }).execute()
+    return {"ok": True}

@@ -2,25 +2,25 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  trailingSlash: false,
   async rewrites() {
-    return {
-      beforeFiles: [
-        {
-          source: "/api/:path*",
-          destination: "http://backend:8000/api/:path*",
-        },
-      ],
-    };
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${process.env.API_BASE_URL ?? "http://localhost:8000"}/api/:path*`,
+      },
+    ];
   },
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "m.media-amazon.com" },
-      { protocol: "https", hostname: "images-na.ssl-images-amazon.com" },
+      { protocol: "https", hostname: "*.supabase.co" },
+      { protocol: "https", hostname: "*.amazon.com" },
+      { protocol: "https", hostname: "*.amazon.fr" },
+      { protocol: "https", hostname: "**.fnac.com" },
+      { protocol: "https", hostname: "**.boulanger.com" },
+      { protocol: "https", hostname: "**.cdiscount.com" },
+      { protocol: "https", hostname: "**.darty.com" },
+      { protocol: "https", hostname: "**" },
     ],
-  },
-  env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "https://picksy.babcoq.tech/api",
   },
 };
 

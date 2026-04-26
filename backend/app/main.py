@@ -18,6 +18,7 @@ configure_logging()
 logger = logging.getLogger("picksy.api")
 
 from app.api.routes import chat, products, newsletter, results
+from app.api.routes.kelkoo import router as kelkoo_router
 from app.api.routes.admin_scraping import router as admin_scraping_router
 
 
@@ -55,7 +56,8 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 # Routers
 app.include_router(chat.router, prefix="/api/chat", tags=["Chat IA"])
-app.include_router(products.router, prefix="/api/products", tags=["Produits"])
+app.include_router(products.router, prefix="", tags=["Produits"])
+app.include_router(kelkoo_router, prefix="", tags=["Kelkoo"])
 app.include_router(newsletter.router, prefix="/api/newsletter", tags=["Newsletter"])
 app.include_router(results.router, prefix="/api", tags=["Résultats"])
 app.include_router(admin_scraping_router)

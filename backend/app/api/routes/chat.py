@@ -32,7 +32,7 @@ CATEGORY_MAP = {
     "lave-vaisselle": "lave-vaisselle", "lavage": "lave-vaisselle",
     "frigo": "refrigerateur", "réfrigérateur": "refrigerateur", "frigidaire": "refrigerateur",
     "purificateur": "purificateur-air", "purif": "purificateur-air", "qualité air": "purificateur-air",
-    "barre de son": "barre-son", "soundbar": "barre-son", "home cinéma": "barre-son",
+    "barre de son": "barre-son", "barre-de-son": "barre-son", "soundbar": "barre-son", "home cinéma": "barre-son",
     "domotique": "domotique-hub", "smarthome": "domotique-hub", "home assistant": "domotique-hub",
     "friteuse": "friteuse-air", "airfryer": "friteuse-air", "air fryer": "friteuse-air",
     "trottinette": "trottinette", "scooter": "trottinette",
@@ -42,6 +42,7 @@ CATEGORY_MAP = {
     "imprimante": "imprimante", "printer": "imprimante",
     "camera": "camera-securite", "caméra": "camera-securite", "surveillance": "camera-securite",
     "thermostat": "thermostat-connecte", "chauffage": "thermostat-connecte",
+    "poussette": "poussette", "landau": "poussette", "poussette bebe": "poussette",
 }
 
 SYSTEM_PROMPT = """Tu es Picksy, un conseiller produit qui agit comme un ami qui s'y connaît vraiment.
@@ -101,7 +102,7 @@ Après 3-4 échanges, résumer le profil ET proposer de lancer :
 Quand l'utilisateur dit oui/go/ok/lance → retourner CE JSON EXACT et RIEN D'AUTRE :
 {"action": "search", "profile": {"categorie": "robot-aspirateur|tv-oled|machine-cafe|...", "budget_max": 400, "criteres": ["parquet", "animaux"], "resume": "profil en 1 phrase"}}
 
-Catégories valides : robot-aspirateur, tv-oled, machine-cafe, casque-audio, lave-linge, lave-vaisselle, refrigerateur, purificateur-air, barre-son, domotique-hub, friteuse-air, ordinateur-etudiant, smartphone, imprimante, camera-securite, thermostat-connecte, trottinette, velo-electrique, aspirateur-balai."""
+Catégories valides : robot-aspirateur, tv-oled, machine-cafe, casque-audio, lave-linge, lave-vaisselle, refrigerateur, purificateur-air, barre-son, domotique-hub, friteuse-air, ordinateur-etudiant, smartphone, imprimante, camera-securite, thermostat-connecte, trottinette, velo-electrique, aspirateur-balai, poussette."""
 
 HORS_SCOPE = ["météo", "recette", "cuisine", "politique", "médecin", "santé", "voiture", "moto", "voyage", "avion", "sport", "football", "bourse", "crypto", "code", "programme", "javascript", "python"]
 

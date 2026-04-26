@@ -17,6 +17,14 @@ class Settings:
     SUPABASE_SERVICE_KEY: str = os.getenv("SUPABASE_SERVICE_KEY", "")
     SUPABASE_KEY: str = os.getenv("SUPABASE_KEY", "")
 
+    # Firecrawl
+    FIRECRAWL_API_KEY: str = os.getenv("FIRECRAWL_API_KEY", "")
+    FIRECRAWL_BASE_URL: str = os.getenv("FIRECRAWL_BASE_URL", "https://api.firecrawl.dev")
+
+    # Scraping
+    scraping_max_used_sources: int = int(os.getenv("SCRAPING_MAX_USED_SOURCES", "5"))
+    scraping_max_search_results: int = int(os.getenv("SCRAPING_MAX_SEARCH_RESULTS", "8"))
+
     # Redis
     REDIS_HOST: str = os.getenv("REDIS_HOST", "localhost")
     REDIS_PORT: int = int(os.getenv("REDIS_PORT", "6379"))

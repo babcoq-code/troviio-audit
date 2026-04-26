@@ -35,6 +35,10 @@ const CATEGORIES = [
   },
   { label: "🎧 Casque audio", cat: "casque audio", sub: "" },
   { label: "💻 Laptop étudiant", cat: "ordinateur étudiant", sub: "" },
+  { label: "🍽️ Lave-vaisselle", cat: "lave-vaisselle", sub: "Silencieux, éco, taille standard ou compact." },
+  { label: "🛴 Trottinette électrique", cat: "trottinette électrique", sub: "Autonomie, poids, homologuée, budget." },
+  { label: "👶 Poussette", cat: "poussette", sub: "Légère, pliable, tout terrain, budget." },
+  { label: "🔊 Barre de son", cat: "barre de son", sub: "TV, gaming, Dolby, connexion, taille." },
 ];
 
 export default function HomePage() {
@@ -56,13 +60,13 @@ export default function HomePage() {
     const isChatVisible = rect.top < window.innerHeight && rect.bottom > 0;
     if (!isChatVisible) return; // Ne pas scroll si le chat n'est pas visible
 
-    // Scroll du container interne seulement
+    // Scroll du container interne seulement — jamais de scrollIntoView sur chatEndRef
     const container = chatSection.querySelector(".overflow-y-auto");
-    if (!container || !chatEndRef.current) return;
+    if (!container) return;
     const isNearBottom =
       container.scrollHeight - container.scrollTop - container.clientHeight < 80;
-    if (isNearBottom) {
-      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (isNearBottom && chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   }, [chat]);
 
@@ -105,7 +109,14 @@ export default function HomePage() {
 
   const handleCategorySelect = (slug: string, label: string) => {
     const nextMessage = `Je cherche ${label.toLowerCase()}, peux-tu m'aider ?`;
-    document.getElementById("chat")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Scroll INTERNE du chat uniquement — pas de scrollIntoView sur la page
+    const chatSection = document.getElementById("chat");
+    if (chatSection) {
+      const container = chatSection.querySelector(".overflow-y-auto");
+      if (container) {
+        container.scrollTop = 0;
+      }
+    }
     setMessage(nextMessage);
     setTimeout(() => {
       inputRef.current?.focus();
@@ -436,8 +447,8 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           8. NEWSLETTER
       ══════════════════════════════════════ */}
-      <section className="max-w-2xl mx-auto px-4 mb-20">
-        <div className="rounded-2xl border border-white/5 p-8 text-center" style={{ background: "linear-gradient(135deg, #1A1D2E, #242840)" }}>
+      <section className="max-w-xl mx-auto px-4 mb-20">
+        <div className="rounded-2xl border border-white/5 p-6 sm:p-8 text-center overflow-hidden" style={{ background: "linear-gradient(135deg, #1A1D2E, #242840)" }}>
           <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "Sora, sans-serif" }}>
             💌 Rentre chez toi. Picksy s&apos;occupe du choix.
           </h3>

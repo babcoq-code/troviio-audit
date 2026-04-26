@@ -42,6 +42,30 @@ const CATEGORY_META: Record<
     description:
       "Casques audio sans fil, nomades et studio pour la musique et les appels.",
   },
+  "lave-vaisselle": {
+    name: "Lave-vaisselle",
+    emoji: "🍽️",
+    description:
+      "Lave-vaisselle silencieux, économes et compacts pour toutes les cuisines.",
+  },
+  poussette: {
+    name: "Poussette",
+    emoji: "👶",
+    description:
+      "Poussettes légères, pliables et tout-terrain pour bébé et parents.",
+  },
+  "barre-son": {
+    name: "Barre de son",
+    emoji: "🔊",
+    description:
+      "Barres de son pour TV, gaming et home cinéma avec Dolby Atmos.",
+  },
+  "barre-de-son": {
+    name: "Barre de son",
+    emoji: "🔊",
+    description:
+      "Barres de son pour TV, gaming et home cinéma avec Dolby Atmos.",
+  },
 };
 
 function getCategoryMeta(slug: string) {

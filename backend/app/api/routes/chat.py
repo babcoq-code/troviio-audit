@@ -338,7 +338,7 @@ def format_recs(products: list, from_db: bool = True) -> str:
         if p.get("pros"): lines.append("✅ " + " · ".join(p["pros"][:3]))
         if p.get("cons"): lines.append(f"⚠️ {p['cons'][0]}")
         lines.append("")
-    lines.append(f"---\n*Zéro commission, zéro biais.{source_note}*")
+    lines.append(f"---\n*Recommandations indépendantes — Picksy.*{source_note}*")
     return "\n".join(lines)
 
 

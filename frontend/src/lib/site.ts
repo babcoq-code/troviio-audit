@@ -1,28 +1,5 @@
 import type { SiteConfig } from "@/types"
 
-export type SiteConfig = {
-  name: string
-  slogan: string
-  description: string
-  url: string
-  ogImage: string
-  publisherName: string
-  publisherSiret: string
-  publisherAddress: string
-  publisherEmail: string
-  publisherPhone: string
-  publisherRcs: string
-  publisherTva: string
-  hostName: string
-  hostAddress: string
-  hostEmail: string
-  cnilNumber: string
-  editorName: string
-  editorAddress: string
-  editorEmail: string
-  directorName: string
-}
-
 export const siteConfig: SiteConfig = {
   name: "Picksy",
   slogan: "C'est l'objet qui s'adapte à TOI, pas l'inverse",

@@ -111,7 +111,7 @@ export default function HomePage() {
               <span className="text-white/80">IA nourrie par des milliers d&apos;avis — guidée par TA vie</span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium backdrop-blur-sm">
-              <span className="text-white/80">Zéro commission. Zéro biais. Zéro pression.</span>
+              <span className="text-white/80">Zéro biais. Transparence totale. Zéro pression.</span>
             </div>
           </div>
 
@@ -234,7 +234,7 @@ export default function HomePage() {
             <ScoreRing score={94} size="sm" />
             <span>Précision moyenne des recommandations</span>
           </div>
-          <p className="text-xs text-muted">Gratuit. Sans inscription. Aucune commission d&apos;affiliation.</p>
+          <p className="text-xs text-muted">Gratuit. Sans inscription. Recommandations indépendantes.</p>
         </div>
       </section>
 
@@ -341,7 +341,7 @@ export default function HomePage() {
             ["Te laisse arbitrer seul face à 20 options", "Écarte ce qui risque de te décevoir"],
             ["Parle à tout le monde pareil", "Te donne une recommandation adaptée à TA situation"],
             ["Tests labo sans connaître ton logement", "Croise tests experts ET avis d'usage réel"],
-            ["Revenus générés par l'affiliation", "Zéro commission, zéro conflit d'intérêt"],
+            ["Revenus générés par l'affiliation", "Zéro biais, transparence totale"],
           ].map(([left, right], i) => (
             <div key={i} className={`grid grid-cols-2 ${i % 2 === 0 ? "bg-surface" : "bg-surface-light"}`}>
               <div className="p-4 text-sm text-muted border-r border-white/5">{left}</div>
@@ -364,7 +364,7 @@ export default function HomePage() {
             Il garde en tête des milliers de produits, lit les avis à ta place et reste disponible quand tu veux acheter, même à 23h.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {["✅ Zéro commission", "✅ Zéro pression", "✅ Disponible 24/7", "✅ 10 000+ produits analysés"].map((b) => (
+            {["✅ Recommandations indépendantes", "✅ Zéro pression", "✅ Disponible 24/7", "✅ 10 000+ produits analysés"].map((b) => (
               <span key={b} className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium">
                 {b}
               </span>
@@ -498,17 +498,29 @@ export default function HomePage() {
       {/* ══════════════════════════════════════
           10. FOOTER
       ══════════════════════════════════════ */}
-      <footer className="border-t border-white/5 py-8 px-4">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
-          <div className="flex items-center gap-3">
-            <img src="/logo-icon.svg" alt="" style={{ height: 24, opacity: 0.7 }} />
-            <span className="font-semibold text-white">Picksy</span>
-            <span>· Le conseiller maison pour tes achats maison</span>
+      <footer className="border-t border-white/5 py-10 px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Links */}
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted mb-6">
+            <a href="/mentions-legales" className="hover:text-white transition-colors">Mentions légales</a>
+            <a href="/politique-confidentialite" className="hover:text-white transition-colors">Politique de confidentialité</a>
+            <a href="/affiliation" className="hover:text-white transition-colors">Affiliation Amazon</a>
+            <a href="/methodologie" className="hover:text-white transition-colors">Méthodologie</a>
+            <a href="/a-propos" className="hover:text-white transition-colors">À propos</a>
+            <a href="/contact" className="hover:text-white transition-colors">Contact</a>
           </div>
-          <div className="flex items-center gap-4">
-            <span>Liens affiliés Amazon</span>
-            <span>·</span>
-            <span>© 2026</span>
+          {/* Brand + copyright */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted border-t border-white/5 pt-6">
+            <div className="flex items-center gap-3">
+              <img src="/logo-icon.svg" alt="" style={{ height: 24, opacity: 0.7 }} />
+              <span className="font-semibold text-white">Picksy</span>
+              <span>· Le conseiller maison pour tes achats maison</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-xs">Liens affiliés Amazon · Recommandations indépendantes</span>
+              <span className="hidden sm:inline">·</span>
+              <span>© 2026 Picksy</span>
+            </div>
           </div>
         </div>
       </footer>

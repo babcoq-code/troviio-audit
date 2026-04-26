@@ -88,7 +88,7 @@ export function PriceChart({ data }: { data: Point[] }) {
                 title: (items) =>
                   items[0] ? fmtDate(weeks[items[0].dataIndex ?? ""]) : "",
                 label: (ctx) =>
-                  `${ctx.dataset.label}: ${fmtPrice(ctx.parsed.y)}`,
+                  `${ctx.dataset.label}: ${ctx.parsed.y !== null ? fmtPrice(ctx.parsed.y) : "N/D"}`,
               },
             },
           },

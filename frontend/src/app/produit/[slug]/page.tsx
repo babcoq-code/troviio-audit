@@ -28,11 +28,8 @@ async function getSupabase() {
   );
 }
 
-export async function generateStaticParams() {
-  const sb = await getSupabase();
-  const { data } = await sb.from("products").select("slug");
-  return data?.map((p) => ({ slug: p.slug })) ?? [];
-}
+// Pas de generateStaticParams — rendu dynamique (ISR avec revalidate)
+// generateStaticParams serait idéal mais nécessite les vars Supabase au build time
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;

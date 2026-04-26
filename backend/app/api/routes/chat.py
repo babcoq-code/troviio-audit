@@ -63,14 +63,31 @@ Catégories valides : robot-aspirateur, tv-oled, machine-cafe, casque-audio, lav
 HORS_SCOPE = ["météo", "recette", "cuisine", "politique", "médecin", "santé", "voiture", "moto", "voyage", "avion", "sport", "football", "bourse", "crypto", "code", "programme", "javascript", "python"]
 
 
+# Cache des slugs -> UUID catégories
+CATEGORY_UUID_CACHE = {}
+
+async def get_category_uuid(slug: str) -> str | None:
+    """Résout un slug de catégorie en UUID via la table categories."""
+    if slug in CATEGORY_UUID_CACHE:
+        return CATEGORY_UUID_CACHE[slug]
+    try:
+        r = supabase.table("categories").select("id").eq("slug", slug).limit(1).execute()
+        if r.data:
+            uid = r.data[0]["id"]
+            CATEGORY_UUID_CACHE[slug] = uid
+            return uid
+    except Exception as e:
+        print(f"⚠️ Cat lookup error: {e}")
+    return None
+
 async def query_db(profile: dict) -> list:
     """Interroge v_products_published avec la catégorie et le budget."""
-    cat = profile.get("categorie", "")
+    cat_slug = profile.get("categorie", "")
     budget = profile.get("budget_max")
     try:
         q = supabase.table("v_products_published").select("*").order("estimated_score", desc=True)
-        if cat:
-            q = q.eq("category_slug", cat)
+        if cat_slug:
+            q = q.eq("category_slug", cat_slug)
         if budget:
             q = q.lte("price_eur", int(budget))
         return (q.limit(15).execute().data or [])
@@ -80,34 +97,106 @@ async def query_db(profile: dict) -> list:
 
 
 async def rank_with_ai(products: list, profile: dict) -> list:
-    """DeepSeek classe les produits selon le profil."""
+    """DeepSeek classe les produits selon le profil.
+    Fix Cicéron: extra_body thinking:disabled + response_format json_object + fallback reasoning_content.
+    """
     if not products:
         return []
-    summary = "\n".join([
-        f"- {p.get('brand','')} {p.get('name','')} | score:{p.get('estimated_score','')} | "
-        f"prix:{p.get('price_eur','?')}€ | specs:{json.dumps(p.get('specs',{}))[:200]}"
-        for p in products
-    ])
-    prompt = f"""Profil : catégorie={profile.get('categorie')} | budget_max={profile.get('budget_max','?')}€ | critères={profile.get('criteres',[])} | résumé={profile.get('resume','')}
+    summary_lines = []
+    for p in products[:25]:
+        summary_lines.append(
+            f"- {p.get('brand','')} {p.get('name','')} | score:{p.get('estimated_score','')}/10 | "
+            f"prix:{p.get('price_eur','?')}€ | cat:{p.get('category_slug','')} | "
+            f"use_case:{json.dumps(p.get('use_case_scores',{}))[:150]}"
+        )
+    summary = "\n".join(summary_lines)
 
-Produits disponibles :
-{summary}
+    system_prompt = """You are a product ranking engine for Picksy, a French e-commerce chatbot.
+Your task is to analyze products and return the 3 best recommendations as json.
 
-Sélectionne les 3 MEILLEURS pour ce profil. JSON array :
-[{{"name":"...","brand":"...","rank_label":"Meilleur choix","why_perfect":"...","pros":["..."],"cons":["..."],"score":8.5,"price_range":"xxx€"}}]
-rank_label : "Meilleur choix" | "Meilleur rapport qualité/prix" | "Option premium"
-UNIQUEMENT le JSON array."""
+OUTPUT FORMAT — Return this exact JSON structure, nothing else:
+{
+  "recommendations": [
+    {
+      "name": "string",
+      "brand": "string",
+      "rank_label": "Meilleur choix",
+      "why_perfect": "string in French, max 2 sentences",
+      "pros": ["string", "string", "string"],
+      "cons": ["string"],
+      "score": 8.5,
+      "price_range": "500€"
+    }
+  ]
+}
+
+STRICT RULES:
+- "rank_label": "Meilleur choix" | "Meilleur rapport qualite/prix" | "Option premium"
+- "score": between 0 and 10
+- Output ONLY the JSON object. No markdown, no explanation, no preamble.
+- "recommendations" must contain exactly 3 items.
+- "pros": list of 3 positive points in French
+- "cons": 1 weakness in French
+- Use only data from the provided products."""
+
+    user_prompt = f"Profile: categorie={profile.get('categorie')} budget_max={profile.get('budget_max','?')}€ criteres={profile.get('criteres',[])} resume={profile.get('resume','')}\n\nProducts:\n{summary}"
+
     try:
         resp = await client.chat.completions.create(
-            model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=1500, temperature=0.2
+            model=os.getenv("DEEPSEEK_MODEL", "deepseek-v4-pro"),
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            response_format={"type": "json_object"},
+            temperature=0,
+            max_tokens=2000,
+            extra_body={"thinking": {"type": "disabled"}}
         )
-        raw = resp.choices[0].message.content.strip()
+        msg = resp.choices[0].message
+        content = (msg.content or "").strip()
+        reasoning = (getattr(msg, "reasoning_content", None) or "").strip()
+
+        # Cascade : content → reasoning_content → erreur
+        raw = None
+        if content:
+            raw = content
+        elif reasoning:
+            raw = reasoning
+
+        if not raw:
+            return []
+
+        # Nettoyage markdown
         if raw.startswith("```"):
             raw = raw.split("```")[1]
             if raw.startswith("json"): raw = raw[4:]
-        return json.loads(raw)
+
+        parsed = json.loads(raw)
+        # Accepte {"recommendations": [...]} ou directement [...]
+        if isinstance(parsed, dict):
+            recs = parsed.get("recommendations") or parsed.get("produits") or []
+        elif isinstance(parsed, list):
+            recs = parsed
+        else:
+            return []
+
+        # Normalisation des champs pour compatibilité format_recs()
+        normalized = []
+        for item in recs[:3]:
+            if not isinstance(item, dict):
+                continue
+            normalized.append({
+                "name": item.get("name", ""),
+                "brand": item.get("brand", ""),
+                "rank_label": item.get("rank_label", ""),
+                "why_perfect": item.get("why_perfect", "") or item.get("reason", "") or item.get("raison", ""),
+                "pros": item.get("pros", [])[:3],
+                "cons": item.get("cons", [])[:1],
+                "score": item.get("score", 0),
+                "price_range": item.get("price_range", f"{profile.get('budget_max','?')}€"),
+            })
+        return normalized
     except Exception as e:
         print(f"❌ Ranking error: {e}")
         return []
@@ -115,22 +204,74 @@ UNIQUEMENT le JSON array."""
 
 async def ai_fallback(profile: dict) -> list:
     """Recommandations DeepSeek si DB vide."""
-    prompt = f"""Tu es expert produit. 3 recommandations concrètes pour :
-Catégorie: {profile.get('categorie')} | Budget: {profile.get('budget_max','?')}€ | Critères: {profile.get('criteres',[])} | Contexte: {profile.get('resume','')}
+    system_prompt = """You are a product expert for Picksy, a French e-commerce chatbot.
+You recommend products based on user needs. Return json.
 
-JSON array : [{{"name":"...","brand":"...","rank_label":"Meilleur choix","why_perfect":"...","pros":["..."],"cons":["..."],"score":8.5,"price_range":"xxx€"}}]
-UNIQUEMENT le JSON array."""
+OUTPUT FORMAT:
+{
+  "recommendations": [
+    {
+      "name": "string",
+      "brand": "string",
+      "rank_label": "Meilleur choix",
+      "why_perfect": "string in French, max 2 sentences",
+      "pros": ["string", "string", "string"],
+      "cons": ["string"],
+      "score": 8.5,
+      "price_range": "500€"
+    }
+  ]
+}
+
+STRICT RULES:
+- rank_label: "Meilleur choix" | "Meilleur rapport qualite/prix" | "Option premium"
+- score: between 0 and 10
+- 3 products maximum
+- Output ONLY the JSON object. No markdown."""
+
+    user_prompt = f"Category: {profile.get('categorie')} Budget: {profile.get('budget_max','?')}€ Criteria: {profile.get('criteres',[])} Context: {profile.get('resume','')}"
     try:
         resp = await client.chat.completions.create(
-            model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=1500, temperature=0.3
+            model=os.getenv("DEEPSEEK_MODEL", "deepseek-v4-pro"),
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            response_format={"type": "json_object"},
+            temperature=0,
+            max_tokens=2000,
+            extra_body={"thinking": {"type": "disabled"}}
         )
-        raw = resp.choices[0].message.content.strip()
+        msg = resp.choices[0].message
+        content = (msg.content or "").strip()
+        reasoning = (getattr(msg, "reasoning_content", None) or "").strip()
+        raw = content or reasoning or ""
+        if not raw:
+            return []
         if raw.startswith("```"):
             raw = raw.split("```")[1]
             if raw.startswith("json"): raw = raw[4:]
-        return json.loads(raw)
+        parsed = json.loads(raw)
+        if isinstance(parsed, dict):
+            recs = parsed.get("recommendations") or parsed.get("produits") or []
+        elif isinstance(parsed, list):
+            recs = parsed
+        else:
+            return []
+        normalized = []
+        for item in recs[:3]:
+            if not isinstance(item, dict): continue
+            normalized.append({
+                "name": item.get("name", ""),
+                "brand": item.get("brand", ""),
+                "rank_label": item.get("rank_label", ""),
+                "why_perfect": item.get("why_perfect", "") or item.get("reason", "") or item.get("raison", ""),
+                "pros": item.get("pros", [])[:3],
+                "cons": item.get("cons", [])[:1],
+                "score": item.get("score", 0),
+                "price_range": item.get("price_range", f"{profile.get('budget_max','?')}€"),
+            })
+        return normalized
     except:
         return []
 

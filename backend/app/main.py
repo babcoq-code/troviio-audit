@@ -44,5 +44,6 @@ app.include_router(newsletter.router, prefix="/api/newsletter", tags=["Newslette
 
 
 @app.get("/health")
+@app.get("/api/health")
 async def health():
     return {"status": "ok", "service": "picksy-backend"}

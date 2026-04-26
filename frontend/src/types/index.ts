@@ -64,6 +64,7 @@ export interface ChatResponse {
   action?: string | null;
   profile?: Record<string, unknown> | null;
   recommendations?: Product[] | null;
+  result_id?: string | null;
 }
 
 // ─── Newsletter Types ────────────────────────────────────────

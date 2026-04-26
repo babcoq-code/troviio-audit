@@ -1,28 +1,91 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { memo, useMemo } from "react";
+import { parseAIOptions } from "@/lib/chat/parse-ai-options";
+import { renderMarkdown } from "@/lib/chat/render-markdown";
+import { SuggestionChips } from "@/components/chat/SuggestionChips";
+import { ResultRedirectMessage } from "@/components/chat/ResultRedirectMessage";
 
-interface Props {
-  role: "user" | "ai";
+export type ChatMessageRole = "user" | "ai";
+
+export type ChatMessage = {
+  role: ChatMessageRole;
   text: string;
-}
+  result_id?: string | null;
+};
 
-export default function ChatBubble({ role, text }: Props) {
+type ChatBubbleProps = {
+  role: ChatMessageRole;
+  text: string;
+  result_id?: string | null;
+  onSuggestionSelect?: (value: string) => void | Promise<void>;
+};
+
+const ChatBubble = memo(function ChatBubble({
+  role,
+  text,
+  result_id,
+  onSuggestionSelect,
+}: ChatBubbleProps) {
+  const isUser = role === "user";
+  const isAI = role === "ai";
+
+  // Si l'IA retourne un result_id → afficher le composant de redirection
+  if (isAI && result_id) {
+    return <ResultRedirectMessage result_id={result_id} />;
+  }
+
+  const parsed = useMemo(() => {
+    if (!isAI) return { cleanText: text, options: [] };
+    return parseAIOptions(text);
+  }, [isAI, text]);
+
+  const html = useMemo(() => {
+    return renderMarkdown(parsed.cleanText);
+  }, [parsed.cleanText]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`flex ${role === "user" ? "justify-end" : "justify-start"}`}
+    <article
+      className={["flex w-full animate-fade-in", isUser ? "justify-end" : "justify-start"].join(" ")}
     >
-      <div
-        className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-          role === "user"
-            ? "bg-blueberry text-white rounded-br-md"
-            : "bg-surface-light text-gray-200 rounded-bl-md"
-        }`}
-      >
-        {text}
+      <div className={["max-w-[88%] sm:max-w-[75%]", isUser ? "items-end" : "items-start"].join(" ")}>
+        {/* Bulle principale */}
+        <div
+          className={[
+            "rounded-3xl px-5 py-4 text-[15px] leading-relaxed",
+            isUser
+              ? "rounded-br-lg text-white"
+              : "rounded-bl-lg border border-white/8 bg-surface-light text-white/90",
+          ].join(" ")}
+          style={
+            isUser
+              ? {
+                  background: "linear-gradient(135deg, #4257FF, #8C98FF)",
+                  boxShadow: "0 4px 20px rgba(66,87,255,0.25)",
+                }
+              : {}
+          }
+        >
+          {html ? (
+            <div
+              className="picksy-ai-markdown"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          ) : (
+            <span>{text}</span>
+          )}
+        </div>
+
+        {/* Chips cliquables sous les bulles IA */}
+        {isAI && parsed.options.length > 0 && onSuggestionSelect && (
+          <SuggestionChips
+            options={parsed.options}
+            onSelect={onSuggestionSelect}
+          />
+        )}
       </div>
-    </motion.div>
+    </article>
   );
-}
+});
+
+export default ChatBubble;

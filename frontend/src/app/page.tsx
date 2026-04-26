@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { chatWithAI, subscribeNewsletter, fetchTopProducts } from "@/lib/api";
 import type { Product } from "@/lib/types";
 import { ScoreRing } from "@/components/ScoreRing";
+import { ThinkingIndicator } from "@/components/chat/ThinkingIndicator";
 
 const ChatBubble = dynamic(() => import("@/components/ChatBubble"), { ssr: false });
 const ProductCard = dynamic(() => import("@/components/ProductCard"), { ssr: false });
@@ -37,7 +38,7 @@ const CATEGORIES = [
 
 export default function HomePage() {
   const [message, setMessage] = useState("");
-  const [chat, setChat] = useState<{ role: "user" | "ai"; text: string }[]>([]);
+  const [chat, setChat] = useState<{ role: "user" | "ai"; text: string; result_id?: string | null }[]>([]);
   const [history, setHistory] = useState<{ role: string; content: string }[]>([]);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -58,14 +59,22 @@ export default function HomePage() {
     try {
       const res = await chatWithAI(userMsg, history);
       const aiText = res.reply;
-      setChat((prev) => [...prev, { role: "ai", text: aiText }]);
+
+      // ✅ AJOUT : stocker result_id dans le message IA
+      setChat((prev) => [
+        ...prev,
+        { role: "ai", text: aiText, result_id: res.result_id ?? null },
+      ]);
       setHistory((prev) => [
         ...prev,
         { role: "user", content: userMsg },
         { role: "assistant", content: aiText },
       ]);
     } catch {
-      setChat((prev) => [...prev, { role: "ai", text: "Désolé, une erreur s'est produite. Réessaie !" }]);
+      setChat((prev) => [
+        ...prev,
+        { role: "ai", text: "Désolé, une erreur s'est produite. Réessaie !", result_id: null },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -173,28 +182,17 @@ export default function HomePage() {
               <>
                 {chat.map((msg, i) => (
                   <div key={i}>
-                    <ChatBubble role={msg.role} text={msg.text} />
-                    {msg.role === "ai" && msg.text.includes("[Lancer la recherche pour moi]") && (
-                      <div className="flex justify-center mt-3">
-                        <button
-                          onClick={() => handleSend("Lancer la recherche")}
-                          style={{
-                            background: "linear-gradient(135deg, #FF6B5F, #FFB020)",
-                            boxShadow: "0 8px 24px rgba(255,107,95,0.35)",
-                          }}
-                          className="px-6 py-3 rounded-full text-white text-sm font-semibold transition-all hover:-translate-y-0.5"
-                        >
-                          🎯 Lancer la recherche pour moi
-                        </button>
-                      </div>
-                    )}
+                    <ChatBubble
+                      role={msg.role}
+                      text={msg.text}
+                      result_id={msg.result_id}
+                      onSuggestionSelect={handleSend}
+                    />
                   </div>
                 ))}
                 {loading && (
-                  <div className="flex gap-1 px-4 py-3 rounded-2xl bg-surface-light w-fit">
-                    <span className="w-2 h-2 rounded-full bg-muted animate-bounce" style={{ animationDelay: "0ms" }} />
-                    <span className="w-2 h-2 rounded-full bg-muted animate-bounce" style={{ animationDelay: "150ms" }} />
-                    <span className="w-2 h-2 rounded-full bg-muted animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <div className="flex justify-start px-2">
+                    <ThinkingIndicator />
                   </div>
                 )}
                 <div ref={chatEndRef} />

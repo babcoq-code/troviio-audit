@@ -208,6 +208,70 @@
   margin-bottom: 0;
 }
 
+/* ─── Animations Chat Améliorations ─── */
+
+@keyframes picksy-chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-picksy-chip-in {
+  animation: picksy-chip-in 220ms ease-out both;
+}
+
+@keyframes picksy-result-progress {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); transform-origin: left; }
+}
+
+.animate-picksy-result-progress {
+  animation: picksy-result-progress 3s linear forwards;
+}
+
+@keyframes picksy-dot {
+  0%, 80%, 100% { opacity: 0.35; transform: translateY(0); }
+  40%           { opacity: 1;    transform: translateY(-4px); }
+}
+
+.animate-picksy-dot {
+  animation: picksy-dot 1.1s ease-in-out infinite;
+}
+
+/* Styles Markdown dans les bulles IA */
+.picksy-ai-markdown { overflow-wrap: anywhere; }
+.picksy-ai-markdown p { margin: 0; }
+.picksy-ai-markdown p + p { margin-top: 0.75rem; }
+.picksy-ai-markdown strong { font-weight: 700; }
+.picksy-ai-markdown em { font-style: italic; }
+.picksy-ai-markdown code {
+  background: rgba(255,255,255,0.1);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.picksy-ai-markdown ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+.picksy-ai-markdown li + li { margin-top: 0.3rem; }
+
+/* ─── Animation Fade In pour ChatBubble ─── */
+@keyframes picksy-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: picksy-fade-in 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
 /* ─── Animations Page Résultats Picksy ─── */
 
 @keyframes spring-up {

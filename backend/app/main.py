@@ -17,7 +17,7 @@ from app.core.logging_config import configure_logging
 configure_logging()
 logger = logging.getLogger("picksy.api")
 
-from app.api.routes import chat, products, newsletter
+from app.api.routes import chat, products, newsletter, results
 
 
 @asynccontextmanager
@@ -56,6 +56,7 @@ async def global_exception_handler(request: Request, exc: Exception):
 app.include_router(chat.router, prefix="/api/chat", tags=["Chat IA"])
 app.include_router(products.router, prefix="/api/products", tags=["Produits"])
 app.include_router(newsletter.router, prefix="/api/newsletter", tags=["Newsletter"])
+app.include_router(results.router, prefix="/api", tags=["Résultats"])
 
 
 @app.get("/health")

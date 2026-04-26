@@ -6,7 +6,7 @@ type ScoreRingSize = "sm" | "md" | "lg";
 
 export interface ScoreRingProps {
   score: number;
-  size?: ScoreRingSize;
+  size?: ScoreRingSize | number;
   label?: string;
   showLabel?: boolean;
   className?: string;
@@ -29,7 +29,9 @@ function getScoreColor(score: number): string {
 
 export function ScoreRing({ score, size = "md", className }: ScoreRingProps): React.JSX.Element {
   const safeScore = Math.min(100, Math.max(0, Math.round(isNaN(score) ? 0 : score)));
-  const config = SIZE_CONFIG[size];
+  const config = typeof size === "number"
+    ? { pixels: size, strokeWidth: Math.max(4, Math.round(size / 14)), fontSize: Math.max(12, Math.round(size / 3.5)) }
+    : SIZE_CONFIG[size];
   const radius = (config.pixels - config.strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (safeScore / 100) * circumference;

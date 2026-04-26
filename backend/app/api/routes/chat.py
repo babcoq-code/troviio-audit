@@ -11,6 +11,7 @@ from openai import AsyncOpenAI
 
 from app.core.supabase import get_supabase_admin
 from app.core.rate_limit import enforce_chat_rate_limit
+from app.services.results_service import generate_result_id, enrich_recommendations, save_result
 
 logger = logging.getLogger("picksy.chat")
 
@@ -358,6 +359,7 @@ class ChatResponse(BaseModel):
     action: Optional[str] = None
     profile: Optional[dict] = None
     recommendations: Optional[list] = None
+    result_id: Optional[str] = None
 
 
 # ─── Route principale ──────────────────────────────────────
@@ -398,4 +400,18 @@ async def chat(req: ChatRequest, request: Request):
         except Exception as e:
             logger.info(f"⚠️ Search error: {e}")
 
-    return ChatResponse(reply=reply, is_scope=True, action=action, profile=profile, recommendations=recommendations)
+    # Générer et sauvegarder le résultat si des recommandations ont été générées
+    result_id = None
+    if recommendations and profile:
+        try:
+            result_id = generate_result_id()
+            enriched_recs = await enrich_recommendations(recommendations, supabase)
+            await save_result(result_id, profile, enriched_recs, supabase)
+            # Mettre à jour les recommendations avec les données enrichies pour la réponse
+            recommendations = enriched_recs
+            logger.info(f"[chat] Résultat sauvegardé → /resultats/{result_id}")
+        except Exception as e:
+            logger.error(f"[chat] Erreur sauvegarde résultat : {e}")
+            # Non-bloquant : on continue sans résultat_id
+
+    return ChatResponse(reply=reply, is_scope=True, action=action, profile=profile, recommendations=recommendations, result_id=result_id)

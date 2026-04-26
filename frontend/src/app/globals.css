@@ -207,3 +207,46 @@
   color: var(--color-slate-700);
   margin-bottom: 0;
 }
+
+/* ─── Animations Page Résultats Picksy ─── */
+
+@keyframes spring-up {
+  0%   { opacity: 0; transform: translateY(60px) scale(0.92); }
+  70%  { transform: translateY(-6px) scale(1.01); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes score-fill {
+  from { stroke-dashoffset: var(--score-target); }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes shimmer-slide {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Classes Tailwind custom (via @layer utilities) */
+@layer utilities {
+  .animate-slide-up {
+    animation: spring-up 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .animate-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animate-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.45) 50%,
+      transparent 100%
+    );
+    animation: shimmer-slide 2.5s infinite;
+  }
+}

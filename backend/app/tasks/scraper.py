@@ -6,12 +6,12 @@ Tourne chaque dimanche à 3h00
 import os
 import json
 from datetime import datetime, timezone
-from firecrawl import FirecrawlApp
+from firecrawl import Firecrawl
 from openai import OpenAI
 from supabase import create_client
 from app.celery_app import app as celery_app
 
-firecrawl = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
+firecrawl = Firecrawl(api_key=os.getenv("FIRECRAWL_API_KEY", ""))
 deepseek = OpenAI(
     api_key=os.getenv("DEEPSEEK_API_KEY"),
     base_url="https://api.deepseek.com/v1",
@@ -42,6 +42,21 @@ Pour chaque produit retourne un JSON array avec :
 Retourne UNIQUEMENT le JSON array, rien d'autre."""
 
 
+def scrape_url(url: str) -> str:
+    """Scrape une URL et retourne le markdown. Compatible Firecrawl SDK v4."""
+    try:
+        result = firecrawl.scrape(url, formats=["markdown"])
+        # Le résultat peut être un dict ou un objet selon la version
+        if hasattr(result, "markdown"):
+            return result.markdown or ""
+        if isinstance(result, dict):
+            return result.get("markdown", "")
+        return ""
+    except Exception as e:
+        print(f"  ⚠️ Firecrawl error on {url}: {e}")
+        return ""
+
+
 @celery_app.task(name="app.tasks.scraper.run_weekly_discovery")
 def run_weekly_discovery():
     print(f"[{datetime.now()}] 🕷️ Démarrage scraping hebdomadaire Firecrawl")
@@ -50,31 +65,23 @@ def run_weekly_discovery():
     for source in SOURCES:
         try:
             print(f"  Scraping: {source['url']}")
-            result = firecrawl.scrape_url(
-                source["url"],
-                params={
-                    "formats": ["markdown"],
-                    "onlyMainContent": True,
-                },
-            )
-            content = result.get("markdown", "")
+            content = scrape_url(source["url"])
             if not content or len(content) < 200:
                 print(f"  ⚠️ Contenu vide ou trop court, skip")
                 continue
 
             # Extraire les produits via DeepSeek
             response = deepseek.chat.completions.create(
-                model=os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash"),
+                model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
                 messages=[
                     {"role": "system", "content": EXTRACT_PROMPT},
-                    {"role": "user", "content": content[:4000]},
+                    {"role": "user", "content": content[:6000]},
                 ],
                 max_tokens=2000,
                 temperature=0.2,
             )
 
             raw = response.choices[0].message.content.strip()
-            # Nettoyer le JSON si DeepSeek l'enveloppe dans ```json
             if raw.startswith("```"):
                 raw = raw.split("```")[1]
                 if raw.startswith("json"):
@@ -83,7 +90,6 @@ def run_weekly_discovery():
             products = json.loads(raw)
 
             for product in products:
-                # Vérifier si déjà en base (par nom + marque)
                 existing = (
                     supabase.table("products")
                     .select("id")
@@ -93,7 +99,6 @@ def run_weekly_discovery():
                 if existing.data:
                     continue
 
-                # Insérer en pending_review
                 supabase.table("products").insert({
                     "name": product.get("name", "Inconnu"),
                     "brand": product.get("brand", "Inconnu"),
@@ -113,3 +118,43 @@ def run_weekly_discovery():
 
     print(f"[{datetime.now()}] ✅ Scraping terminé — {total_new} nouveaux produits")
     return total_new
+
+
+@celery_app.task(name="app.tasks.scraper.scrape_product_page")
+def scrape_product_page(url: str, product_id: str):
+    """Scrape la page d'un produit spécifique pour enrichir sa fiche."""
+    try:
+        content = scrape_url(url)
+        if not content or len(content) < 100:
+            return {"error": "Contenu vide"}
+
+        response = deepseek.chat.completions.create(
+            model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
+            messages=[
+                {"role": "system", "content": """Extrait les données structurées de ce produit.
+Retourne un JSON avec : pros (list), cons (list), score (float 0-10), price_eur (int ou null), specs (dict clé:valeur).
+UNIQUEMENT le JSON, rien d'autre."""},
+                {"role": "user", "content": content[:6000]},
+            ],
+            max_tokens=1000,
+            temperature=0.1,
+        )
+
+        raw = response.choices[0].message.content.strip()
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+
+        data = json.loads(raw)
+
+        supabase.table("products").update({
+            "specs": data.get("specs", {}),
+            "estimated_score": data.get("score"),
+            "status": "published",
+        }).eq("id", product_id).execute()
+
+        return {"ok": True, "product_id": product_id}
+
+    except Exception as e:
+        return {"error": str(e)}

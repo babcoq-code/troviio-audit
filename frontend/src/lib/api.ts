@@ -1,6 +1,6 @@
 import type { Product, ChatResponse, NewsletterResponse } from "./types";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://api.picksy.babcoq.tech/api";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://picksy.babcoq.tech/api";
 
 export async function fetchProducts(): Promise<Product[]> {
   const res = await fetch(`${API_BASE}/products/`);
@@ -21,7 +21,7 @@ export async function fetchProduct(id: string): Promise<Product> {
 }
 
 export async function chatWithAI(message: string, history: { role: string; content: string }[] = []): Promise<ChatResponse> {
-  const res = await fetch(`${API_BASE}/chat`, {
+  const res = await fetch(`${API_BASE}/chat/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message, history }),

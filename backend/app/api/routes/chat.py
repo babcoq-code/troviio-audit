@@ -1,134 +1,211 @@
 """
 PICKSY — Routes Chat IA
-Logique : l'IA mène l'entretien, pose les bonnes questions, et propose une porte de sortie après 3 échanges.
+Flow : entretien → profil → requête Supabase (v_products_published) → ranking IA → recommandations
 """
 
-import os
-import json
-from fastapi import APIRouter, HTTPException
+import os, json
+from fastapi import APIRouter
 from pydantic import BaseModel
-from typing import List, Dict
+from typing import List, Optional
 from openai import AsyncOpenAI
+from supabase import create_client
 
 router = APIRouter()
 
-client = AsyncOpenAI(
-    api_key=os.getenv("DEEPSEEK_API_KEY"),
-    base_url="https://api.deepseek.com/v1",
-)
+client = AsyncOpenAI(api_key=os.getenv("DEEPSEEK_API_KEY"), base_url="https://api.deepseek.com/v1")
+supabase = create_client(os.getenv("SUPABASE_URL", ""), os.getenv("SUPABASE_SERVICE_KEY", ""))
 
-SYSTEM_PROMPT = """Tu es Picksy, un conseiller produit expert et bienveillant.
-Ton rôle : mener un entretien de découverte rapide pour trouver le produit PARFAIT, puis lancer la recherche.
+# ─── Mapping catégories ──────────────────────────────────────
+CATEGORY_MAP = {
+    "robot": "robot-aspirateur", "aspirateur": "robot-aspirateur", "roomba": "robot-aspirateur",
+    "roborock": "robot-aspirateur", "dreame": "robot-aspirateur", "irobot": "robot-aspirateur",
+    "tv": "tv-oled", "télé": "tv-oled", "television": "tv-oled", "oled": "tv-oled", "qled": "tv-oled",
+    "café": "machine-cafe", "cafe": "machine-cafe", "expresso": "machine-cafe", "espresso": "machine-cafe",
+    "capsule": "machine-cafe", "nespresso": "machine-cafe", "dolce": "machine-cafe",
+    "casque": "casque-audio", "écouteur": "casque-audio", "airpod": "casque-audio", "headphone": "casque-audio",
+    "lave-linge": "lave-linge", "lavelinge": "lave-linge", "lave linge": "lave-linge",
+    "lave-vaisselle": "lave-vaisselle", "lavage": "lave-vaisselle",
+    "frigo": "refrigerateur", "réfrigérateur": "refrigerateur", "frigidaire": "refrigerateur",
+    "purificateur": "purificateur-air", "purif": "purificateur-air", "qualité air": "purificateur-air",
+    "barre de son": "barre-son", "soundbar": "barre-son", "home cinéma": "barre-son",
+    "domotique": "domotique-hub", "smarthome": "domotique-hub", "home assistant": "domotique-hub",
+    "friteuse": "friteuse-air", "airfryer": "friteuse-air", "air fryer": "friteuse-air",
+    "trottinette": "trottinette", "scooter": "trottinette",
+    "vélo électrique": "velo-electrique", "velo": "velo-electrique",
+    "ordinateur": "ordinateur-etudiant", "laptop": "ordinateur-etudiant", "pc portable": "ordinateur-etudiant",
+    "smartphone": "smartphone", "téléphone": "smartphone", "iphone": "smartphone", "android": "smartphone",
+    "imprimante": "imprimante", "printer": "imprimante",
+    "camera": "camera-securite", "caméra": "camera-securite", "surveillance": "camera-securite",
+    "thermostat": "thermostat-connecte", "chauffage": "thermostat-connecte",
+}
 
-DOMAINES COUVERTS UNIQUEMENT :
-- Robots aspirateurs / aspirateurs
-- Machines à café / expresso / capsules
-- TV / écrans OLED, QLED, 4K
-- Lave-linge, lave-vaisselle, réfrigérateurs
-- Casques audio, écouteurs
-- Smartphones et tablettes
-- Ordinateurs portables
+SYSTEM_PROMPT = """Tu es Picksy, un conseiller produit expert.
+Tu mènes un entretien de découverte rapide pour comprendre le besoin réel, puis tu génères un profil structuré.
 
-RÈGLES ABSOLUES :
-1. Si la demande est hors domaine → réponds UNIQUEMENT : "Je suis spécialisé dans les produits maison et tech. Pose-moi une question sur un aspirateur, une machine à café, une TV... 😊"
-2. Ne réponds JAMAIS à des questions sur la météo, la politique, la santé, la cuisine, le sport, les voyages, la programmation, etc.
-3. TU MÈNES L'ENTRETIEN — c'est toi qui poses les questions, pas l'utilisateur.
-4. Une seule question à la fois, courte, avec 2-4 options entre parenthèses pour faciliter la réponse.
-5. Ton chaleureux, direct, comme un ami expert.
+DOMAINES : électroménager et tech maison uniquement (aspirateurs robots, TV, machines à café, casques audio, smartphones, laptops, lave-linge, lave-vaisselle, purificateurs d'air, barres de son, domotique, friteuses à air, frigos, caméras de sécurité, thermostats connectés, trottinettes électriques).
 
-PROCESSUS EN 3 ÉTAPES :
+RÈGLES :
+1. Tutoiement obligatoire. Ton direct, comme un ami expert.
+2. Une question à la fois, courte, avec 2-4 options entre parenthèses.
+3. Hors domaine → "Je suis spécialisé dans les produits maison et tech. 😊"
+4. JAMAIS de superlatifs : "meilleur", "top", "optimal". Toujours centré sur l'usage réel.
 
-ÉTAPE 1 — IDENTIFIER LA CATÉGORIE (message 1) :
-- Si la catégorie est claire, passe directement à l'étape 2.
-- Sinon demande de préciser.
+PROCESSUS :
+- Message 1 : identifier la catégorie et le cas d'usage principal
+- Messages 2-3 : questions clés (contraintes, budget, usage spécifique)
+- Après 3 échanges : proposer "**[Lancer la recherche pour moi]**"
 
-ÉTAPE 2 — QUESTIONS DE DÉCOUVERTE (messages 2-3) :
-Pose les questions LES PLUS IMPORTANTES pour cette catégorie dans cet ordre :
+Quand l'utilisateur dit go/ok/lance → retourner CE JSON EXACT et RIEN D'AUTRE :
+{"action": "search", "profile": {"categorie": "robot-aspirateur|tv-oled|machine-cafe|...", "budget_max": 400, "criteres": ["parquet", "animaux"], "resume": "profil en 1 phrase"}}
 
-Robot aspirateur → 1) Type de sol ? 2) Animaux / surface ?
-Machine à café → 1) Type de café préféré ? 2) Usage (seul, famille, bureau) ?
-TV → 1) Taille de la pièce / distance ? 2) Usage principal (films, gaming, sport) ?
-Audio → 1) Usage (maison, transport, sport) ? 2) Isolation souhaitée ?
-Smartphone → 1) Écosystème actuel ? 2) Usage dominant ?
-Laptop → 1) Usage (études, travail, gaming, créatif) ? 2) OS préféré ?
-Électroménager → 1) Capacité / taille logement ? 2) Contrainte spécifique ?
+Catégories valides : robot-aspirateur, tv-oled, machine-cafe, casque-audio, lave-linge, lave-vaisselle, refrigerateur, purificateur-air, barre-son, domotique-hub, friteuse-air, ordinateur-etudiant, smartphone, imprimante, camera-securite, thermostat-connecte, trottinette, velo-electrique, aspirateur-balai."""
 
-TOUJOURS demander le budget si pas mentionné (< 200€ / 200-400€ / > 400€ adapté à la catégorie).
-
-ÉTAPE 3 — PORTE DE SORTIE (après 3 échanges minimum) :
-Propose systématiquement :
-"J'ai ce qu'il me faut pour te trouver les meilleurs produits 🎯
-👉 **[Lancer la recherche pour moi]** — ou dis-moi si tu veux préciser autre chose."
-
-Quand l'utilisateur clique sur lancer ou dit oui/go/ok → réponds avec ce JSON EXACT (et SEULEMENT ce JSON, rien d'autre) :
-
-{"action": "search", "profile": {"categorie": "...", "budget": "...", "criteres": ["...", "..."], "resume": "..."}}
-
-IMPORTANT : après 3 questions/réponses, TOUJOURS proposer la porte de sortie même si tu n'as pas toutes les infos."""
-
-HORS_SCOPE_RESPONSE = "Je suis spécialisé dans les produits maison et tech. Pose-moi une question sur un aspirateur, une machine à café, une TV... 😊"
-
-HORS_SCOPE_KEYWORDS = [
-    "météo", "recette", "cuisine", "politique", "médecin", "santé", "symptôme",
-    "voiture", "moto", "voyage", "avion", "hôtel", "code", "programme", "javascript",
-    "python", "sport", "football", "résultat", "match", "bourse", "crypto", "bitcoin",
-    "amour", "relation", "divorce", "blague", "histoire",
-]
+HORS_SCOPE = ["météo", "recette", "cuisine", "politique", "médecin", "santé", "voiture", "moto", "voyage", "avion", "sport", "football", "bourse", "crypto", "code", "programme", "javascript", "python"]
 
 
+async def query_db(profile: dict) -> list:
+    """Interroge v_products_published avec la catégorie et le budget."""
+    cat = profile.get("categorie", "")
+    budget = profile.get("budget_max")
+    try:
+        q = supabase.table("v_products_published").select("*").order("estimated_score", desc=True)
+        if cat:
+            q = q.eq("category_slug", cat)
+        if budget:
+            q = q.lte("price_eur", int(budget))
+        return (q.limit(15).execute().data or [])
+    except Exception as e:
+        print(f"⚠️ DB error: {e}")
+        return []
+
+
+async def rank_with_ai(products: list, profile: dict) -> list:
+    """DeepSeek classe les produits selon le profil."""
+    if not products:
+        return []
+    summary = "\n".join([
+        f"- {p.get('brand','')} {p.get('name','')} | score:{p.get('estimated_score','')} | "
+        f"prix:{p.get('price_eur','?')}€ | specs:{json.dumps(p.get('specs',{}))[:200]}"
+        for p in products
+    ])
+    prompt = f"""Profil : catégorie={profile.get('categorie')} | budget_max={profile.get('budget_max','?')}€ | critères={profile.get('criteres',[])} | résumé={profile.get('resume','')}
+
+Produits disponibles :
+{summary}
+
+Sélectionne les 3 MEILLEURS pour ce profil. JSON array :
+[{{"name":"...","brand":"...","rank_label":"Meilleur choix","why_perfect":"...","pros":["..."],"cons":["..."],"score":8.5,"price_range":"xxx€"}}]
+rank_label : "Meilleur choix" | "Meilleur rapport qualité/prix" | "Option premium"
+UNIQUEMENT le JSON array."""
+    try:
+        resp = await client.chat.completions.create(
+            model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=1500, temperature=0.2
+        )
+        raw = resp.choices[0].message.content.strip()
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"): raw = raw[4:]
+        return json.loads(raw)
+    except Exception as e:
+        print(f"❌ Ranking error: {e}")
+        return []
+
+
+async def ai_fallback(profile: dict) -> list:
+    """Recommandations DeepSeek si DB vide."""
+    prompt = f"""Tu es expert produit. 3 recommandations concrètes pour :
+Catégorie: {profile.get('categorie')} | Budget: {profile.get('budget_max','?')}€ | Critères: {profile.get('criteres',[])} | Contexte: {profile.get('resume','')}
+
+JSON array : [{{"name":"...","brand":"...","rank_label":"Meilleur choix","why_perfect":"...","pros":["..."],"cons":["..."],"score":8.5,"price_range":"xxx€"}}]
+UNIQUEMENT le JSON array."""
+    try:
+        resp = await client.chat.completions.create(
+            model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=1500, temperature=0.3
+        )
+        raw = resp.choices[0].message.content.strip()
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"): raw = raw[4:]
+        return json.loads(raw)
+    except:
+        return []
+
+
+def format_recs(products: list, from_db: bool = True) -> str:
+    if not products:
+        return "Je n'ai pas trouvé de produits correspondant. Précise ta recherche ?"
+    medals = ["🥇", "🥈", "🥉"]
+    lines = ["✅ **Voici mes recommandations pour ta situation :**\n"]
+    source_note = "" if from_db else "\n*💡 Base locale en cours d'alimentation — recommandations basées sur les connaissances Picksy.*"
+    for i, p in enumerate(products[:3]):
+        m = medals[i] if i < 3 else f"{i+1}."
+        lines.append(f"{m} **{p.get('rank_label','')}** — {p.get('brand','')} {p.get('name','')}")
+        if p.get("score"): lines.append(f"Score Picksy : **{p['score']}/10** · Prix estimé : {p.get('price_range','?')}")
+        lines.append(f"*{p.get('why_perfect','')}*")
+        if p.get("pros"): lines.append("✅ " + " · ".join(p["pros"][:3]))
+        if p.get("cons"): lines.append(f"⚠️ {p['cons'][0]}")
+        lines.append("")
+    lines.append(f"---\n*Zéro commission, zéro biais.{source_note}*")
+    return "\n".join(lines)
+
+
+# ─── Models ──────────────────────────────────────────────────
 class Message(BaseModel):
     role: str
     content: str
-
 
 class ChatRequest(BaseModel):
     message: str
     history: List[Message] = []
     user_id: str = "anonymous"
 
-
 class ChatResponse(BaseModel):
     reply: str
     is_scope: bool
-    action: str = None
-    profile: dict = None
+    action: Optional[str] = None
+    profile: Optional[dict] = None
+    recommendations: Optional[list] = None
 
 
+# ─── Route principale ──────────────────────────────────────
 @router.post("/", response_model=ChatResponse)
 @router.post("", response_model=ChatResponse)
 async def chat(req: ChatRequest):
     msg_lower = req.message.lower()
 
-    # Guardrail hors-scope
-    if any(kw in msg_lower for kw in HORS_SCOPE_KEYWORDS):
-        return ChatResponse(reply=HORS_SCOPE_RESPONSE, is_scope=False)
+    if any(kw in msg_lower for kw in HORS_SCOPE):
+        return ChatResponse(reply="Je suis spécialisé dans les produits maison et tech. 😊", is_scope=False)
 
-    # Construire l'historique complet
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     for m in req.history:
         messages.append({"role": m.role, "content": m.content})
     messages.append({"role": "user", "content": req.message})
 
-    response = await client.chat.completions.create(
+    resp = await client.chat.completions.create(
         model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
-        messages=messages,
-        max_tokens=600,
-        temperature=0.7,
+        messages=messages, max_tokens=600, temperature=0.7
     )
+    reply = resp.choices[0].message.content.strip()
+    action = profile = recommendations = None
 
-    reply = response.choices[0].message.content.strip()
-
-    # Détecter si l'IA a généré un profil de recherche JSON
-    action = None
-    profile = None
-    if reply.startswith("{") and '"action"' in reply and '"search"' in reply:
+    if '"action"' in reply and '"search"' in reply:
         try:
-            data = json.loads(reply)
+            js = reply[reply.find("{"):reply.rfind("}")+1]
+            data = json.loads(js)
             if data.get("action") == "search":
-                action = "search"
-                profile = data.get("profile", {})
-                reply = f"✅ Parfait ! Je lance la recherche pour toi...\n\n🔍 **Profil détecté :** {profile.get('resume', '')}"
-        except json.JSONDecodeError:
-            pass
+                action, profile = "search", data.get("profile", {})
+                db_products = await query_db(profile)
+                if db_products:
+                    recommendations = await rank_with_ai(db_products, profile)
+                    reply = format_recs(recommendations, from_db=True)
+                else:
+                    recommendations = await ai_fallback(profile)
+                    reply = format_recs(recommendations, from_db=False)
+        except Exception as e:
+            print(f"⚠️ Search error: {e}")
 
-    return ChatResponse(reply=reply, is_scope=True, action=action, profile=profile)
+    return ChatResponse(reply=reply, is_scope=True, action=action, profile=profile, recommendations=recommendations)

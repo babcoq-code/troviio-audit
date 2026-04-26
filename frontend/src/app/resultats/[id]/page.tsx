@@ -488,7 +488,14 @@ function UsageComparisonSection({ recommendations }: { recommendations: Recommen
           </thead>
           <tbody>
             {allUseCases.map((useCase) => {
-              const scores = recommendations.map((r) => r.use_case_scores?.[useCase] ?? 0);
+              const scores = recommendations.map((r) => {
+                const s: unknown = r.use_case_scores?.[useCase] ?? 0;
+                if (typeof s === "string") {
+                  const m = s.match(/([\d.]+)\/([\d.]+)/);
+                  return m ? (parseFloat(m[1]) / parseFloat(m[2])) * 10 : parseFloat(s) || 0;
+                }
+                return typeof s === "number" ? s : 0;
+              });
               const maxScore = Math.max(...scores, 0.001);
 
               return (
@@ -498,8 +505,14 @@ function UsageComparisonSection({ recommendations }: { recommendations: Recommen
                   </td>
                   {recommendations.map((r) => {
                     const score = r.use_case_scores?.[useCase] ?? 0;
-                    const pct = (score / 10) * 100;
-                    const isBest = score === maxScore && score > 0;
+                    const numericScore = typeof score === "string"
+                      ? (() => {
+                          const m = (score as string).match(/([\d.]+)\/([\d.]+)/);
+                          return m ? (parseFloat(m[1]) / parseFloat(m[2])) * 10 : parseFloat(score) || 0;
+                        })()
+                      : (typeof score === "number" ? score : 0);
+                    const pct = (numericScore / 10) * 100;
+                    const isBest = numericScore === maxScore && numericScore > 0;
 
                     return (
                       <td key={r.rank} className="border-t border-slate-100 bg-white px-4 py-3">
@@ -511,7 +524,7 @@ function UsageComparisonSection({ recommendations }: { recommendations: Recommen
                             />
                           </div>
                           <span className={`w-9 text-right font-sora text-sm font-bold ${isBest ? "text-[#3ED6A3]" : "text-slate-500"}`}>
-                            {score.toFixed(1)}
+                            {numericScore.toFixed(1)}
                             {isBest && " 🏆"}
                           </span>
                         </div>

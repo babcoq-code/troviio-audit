@@ -49,13 +49,20 @@ export default function HomePage() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const container = document.querySelector("#chat .overflow-y-auto");
-    if (!container) return;
-    // Scroll automatique seulement si l'utilisateur est déjà en bas (ou proche)
+    const chatSection = document.getElementById("chat");
+    if (!chatSection) return;
+    // Vérifier si la section chat est visible dans la fenêtre
+    const rect = chatSection.getBoundingClientRect();
+    const isChatVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (!isChatVisible) return; // Ne pas scroll si le chat n'est pas visible
+
+    // Scroll du container interne seulement
+    const container = chatSection.querySelector(".overflow-y-auto");
+    if (!container || !chatEndRef.current) return;
     const isNearBottom =
       container.scrollHeight - container.scrollTop - container.clientHeight < 80;
     if (isNearBottom) {
-      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [chat]);
 

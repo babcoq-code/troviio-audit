@@ -25,6 +25,7 @@ app = FastAPI(
     description="L'IA anti-regret pour tes achats maison",
     version="1.0.0",
     lifespan=lifespan,
+    redirect_slashes=False,
 )
 
 # CORS

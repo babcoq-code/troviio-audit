@@ -6,6 +6,7 @@ import { chatWithAI, subscribeNewsletter, fetchTopProducts } from "@/lib/api";
 import type { Product } from "@/lib/types";
 import { ScoreRing } from "@/components/ScoreRing";
 import { ThinkingIndicator } from "@/components/chat/ThinkingIndicator";
+import CategoryGrid from "@/components/home/CategoryGrid";
 
 const ChatBubble = dynamic(() => import("@/components/ChatBubble"), { ssr: false });
 const ProductCard = dynamic(() => import("@/components/ProductCard"), { ssr: false });
@@ -45,6 +46,7 @@ export default function HomePage() {
   const [subscribed, setSubscribed] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -85,6 +87,16 @@ export default function HomePage() {
     if (!email.includes("@")) return;
     try { await subscribeNewsletter(email); } catch {}
     setSubscribed(true);
+  };
+
+  const handleCategorySelect = (slug: string, label: string) => {
+    const nextMessage = `Je cherche ${label.toLowerCase()}, peux-tu m'aider ?`;
+    document.getElementById("chat")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setMessage(nextMessage);
+    setTimeout(() => {
+      inputRef.current?.focus();
+      handleSend(nextMessage);
+    }, 350);
   };
 
   const loadTop = async (cat: string) => {
@@ -154,7 +166,7 @@ export default function HomePage() {
       </section>
 
       {/* ── CHAT ── */}
-      <section className="max-w-2xl mx-auto px-4 mb-16">
+      <section id="chat" className="max-w-2xl mx-auto px-4 mb-16 scroll-mt-24">
         <div className="bg-surface rounded-2xl border border-white/5 overflow-hidden shadow-2xl">
 
           {/* Messages */}
@@ -204,6 +216,7 @@ export default function HomePage() {
           <div className="border-t border-white/5 p-4">
             <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); handleSend(); }}>
               <input
+                ref={inputRef}
                 type="text"
                 placeholder="Décris ton besoin réel : espace, budget, contraintes, usage..."
                 className="flex-1 bg-surface-light rounded-xl px-4 py-3 text-sm outline-none border border-white/8 focus:border-coral/50 focus:ring-1 focus:ring-coral/30 transition-all text-white placeholder-muted"
@@ -372,31 +385,9 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════
-          6. TOP CATÉGORIES
+          6. CATALOGUE CATÉGORIES
       ══════════════════════════════════════ */}
-      <section className="max-w-6xl mx-auto px-4 mb-20">
-        <h2 className="text-xl font-bold mb-2" style={{ fontFamily: "Sora, sans-serif" }}>
-          🔥 Les choix qu&apos;on veut arrêter de regretter
-        </h2>
-        <div className="flex gap-3 flex-wrap mb-8">
-          {CATEGORIES.map(({ label, cat, sub }) => (
-            <button
-              key={cat}
-              onClick={() => loadTop(cat)}
-              className="flex flex-col items-start px-4 py-3 rounded-xl bg-surface border border-white/8 hover:border-blueberry/50 hover:bg-surface-light text-sm font-medium transition-all text-left"
-            >
-              <span>{label}</span>
-              {sub && <span className="text-xs text-muted mt-1 font-normal max-w-[200px]">{sub}</span>}
-            </button>
-          ))}
-        </div>
-
-        {products.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {products.map((p) => <ProductCard key={p.id} product={p} />)}
-          </div>
-        )}
-      </section>
+      <CategoryGrid onSelect={handleCategorySelect} />
 
       {/* ══════════════════════════════════════
           7. PREUVE QUALITATIVE — CE QUE PICKSY ÉVITE

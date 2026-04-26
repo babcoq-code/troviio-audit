@@ -49,7 +49,14 @@ export default function HomePage() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = document.querySelector("#chat .overflow-y-auto");
+    if (!container) return;
+    // Scroll automatique seulement si l'utilisateur est déjà en bas (ou proche)
+    const isNearBottom =
+      container.scrollHeight - container.scrollTop - container.clientHeight < 80;
+    if (isNearBottom) {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [chat]);
 
   const handleSend = async (overrideMsg?: string) => {
@@ -164,6 +171,11 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════
+          1.5 CATALOGUE CATÉGORIES
+      ══════════════════════════════════════ */}
+      <CategoryGrid onSelect={handleCategorySelect} />
 
       {/* ── CHAT ── */}
       <section id="chat" className="max-w-2xl mx-auto px-4 mb-16 scroll-mt-24">
@@ -383,11 +395,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ══════════════════════════════════════
-          6. CATALOGUE CATÉGORIES
-      ══════════════════════════════════════ */}
-      <CategoryGrid onSelect={handleCategorySelect} />
 
       {/* ══════════════════════════════════════
           7. PREUVE QUALITATIVE — CE QUE PICKSY ÉVITE

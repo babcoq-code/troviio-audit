@@ -60,11 +60,11 @@ export function SuggestionChips({
           className={[
             "animate-picksy-chip-in rounded-full border px-4 py-2",
             "text-sm font-medium transition-all duration-200",
-            "border-[var(--color-blueberry)]/40 bg-[var(--color-blueberry)]/10 text-[var(--color-blueberry)]",
-            "hover:bg-[var(--color-blueberry)] hover:border-[var(--color-blueberry)] hover:text-white hover:shadow-md",
-            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-blueberry)]",
+            "border-[#FF6B5F]/40 bg-[#FF6B5F]/10 text-[#FF6B5F]",
+            "hover:bg-[#FF6B5F] hover:border-[#FF6B5F] hover:text-white hover:shadow-md",
+            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF6B5F]",
             "disabled:pointer-events-none disabled:opacity-60",
-            selectedOption === option ? "scale-95 bg-[var(--color-blueberry)] text-white" : "",
+            selectedOption === option ? "scale-95 bg-[#FF6B5F] text-white" : "",
           ].join(" ")}
           style={{ animationDelay: `${index * 55}ms` }}
         >

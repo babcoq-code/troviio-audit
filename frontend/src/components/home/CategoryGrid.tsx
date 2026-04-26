@@ -82,7 +82,7 @@ export default function CategoryGrid({ onSelect }: Props) {
   return (
     <section
       aria-labelledby="cat-grid-title"
-      className="relative overflow-hidden bg-[#0E1020] px-4 py-20 text-white sm:px-6 lg:px-8 lg:py-28"
+      className="relative overflow-hidden bg-[#0E1020] px-4 py-12 text-white sm:px-6 lg:px-8 lg:py-16"
     >
       {/* Observateur viewport pour le compteur */}
       <div

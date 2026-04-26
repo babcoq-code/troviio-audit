@@ -1,0 +1,117 @@
+services:
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    env_file: .env
+    depends_on:
+      - redis
+    restart: always
+    ports:
+      - "127.0.0.1:8000:8000"
+    networks:
+      - picksy_net
+    mem_limit: 512m
+    cpus: "1.0"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    env_file: .env
+    restart: always
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      - picksy_net
+    mem_limit: 512m
+    cpus: "1.0"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+
+  celery_worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    command: celery -A app.celery_app worker --loglevel=info
+    env_file: .env
+    depends_on:
+      - redis
+    restart: always
+    networks:
+      - picksy_net
+    mem_limit: 512m
+    cpus: "1.0"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  celery_beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    command: celery -A app.celery_app beat --loglevel=info
+    env_file: .env
+    depends_on:
+      - redis
+    restart: always
+    networks:
+      - picksy_net
+    mem_limit: 256m
+    cpus: "0.5"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    volumes:
+      - redis_data:/data
+    networks:
+      - picksy_net
+    mem_limit: 256m
+    cpus: "0.5"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
+
+volumes:
+  redis_data:
+
+networks:
+  picksy_net:
+    driver: bridge

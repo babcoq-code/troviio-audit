@@ -4,14 +4,11 @@ PICKSY — Tâche Celery : Newsletter hebdomadaire
 
 import os
 import resend
-from supabase import create_client
 from app.celery_app import app as celery_app
+from app.core.supabase import get_supabase_admin
 
 resend.api_key = os.getenv("RESEND_API_KEY", "")
-supabase = create_client(
-    os.getenv("SUPABASE_URL", ""),
-    os.getenv("SUPABASE_SERVICE_KEY", ""),
-)
+supabase = get_supabase_admin()
 DOMAIN = os.getenv("DOMAIN", "picksy.fr")
 
 

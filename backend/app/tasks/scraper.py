@@ -8,18 +8,15 @@ import json
 from datetime import datetime, timezone
 from firecrawl import Firecrawl
 from openai import OpenAI
-from supabase import create_client
 from app.celery_app import app as celery_app
+from app.core.supabase import get_supabase_admin
 
 firecrawl = Firecrawl(api_key=os.getenv("FIRECRAWL_API_KEY", ""))
 deepseek = OpenAI(
     api_key=os.getenv("DEEPSEEK_API_KEY"),
     base_url="https://api.deepseek.com/v1",
 )
-supabase = create_client(
-    os.getenv("SUPABASE_URL", ""),
-    os.getenv("SUPABASE_SERVICE_KEY", ""),
-)
+supabase = get_supabase_admin()
 
 SOURCES = [
     {"url": "https://www.rtings.com/robot-vacuum/reviews", "category": "robot_aspirateur"},
@@ -72,7 +69,7 @@ def run_weekly_discovery():
 
             # Extraire les produits via DeepSeek
             response = deepseek.chat.completions.create(
-                model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
+                model=os.getenv("DEEPSEEK_MODEL", "deepseek-v4-pro"),
                 messages=[
                     {"role": "system", "content": EXTRACT_PROMPT},
                     {"role": "user", "content": content[:6000]},
@@ -129,7 +126,7 @@ def scrape_product_page(url: str, product_id: str):
             return {"error": "Contenu vide"}
 
         response = deepseek.chat.completions.create(
-            model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
+            model=os.getenv("DEEPSEEK_MODEL", "deepseek-v4-pro"),
             messages=[
                 {"role": "system", "content": """Extrait les données structurées de ce produit.
 Retourne un JSON avec : pros (list), cons (list), score (float 0-10), price_eur (int ou null), specs (dict clé:valeur).

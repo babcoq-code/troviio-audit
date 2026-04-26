@@ -6,16 +6,14 @@ import os
 import secrets
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, EmailStr
-from supabase import create_client
 import resend
+
+from app.core.supabase import get_supabase_admin
 
 router = APIRouter()
 resend.api_key = os.getenv("RESEND_API_KEY", "")
 
-supabase = create_client(
-    os.getenv("SUPABASE_URL", ""),
-    os.getenv("SUPABASE_KEY", ""),
-)
+supabase = get_supabase_admin()
 
 
 class SubscribeRequest(BaseModel):

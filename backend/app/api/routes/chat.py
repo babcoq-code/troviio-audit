@@ -3,17 +3,21 @@ PICKSY — Routes Chat IA
 Flow : entretien → profil → requête Supabase (v_products_published) → ranking IA → recommandations
 """
 
-import os, json
-from fastapi import APIRouter
+import os, json, logging
+from fastapi import APIRouter, Request
 from pydantic import BaseModel
 from typing import List, Optional
 from openai import AsyncOpenAI
-from supabase import create_client
+
+from app.core.supabase import get_supabase_admin
+from app.core.rate_limit import enforce_chat_rate_limit
+
+logger = logging.getLogger("picksy.chat")
 
 router = APIRouter()
 
 client = AsyncOpenAI(api_key=os.getenv("DEEPSEEK_API_KEY"), base_url="https://api.deepseek.com/v1")
-supabase = create_client(os.getenv("SUPABASE_URL", ""), os.getenv("SUPABASE_SERVICE_KEY", ""))
+supabase = get_supabase_admin()
 
 # ─── Mapping catégories ──────────────────────────────────────
 CATEGORY_MAP = {
@@ -77,7 +81,7 @@ async def get_category_uuid(slug: str) -> str | None:
             CATEGORY_UUID_CACHE[slug] = uid
             return uid
     except Exception as e:
-        print(f"⚠️ Cat lookup error: {e}")
+        logger.info(f"⚠️ Cat lookup error: {e}")
     return None
 
 async def query_db(profile: dict) -> list:
@@ -92,7 +96,7 @@ async def query_db(profile: dict) -> list:
             q = q.lte("price_eur", int(budget))
         return (q.limit(15).execute().data or [])
     except Exception as e:
-        print(f"⚠️ DB error: {e}")
+        logger.info(f"⚠️ DB error: {e}")
         return []
 
 
@@ -198,8 +202,52 @@ STRICT RULES:
             })
         return normalized
     except Exception as e:
-        print(f"❌ Ranking error: {e}")
+        logger.info(f"❌ Ranking error: {e}")
         return []
+
+
+# ─── Cache Redis pour rank_with_ai ─────────────────────────────
+
+import hashlib
+import redis as redis_sync
+
+redis_client = redis_sync.Redis(
+    host=os.getenv("REDIS_HOST", "localhost"),
+    port=int(os.getenv("REDIS_PORT", 6379)),
+    db=int(os.getenv("REDIS_DB", 0)),
+    decode_responses=True,
+)
+
+def _rank_cache_key(products: list, user_query: str) -> str:
+    """Clé de cache déterministe basée sur user_query + IDs produits."""
+    product_ids = sorted([str(p.get("id", "")) for p in products if p.get("id")])
+    raw = user_query.strip().lower() + "|" + "|".join(product_ids)
+    return "picksy:rank:" + hashlib.sha256(raw.encode()).hexdigest()
+
+async def rank_with_ai_cached(products: list, profile: dict) -> list:
+    """rank_with_ai avec cache Redis (TTL 3600s)."""
+    if not products:
+        return []
+    user_query = profile.get("resume", "") or profile.get("categorie", "")
+    cache_key = _rank_cache_key(products, user_query)
+    try:
+        cached = redis_client.get(cache_key)
+        if cached:
+            logger.info(f"⚡ Cache hit rank_with_ai: {cache_key[:20]}...")
+            return json.loads(cached)
+    except Exception as e:
+        logger.info(f"⚠️ Redis cache read error: {e}")
+
+    result = await rank_with_ai(products, profile)
+
+    if result:
+        try:
+            redis_client.setex(cache_key, 3600, json.dumps(result))
+            logger.info(f"💾 Cache set rank_with_ai: {cache_key[:20]}...")
+        except Exception as e:
+            logger.info(f"⚠️ Redis cache write error: {e}")
+
+    return result
 
 
 async def ai_fallback(profile: dict) -> list:
@@ -315,7 +363,8 @@ class ChatResponse(BaseModel):
 # ─── Route principale ──────────────────────────────────────
 @router.post("/", response_model=ChatResponse)
 @router.post("", response_model=ChatResponse)
-async def chat(req: ChatRequest):
+async def chat(req: ChatRequest, request: Request):
+    await enforce_chat_rate_limit(request)
     msg_lower = req.message.lower()
 
     if any(kw in msg_lower for kw in HORS_SCOPE):
@@ -327,7 +376,7 @@ async def chat(req: ChatRequest):
     messages.append({"role": "user", "content": req.message})
 
     resp = await client.chat.completions.create(
-        model=os.getenv("DEEPSEEK_MODEL", "deepseek-chat"),
+        model=os.getenv("DEEPSEEK_MODEL", "deepseek-v4-pro"),
         messages=messages, max_tokens=600, temperature=0.7
     )
     reply = resp.choices[0].message.content.strip()
@@ -341,12 +390,12 @@ async def chat(req: ChatRequest):
                 action, profile = "search", data.get("profile", {})
                 db_products = await query_db(profile)
                 if db_products:
-                    recommendations = await rank_with_ai(db_products, profile)
+                    recommendations = await rank_with_ai_cached(db_products, profile)
                     reply = format_recs(recommendations, from_db=True)
                 else:
                     recommendations = await ai_fallback(profile)
                     reply = format_recs(recommendations, from_db=False)
         except Exception as e:
-            print(f"⚠️ Search error: {e}")
+            logger.info(f"⚠️ Search error: {e}")
 
     return ChatResponse(reply=reply, is_scope=True, action=action, profile=profile, recommendations=recommendations)

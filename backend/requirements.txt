@@ -34,3 +34,8 @@ httpx>=0.27
 # Icecat / parsing
 requests==2.31.0
 beautifulsoup4==4.12.0
+
+# Correctifs Cicéron
+gunicorn==22.0.0
+python-json-logger==3.0.0
+tenacity==9.0.0

@@ -4,13 +4,10 @@ PICKSY — Tâche Celery : Mise à jour prix Amazon
 
 import os
 import httpx
-from supabase import create_client
 from app.celery_app import app as celery_app
+from app.core.supabase import get_supabase_admin
 
-supabase = create_client(
-    os.getenv("SUPABASE_URL", ""),
-    os.getenv("SUPABASE_SERVICE_KEY", ""),
-)
+supabase = get_supabase_admin()
 AFFILIATE_TAG = os.getenv("AMAZON_AFFILIATE_TAG", "picksy-21")
 
 

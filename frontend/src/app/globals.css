@@ -3,19 +3,25 @@
 
 @theme {
   /* ── Brand Colors ── */
-  --color-coral:       #FF6B5F;
-  --color-coral-dark:  #E5554A;
-  --color-coral-light: #FF9A92;
-  --color-mint:        #3ED6A3;
-  --color-mint-dark:   #1BAE7D;
-  --color-mint-light:  #8AF0CC;
-  --color-blue:        #4257FF;
-  --color-blue-dark:   #2638D9;
-  --color-blue-light:  #8C98FF;
-  --color-cream:       #FFF7ED;
-  --color-ink:         #161827;
-  --color-night:       #0E1020;
-  --color-card-night:  #181B2E;
+  --color-coral:          #FF6B5F;
+  --color-coral-dark:     #E5554A;
+  --color-coral-light:    #FF9A92;
+  --color-mint:           #3ED6A3;
+  --color-mint-dark:      #1BAE7D;
+  --color-mint-light:     #8AF0CC;
+  --color-blue:           #4257FF;
+  --color-blue-dark:      #2638D9;
+  --color-blue-light:     #8C98FF;
+  --color-blueberry:      #4257FF;
+  --color-blueberry-dark: #2638D9;
+  --color-blueberry-light:#8C98FF;
+  --color-cream:          #FFF7ED;
+  --color-ink:            #161827;
+  --color-night:          #0E1020;
+  --color-surface:        #1A1D2E;
+  --color-surface-light:  #242840;
+  --color-muted:          #8B8FA3;
+  --color-card-night:     #181B2E;
 
   /* ── Scale ── */
   --color-coral-50:  #FFF1F0;
@@ -56,6 +62,12 @@
   --ease-spring:  cubic-bezier(0.32, 0.72, 0.0, 1.0);
   --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1.0);
   --ease-smooth:  cubic-bezier(0.4, 0.0, 0.2, 1.0);
+
+  /* ── Animations ── */
+  --animate-pulse-glow: picksy-pulse-glow 2.4s ease-in-out infinite;
+  --animate-slide-up:   picksy-slide-up 0.4s ease-out both;
+  --animate-pulse-ai:   picksy-pulse-ai 1.5s ease-out infinite;
+  --animate-badge-pop:  picksy-badge-pop 0.5s var(--ease-bounce) both;
 }
 
 /* ── Surfaces ── */

@@ -3,7 +3,7 @@ export function ThinkingIndicator() {
     <div
       className="flex items-center gap-3 rounded-2xl border border-white/8 bg-surface-light px-5 py-4"
       aria-live="polite"
-      aria-label="Picksy réfléchit"
+      aria-label="Troviio réfléchit"
     >
       <div className="flex items-center gap-1.5" aria-hidden="true">
         <span
@@ -20,7 +20,7 @@ export function ThinkingIndicator() {
         />
       </div>
       <span className="text-sm font-medium text-muted">
-        Picksy réfléchit...
+        Troviio réfléchit...
       </span>
     </div>
   );

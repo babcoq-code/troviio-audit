@@ -2,13 +2,40 @@ import type { Product, ChatResponse, NewsletterResponse } from "@/types";
 
 // Server-side API (inside Docker network): http://backend:8000
 // Client-side: uses NEXT_PUBLIC_API_URL or public tunnel URL
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://picksy.babcoq.tech/api";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://troviio.com/api";
 
 /**
  * Internal base for server-to-server calls within Docker.
  * Next.js Server Components can use this to call the backend directly.
  */
-const INTERNAL_API_BASE = process.env.INTERNAL_API_URL || "http://backend:8000/api";
+const INTERNAL_API_BASE = process.env.INTERNAL_API_URL || "http://172.19.0.4:8000/api";
+
+/**
+ * Generic fetch for API calls — used by accessory pages.
+ * Works in both server and client components.
+ * Server-side uses INTERNAL_API_BASE (Docker network).
+ * Client-side uses NEXT_PUBLIC_API_URL.
+ * Path should start with /api/ (e.g. /api/accessories/categories).
+ */
+export async function apiFetch<T>(
+  path: string,
+  init?: RequestInit
+): Promise<T> {
+  // Detect if running on server (SSR) or client
+  const isServer = typeof window === "undefined";
+  const base = isServer ? INTERNAL_API_BASE : API_BASE;
+  const cleanPath = path.replace(/^\/api/, "");
+  const url = `${base}${cleanPath}`;
+  const response = await fetch(url, {
+    ...init,
+    headers: { "Content-Type": "application/json", ...(init?.headers || {}) },
+  });
+  if (!response.ok) {
+    const text = await response.text().catch(() => "");
+    throw new Error(`API ${response.status}: ${text}`);
+  }
+  return response.json() as Promise<T>;
+}
 
 export async function fetchProducts(category?: string, limit: number = 50): Promise<Product[]> {
   const params = new URLSearchParams();
@@ -89,7 +116,7 @@ export async function chatWithAI(
   message: string,
   history: { role: string; content: string }[] = []
 ): Promise<ChatResponse> {
-  const res = await fetch(`${API_BASE}/chat/`, {
+  const res = await fetch(`${API_BASE}/chat/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message, history }),

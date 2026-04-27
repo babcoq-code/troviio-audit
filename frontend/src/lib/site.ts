@@ -16,10 +16,10 @@ export const legalPages: LegalPage[] = [
 ];
 
 export const siteConfig: SiteConfig = {
-  name: "Picksy",
+  name: "Troviio",
   slogan: "C'est l'objet qui s'adapte à TOI, pas l'inverse",
   description:
-    "Picksy est un comparateur intelligent de produits maison. L'IA analyse des centaines de sources techniques pour vous recommander le produit parfait pour vos besoins.",
+    "Troviio est un comparateur intelligent de produits maison. L'IA analyse des centaines de sources techniques pour vous recommander le produit parfait pour vos besoins.",
   url: "https://picksy.babcoq.tech",
   ogImage: "https://picksy.babcoq.tech/og-image.png",
 

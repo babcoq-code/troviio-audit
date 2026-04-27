@@ -41,37 +41,74 @@ async def enrich_recommendations(recommendations: List[dict], supabase_client) -
         reco_name = unidecode(reco.get("name", "").lower().strip())
         reco_brand = unidecode(reco.get("brand", "").lower().strip())
 
+        # Nettoyage : enlever la marque du nom si elle est préfixée (ex: "Eufy X10 Pro Omni" → "X10 Pro Omni")
+        search_name = reco_name
+        if reco_brand and reco_name.startswith(reco_brand):
+            search_name = reco_name[len(reco_brand):].strip()
+        # Enlever aussi les variantes de marque avec/sans espace
+        if reco_brand:
+            search_name = search_name.replace(reco_brand + " ", "").replace(reco_brand, "").strip() or search_name
+
         product_data = None
 
         try:
-            # Tentative 1 : match exact brand + name partiel
+            # Tentative 1 : match exact brand + name partiel (nom nettoyé)
             result = (
                 supabase_client
                 .from_("v_products_published")
                 .select("*")
                 .ilike("brand", f"%{reco_brand}%")
-                .ilike("name", f"%{reco_name}%")
+                .ilike("name", f"%{search_name}%")
                 .limit(1)
                 .execute()
             )
             if result.data:
                 product_data = result.data[0]
-                logger.info(f"[enrich] Produit trouvé pour '{reco['name']}' via match complet")
+                logger.info(f"[enrich] Produit trouvé pour '{reco['name']}' via match complet (search: {search_name})")
             else:
-                # Tentative 2 : match uniquement sur le nom
+                # Tentative 2 : match uniquement sur le nom nettoyé
                 result2 = (
                     supabase_client
                     .from_("v_products_published")
                     .select("*")
-                    .ilike("name", f"%{reco_name}%")
+                    .ilike("name", f"%{search_name}%")
                     .limit(1)
                     .execute()
                 )
                 if result2.data:
                     product_data = result2.data[0]
-                    logger.warning(f"[enrich] Produit trouvé via name seul pour '{reco['name']}'")
+                    logger.warning(f"[enrich] Produit trouvé via name seul pour '{reco['name']}' (search: {search_name})")
                 else:
-                    logger.warning(f"[enrich] Aucun match Supabase pour '{reco['name']}' ({reco_brand})")
+                    # Tentative 3 : match sur le nom original (sans nettoyage)
+                    result3 = (
+                        supabase_client
+                        .from_("v_products_published")
+                        .select("*")
+                        .ilike("name", f"%{reco_name}%")
+                        .limit(1)
+                        .execute()
+                    )
+                    if result3.data:
+                        product_data = result3.data[0]
+                        logger.warning(f"[enrich] Produit trouvé via name original pour '{reco['name']}'")
+                    else:
+                        # Tentative 4 : match sur slug (si le nom contient un slug-like)
+                        if reco_name.isalnum() or "-" in reco_name:
+                            result4 = (
+                                supabase_client
+                                .from_("v_products_published")
+                                .select("*")
+                                .ilike("slug", f"%{reco_name.replace(' ', '-')}%")
+                                .limit(1)
+                                .execute()
+                            )
+                            if result4.data:
+                                product_data = result4.data[0]
+                                logger.warning(f"[enrich] Produit trouvé via slug pour '{reco['name']}'")
+                            else:
+                                logger.warning(f"[enrich] Aucun match Supabase pour '{reco['name']}' ({reco_brand})")
+                        else:
+                            logger.warning(f"[enrich] Aucun match Supabase pour '{reco['name']}' ({reco_brand})")
         except Exception as e:
             logger.error(f"[enrich] Erreur Supabase pour '{reco['name']}': {e}")
 

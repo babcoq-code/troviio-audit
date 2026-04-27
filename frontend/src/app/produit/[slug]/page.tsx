@@ -9,6 +9,7 @@ import { PriceComparison } from "@/components/product/PriceComparison";
 import { RatingBar } from "@/components/product/RatingBar";
 import { UseCaseScores } from "@/components/product/UseCaseScores";
 import { SpecsTable } from "@/components/product/SpecsTable";
+import { AccessoriesWidget } from "@/components/accessories/AccessoriesWidget";
 
 export const revalidate = 3600;
 
@@ -39,9 +40,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     .select("name,brand,description,image_url")
     .eq("slug", slug)
     .single();
-  if (!p) return { title: "Produit introuvable | Picksy" };
+  if (!p) return { title: "Produit introuvable | Troviio" };
   return {
-    title: `${p.name} — Test complet, avis & prix | Picksy`,
+    title: `${p.name} — Test complet, avis & prix | Troviio`,
     description: (p.description || "").slice(0, 155),
     openGraph: { images: p.image_url ? [{ url: p.image_url }] : [] },
   };
@@ -141,7 +142,7 @@ export default async function ProductPage({ params }: PageProps) {
             </p>
             <div className="mt-8 grid grid-cols-3 gap-4">
               <div className="rounded-3xl border border-stone-200 bg-stone-50 p-5">
-                <p className="text-sm font-medium text-stone-500">Score Picksy</p>
+                <p className="text-sm font-medium text-stone-500">Score Troviio</p>
                 <p className="mt-2 text-3xl font-black text-emerald-700">
                   {product.estimated_score?.toFixed(1)}/10
                 </p>
@@ -296,6 +297,12 @@ export default async function ProductPage({ params }: PageProps) {
           </article>
         </aside>
       </section>
+
+      <AccessoriesWidget
+        productId={product.id}
+        productSlug={product.slug}
+        productName={product.name}
+      />
     </main>
   );
 }

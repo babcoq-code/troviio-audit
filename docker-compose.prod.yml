@@ -11,7 +11,7 @@ services:
     ports:
       - "127.0.0.1:8000:8000"
     networks:
-      - picksy_net
+      - default
     mem_limit: 512m
     cpus: "1.0"
     logging:
@@ -35,7 +35,7 @@ services:
     ports:
       - "127.0.0.1:3000:3000"
     networks:
-      - picksy_net
+      - default
     mem_limit: 512m
     cpus: "1.0"
     logging:
@@ -60,7 +60,7 @@ services:
       - redis
     restart: always
     networks:
-      - picksy_net
+      - default
     mem_limit: 512m
     cpus: "1.0"
     logging:
@@ -79,7 +79,7 @@ services:
       - redis
     restart: always
     networks:
-      - picksy_net
+      - default
     mem_limit: 256m
     cpus: "0.5"
     logging:
@@ -94,7 +94,7 @@ services:
     volumes:
       - redis_data:/data
     networks:
-      - picksy_net
+      - default
     mem_limit: 256m
     cpus: "0.5"
     logging:
@@ -121,7 +121,7 @@ services:
         condition: service_healthy
     restart: always
     networks:
-      - picksy_net
+      - default
     mem_limit: 256m
     cpus: "0.5"
     logging:
@@ -140,7 +140,7 @@ services:
       - umami-db-data:/var/lib/postgresql/data
     restart: always
     networks:
-      - picksy_net
+      - default
     mem_limit: 256m
     cpus: "0.5"
     logging:
@@ -158,6 +158,4 @@ volumes:
   redis_data:
   umami-db-data:
 
-networks:
-  picksy_net:
-    driver: bridge
+networks: {}  # default network

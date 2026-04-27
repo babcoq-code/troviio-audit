@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Celery(
-    "picksy",
+    "troviio",
     broker=os.getenv("CELERY_BROKER_URL", "redis://redis:6379/1"),
     backend=os.getenv("CELERY_RESULT_BACKEND", "redis://redis:6379/2"),
     include=[
@@ -28,7 +28,7 @@ app.conf.beat_schedule = {
     },
     # Nouveau pipeline : refresh tests de tous les produits chaque dimanche 3h30
     "weekly-refresh-tests": {
-        "task": "picksy.scraping.weekly_refresh_all",
+        "task": "troviio.scraping.weekly_refresh_all",
         "schedule": crontab(hour=3, minute=30, day_of_week="sunday"),
     },
     # Newsletter hebdomadaire — lundi 9h00
@@ -59,6 +59,6 @@ app.conf.worker_max_tasks_per_child = 100
 
 # Routing : les tâches de scraping vont dans la queue "scraping"
 app.conf.task_routes = {
-    "picksy.scraping.run_product_pipeline": {"queue": "scraping"},
-    "picksy.scraping.weekly_refresh_all": {"queue": "scraping"},
+    "troviio.scraping.run_product_pipeline": {"queue": "scraping"},
+    "troviio.scraping.weekly_refresh_all": {"queue": "scraping"},
 }

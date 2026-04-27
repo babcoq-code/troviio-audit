@@ -9,7 +9,7 @@ from app.core.supabase import get_supabase_admin
 
 resend.api_key = os.getenv("RESEND_API_KEY", "")
 supabase = get_supabase_admin()
-DOMAIN = os.getenv("DOMAIN", "picksy.fr")
+DOMAIN = os.getenv("DOMAIN", "troviio.fr")
 
 
 @celery_app.task(name="app.tasks.newsletter_task.send_weekly_newsletter")

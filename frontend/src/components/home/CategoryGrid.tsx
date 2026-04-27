@@ -128,7 +128,7 @@ export default function CategoryGrid({ onSelect }: Props) {
             className="animate-fade-slide-up font-['Sora'] text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
             style={{ animationDelay: "0.08s" }}
           >
-            Picksy sait tout choisir.{" "}
+            Troviio sait tout choisir.{" "}
             <br className="hidden sm:block" />
             <span className="text-[#FF6B5F]">Même ce à quoi tu n&apos;avais pas pensé.</span>
           </h2>

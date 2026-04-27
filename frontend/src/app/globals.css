@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=Nunito:wght@700;800&display=swap');
 @import "tailwindcss";
+@import "../styles/troviio-design-tokens.css";
 
 @theme {
   /* ── Brand Colors ── */
@@ -289,7 +290,7 @@
   animation: picksy-fade-in 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) both;
 }
 
-/* ─── Animations Page Résultats Picksy ─── */
+/* ─── Animations Page Résultats Troviio ─── */
 
 @keyframes spring-up {
   0%   { opacity: 0; transform: translateY(60px) scale(0.92); }

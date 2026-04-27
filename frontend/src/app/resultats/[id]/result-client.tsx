@@ -23,7 +23,7 @@ export function ResultClientComponents({ resultId }: { resultId: string }) {
               Tu veux partager ou affiner ta recherche ?
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-7 text-white/70">
-              Envoie ce lien à un proche ou relance le chat Picksy pour préciser ton budget,
+              Envoie ce lien à un proche ou relance le chat Troviio pour préciser ton budget,
               tes usages ou tes préférences.
             </p>
           </div>
@@ -46,7 +46,7 @@ function ShareButton({ resultId }: { resultId: string }) {
     const url = `${window.location.origin}/resultats/${resultId}`;
     try {
       if (navigator.share) {
-        await navigator.share({ title: "Ma recommandation Picksy", url });
+        await navigator.share({ title: "Ma recommandation Troviio", url });
       } else {
         await navigator.clipboard.writeText(url);
       }
@@ -80,7 +80,7 @@ function ShareButton({ resultId }: { resultId: string }) {
 function WhatsAppShareButton({ resultId }: { resultId: string }) {
   function handleWhatsApp() {
     const url = encodeURIComponent(`${window.location.origin}/resultats/${resultId}`);
-    const text = encodeURIComponent("J'ai trouvé 3 produits parfaits grâce à Picksy, regarde :");
+    const text = encodeURIComponent("J'ai trouvé 3 produits parfaits grâce à Troviio, regarde :");
     window.open(`https://wa.me/?text=${text}%20${url}`, "_blank");
   }
 

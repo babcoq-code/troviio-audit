@@ -37,13 +37,13 @@ async def subscribe(req: SubscribeRequest):
         "unsubscribe_token": unsub_token,
     }).execute()
 
-    domain = os.getenv("DOMAIN", "picksy.fr")
+    domain = os.getenv("DOMAIN", "troviio.fr")
     resend.Emails.send({
-        "from": f"Picksy <newsletter@{domain}>",
+        "from": f"Troviio <newsletter@{domain}>",
         "to": req.email,
-        "subject": "Confirme ton inscription à Picksy 🏡",
+        "subject": "Confirme ton inscription à Troviio 🏡",
         "html": f"""
-        <h2>Bienvenue sur Picksy !</h2>
+        <h2>Bienvenue sur Troviio !</h2>
         <p>Clique sur le lien ci-dessous pour confirmer ton inscription :</p>
         <a href="https://{domain}/newsletter/confirm?token={confirm_token}">Confirmer mon inscription</a>
         """,

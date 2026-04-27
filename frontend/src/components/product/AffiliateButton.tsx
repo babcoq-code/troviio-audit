@@ -9,7 +9,7 @@ interface AffiliateButtonProps {
 }
 
 /**
- * AffiliateButton — Lien vers Amazon avec tag d'affiliation Picksy.
+ * AffiliateButton — Lien vers Amazon avec tag d'affiliation Troviio.
  * Conforme aux exigences Amazon Associates (divulgation, lien direct).
  */
 export default function AffiliateButton({
@@ -43,7 +43,7 @@ export default function AffiliateButton({
 export function DisclosureBadge() {
   return (
     <p className="text-xs text-muted leading-relaxed">
-      Picksy perçoit une commission sur les achats via ce lien Amazon, sans surcoût pour toi.
+      Troviio perçoit une commission sur les achats via ce lien Amazon, sans surcoût pour toi.
       Nos recommandations restent indépendantes — nous recommandons ce qui correspond à ton profil,
       pas ce qui rapporte le plus.
     </p>

@@ -13,7 +13,7 @@ from pydantic import BaseModel, Field, ValidationError, field_validator
 from app.core.config import get_settings
 
 logger = logging.getLogger(__name__)
-PROMPT_VERSION = "picksy_review_v2"
+PROMPT_VERSION = "troviio_review_v2"
 
 
 class GeneratedReview(BaseModel):

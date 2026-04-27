@@ -48,7 +48,7 @@ class RetriableTask(celery_app.Task):
     retry_jitter = True
 
 
-@celery_app.task(bind=True, base=RetriableTask, name="picksy.scraping.run_product_pipeline")
+@celery_app.task(bind=True, base=RetriableTask, name="troviio.scraping.run_product_pipeline")
 def run_product_refresh_pipeline(self, product_id: str):
     """Pipeline complet : scrape → YouTube → image → génération test.
 
@@ -170,7 +170,7 @@ def run_product_refresh_pipeline(self, product_id: str):
         raise
 
 
-@celery_app.task(bind=True, name="picksy.scraping.weekly_refresh_all")
+@celery_app.task(bind=True, name="troviio.scraping.weekly_refresh_all")
 def weekly_refresh_all(self):
     """Déclenché chaque dimanche — refresh tests de tous les produits."""
     prod_resp = supabase.table("products").select("id").execute()

@@ -32,16 +32,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const result = await getResult(id);
-  if (!result) return { title: "Recommandation introuvable | Picksy", robots: { index: false, follow: false } };
+  if (!result) return { title: "Recommandation introuvable | Troviio", robots: { index: false, follow: false } };
   const best = result.recommendations.find((r) => r.rank === 1);
   return {
-    title: `Meilleures ${result.profile.categorie} pour ton profil | Picksy`,
+    title: `Meilleures ${result.profile.categorie} pour ton profil | Troviio`,
     description: best
-      ? `Picksy recommande ${best.brand} ${best.name} – score ${best.score}/10 pour ton profil.`
-      : `Tes recommandations personnalisées Picksy pour ${result.profile.categorie}.`,
+      ? `Troviio recommande ${best.brand} ${best.name} – score ${best.score}/10 pour ton profil.`
+      : `Tes recommandations personnalisées Troviio pour ${result.profile.categorie}.`,
     alternates: { canonical: `${APP_URL}/resultats/${result.result_id}` },
     openGraph: {
-      title: `Recommandations ${result.profile.categorie} | Picksy`,
+      title: `Recommandations ${result.profile.categorie} | Troviio`,
       description: result.profile.resume,
       url: `${APP_URL}/resultats/${result.result_id}`,
       type: "website",
@@ -106,13 +106,13 @@ export default async function ResultPage({
 
               <h1 className="mt-5 font-sora text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
                 Voici tes recommandations<br />
-                <span className="text-[#FF6B5F]">Picksy</span>
+                <span className="text-[#FF6B5F]">Troviio</span>
               </h1>
 
               <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
                 Pour ta recherche en{" "}
                 <strong className="text-[#0E1020]">{result.profile.categorie}</strong>,
-                Picksy a analysé des dizaines de produits et pondéré les scores selon tes critères.
+                Troviio a analysé des dizaines de produits et pondéré les scores selon tes critères.
               </p>
 
               {result.profile.resume && (
@@ -157,7 +157,7 @@ export default async function ResultPage({
         <section className="mt-12" aria-labelledby="podium-title">
           <div className="mb-8 text-center">
             <p className="font-sora text-sm font-semibold uppercase tracking-[0.2em] text-[#3ED6A3]">
-              Podium Picksy
+              Podium Troviio
             </p>
             <h2 id="podium-title" className="mt-2 font-sora text-3xl font-bold tracking-tight sm:text-4xl">
               Les 3 meilleurs choix pour ton profil
@@ -401,7 +401,7 @@ export default async function ResultPage({
             Logique de recommandation
           </p>
           <h2 className="mt-2 font-sora text-2xl font-bold tracking-tight sm:text-3xl">
-            Pourquoi Picksy a choisi ça pour toi
+            Pourquoi Troviio a choisi ça pour toi
           </h2>
 
           <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -422,12 +422,12 @@ export default async function ResultPage({
 
             <div className="text-sm leading-8 text-slate-700">
               <p>
-                Picksy a filtré les produits compatibles avec ton budget, puis a pondéré les scores
+                Troviio a filtré les produits compatibles avec ton budget, puis a pondéré les scores
                 selon les critères que tu as indiqués pendant le chat. Les produits retenus maximisent
                 l'équilibre entre performance réelle, adéquation à tes usages et valeur pour le prix.
               </p>
               <p className="mt-4">
-                En cas d'égalité, Picksy privilégie <strong>la fiabilité des avis utilisateurs</strong> et
+                En cas d'égalité, Troviio privilégie <strong>la fiabilité des avis utilisateurs</strong> et
                 la qualité des données disponibles sur chaque modèle. Les produits avec des données
                 insuffisantes sont automatiquement écartés.
               </p>
@@ -445,7 +445,7 @@ export default async function ResultPage({
         {/* ── FOOTER DISCLOSURE ── */}
         <footer className="mt-10 pb-6 text-center text-xs leading-7 text-slate-500">
           <p>
-            Picksy participe au Programme Partenaires d'Amazon EU. En tant que Partenaire Amazon, Picksy réalise
+            Troviio participe au Programme Partenaires d'Amazon EU. En tant que Partenaire Amazon, Troviio réalise
             un bénéfice sur les achats remplissant les conditions requises. Les liens de cette page peuvent être
             des liens d'affiliation. Cela ne vous coûte rien de plus et nous permet de rester gratuit.
           </p>

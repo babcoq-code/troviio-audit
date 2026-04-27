@@ -15,7 +15,7 @@ from supabase import create_client
 logger = logging.getLogger(__name__)
 
 celery_app = Celery(
-    "picksy",
+    "troviio",
     broker=os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0"),
     backend=os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:6379/1"),
 )

@@ -1,1 +1,1 @@
-# picksy/backend/app/tasks/__init__.py
+# troviio/backend/app/tasks/__init__.py

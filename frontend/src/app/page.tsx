@@ -140,7 +140,33 @@ export default function HomePage() {
   };
 
   const handleCategorySelect = (slug: string, label: string) => {
-    const nextMessage = `Je cherche ${label.toLowerCase()}, peux-tu m'aider ?`;
+    // Question immédiate sur le mode de vie — pas juste "je cherche X"
+    const questions: Record<string, string> = {
+      "robot-aspirateur": "Je cherche un aspirateur robot. Chez moi c'est un appartement, plutôt une maison, ou un studio ? Et toi, tu commences par où pour cerner mon besoin ?",
+      "aspirateur-balai": "Je cherche un aspirateur balai. Dis-moi : tu poses d'abord la question de la fréquence d'usage ou du type de sol ?",
+      "lave-linge": "Je cherche un lave-linge. Je vis seul, en couple, ou en famille — tu commences par quoi pour me conseiller ?",
+      "lave-vaisselle": "Je cherche un lave-vaisselle. On est 2, 4 ou plus à la maison — c'est ton premier critère ?",
+      "refrigerateur": "Je cherche un réfrigérateur. On est 2 ici et on cuisine pas mal — c'est utile de savoir ça pour toi ?",
+      "purificateur-air": "Je cherche un purificateur d'air. C'est pour des allergies, des animaux, ou la pollution — t'as besoin de savoir ça pour m'aiguiller ?",
+      "friteuse-air": "Je cherche une friteuse à air. On est 3 à la maison et on mange maison — ça compte pour trouver le bon format ?",
+      "machine-cafe": "Je cherche une machine à café. Je suis plutôt grains que capsules — ça influence ton conseil ?",
+      "tv-oled": "Je cherche une TV OLED. Mon canapé est à environ 2,5 m de l'écran — ça aide à choisir la bonne taille ?",
+      "casque-audio": "Je cherche un casque audio. Je l'utiliserai surtout chez moi, nomade et au bureau — t'as besoin de cette info ?",
+      "smartphone": "Je cherche un smartphone. Ma priorité c'est la photo, ensuite l'autonomie — ça t'aide à cibler ?",
+      "ordinateur-etudiant": "Je cherche un laptop étudiant. C'est pour du code et de la bureautique — tu pars sur quelle config type ?",
+      "imprimante": "Je cherche une imprimante. J'imprime surtout des documents, peu de photos — ça guide ton choix ?",
+      "barre-son": "Je cherche une barre de son. Je regarde surtout des films/séries — tu conseilles quoi comme point de départ ?",
+      "camera-securite": "Je cherche une caméra de sécurité. Pour l'intérieur, sans besoin d'enregistrement continu — t'as une idée ?",
+      "thermostat-connecte": "Je cherche un thermostat connecté. Je veux faire des économies et du confort — tu démarres par quoi ?",
+      "trottinette-electrique": "Je cherche une trottinette électrique. Je fais environ 8 km par jour — ça suffit pour m'orienter ?",
+      "velo-electrique": "Je cherche un vélo électrique. C'est pour des trajets urbains quotidiens — t'as besoin d'autres infos ?",
+      "poussette": "Je cherche une poussette. Je suis en ville avec transports — par quoi tu commences pour me conseiller ?",
+      "matelas": "Je cherche un matelas. Je dors seul et je préfère plutôt ferme — ça te parle ?",
+      "robot-cuisine": "Je cherche un robot cuisine. Je fais surtout de la pâtisserie — t'as des modèles en tête ?",
+      "cave-a-vin": "Je cherche une cave à vin. Je veux surtout garder des bouteilles à température — par où tu commences ?",
+    };
+    const nextMessage = questions[slug] || `Je cherche ${label.toLowerCase()}. Déjà, c'est pour quel usage au quotidien ?`;
+
     // Scroll INTERNE du chat uniquement — pas de scrollIntoView sur la page
     const chatSection = document.getElementById("chat");
     if (chatSection) {
@@ -166,7 +192,7 @@ export default function HomePage() {
       {/* ── HEADER ── */}
       <header className="sticky top-0 z-50 bg-night/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <img src="/logo-dark.svg" alt="Picksy" style={{ height: 34 }} />
+          <img src="/logo-dark.svg" alt="Troviio" style={{ height: 34 }} />
           <span className="text-xs text-muted hidden sm:block tracking-wide uppercase">Le conseiller maison</span>
         </div>
       </header>
@@ -211,13 +237,13 @@ export default function HomePage() {
 
           {/* Ligne secondaire */}
           <p className="text-base sm:text-lg text-muted font-medium mb-6 tracking-wide">
-            Les vendeurs vendent. Picksy trouve.
+            Les vendeurs vendent. Troviio trouve.
           </p>
 
           {/* Sous-titre */}
           <p className="text-lg text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
             Dis-nous comment tu vis, ce que tu veux éviter, ton budget et tes contraintes.
-            Picksy croise ta vraie vie avec des milliers d&apos;avis pour te donner une réponse claire — pas une liste.
+            Troviio croise ta vraie vie avec des milliers d&apos;avis pour te donner une réponse claire — pas une liste.
           </p>
         </div>
       </section>
@@ -238,7 +264,7 @@ export default function HomePage() {
                 <div className="text-5xl">🛍️</div>
                 <div>
                   <p className="font-semibold text-white text-base mb-1">Quel produit tu cherches ?</p>
-                  <p className="text-sm text-muted">Picksy t&apos;accompagne étape par étape</p>
+                  <p className="text-sm text-muted">Troviio t&apos;accompagne étape par étape</p>
                 </div>
                 <div className="flex flex-wrap gap-2 justify-center mt-2">
                   {SUGGESTIONS.map((s) => (
@@ -280,7 +306,7 @@ export default function HomePage() {
               <input
                 ref={inputRef}
                 type="text"
-                placeholder="Décris ton besoin réel : espace, budget, contraintes, usage..."
+                placeholder="Décris ce que tu cherches, même en vrac…"
                 className="flex-1 bg-surface-light rounded-xl px-4 py-3 text-sm outline-none border border-white/8 focus:border-coral/50 focus:ring-1 focus:ring-coral/30 transition-all text-white placeholder-muted"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
@@ -317,13 +343,13 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 mb-20">
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ fontFamily: "Sora, sans-serif" }}>
-            Picksy ne compare pas des produits.<br />
+            Troviio ne compare pas des produits.<br />
             <span style={{
               background: "linear-gradient(135deg, #FF6B5F, #3ED6A3)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-            }}>Picksy comprend ta vie.</span>
+            }}>Troviio comprend ta vie.</span>
           </h2>
           <p className="text-muted max-w-xl mx-auto">
             Un bon achat n&apos;est pas universel. Il dépend de ton espace, ton budget, tes contraintes et ce que tu refuses de supporter.
@@ -334,12 +360,12 @@ export default function HomePage() {
             {
               icon: "🔍",
               title: "Tes contraintes d'abord",
-              text: "Surface, bruit, animaux, enfants, place disponible, budget, usage réel : Picksy commence par ce qui compte chez toi.",
+              text: "Surface, bruit, animaux, enfants, place disponible, budget, usage réel : Troviio commence par ce qui compte chez toi.",
             },
             {
               icon: "📊",
               title: "Des milliers d'avis ensuite",
-              text: "Picksy lit les signaux faibles : les défauts qui reviennent, les usages où le produit déçoit, les profils pour qui ça marche vraiment.",
+              text: "Troviio lit les signaux faibles : les défauts qui reviennent, les usages où le produit déçoit, les profils pour qui ça marche vraiment.",
             },
             {
               icon: "✅",
@@ -361,7 +387,7 @@ export default function HomePage() {
       ══════════════════════════════════════ */}
       <section className="max-w-3xl mx-auto px-4 mb-20">
         <h2 className="text-2xl sm:text-3xl font-bold mb-10 text-center" style={{ fontFamily: "Sora, sans-serif" }}>
-          Comment Picksy trouve le tien
+          Comment Troviio trouve le tien
         </h2>
         <div className="space-y-6">
           {[
@@ -372,8 +398,8 @@ export default function HomePage() {
             },
             {
               n: "2",
-              title: "Picksy lit entre les lignes",
-              text: "Picksy croise les avis, les défauts récurrents et les usages réels sur des milliers de produits.",
+              title: "Troviio lit entre les lignes",
+              text: "Troviio croise les avis, les défauts récurrents et les usages réels sur des milliers de produits.",
             },
             {
               n: "3",
@@ -402,12 +428,12 @@ export default function HomePage() {
       ══════════════════════════════════════ */}
       <section className="max-w-4xl mx-auto px-4 mb-20">
         <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center" style={{ fontFamily: "Sora, sans-serif" }}>
-          Les comparateurs notent. Picksy choisit avec toi.
+          Les comparateurs notent. Troviio choisit avec toi.
         </h2>
         <div className="rounded-2xl border border-white/5 overflow-hidden">
           <div className="grid grid-cols-2 bg-surface-light">
             <div className="p-4 text-sm font-semibold text-muted border-r border-white/5">Un comparateur classique</div>
-            <div className="p-4 text-sm font-semibold" style={{ color: "#3ED6A3" }}>Picksy</div>
+            <div className="p-4 text-sm font-semibold" style={{ color: "#3ED6A3" }}>Troviio</div>
           </div>
           {[
             ["Classe les produits par score moyen", "Comprend ton contexte et tes contraintes"],
@@ -433,7 +459,7 @@ export default function HomePage() {
             Un vendeur sans commission, sans fatigue, sans baratin.
           </h2>
           <p className="text-muted max-w-2xl mx-auto mb-8 leading-relaxed">
-            Picksy ne pousse pas un stock, ne touche pas de prime et ne te fait pas choisir sous pression.
+            Troviio ne pousse pas un stock, ne touche pas de prime et ne te fait pas choisir sous pression.
             Il garde en tête des milliers de produits, lit les avis à ta place et reste disponible quand tu veux acheter, même à 23h.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
@@ -451,16 +477,16 @@ export default function HomePage() {
       ══════════════════════════════════════ */}
       <section className="max-w-6xl mx-auto px-4 mb-20">
         <h2 className="text-2xl font-bold mb-8 text-center" style={{ fontFamily: "Sora, sans-serif" }}>
-          Ce que Picksy évite
+          Ce que Troviio évite
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {[
             {
-              quote: "Je voulais juste un aspirateur robot. Picksy m'a évité celui qui se bloque sous mon canapé.",
+              quote: "Je voulais juste un aspirateur robot. Troviio m'a évité celui qui se bloque sous mon canapé.",
               cas: "Cas typique : appartement 50m², meubles bas",
             },
             {
-              quote: "Picksy m'a surtout demandé combien de bruit j'acceptais le matin. Pas la machine à café qui me convenait.",
+              quote: "Troviio m'a surtout demandé combien de bruit j'acceptais le matin. Pas la machine à café qui me convenait.",
               cas: "Cas typique : cuisine ouverte sur salon",
             },
             {
@@ -482,7 +508,7 @@ export default function HomePage() {
       <section className="max-w-xl mx-auto px-4 mb-20">
         <div className="rounded-2xl border border-white/5 p-6 sm:p-8 text-center overflow-hidden" style={{ background: "linear-gradient(135deg, #1A1D2E, #242840)" }}>
           <h3 className="text-lg font-bold mb-2" style={{ fontFamily: "Sora, sans-serif" }}>
-            💌 Rentre chez toi. Picksy s&apos;occupe du choix.
+            💌 Rentre chez toi. Troviio s&apos;occupe du choix.
           </h3>
           <p className="text-sm text-muted mb-6">
             Chaque semaine, reçois des recommandations pensées pour la vraie vie : petits espaces, budgets serrés, animaux, enfants, bruit, entretien, durabilité.
@@ -559,13 +585,13 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted border-t border-white/5 pt-6">
             <div className="flex items-center gap-3">
               <img src="/logo-icon.svg" alt="" style={{ height: 24, opacity: 0.7 }} />
-              <span className="font-semibold text-white">Picksy</span>
+              <span className="font-semibold text-white">Troviio</span>
               <span>· Le conseiller maison pour tes achats maison</span>
             </div>
             <div className="flex items-center gap-4">
               <span className="text-xs">Liens affiliés Amazon · Recommandations indépendantes</span>
               <span className="hidden sm:inline">·</span>
-              <span>© 2026 Picksy</span>
+              <span>© 2026 Troviio</span>
             </div>
           </div>
         </div>

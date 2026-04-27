@@ -6,7 +6,7 @@ export default function NotFound() {
         <div className="text-5xl mb-4">🔍</div>
         <h1 className="text-3xl font-black">Produit introuvable</h1>
         <p className="mt-4 text-stone-600">
-          Ce produit n'existe pas ou a été retiré du catalogue Picksy.
+          Ce produit n'existe pas ou a été retiré du catalogue Troviio.
         </p>
         <Link
           href="/"

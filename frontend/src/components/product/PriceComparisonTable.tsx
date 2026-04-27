@@ -245,7 +245,7 @@ export default function PriceComparisonTable({
 
       {/* Affiliate disclosure */}
       <p className="text-xs text-muted/60 text-center leading-relaxed pt-4 border-t border-white/5">
-        Liens affiliés. Prix vérifiés régulièrement — Picksy peut percevoir une
+        Liens affiliés. Prix vérifiés régulièrement — Troviio peut percevoir une
         commission sans surcoût pour toi.
       </p>
     </div>

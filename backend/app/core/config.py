@@ -37,7 +37,7 @@ class Settings:
 
     # API
     ALLOWED_ORIGINS: str = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000")
-    DOMAIN: str = os.getenv("DOMAIN", "picksy.fr")
+    DOMAIN: str = os.getenv("DOMAIN", "troviio.fr")
 
     # Resend (newsletter)
     RESEND_API_KEY: str = os.getenv("RESEND_API_KEY", "")

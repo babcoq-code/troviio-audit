@@ -41,7 +41,7 @@ export function ScoreRing({ score, size = "md", className }: ScoreRingProps): Re
   return (
     <div
       role="img"
-      aria-label={`Score Picksy : ${safeScore}/100`}
+      aria-label={`Score Troviio : ${safeScore}/100`}
       style={{ position: "relative", width: config.pixels, height: config.pixels, display: "inline-grid", placeItems: "center" }}
       className={className}
     >

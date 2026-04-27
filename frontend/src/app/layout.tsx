@@ -3,9 +3,9 @@ import CookieBanner from "@/components/CookieBanner";
 import { UmamiAnalytics } from "@/components/UmamiAnalytics";
 
 export const metadata = {
-  title: "Picksy | Pas le meilleur. Le tien.",
+  title: "Troviio | Pas le meilleur. Le tien.",
   description:
-    "Picksy ne compare pas les produits. Il comprend ta vie, tes contraintes et ton budget pour te recommander LE produit qui te correspond. Zéro biais, zéro commission.",
+    "Troviio ne compare pas les produits. Il comprend ta vie, tes contraintes et ton budget pour te recommander LE produit qui te correspond. Zéro biais, zéro commission.",
   icons: { icon: "/logo-icon.svg" },
 };
 

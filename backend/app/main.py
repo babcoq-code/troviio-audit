@@ -15,11 +15,12 @@ load_dotenv()
 from app.core.logging_config import configure_logging
 
 configure_logging()
-logger = logging.getLogger("picksy.api")
+logger = logging.getLogger("troviio.api")
 
 from app.api.routes import chat, products, newsletter, results
 from app.api.routes.kelkoo import router as kelkoo_router
 from app.api.routes.admin_scraping import router as admin_scraping_router
+from app.routers.accessories import router as accessories_router
 
 
 @asynccontextmanager
@@ -61,9 +62,10 @@ app.include_router(kelkoo_router, prefix="", tags=["Kelkoo"])
 app.include_router(newsletter.router, prefix="/api/newsletter", tags=["Newsletter"])
 app.include_router(results.router, prefix="/api", tags=["Résultats"])
 app.include_router(admin_scraping_router)
+app.include_router(accessories_router)
 
 
 @app.get("/health")
 @app.get("/api/health")
 async def health():
-    return {"status": "ok", "service": "picksy-backend", "version": "1.0.0"}
+    return {"status": "ok", "service": "troviio-backend", "version": "1.0.0"}

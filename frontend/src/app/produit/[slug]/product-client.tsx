@@ -104,7 +104,7 @@ export default function ProductClient({ product }: ProductClientProps) {
               {/* Mention affiliation */}
               <p className="text-xs text-[#8B8FA3] border-t border-white/10 pt-4">
                 🔗 Certains liens vers les marchands sont des <strong>liens affiliés</strong>.
-                En tant que Partenaire Amazon, Picksy perçoit une commission sur les achats éligibles.
+                En tant que Partenaire Amazon, Troviio perçoit une commission sur les achats éligibles.
                 Cela n&apos;influence pas nos recommandations.
               </p>
             </div>

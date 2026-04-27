@@ -57,7 +57,7 @@ export function ResultRedirectMessage({ result_id }: ResultRedirectMessageProps)
         </div>
         <div className="min-w-0 flex-1">
           <p className="font-display text-lg font-bold leading-snug">
-            Picksy a trouvé tes recommandations !
+            Troviio a trouvé tes recommandations !
           </p>
           <p className="mt-1 text-sm text-white/75">
             Redirection dans {remainingSeconds} seconde{remainingSeconds > 1 ? "s" : ""}…

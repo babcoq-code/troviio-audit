@@ -88,8 +88,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug;
   const meta = getCategoryMeta(slug);
 
-  const title = `Meilleurs ${meta.name} 2026 — Picksy`;
-  const description = `Comparatif indépendant des meilleurs ${meta.name.toLowerCase()} en 2026. ${meta.description} Scores Picksy, avis et prix.`;
+  const title = `Meilleurs ${meta.name} 2026 — Troviio`;
+  const description = `Comparatif indépendant des meilleurs ${meta.name.toLowerCase()} en 2026. ${meta.description} Scores Troviio, avis et prix.`;
 
   return {
     title,
@@ -130,7 +130,7 @@ export default async function CategoryPage({ params }: Props) {
       <header className="sticky top-0 z-50 bg-night/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/">
-            <img src="/logo-dark.svg" alt="Picksy" style={{ height: 34 }} />
+            <img src="/logo-dark.svg" alt="Troviio" style={{ height: 34 }} />
           </Link>
           <span className="text-xs text-muted hidden sm:block tracking-wide uppercase">
             Le conseiller maison
@@ -178,7 +178,7 @@ export default async function CategoryPage({ params }: Props) {
             </span>
             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface border border-white/5">
               <span className="w-2 h-2 rounded-full bg-blue" />
-              Scores Picksy vérifiés
+              Scores Troviio vérifiés
             </span>
             <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface border border-white/5">
               <span className="w-2 h-2 rounded-full bg-coral" />
@@ -225,7 +225,7 @@ export default async function CategoryPage({ params }: Props) {
             Tu ne trouves pas ton bonheur ?
           </h2>
           <p className="text-muted text-sm mb-6">
-            Dis à Picksy tes contraintes réelles — il te trouvera le produit
+            Dis à Troviio tes contraintes réelles — il te trouvera le produit
             parfait pour toi.
           </p>
           <Link

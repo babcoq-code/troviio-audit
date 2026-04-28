@@ -6,7 +6,7 @@ import ScoreRing from "@/components/ScoreRing";
 
 // ─── Fetch ────────────────────────────────────────────────────────────────────
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://picksy.babcoq.tech";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://troviio.com";
 const API_URL = process.env.PICKSY_API_URL ?? APP_URL;
 
 async function getResult(id: string): Promise<RecommendationResult | null> {

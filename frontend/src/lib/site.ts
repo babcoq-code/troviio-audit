@@ -20,14 +20,14 @@ export const siteConfig: SiteConfig = {
   slogan: "C'est l'objet qui s'adapte à TOI, pas l'inverse",
   description:
     "Troviio est un comparateur intelligent de produits maison. L'IA analyse des centaines de sources techniques pour vous recommander le produit parfait pour vos besoins.",
-  url: "https://picksy.babcoq.tech",
-  ogImage: "https://picksy.babcoq.tech/og-image.png",
+  url: "https://troviio.com",
+  ogImage: "https://troviio.com/og-image.png",
 
   // === Informations éditeur (à remplacer par les vraies) ===
   publisherName: "Sébastien Babcoq",
   publisherSiret: "xxx xxx xxx xxxxx",
   publisherAddress: "Adresse professionnelle à renseigner",
-  publisherEmail: "contact@picksy.fr",
+  publisherEmail: "contact@troviio.com",
   publisherPhone: "+33 x xx xx xx xx",
   publisherRcs: "RCS xxx xxx xxx",
   publisherTva: "FRxx xxxxxxxxxx",
@@ -43,7 +43,7 @@ export const siteConfig: SiteConfig = {
   // === Responsable publication ===
   editorName: "Sébastien Babcoq",
   editorAddress: "Adresse professionnelle à renseigner",
-  editorEmail: "contact@picksy.fr",
+  editorEmail: "contact@troviio.com",
   directorName: "Sébastien Babcoq",
 
   // === Objets pour compatibilité pages légales ===

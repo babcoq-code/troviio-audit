@@ -18,4 +18,4 @@ Allow: /
 User-agent: Scrapy
 Disallow: /
 
-Sitemap: https://picksy.babcoq.tech/sitemap.xml
+Sitemap: https://troviio.com/sitemap.xml

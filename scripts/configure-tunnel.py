@@ -6,7 +6,7 @@ Uses the tunnel token for authentication and creates ingress rules.
 import json, os, subprocess, sys
 
 TUNNEL_ID = "001fc37c-3de5-497a-9922-0ae4771af06b"
-TOKEN = "cfut_SRJb0LDagCXHseI7lx8wFbLfprEZnLk5gOdc5S109df8e99"
+TOKEN = "CF_TUNNEL_TOKEN_REMOVED"
 
 # Create credentials file (needed by cloudflared)
 CRED_FILE = "/opt/picksy/cloudflared/credentials.json"
@@ -18,9 +18,9 @@ credentials = {
 }
 
 # The tunnel token is a base64-encoded JSON blob
-# Format: cfut_ + base64(json({account_tag, tunnel_secret, tunnel_id, tunnel_name}))
+# Format: CF_TUNNEL_TOKEN_REMOVED + base64(json({account_tag, tunnel_secret, tunnel_id, tunnel_name}))
 import base64
-token_data = TOKEN[len("cfut_"):]  # Remove prefix
+token_data = TOKEN[len("CF_TUNNEL_TOKEN_REMOVED"):]  # Remove prefix
 # Add padding
 padding = 4 - len(token_data) % 4
 if padding != 4:

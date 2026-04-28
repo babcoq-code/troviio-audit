@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  // Trust the Host header from Cloudflare Tunnel (bypass HTTPS redirect)
+  serverExternalPackages: [],
   async rewrites() {
     return [
       {

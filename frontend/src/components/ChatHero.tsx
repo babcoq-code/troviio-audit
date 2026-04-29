@@ -147,6 +147,7 @@ export default function ChatHero({ category }: { category?: string }) {
                 key={msg.id}
                 role={msg.role === "user" ? "user" : "ai"}
                 text={msg.content}
+                result_id={msg.result_id ?? undefined}
                 onSuggestionSelect={msg.role === "assistant" ? handleSuggestion : undefined}
               />
             ))}

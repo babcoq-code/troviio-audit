@@ -20,38 +20,6 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => { window.setTimeout(resolve, ms); });
 }
 
-async function readStream(
-  response: Response,
-  onChunk: (chunk: string) => void,
-  signal: AbortSignal,
-): Promise<string> {
-  if (!response.body) {
-    const text = await response.text();
-    onChunk(text);
-    return text;
-  }
-
-  const reader = response.body.getReader();
-  const decoder = new TextDecoder("utf-8");
-  let fullText = "";
-
-  try {
-    while (true) {
-      if (signal.aborted) throw new DOMException("Aborted", "AbortError");
-      const { done, value } = await reader.read();
-      if (done) break;
-      const chunk = decoder.decode(value, { stream: true });
-      fullText += chunk;
-      onChunk(chunk);
-    }
-    const trailing = decoder.decode();
-    if (trailing) { fullText += trailing; onChunk(trailing); }
-    return fullText;
-  } finally {
-    reader.releaseLock();
-  }
-}
-
 export function useChatStream(): UseChatStreamReturn {
   const [state, setState] = useState<ChatState>("idle");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -121,7 +89,7 @@ export function useChatStream(): UseChatStreamReturn {
       try {
         const body: ChatRequestBody = {
           message: trimmed,
-          history: history,
+          history: history.map((m) => ({ role: m.role, content: m.content })),
           category: options?.category,
         };
 
@@ -129,7 +97,7 @@ export function useChatStream(): UseChatStreamReturn {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Accept: "text/plain, text/event-stream, application/json",
+            Accept: "application/json, text/plain, text/event-stream",
           },
           body: JSON.stringify(body),
           signal: controller.signal,
@@ -139,31 +107,43 @@ export function useChatStream(): UseChatStreamReturn {
 
         if (timeoutRef.current) { window.clearTimeout(timeoutRef.current); timeoutRef.current = null; }
 
-        let accumulated = "";
-        setState("response");
+        // Parse the JSON response
+        const json = await response.json();
+        const reply = json.reply ?? "";
+        const done = json.done ?? false;
+        const searchProfile = json.search_profile ?? null;
 
-        const fullText = await readStream(
-          response,
-          (chunk) => {
-            accumulated += chunk;
-            if (mountedRef.current) setStreamedResponse(accumulated);
-          },
-          controller.signal,
-        );
-
-        const assistantMsg: ChatMessage = {
-          id: createMessageId(),
-          role: "assistant",
-          content: fullText,
-          createdAt: new Date().toISOString(),
-          category: options?.category,
-        };
-
-        if (mountedRef.current) {
-          setMessages((prev) => [...prev, assistantMsg]);
-          setStreamedResponse("");
-          setState("response");
-          setError(null);
+        if (done && searchProfile?.result_id) {
+          // Create assistant message with result_id → triggers ResultRedirectMessage
+          const assistantMsg: ChatMessage = {
+            id: createMessageId(),
+            role: "assistant",
+            content: reply,
+            createdAt: new Date().toISOString(),
+            category: options?.category,
+            result_id: searchProfile.result_id,
+          };
+          if (mountedRef.current) {
+            setMessages((prev) => [...prev, assistantMsg]);
+            setStreamedResponse("");
+            setState("done");
+            setError(null);
+          }
+        } else {
+          // Normal text reply
+          const assistantMsg: ChatMessage = {
+            id: createMessageId(),
+            role: "assistant",
+            content: reply || "Désolé, je n'ai pas compris. Peux-tu reformuler ?",
+            createdAt: new Date().toISOString(),
+            category: options?.category,
+          };
+          if (mountedRef.current) {
+            setMessages((prev) => [...prev, assistantMsg]);
+            setStreamedResponse("");
+            setState("response");
+            setError(null);
+          }
         }
 
         abortRef.current = null;

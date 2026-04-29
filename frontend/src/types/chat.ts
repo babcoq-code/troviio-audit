@@ -1,5 +1,5 @@
 export type ChatRole = "user" | "assistant" | "system";
-export type ChatState = "idle" | "loading" | "response" | "error";
+export type ChatState = "idle" | "loading" | "response" | "done" | "error";
 
 export interface ChatMessage {
   id: string;
@@ -7,11 +7,12 @@ export interface ChatMessage {
   content: string;
   createdAt: string;
   category?: string;
+  result_id?: string | null;
 }
 
 export interface ChatRequestBody {
   message: string;
-  history?: ChatMessage[];
+  history?: { role: string; content: string }[];
   category?: string;
 }
 

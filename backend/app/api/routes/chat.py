@@ -4,7 +4,7 @@ Flow : entretien → profil → requête Supabase (v_products_published) → ran
 """
 
 import os, json, logging
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
 from openai import AsyncOpenAI
@@ -182,16 +182,14 @@ async def get_category_uuid(slug: str) -> str | None:
     return None
 
 async def query_db(profile: dict) -> list:
-    """Interroge v_products_published avec la catégorie et le budget."""
+    """Interroge products avec la catégorie et le budget."""
     cat_slug = profile.get("categorie", "")
     budget = profile.get("budget_max")
     try:
-        q = supabase.table("v_products_published").select("*").order("estimated_score", desc=True)
-        if cat_slug:
-            q = q.eq("category_slug", cat_slug)
+        q = supabase.table("products").select("*").order("estimated_score", desc=True, nullsfirst=False).limit(15)
         if budget:
             q = q.lte("price_eur", int(budget))
-        return (q.limit(15).execute().data or [])
+        return (q.execute().data or [])
     except Exception as e:
         logger.info(f"⚠️ DB error: {e}")
         return []
@@ -346,9 +344,18 @@ async def chat(req: ChatRequest, request: Request):
     force_search = exchange_count >= 5 or user_wants_search
 
     if force_search:
+        # Détecter la catégorie depuis le dernier message si non fournie
+        detected_cat = req.category
+        if not detected_cat:
+            msg_words = req.message.lower().split()
+            for keyword, cat_slug in CATEGORY_MAP.items():
+                if keyword in msg_words:
+                    detected_cat = cat_slug
+                    break
+
         # Construire un profil à partir de l'historique
         profile = {
-            "categorie": req.category or "",
+            "categorie": detected_cat or "",
             "budget_max": None,
             "criteres": [],
             "resume": f"Utilisateur après {exchange_count} échanges de questions-réponses",
@@ -358,10 +365,10 @@ async def chat(req: ChatRequest, request: Request):
         products = await query_db(profile)
         if products:
             ranked = await rank_with_ai(products, profile)
-            enriched = await enrich_recommendations(ranked)
+            enriched = await enrich_recommendations(ranked, supabase)
             final_recs = enriched if enriched else ranked
-            result_id = await generate_result_id()
-            await save_result(result_id, req.session_id, profile.get("categorie", ""), profile, final_recs)
+            result_id = generate_result_id()
+            await save_result(result_id, profile, final_recs, supabase)
 
             return ChatResponse(
                 reply="",

@@ -21,9 +21,39 @@ def get_supabase() -> Client:
     )
 
 
+PROS_CONS_TRANSLATE: dict[str, str] = {
+    "photo": "Photo excellente",
+    "video": "Vidéo fluide",
+    "pro": "Usage professionnel",
+    "autonomie": "Autonomie longue durée",
+    "autonomie_extreme": "Autonomie excellente",
+    "gaming": "Performances gaming",
+    "compact": "Format compact",
+    "premium": "Finition premium",
+    "barista_assiste": "Barista assisté",
+    "ecran_tactile": "Écran tactile intuitif",
+    "latte_art": "Latte art réussi",
+    "eco_responsable": "Éco-responsable",
+    "bureau": "Idéal bureau",
+    "usage_domestique": "Usage domestique",
+    "grand_public": "Grand public",
+    "budget_limite": "Petit budget",
+    "photo_pro": "Photo professionnelle",
+    "4k": "Qualité 4K",
+}
+
+
+def _translate_label(label: str) -> str:
+    """Traduit un label snake_case/anglais en français lisible."""
+    clean = label.strip().replace("_", " ").lower()
+    if clean in PROS_CONS_TRANSLATE:
+        return PROS_CONS_TRANSLATE[clean]
+    return clean.title()
+
+
 def _build_product_response(row: dict) -> dict[str, Any]:
-    pros_str = row.get("pros", "")
-    cons_str = row.get("cons", "")
+    pros_raw = row.get("pros", "")
+    cons_raw = row.get("cons", "")
     merchant_links = row.get("merchant_links") or {}
     best_merchant = None
     best_price = None
@@ -38,6 +68,19 @@ def _build_product_response(row: dict) -> dict[str, Any]:
                     best_merchant = name
                     affiliate_url = info["url"]
 
+    # Parse and translate pros/cons
+    pros_list: list[str] = []
+    if isinstance(pros_raw, str):
+        pros_list = [_translate_label(p) for p in pros_raw.split("\n") if p.strip()]
+    elif isinstance(pros_raw, list):
+        pros_list = [_translate_label(str(p)) for p in pros_raw]
+
+    cons_list: list[str] = []
+    if isinstance(cons_raw, str):
+        cons_list = [_translate_label(c) for c in cons_raw.split("\n") if c.strip()]
+    elif isinstance(cons_raw, list):
+        cons_list = [_translate_label(str(c)) for c in cons_raw]
+
     return {
         "slug": row.get("slug"),
         "name": row.get("name"),
@@ -47,16 +90,8 @@ def _build_product_response(row: dict) -> dict[str, Any]:
         "price_eur": best_price or row.get("price_eur") or row.get("price"),
         "best_merchant": best_merchant,
         "affiliate_url": affiliate_url,
-        "pros": (
-            [p.strip() for p in pros_str.split("\n") if p.strip()]
-            if isinstance(pros_str, str)
-            else (pros_str or [])
-        )[:3],
-        "cons": (
-            [c.strip() for c in cons_str.split("\n") if c.strip()]
-            if isinstance(cons_str, str)
-            else (cons_str or [])
-        )[:2],
+        "pros": pros_list[:3],
+        "cons": cons_list[:2],
         "why_perfect": row.get("why_perfect"),
         "rank_label": row.get("rank_label"),
     }
@@ -67,7 +102,6 @@ async def get_tops():
     """Retourne le top 3 produits de chaque catégorie, triés par score DESC."""
     sb = get_supabase()
 
-    # Récupère toutes les catégories
     cats = sb.table("categories").select("id, slug, name").execute().data or []
     if not cats:
         return {"categories": []}
@@ -89,7 +123,6 @@ async def get_tops():
             .execute()
         )
 
-        # Fallback si pas assez de produits avec estimated_score
         if not result.data or len(result.data) < 3:
             result2 = (
                 sb.table("products")

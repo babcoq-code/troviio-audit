@@ -27,9 +27,9 @@ async function fetchProduct(slug: string) {
   }
 }
 
-async function fetchPrices(productId: string) {
+async function fetchPrices(slug: string) {
   try {
-    const res = await fetch(`${API_BASE}/api/products/${productId}/prices`, {
+    const res = await fetch(`${API_BASE}/api/products/${slug}/prices`, {
       next: { revalidate: 900 },
     });
     if (!res.ok) return [];
@@ -40,9 +40,9 @@ async function fetchPrices(productId: string) {
   }
 }
 
-async function fetchPriceHistory(productId: string) {
+async function fetchPriceHistory(slug: string) {
   try {
-    const res = await fetch(`${API_BASE}/api/products/${productId}/price-history`, {
+    const res = await fetch(`${API_BASE}/api/products/${slug}/price-history`, {
       next: { revalidate: 3600 },
     });
     if (!res.ok) return [];
@@ -71,8 +71,8 @@ export default async function ProductPage({ params }: PageProps) {
   if (!product) notFound();
 
   const pid = product.id;
-  const prices = await fetchPrices(pid);
-  const history = await fetchPriceHistory(pid);
+  const prices = await fetchPrices(slug);
+  const history = await fetchPriceHistory(slug);
 
   const sortedPrices = [...(prices ?? [])].sort(
     (a: any, b: any) => a.price_eur - b.price_eur
@@ -131,7 +131,7 @@ export default async function ProductPage({ params }: PageProps) {
               {product.rank_label}
             </span>
             <h1 className="text-4xl lg:text-5xl font-black tracking-tight">
-              {product.brand} {product.name}
+              {product.name}
             </h1>
             <p className="mt-4 text-lg text-stone-600 max-w-3xl leading-8">
               {product.description}

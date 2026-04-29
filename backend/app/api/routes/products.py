@@ -80,7 +80,7 @@ async def get_product(slug: str):
 @router.get("/api/products/{slug}/prices", response_model=list[PriceEntry])
 async def get_current_prices(slug: str):
     sb = get_supabase()
-    prod = sb.table("products").select("id, slug, amazon_asin, merchant_links").eq("slug", slug).single().execute()
+    prod = sb.table("products").select("id, slug, amazon_asin, merchant_links, price_eur").eq("slug", slug).single().execute()
     if not prod.data:
         raise HTTPException(404, "Product not found")
     pid = prod.data["id"]
@@ -97,7 +97,7 @@ async def get_current_prices(slug: str):
             entries.append(PriceEntry(
                 merchant_name=name,
                 merchant_logo_url="",
-                price_eur=info.get("priceEur") or info.get("price_eur") or 0.0,
+                price_eur=info.get("priceEur") or info.get("price_eur") or prod.data.get("price_eur") or 0.0,
                 affiliate_url=info["url"],
                 in_stock=info.get("inStock", True),
                 scraped_at=datetime.now(timezone.utc),

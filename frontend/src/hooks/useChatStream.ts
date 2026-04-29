@@ -6,6 +6,16 @@ import type {
   ChatStreamOptions, UseChatStreamReturn,
 } from "@/types/chat";
 
+// Mots-clés accessoires pour redirection
+const ACCESSORY_KEYWORDS = [
+  "filtre", "brosse", "batterie", "chargeur", "accessoire",
+  "sac", "serpillière", "station", "dock", "tapis",
+];
+function isAccessoryQuery(msg: string): boolean {
+  const lower = msg.toLowerCase();
+  return ACCESSORY_KEYWORDS.some((kw) => lower.includes(kw));
+}
+
 const DEFAULT_TIMEOUT_MS = 30_000;
 const DEFAULT_MAX_RETRIES = 2;
 
@@ -93,7 +103,11 @@ export function useChatStream(): UseChatStreamReturn {
           category: options?.category,
         };
 
-        const response = await fetch("/api/chat/chat", {
+        // Redirection accessoire si mots-clés détectés
+        const isAccessory = isAccessoryQuery(trimmed);
+        const apiEndpoint = isAccessory ? "/api/chat/chat/accessories" : "/api/chat/chat";
+
+        const response = await fetch(apiEndpoint, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

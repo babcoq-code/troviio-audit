@@ -17,7 +17,7 @@ from app.core.logging_config import configure_logging
 configure_logging()
 logger = logging.getLogger("troviio.api")
 
-from app.api.routes import chat, products, newsletter, results
+from app.api.routes import chat, products, newsletter, results, tops
 from app.api.routes.kelkoo import router as kelkoo_router
 from app.api.routes.admin_scraping import router as admin_scraping_router
 from app.routers.accessories import router as accessories_router
@@ -63,6 +63,7 @@ app.include_router(newsletter.router, prefix="/api/newsletter", tags=["Newslette
 app.include_router(results.router, prefix="/api", tags=["Résultats"])
 app.include_router(admin_scraping_router)
 app.include_router(accessories_router)
+app.include_router(tops.router, prefix="", tags=["Tops"])
 
 
 @app.get("/health")

@@ -15,6 +15,7 @@ export default function Header() {
 
   const nav = [
     { label: "Catégories", href: "/#categories" },
+    { label: "🏆 Top 3", href: "/tops" },
     { label: "Méthode", href: "/methodologie" },
     { label: "À propos", href: "/a-propos" },
   ];

@@ -8,6 +8,7 @@ import WhyThisProduct from "@/components/product/WhyThisProduct";
 import PriceComparisonTable, { PriceSkeleton } from "@/components/product/PriceComparisonTable";
 import PriceHistoryChart from "@/components/product/PriceHistoryChart";
 import ProductTestSection from "@/components/product/ProductTestSection";
+import { AccessoriesTroviioWidget } from "@/components/accessories/AccessoriesTroviioWidget";
 
 const EUR = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
 
@@ -146,6 +147,15 @@ export default function ProductClient({ product }: ProductClientProps) {
 
         {/* Section 6 — Pour qui / Pas pour qui */}
         <AudienceSection product={product} />
+
+        {/* Section 7 — Accessoires recommandés */}
+        {product.id && product.slug && product.name && (
+          <AccessoriesTroviioWidget
+            productId={product.id}
+            productSlug={product.slug}
+            productName={product.name}
+          />
+        )}
       </div>
     </main>
   );

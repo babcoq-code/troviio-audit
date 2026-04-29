@@ -7,6 +7,7 @@ import { Sparkles, Menu, X, User } from "lucide-react";
 
 const NAV_LINKS = [
   { name: "Accueil", href: "/" },
+  { name: "🏆 Tops", href: "/tops" },
   { name: "Guides", href: "/guide" },
   { name: "À propos", href: "/a-propos" },
 ];

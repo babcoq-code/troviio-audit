@@ -11,7 +11,10 @@ from openai import OpenAI
 from app.celery_app import app as celery_app
 from app.core.supabase import get_supabase_admin
 
-firecrawl = Firecrawl(api_key=os.getenv("FIRECRAWL_API_KEY", ""))
+try:
+    firecrawl = Firecrawl(api_key=os.getenv("FIRECRAWL_API_KEY", ""))
+except Exception:
+    firecrawl = None
 deepseek = OpenAI(
     api_key=os.getenv("DEEPSEEK_API_KEY"),
     base_url="https://api.deepseek.com/v1",

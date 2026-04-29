@@ -4,6 +4,7 @@ import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "
 import { useChatStream } from "@/hooks/useChatStream";
 // @ts-ignore - hooks in src/
 import type { ChatMessage } from "@/types/chat";
+import ChatBubble from "@/components/ChatBubble";
 
 const STORAGE_KEY = "troviio.chat.history.v2";
 
@@ -21,45 +22,6 @@ const CHIPS = [
   "📱 Smartphone photo",
   "🚲 Vélo électrique",
 ];
-
-function MarkdownRenderer({ content }: { content: string }) {
-  const html = useMemo(() => {
-    const esc = (s: string) =>
-      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-    const inline = (t: string) =>
-      t
-        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-        .replace(/\*(.*?)\*/g, "<em>$1</em>")
-        .replace(/`(.*?)`/g, '<code style="background:#18181b;padding:1px 5px;border-radius:4px;color:#fdba74">$1</code>');
-
-    const lines = esc(content).split("\n");
-    const blocks: string[] = [];
-    let liBuffer: string[] = [];
-
-    const flushList = () => {
-      if (liBuffer.length > 0) {
-        blocks.push(`<ul style="list-style:disc;padding-left:1.25rem;margin:.5rem 0;display:flex;flex-direction:column;gap:.25rem">${liBuffer.join("")}</ul>`);
-        liBuffer = [];
-      }
-    };
-
-    for (const line of lines) {
-      const t = line.trim();
-      if (!t) { flushList(); continue; }
-      if (t.startsWith("### ")) { flushList(); blocks.push(`<h3 style="font-size:1rem;font-weight:700;margin:.75rem 0 .25rem">${inline(t.slice(4))}</h3>`); continue; }
-      if (t.startsWith("## "))  { flushList(); blocks.push(`<h2 style="font-size:1.1rem;font-weight:700;margin:1rem 0 .5rem">${inline(t.slice(3))}</h2>`); continue; }
-      if (t.startsWith("# "))   { flushList(); blocks.push(`<h1 style="font-size:1.25rem;font-weight:700;margin:1.25rem 0 .5rem">${inline(t.slice(2))}</h1>`); continue; }
-      if (t.startsWith("- ") || t.startsWith("* ")) { liBuffer.push(`<li style="line-height:1.6;font-size:.875rem;color:#e4e4e7">${inline(t.slice(2))}</li>`); continue; }
-      flushList();
-      blocks.push(`<p style="font-size:.875rem;line-height:1.75;color:#e4e4e7;margin:.25rem 0">${inline(t)}</p>`);
-    }
-    flushList();
-    return blocks.join("");
-  }, [content]);
-
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
-}
 
 export default function ChatHero({ category }: { category?: string }) {
   const [input, setInput] = useState("");
@@ -116,12 +78,6 @@ export default function ChatHero({ category }: { category?: string }) {
     return () => window.removeEventListener("troviio:open-chat-category", fn);
   }, []);
 
-  const lastAssistant = useMemo(
-    () => [...messages].reverse().find((m) => m.role === "assistant"),
-    [messages]
-  );
-  const displayed = streamedResponse || lastAssistant?.content || "";
-
   const submit = async (e?: FormEvent) => {
     e?.preventDefault();
     const t = input.trim();
@@ -133,6 +89,18 @@ export default function ChatHero({ category }: { category?: string }) {
   const handleKey = async (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); await submit(); }
   };
+
+  /** Callback quand l'utilisateur clique sur une suggestion chip */
+  const handleSuggestion = async (value: string) => {
+    if (busy) return;
+    await sendMessage(value, { category, history: messages });
+  };
+
+  // Filtrer le dernier message assistant steamé + les messages historiques à afficher
+  const historyMessages = messages.filter((m) => {
+    // On garde tout sauf le dernier s'il est en cours de stream
+    return true;
+  });
 
   return (
     <section
@@ -171,9 +139,55 @@ export default function ChatHero({ category }: { category?: string }) {
           </p>
         </div>
 
+        {/* Historique des messages (si on a déjà parlé) */}
+        {messages.length > 0 && (
+          <div className="mt-8 w-full space-y-3 max-h-80 overflow-y-auto pr-2">
+            {messages.map((msg) => (
+              <ChatBubble
+                key={msg.id}
+                role={msg.role === "user" ? "user" : "ai"}
+                text={msg.content}
+                onSuggestionSelect={msg.role === "assistant" ? handleSuggestion : undefined}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Message en cours de stream */}
+        {(streamedResponse || (state === "loading" && !streamedResponse)) && (
+          <div
+            ref={respRef}
+            className="mt-3 w-full rounded-3xl border p-5 shadow-xl"
+            style={{ borderColor: "#1E1E24", backgroundColor: "rgba(17,17,19,0.85)" }}
+            aria-live="polite"
+            aria-atomic="false"
+          >
+            {state === "loading" && !streamedResponse ? (
+              <div className="flex items-center gap-3 text-sm" style={{ color: "#8B8B9A" }}>
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-700 border-t-orange-500" />
+                Troviio analyse ta demande...
+              </div>
+            ) : streamedResponse ? (
+              <ChatBubble
+                role="ai"
+                text={streamedResponse}
+                onSuggestionSelect={handleSuggestion}
+              />
+            ) : null}
+          </div>
+        )}
+
+        {/* Erreur */}
+        {error && (
+          <div className="mt-4 w-full rounded-2xl border px-4 py-3 text-sm"
+               style={{ borderColor: "rgba(255,107,43,0.2)", backgroundColor: "rgba(255,107,43,0.08)", color: "#FFB99A" }}>
+            ⚠️ Service IA temporairement indisponible. Réponse de secours affichée.
+          </div>
+        )}
+
         <form
           onSubmit={submit}
-          className="mt-10 w-full rounded-3xl border p-3 shadow-2xl"
+          className="mt-8 w-full rounded-3xl border p-3 shadow-2xl"
           style={{ borderColor: "#1E1E24", backgroundColor: "rgba(17,17,19,0.92)" }}
         >
           <div className="relative">
@@ -205,8 +219,12 @@ export default function ChatHero({ category }: { category?: string }) {
                 <button
                   key={chip}
                   type="button"
-                  onClick={() => setInput(chip.replace(/^[^\s]+\s/, ""))}
-                  className="rounded-full border px-3 py-1.5 text-xs font-medium transition focus:outline-none"
+                  onClick={() => {
+                    setInput(chip.replace(/^[^\s]+\s/, ""));
+                    window.setTimeout(() => submit(), 100);
+                  }}
+                  disabled={busy}
+                  className="rounded-full border px-3 py-1.5 text-xs font-medium transition focus:outline-none disabled:opacity-50"
                   style={{ borderColor: "#1E1E24", backgroundColor: "#0A0A0B", color: "#8B8B9A" }}
                   onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,107,43,0.45)"; e.currentTarget.style.color = "#FAFAFA"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#1E1E24"; e.currentTarget.style.color = "#8B8B9A"; }}
@@ -232,49 +250,6 @@ export default function ChatHero({ category }: { category?: string }) {
             </button>
           </div>
         </form>
-
-        {(busy || displayed || error) && (
-          <div
-            ref={respRef}
-            className="mt-6 w-full rounded-3xl border p-5 shadow-xl"
-            style={{ borderColor: "#1E1E24", backgroundColor: "rgba(17,17,19,0.85)" }}
-            aria-live="polite"
-            aria-atomic="false"
-          >
-            {error && (
-              <div className="mb-4 rounded-2xl border px-4 py-3 text-sm"
-                   style={{ borderColor: "rgba(255,107,43,0.2)", backgroundColor: "rgba(255,107,43,0.08)", color: "#FFB99A" }}>
-                ⚠️ Service IA temporairement indisponible. Réponse de secours affichée.
-              </div>
-            )}
-            {displayed && <MarkdownRenderer content={displayed} />}
-            {busy && !streamedResponse && (
-              <div className="flex items-center gap-3 text-sm" style={{ color: "#8B8B9A" }}>
-                <span className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-700 border-t-orange-500" />
-                Troviio analyse ta demande...
-              </div>
-            )}
-          </div>
-        )}
-
-        {messages.length > 2 && (
-          <div className="mt-4 w-full space-y-2 max-h-52 overflow-y-auto pr-1">
-            {messages.slice(0, -1).map((msg) => (
-              <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div
-                  className="max-w-xs lg:max-w-md px-4 py-2 rounded-2xl text-sm"
-                  style={
-                    msg.role === "user"
-                      ? { backgroundColor: "#FF6B2B", color: "white" }
-                      : { backgroundColor: "#111113", color: "#FAFAFA", border: "1px solid #1E1E24" }
-                  }
-                >
-                  {msg.content.length > 180 ? `${msg.content.slice(0, 180)}...` : msg.content}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm" style={{ color: "#8B8B9A" }}>
           <span>✅ Gratuit · Sans inscription</span>

@@ -5,6 +5,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { JsonLd, buildWebSiteJsonLd } from "@/components/seo/JsonLd";
 
+// Force dynamic to avoid _not-found static generation bug with React 19
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Troviio | Pas le meilleur. Le tien.",
   description:

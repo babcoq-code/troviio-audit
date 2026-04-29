@@ -41,13 +41,7 @@ export function middleware(request: NextRequest) {
     );
   }
 
-  // 2. Force HTTPS
-  if (request.headers.get("x-forwarded-proto") === "http") {
-    url.protocol = "https";
-    return NextResponse.redirect(url, { status: 301 });
-  }
-
-  // 3. Redirect non-www → www
+  // 2. Redirect non-www → www
   if (hostname === "troviio.com") {
     url.hostname = "www.troviio.com";
     return NextResponse.redirect(url, { status: 301 });

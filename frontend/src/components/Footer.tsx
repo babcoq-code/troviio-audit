@@ -35,9 +35,8 @@ export default function Footer() {
               ["/guide", "Guides d'achat"],
             ].map(([href, label]) => (
               <li key={href}>
-                <Link href={href} className="hover:underline transition-colors"
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#FF6B2B")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(250,250,250,0.65)")}>
+                <Link href={href} className="hover:underline hover:text-[#FF6B2B] transition-colors"
+                      style={{ color: "rgba(250,250,250,0.65)" }}>
                   {label}
                 </Link>
               </li>

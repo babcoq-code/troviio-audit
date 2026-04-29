@@ -125,7 +125,7 @@ export function useChatStream(): UseChatStreamReturn {
           category: options?.category,
         };
 
-        const response = await fetch("/api/chat", {
+        const response = await fetch("/api/chat/chat", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

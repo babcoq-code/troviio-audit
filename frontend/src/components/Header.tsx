@@ -30,7 +30,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
         {/* LOGO */}
-        <Link href="/" className="flex-shrink-0">
+        <Link href="/" className="flex-shrink-0 no-underline hover:no-underline">
           <span className="font-bold text-2xl tracking-tight" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
             <span style={{ color: "#FF6B2B" }}>T</span>
             <span style={{ color: "#FAFAFA" }}>roviio</span>
@@ -43,23 +43,19 @@ export default function Header() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm font-medium transition-colors"
+              className="text-sm font-medium transition-colors hover:text-[#FF6B2B]"
               style={{ color: "rgba(250,250,250,0.75)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#FF6B2B")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(250,250,250,0.75)")}
             >
               {l.label}
             </Link>
           ))}
-          <Link
+          <a
             href="/"
-            className="px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-md"
+            className="px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-md hover:bg-[#e55a20]"
             style={{ backgroundColor: "#FF6B2B", boxShadow: "0 2px 16px rgba(255,107,43,0.35)" }}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e55a20")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#FF6B2B")}
           >
             Trouver le mien ✨
-          </Link>
+          </a>
         </nav>
 
         {/* BURGER MOBILE */}
@@ -98,14 +94,14 @@ export default function Header() {
               {l.label}
             </Link>
           ))}
-          <Link
+          <a
             href="/"
             onClick={() => setMenuOpen(false)}
             className="block mt-3 px-4 py-3 text-center rounded-full font-semibold text-white"
             style={{ backgroundColor: "#FF6B2B" }}
           >
             Trouver le mien ✨
-          </Link>
+          </a>
         </div>
       )}
     </header>

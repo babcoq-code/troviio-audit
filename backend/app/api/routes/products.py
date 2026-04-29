@@ -19,7 +19,7 @@ router = APIRouter()
 def get_supabase() -> Client:
     return create_client(
         os.environ["SUPABASE_URL"],
-        os.environ["SUPABASE_SERVICE_ROLE_KEY"],
+        os.environ["SUPABASE_SERVICE_KEY"],
     )
 
 
@@ -35,21 +35,21 @@ class ProductResponse(BaseModel):
     id: UUID
     slug: str
     name: str
-    brand: str
-    category_slug: str
-    price_eur: float
-    estimated_score: float
-    use_case_scores: dict[str, float]
-    pros: list[str]
-    cons: list[str]
-    description: str
-    why_perfect: str
-    rank_label: str
-    test_summary: str
-    verdict: str
-    ratings: ProductRatings
-    image_url: str
-    specs: dict[str, Any]
+    brand: str | None = None
+    category_slug: str | None = None
+    price_eur: float | None = None
+    estimated_score: float | None = None
+    use_case_scores: dict[str, float] = {}
+    pros: list[str] = []
+    cons: list[str] = []
+    description: str | None = None
+    why_perfect: str | None = None
+    rank_label: str | None = None
+    test_summary: str | None = None
+    verdict: str | None = None
+    ratings: ProductRatings | None = None
+    image_url: str | None = None
+    specs: dict[str, Any] = {}
     amazon_asin: str | None = None
 
 
@@ -80,13 +80,29 @@ async def get_product(slug: str):
 @router.get("/api/products/{slug}/prices", response_model=list[PriceEntry])
 async def get_current_prices(slug: str):
     sb = get_supabase()
-    prod = sb.table("products").select("id").eq("slug", slug).single().execute()
+    prod = sb.table("products").select("id, slug, amazon_asin, merchant_links").eq("slug", slug).single().execute()
     if not prod.data:
         raise HTTPException(404, "Product not found")
     pid = prod.data["id"]
     r = sb.from_("latest_price_by_merchant").select("*").eq("product_id", pid).execute()
     rows = sorted(r.data or [], key=lambda x: float(x["price_eur"]))
-    return [PriceEntry.model_validate(row) for row in rows]
+    if rows:
+        return [PriceEntry.model_validate(row) for row in rows]
+
+    # Fallback: build from merchant_links
+    ml = prod.data.get("merchant_links") or {}
+    entries = []
+    for name, info in ml.items():
+        if isinstance(info, dict) and info.get("url"):
+            entries.append(PriceEntry(
+                merchant_name=name,
+                merchant_logo_url="",
+                price_eur=info.get("priceEur") or info.get("price_eur") or 0.0,
+                affiliate_url=info["url"],
+                in_stock=info.get("inStock", True),
+                scraped_at=datetime.now(timezone.utc),
+            ))
+    return sorted(entries, key=lambda x: x.price_eur)
 
 
 @router.get("/api/products/{slug}/price-history", response_model=list[PriceEntry])

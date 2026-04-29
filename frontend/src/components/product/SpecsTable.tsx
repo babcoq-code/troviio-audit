@@ -1,11 +1,16 @@
-type V = string | number | boolean;
+type V = string | number | boolean | Record<string, boolean | string | number>;
 
 const fmtVal = (v: V) =>
   typeof v === "boolean"
     ? v ? "Oui" : "Non"
     : typeof v === "number"
     ? new Intl.NumberFormat("fr-FR").format(v)
-    : v;
+    : typeof v === "object" && v !== null
+    ? Object.entries(v)
+        .filter(([, val]) => val === true || val === "1" || val === "oui")
+        .map(([k]) => k)
+        .join(", ")
+    : String(v);
 
 const fmtKey = (k: string) =>
   k

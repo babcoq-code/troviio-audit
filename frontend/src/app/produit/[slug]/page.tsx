@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import { createServerClient } from "@supabase/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import { PriceChart } from "@/components/product/PriceChart";
@@ -11,75 +9,73 @@ import { UseCaseScores } from "@/components/product/UseCaseScores";
 import { SpecsTable } from "@/components/product/SpecsTable";
 import { AccessoriesWidget } from "@/components/accessories/AccessoriesWidget";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
-async function getSupabase() {
-  const cookieStore = await cookies();
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll: () => cookieStore.getAll(),
-        setAll: () => {},
-      },
-    }
-  );
+const API_BASE = process.env.API_BASE_URL || "http://backend:8000";
+
+async function fetchProduct(slug: string) {
+  try {
+    const res = await fetch(`${API_BASE}/api/products/${slug}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
+  }
 }
 
-// Pas de generateStaticParams — rendu dynamique (ISR avec revalidate)
-// generateStaticParams serait idéal mais nécessite les vars Supabase au build time
+async function fetchPrices(productId: string) {
+  try {
+    const res = await fetch(`${API_BASE}/api/products/${productId}/prices`, {
+      next: { revalidate: 900 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.prices || data || [];
+  } catch {
+    return [];
+  }
+}
+
+async function fetchPriceHistory(productId: string) {
+  try {
+    const res = await fetch(`${API_BASE}/api/products/${productId}/price-history`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.history || data || [];
+  } catch {
+    return [];
+  }
+}
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const sb = await getSupabase();
-  const { data: p } = await sb
-    .from("products")
-    .select("name,brand,description,image_url")
-    .eq("slug", slug)
-    .single();
+  const p = await fetchProduct(slug);
   if (!p) return { title: "Produit introuvable | Troviio" };
   return {
     title: `${p.name} — Test complet, avis & prix | Troviio`,
     description: (p.description || "").slice(0, 155),
-    openGraph: { images: p.image_url ? [{ url: p.image_url }] : [] },
+    openGraph: p.image_url ? { images: [{ url: p.image_url }] } : {},
   };
 }
 
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
-  const sb = await getSupabase();
 
-  const { data: product } = await sb
-    .from("products")
-    .select("*")
-    .eq("slug", slug)
-    .single();
-
+  const product = await fetchProduct(slug);
   if (!product) notFound();
 
   const pid = product.id;
-
-  const [{ data: prices }, { data: history }] = await Promise.all([
-    sb
-      .from("latest_price_by_merchant")
-      .select("*")
-      .eq("product_id", pid),
-    sb
-      .from("price_history")
-      .select("merchant_name,price_eur,scraped_at")
-      .eq("product_id", pid)
-      .gte(
-        "scraped_at",
-        new Date(Date.now() - 12 * 7 * 86400 * 1000).toISOString()
-      )
-      .order("scraped_at", { ascending: true }),
-  ]);
+  const prices = await fetchPrices(pid);
+  const history = await fetchPriceHistory(pid);
 
   const sortedPrices = [...(prices ?? [])].sort(
-    (a, b) => a.price_eur - b.price_eur
+    (a: any, b: any) => a.price_eur - b.price_eur
   );
   const bestPrice = sortedPrices[0]?.price_eur ?? product.price_eur;
   const fmt = (v: number) =>
@@ -102,7 +98,7 @@ export default async function ProductPage({ params }: PageProps) {
       worstRating: 0,
       reviewCount: 1,
     },
-    offers: sortedPrices.map((p) => ({
+    offers: (sortedPrices || []).map((p: any) => ({
       "@type": "Offer",
       priceCurrency: "EUR",
       price: p.price_eur,
@@ -232,7 +228,7 @@ export default async function ProductPage({ params }: PageProps) {
             </p>
             <div className="mt-6">
               <PriceChart
-                data={(history ?? []).map((h) => ({
+                data={(history ?? []).map((h: any) => ({
                   merchantName: h.merchant_name,
                   priceEur: h.price_eur,
                   scrapedAt: h.scraped_at,

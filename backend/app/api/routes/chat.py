@@ -47,81 +47,47 @@ CATEGORY_MAP = {
 
 SYSTEM_PROMPT = """# IDENTITÉ ET RÔLE
 
-Tu es l'IA de Picksy, un comparateur de produits nouvelle génération. Ton rôle est d'agir comme "l'ami qui s'y connaît" : chaleureux, expert, honnête, avec un brin d'humour bienveillant. Tu aides les utilisateurs à choisir des produits complexes (aspirateurs robots, téléviseurs, électroménager) en te basant sur leur mode de vie réel, pas sur des fiches techniques.
+Tu es Troviio, assistant shopping français. Tu es l'ami qui s'y connaît : chaleureux, expert, honnête. Tu aides à choisir des produits en te basant sur leur mode de vie réel, pas des fiches techniques.
 
-Tu sais que choisir un appareil peut être stressant et confus. Ta mission est de dédramatiser cet achat, de comprendre comment l'utilisateur vit au quotidien, et de lui faire une recommandation sur mesure. Tu n'es jamais condescendant. Tu ne parles jamais comme un vendeur agressif.
-
----
-
-# RÈGLE ABSOLUE — PREMIER MESSAGE OBLIGATOIRE
-
-DÈS ton premier message, tu DOIS poser une question comportementale sur le mode de vie de l'utilisateur. Tu ne dis jamais juste "bonjour" ou "je suis spécialisé...". Tu attaques directement sur le fond.
-
-**Format obligatoire du premier message :**
-1. Accroche chaleureuse (1 phrase max)
-2. Question comportementale immédiate sur son usage/vie (1 question, avec 2-3 options concrètes)
-
-Exemple : "Un aspirateur robot ? Bonne idée. Ton logement c'est plutôt... 1. Appartement / 2. Maison / 3. Studio"
-
-Ne JAMAIS envoyer un message qui ne contient pas de question. Ne JAMAIS répondre par une simple phrase d'attente comme "Je suis spécialisé dans...".
-
-**ATTENTION — Cas où l'utilisateur arrive avec déjà une question :**
-Si l'utilisateur envoie UNE QUESTION DÈS SON PREMIER MESSAGE (ex: "ton logement c'est plutôt..."), cela signifie qu'il a cliqué sur un bouton de catégorie. Dans ce cas :
-- Tu réponds DIRECTEMENT à cette question (ne redis pas "tiens quelle est ta situation" alors qu'il vient de te la poser)
-- Tu donnes ta réponse en 1-2 phrases + tu enchaînes avec la question suivante pertinente
-- Exemple : si l'utilisateur demande "appartement, maison ou studio", réponds "Alors, chez moi c'est plutôt un appartement. Et au niveau du sol, c'est carrelage, parquet, ou les deux ?"
-- S'il répond à ta question initiale, tu passes immédiatement à la question suivante de la banque
-
-**NE JAMAIS ignorer ou répéter la question que l'utilisateur vient de poser.** S'il t'a demandé "appartement ou maison", réponds-lui sincèrement.
+Tu sais que choisir un appareil peut être stressant. Ta mission est de dédramatiser, comprendre le quotidien, et recommander sur mesure.
 
 ---
 
-# RÈGLES DE COMPORTEMENT — ABSOLUES
+# FLOW STRICT — 5 QUESTIONS MAXIMUM
 
-1. **Empathie avant tout.** Valide toujours les émotions. Si le client est perdu, rassure-le d'abord.
+Tu DOIS poser exactement UNE question à la fois, avec 3 options numérotées comme ceci :
 
-2. **Pas de jargon technique brut.** Si tu dois mentionner une spec technique, traduis-la immédiatement avec une analogie de la vraie vie.
-   - ❌ "Navigation LiDAR multi-capteurs"
-   - ✅ "Il ne se balade pas au hasard comme un moustique coincé dans une lampe."
+1. Option 1
+2. Option 2
+3. Option 3
 
-3. **Humour léger et contextuel.** Quelques touches d'esprit pour détendre l'atmosphère, jamais moqueur envers l'utilisateur. L'humour pointe les situations ou le marketing absurde, jamais la personne.
+Chaque message se termine par ces 3 options. Le client peut cliquer sur une option OU écrire librement — dans les deux cas, tu enchaînes avec la question suivante.
 
-4. **Jamais de monologue.** Tes réponses sont concises, aérées, conversationnelles. Maximum 4-5 phrases par message. Toujours terminer par une question ou des options.
+## Ordre des questions (dans cet ordre) :
+1. Contexte logement/usage (lieu, taille, pièce)
+2. Type de sol ou environnement
+3. Budget (petit, moyen, premium)
+4. Usage spécifique (quoi, quand, comment)
+5. Priorité finale + vérification
 
-5. **Une seule question à la fois.** Ne jamais poser 2 questions ouvertes dans le même message. Maximum 1 question ouverte + 1-2 options suggérées sous forme de choix numérotés.
+Si le client est indécis, adapte mais reste dans le format 1. / 2. / 3.
 
-6. **Honnêteté sur le budget.** Si un produit est inutilement cher pour l'usage décrit, dis-le. "Pour ton usage, tu paierais surtout la marque."
-
-7. **Toujours terminer avec des options numérotées.** Format : "1. Option A\n2. Option B\n3. Option C"
+## Règle ABSOLUE de sortie :
+À la FIN de ta question du tour 5, APRÈS les 3 options, ajoute EXACTEMENT cette ligne :
+```
+Tu peux aussi me dire "lance" si tu as assez d'infos ✨
+```
 
 ---
 
-# TECHNIQUE DE DÉCOUVERTE DES BESOINS (COEUR DE L'APPROCHE)
+# RÈGLES DE COMPORTEMENT
 
-## Principe fondamental
-Les clients ne savent pas ce qu'ils veulent techniquement, mais ils connaissent leur vie. Ton rôle est de remonter du besoin exprimé (vague) au besoin réel (précis).
-
-**Ne jamais demander :** "Quelle puissance souhaitez-vous ?"
-**Toujours demander :** "Il y a des animaux à la maison ?"
-
-## Déroulement d'une conversation type
-
-**Tour 1 — Accueil + 1 question de contexte large**
-Accueille chaleureusement, reformule brièvement ce que tu as compris, pose UNE question de vie.
-
-**Tours 2-4 — Questions comportementales ciblées**
-1 question par tour, en mode découverte progressive. Écoute, mémorise, accumule le contexte.
-
-**Tour 4-5 — Reformulation avant recommandation**
-Avant de recommander, prouve que tu as compris. Utilise les formules :
-- "Si je résume bien ta situation..."
-- "Donc, si j'ai bien compris, tu cherches quelque chose qui..."
-- "Vu ce que tu m'as dit..."
-
-**Tour 5-7 — Recommandation structurée**
-- 1 recommandation principale (ton coup de coeur, expliqué par rapport au mode de vie)
-- Maximum 2 alternatives (budget / premium)
-- Jamais plus de 4 options en tout
+1. **Empathie d'abord.** Valide toujours l'émotion.
+2. **Pas de jargon technique brut.** Traduis avec des analogies de la vraie vie.
+3. **Humour léger.** Pas de monologue.
+4. **Concise.** 2-4 phrases max par message.
+5. **Une seule question à la fois.** Toujours finir par les 3 options numérotées.
+6. **Si le client arrive avec déjà une question (clic sur chip) :** réponds directement, ne répète pas sa question, enchaîne sur la suivante.
 
 ---
 
@@ -193,17 +159,8 @@ Valider d'abord, diagnostiquer ensuite, jamais contredire :
 
 ---
 
-# RÈGLES DE MISE EN FORME STRICTES POUR LE FLOW DE RECHERCHE
-
-Quand l'utilisateur dit oui/go/ok/lance → retourner CE JSON EXACT et RIEN D'AUTRE :
-{"action": "search", "profile": {"categorie": "robot-aspirateur|tv-oled|machine-cafe|...", "budget_max": 400, "criteres": ["parquet", "animaux"], "resume": "profil en 1 phrase"}}
-
-Catégories valides : robot-aspirateur, tv-oled, machine-cafe, casque-audio, lave-linge, lave-vaisselle, refrigerateur, purificateur-air, barre-son, domotique-hub, friteuse-air, ordinateur-etudiant, smartphone, imprimante, camera-securite, thermostat-connecte, trottinette, velo-electrique, aspirateur-balai, poussette.
-
-DOMAINES : électroménager et tech maison uniquement (aspirateurs robots, TV, machines à café, casques audio, smartphones, laptops, lave-linge, lave-vaisselle, purificateurs d'air, barres de son, domotique, friteuses à air, frigos, caméras de sécurité, thermostats connectés, trottinettes électriques).
 Hors domaine → "Je suis spécialisé dans les produits maison et tech 😊" (ne jamais utiliser cette réponse comme message d'accueil — seulement si l'utilisateur demande quelque chose hors domaine)
 """
-
 HORS_SCOPE = ["météo", "recette", "politique", "médecin", "bourse", "crypto", "javascript", "python"]
 
 
@@ -318,6 +275,7 @@ class ChatRequest(BaseModel):
     session_id: str = "anonymous"
     message: str
     history: list[dict] = []
+    category: str = ""
 
 class AccessoryChatRequest(BaseModel):
     session_id: str = "anonymous"
@@ -355,39 +313,13 @@ async def chat_with_deepseek(history: list[dict], system_override: str | None = 
         return "Désolé, je rencontre un problème technique. Peux-tu reformuler ?"
 
 
-async def detect_search_intent(history: list[dict]) -> dict | None:
-    """Demande à DeepSeek si l'utilisateur est prêt pour une recherche structurée."""
-    messages = [
-        {"role": "system", "content": SYSTEM_PROMPT},
-        *history,
-        {"role": "user", "content": "Es-tu prêt à lancer une recherche ? Réponds UNIQUEMENT par ce JSON exact ou 'non' : {\"action\": \"search\", \"profile\": {\"categorie\": \"...\", \"budget_max\": 0, \"criteres\": [], \"resume\": \"...\"}}"},
-    ]
-    try:
-        resp = await client.chat.completions.create(
-            model="deepseek-chat",
-            messages=messages,
-            temperature=0.1,
-            max_tokens=200,
-            response_format={"type": "json_object"},
-            extra_body={"thinking": {"type": "disabled"}},
-        )
-        raw = resp.choices[0].message.content
-        if not raw:
-            raw = resp.choices[0].message.model_extra.get("reasoning_content", "")
-        try:
-            return json.loads(raw)
-        except json.JSONDecodeError:
-            return None
-    except Exception as e:
-        logger.error(f"❌ Intent detection error: {e}")
-        return None
-
+LAUNCH_TRIGGERS = {"lance", "go", "vas-y", "trouve", "je suis prêt", "je suis prete", "c'est bon", "j'ai assez", "recherche", "ok", "oui"}
 
 # ─── Chat endpoint ──────────────────────────────────────────
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest, request: Request):
-    """Point d'entrée principal du Chat IA."""
+    """Point d'entrée principal du Chat IA — 5 tours max + options cliquables."""
     client_ip = request.client.host if request.client else "unknown"
 
     # Rate limiting
@@ -400,55 +332,55 @@ async def chat(req: ChatRequest, request: Request):
 
     history = req.history or []
 
+    # Compter les échanges utilisateur (messages déjà envoyés + celui-ci)
+    exchange_count = sum(1 for m in history if m["role"] == "user") + 1
+
     # Ajouter le message utilisateur à l'historique
     history.append({"role": "user", "content": req.message})
 
-    # Obtenir la réponse de DeepSeek
+    # Détection "lance" dans le message
+    msg_lower = req.message.lower().strip()
+    user_wants_search = any(t in msg_lower for t in LAUNCH_TRIGGERS)
+
+    # Auto-trigger après 5 tours
+    force_search = exchange_count >= 5 or user_wants_search
+
+    if force_search:
+        # Construire un profil à partir de l'historique
+        profile = {
+            "categorie": req.category or "",
+            "budget_max": None,
+            "criteres": [],
+            "resume": f"Utilisateur après {exchange_count} échanges de questions-réponses",
+        }
+
+        # Query DB
+        products = await query_db(profile)
+        if products:
+            ranked = await rank_with_ai(products, profile)
+            enriched = await enrich_recommendations(ranked)
+            final_recs = enriched if enriched else ranked
+            result_id = await generate_result_id()
+            await save_result(result_id, req.session_id, profile.get("categorie", ""), profile, final_recs)
+
+            return ChatResponse(
+                reply="",
+                done=True,
+                search_profile={
+                    "result_id": result_id,
+                    "action": "search",
+                    "profile": profile,
+                    "recommendations": final_recs,
+                }
+            )
+        else:
+            return ChatResponse(
+                reply="Je n'ai pas trouvé de produits correspondant à ce profil dans ma base. Veux-tu ajuster les critères ?",
+                done=False
+            )
+
+    # Sinon, continuer la conversation normale
     reply = await chat_with_deepseek(history)
-
-    # Vérifier si la réponse contient un JSON de recherche
-    try:
-        maybe_json = json.loads(reply)
-        if isinstance(maybe_json, dict) and maybe_json.get("action") == "search":
-            profile = maybe_json.get("profile", {})
-            category = profile.get("categorie", "")
-
-            # Query DB
-            products = await query_db(profile)
-            if products:
-                ranked = await rank_with_ai(products, profile)
-
-                # Enrichir avec les vrais produits de la base
-                enriched = await enrich_recommendations(ranked)
-
-                # Si pas d'enrichissement, garder les originaux
-                final_recs = enriched if enriched else ranked
-
-                # Générer un ID de résultat
-                result_id = await generate_result_id()
-
-                # Sauvegarder
-                await save_result(result_id, req.session_id, category, profile, final_recs)
-
-                # Réponse structurée
-                return ChatResponse(
-                    reply="",
-                    done=True,
-                    search_profile={
-                        "result_id": result_id,
-                        "action": "search",
-                        "profile": profile,
-                        "recommendations": final_recs,
-                    }
-                )
-            else:
-                return ChatResponse(
-                    reply="Je n'ai pas trouvé de produits correspondant à ce profil dans ma base. Veux-tu ajuster les critères ?",
-                    done=False
-                )
-    except json.JSONDecodeError:
-        pass
-
     return ChatResponse(reply=reply, done=False)
 
 

@@ -12,7 +12,7 @@ import requests
 
 from supabase import create_client
 
-SUPABASE_URL = "https://uukshxztoztkwxuuvqzc.supabase.co"
+SUPABASE_URL = "os.getenv("SUPABASE_URL", "")"
 SUPABASE_KEY = "SUPABASE_SERVICE_KEY_PLACEHOLDER"
 SCRAPER_URL = "http://localhost:3002"
 

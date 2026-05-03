@@ -1,13 +1,25 @@
 import { siteConfig } from "@/lib/site";
 import { LegalPage } from "@/components/legal/LegalPage";
 
+const pageUrl = `https://www.troviio.com/affiliation`;
+
 export const metadata = {
   title: `Affiliation — ${siteConfig.name}`,
   description: `Politique d'affiliation de ${siteConfig.name} — transparence sur les liens commerciaux et le fonctionnement de notre comparateur indépendant.`,
   robots: { index: true, follow: true },
+  alternates: { canonical: pageUrl },
   openGraph: {
     title: `Affiliation — ${siteConfig.name}`,
-    description: `Politique d'affiliation de ${siteConfig.name} — transparence sur les liens commerciaux.`,
+    description: `Politique d'affiliation de ${siteConfig.name} — transparence sur les liens commerciaux et le fonctionnement de notre comparateur indépendant.`,
+    url: pageUrl,
+    siteName: siteConfig.name,
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Affiliation — ${siteConfig.name}`,
+    description: `Politique d'affiliation de ${siteConfig.name} — transparence sur les liens commerciaux et le fonctionnement de notre comparateur indépendant.`,
   },
 };
 

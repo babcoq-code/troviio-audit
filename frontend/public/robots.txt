@@ -1,21 +1,41 @@
+# Troviio — Politique de crawling
+# Content-Signal (Directive UE 2019/790 Art.4)
+# search=yes: building search index and providing search results
+# ai-input=yes: input into AI models for RAG/grounding/real-time
+# ai-train=no: no training or fine-tuning
+
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
 Disallow: /api/
-Disallow: /_next/static/
+Disallow: /_next/
 Disallow: /admin/
 
+# AI Overviews Google — débloqué pour les AI Overviews
+User-agent: Google-Extended
+Allow: /
+
+# ChatGPT / OpenAI — débloqué pour citations dans les réponses
 User-agent: GPTBot
 Allow: /
 
-User-agent: PerplexityBot
-Allow: /
-
+# Claude / Anthropic — débloqué
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: Googlebot
+# Meta AI
+User-agent: meta-externalagent
 Allow: /
 
-User-agent: Scrapy
+# Apple
+User-agent: Applebot-Extended
+Allow: /
+
+# Blocage des crawlers d'entraînement pur
+User-agent: CCBot
 Disallow: /
 
-Sitemap: https://troviio.com/sitemap.xml
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://www.troviio.com/sitemap.xml

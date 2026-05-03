@@ -15,7 +15,7 @@ GEMINI_API_KEY=AIzaxxxxxxxxxx
 
 # --- AFFILIATION ---
 AWIN_API_KEY=xxxxxxxxxx
-AMAZON_ASSOCIATE_TAG=picksy-21
+AMAZON_ASSOCIATE_TAG=troviio-21
 AMAZON_ACCESS_KEY=xxxxxxxxxx
 AMAZON_SECRET_KEY=xxxxxxxxxx
 

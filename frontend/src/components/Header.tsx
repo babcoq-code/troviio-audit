@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import LogoTroviio from "@/components/LogoTroviio";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -14,28 +15,31 @@ export default function Header() {
   }, []);
 
   const nav = [
-    { label: "Catégories", href: "/#categories" },
+    { label: "🔍 Catégories", href: "/#categories" },
     { label: "🏆 Top 3", href: "/tops" },
-    { label: "Méthode", href: "/methodologie" },
-    { label: "À propos", href: "/a-propos" },
+    { label: "🔧 Accessoires", href: "/accessoires/chat" },
+    { label: "💘 Score Troviio", href: "/score" },
+    { label: "🧪 Méthode", href: "/methodologie" },
+    { label: "📝 Guides", href: "/guide" },
+    { label: "🏠 À propos", href: "/a-propos" },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "py-3 border-b border-white/10 shadow-lg" : "py-5"
+        scrolled ? "py-3 shadow-lg" : "py-5"
       }`}
-      style={{ backgroundColor: scrolled ? "rgba(10,10,11,0.92)" : "transparent",
-               backdropFilter: scrolled ? "blur(12px)" : "none" }}
+      style={{
+        backgroundColor: "var(--bg)",
+        borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+        backdropFilter: scrolled ? "blur(22px) saturate(180%)" : "none",
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
         {/* LOGO */}
         <Link href="/" className="flex-shrink-0 no-underline hover:no-underline">
-          <span className="font-bold text-2xl tracking-tight" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
-            <span style={{ color: "#FF6B2B" }}>T</span>
-            <span style={{ color: "#FAFAFA" }}>roviio</span>
-          </span>
+          <LogoTroviio />
         </Link>
 
         {/* NAV DESKTOP */}
@@ -44,16 +48,19 @@ export default function Header() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm font-medium transition-colors hover:text-[#FF6B2B]"
-              style={{ color: "rgba(250,250,250,0.75)" }}
+              className="text-sm font-medium transition-colors hover:text-[var(--coral-dark)]"
+              style={{ color: "var(--text-muted)" }}
             >
               {l.label}
             </Link>
           ))}
           <a
             href="/"
-            className="px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-md hover:bg-[#e55a20]"
-            style={{ backgroundColor: "#FF6B2B", boxShadow: "0 2px 16px rgba(255,107,43,0.35)" }}
+            className="px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-md hover:shadow-lg"
+            style={{
+              background: "var(--grad-coral)",
+              boxShadow: "0 10px 24px -10px rgba(229,85,74,0.6)",
+            }}
           >
             Trouver le mien ✨
           </a>
@@ -62,7 +69,7 @@ export default function Header() {
         {/* BURGER MOBILE */}
         <button
           className="md:hidden p-2 rounded-md focus:outline-none transition-colors"
-          style={{ color: "rgba(250,250,250,0.8)" }}
+          style={{ color: "var(--text-muted)" }}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
         >
@@ -81,8 +88,8 @@ export default function Header() {
       {/* MENU MOBILE */}
       {menuOpen && (
         <div
-          className="md:hidden absolute w-full border-b border-white/10 shadow-xl px-4 pt-2 pb-6 space-y-1"
-          style={{ backgroundColor: "#111113" }}
+          className="md:hidden absolute w-full border-b border-[var(--border)] shadow-xl px-4 pt-2 pb-6 space-y-1"
+          style={{ backgroundColor: "var(--bg)" }}
         >
           {nav.map((l) => (
             <Link
@@ -90,7 +97,7 @@ export default function Header() {
               href={l.href}
               onClick={() => setMenuOpen(false)}
               className="block px-3 py-3 text-base font-medium rounded-md"
-              style={{ color: "#FAFAFA" }}
+              style={{ color: "var(--text)" }}
             >
               {l.label}
             </Link>
@@ -99,7 +106,7 @@ export default function Header() {
             href="/"
             onClick={() => setMenuOpen(false)}
             className="block mt-3 px-4 py-3 text-center rounded-full font-semibold text-white"
-            style={{ backgroundColor: "#FF6B2B" }}
+            style={{ background: "var(--grad-coral)" }}
           >
             Trouver le mien ✨
           </a>

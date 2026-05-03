@@ -6,10 +6,12 @@ import type {
   ChatStreamOptions, UseChatStreamReturn,
 } from "@/types/chat";
 
-// Mots-clés accessoires pour redirection
+// Mots-clés accessoires pour redirection — UNIQUEMENT si le message contient clairement une demande d'accessoire
+// Évite les faux positifs: "une brosse pour mon robot" → OK, mais "aspirateur brosse silencieux" → NON
 const ACCESSORY_KEYWORDS = [
-  "filtre", "brosse", "batterie", "chargeur", "accessoire",
-  "sac", "serpillière", "station", "dock", "tapis",
+  "accessoire", "compatible avec",
+  "filtre de rechange", "brosse de rechange", "batterie de rechange",
+  "sac aspirateur", "chargeur pour",
 ];
 function isAccessoryQuery(msg: string): boolean {
   const lower = msg.toLowerCase();
@@ -100,11 +102,11 @@ export function useChatStream(): UseChatStreamReturn {
         const body: ChatRequestBody = {
           message: trimmed,
           history: history.map((m) => ({ role: m.role, content: m.content })),
-          category: options?.category,
+          category: options?.category || "",
         };
 
-        // Redirection accessoire si mots-clés détectés
-        const isAccessory = isAccessoryQuery(trimmed);
+        // Redirection accessoire si mots-clés détectés ou forceAccessory
+        const isAccessory = options?.forceAccessory || isAccessoryQuery(trimmed);
         const apiEndpoint = isAccessory ? "/api/chat/chat/accessories" : "/api/chat/chat";
 
         const response = await fetch(apiEndpoint, {
@@ -143,6 +145,9 @@ export function useChatStream(): UseChatStreamReturn {
             setState("done");
             setError(null);
           }
+          
+          // ✅ Vider localStorage pour éviter de re-déclencher la redirection au retour
+          try { window.localStorage.removeItem("troviio.chat.history.v2"); } catch {}
         } else {
           // Normal text reply
           const assistantMsg: ChatMessage = {

@@ -1,18 +1,25 @@
-import ChatHero from "@/components/ChatHero";
-import CategoryGrid from "@/components/CategoryGrid";
 import type { Metadata } from "next";
+import HomePageClient from "./page.client";
 
 export const metadata: Metadata = {
   title: "Troviio | Pas le meilleur. Le tien.",
   description: "Décris ta vie, tes contraintes, ton budget. Troviio croise tout pour te donner UNE réponse claire.",
   alternates: { canonical: "https://www.troviio.com/" },
+  openGraph: {
+    title: "Troviio | Pas le meilleur. Le tien.",
+    description: "Décris ta vie, tes contraintes, ton budget. L'IA qui trouve le produit parfait pour toi.",
+    url: "https://www.troviio.com/",
+    siteName: "Troviio",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Troviio | Pas le meilleur. Le tien.",
+    description: "Décris ta vie, tes contraintes, ton budget. L'IA qui trouve le produit parfait pour toi.",
+  },
 };
 
 export default function HomePage() {
-  return (
-    <>
-      <ChatHero />
-      <CategoryGrid />
-    </>
-  );
+  return <HomePageClient />;
 }

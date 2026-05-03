@@ -21,7 +21,7 @@ from supabase import create_client
 
 # ─── Config ────────────────────────────────────────────────────
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://uukshxztoztkwxuuvqzc.supabase.co")
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "os.getenv("SUPABASE_URL", "")")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY") or os.environ.get("SUPABASE_KEY", "")
 CATEGORY_ID = ""  # détecté depuis le mapping ou passé en arg
 

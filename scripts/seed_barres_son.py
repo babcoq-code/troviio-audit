@@ -1,6 +1,6 @@
 import json, os, requests, re, uuid
 
-SUPABASE_URL = "https://uukshxztoztkwxuuvqzc.supabase.co"
+SUPABASE_URL = "os.getenv("SUPABASE_URL", "")"
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY")
 CATEGORY_ID = "588358b4-81dc-410f-bcd5-7ea6e2eac5ab"
 

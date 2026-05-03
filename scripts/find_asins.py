@@ -20,7 +20,7 @@ import sys
 import requests
 
 # ===== CONFIG =====
-SUPABASE_URL = "https://uukshxztoztkwxuuvqzc.supabase.co"
+SUPABASE_URL = "os.getenv("SUPABASE_URL", "")"
 SUPABASE_KEY = "SUPABASE_SERVICE_KEY_PLACEHOLDER"
 
 HEADERS = {

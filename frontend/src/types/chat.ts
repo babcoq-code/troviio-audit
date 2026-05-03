@@ -21,6 +21,7 @@ export interface ChatStreamOptions {
   history?: ChatMessage[];
   timeoutMs?: number;
   maxRetries?: number;
+  forceAccessory?: boolean;
 }
 
 export interface UseChatStreamReturn {

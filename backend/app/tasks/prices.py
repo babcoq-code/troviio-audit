@@ -8,7 +8,7 @@ from app.celery_app import app as celery_app
 from app.core.supabase import get_supabase_admin
 
 supabase = get_supabase_admin()
-AFFILIATE_TAG = os.getenv("AMAZON_AFFILIATE_TAG", "picksy-21")
+AFFILIATE_TAG = os.getenv("AMAZON_AFFILIATE_TAG", "troviio-21")
 
 
 @celery_app.task(name="app.tasks.prices.update_amazon_prices")

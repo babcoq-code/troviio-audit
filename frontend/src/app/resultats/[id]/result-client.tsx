@@ -1,16 +1,118 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useHistory } from "@/hooks/useHistory";
+import type { RecommendationResult } from "@/types/recommendation";
+import HistorySidebar from "@/components/HistorySidebar";
 
-export function ResultClientComponents({ resultId }: { resultId: string }) {
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+function budgetLabel(budget: number | null, recommendations: { price_eur: number | null }[]): string {
+  if (budget) {
+    return new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR",
+      maximumFractionDigits: 0,
+    }).format(budget);
+  }
+  const prices = recommendations
+    .map((r) => r.price_eur)
+    .filter((p): p is number => p !== null && p !== undefined);
+  if (prices.length === 0) return "Non spécifié";
+  const avg = prices.reduce((a, b) => a + b, 0) / prices.length;
+  if (avg < 200) return "~ Économique";
+  if (avg < 600) return "~ Bon rapport qualité/prix";
+  return "~ Premium";
+}
+
+// ─── HistorySaver (sauvegarde silencieuse dans l'historique) ─────────────────
+
+function HistorySaver({ result }: { result: RecommendationResult }) {
+  const { save } = useHistory();
+
+  useEffect(() => {
+    const topProducts = result.recommendations
+      .filter((r) => r.rank <= 3)
+      .map((r) => `${r.brand} ${r.name}`);
+
+    save({
+      id: result.result_id,
+      category: result.profile.categorie
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, ""),
+      label: result.profile.categorie,
+      created_at: result.created_at,
+      topProducts,
+      budget: budgetLabel(result.profile.budget_max, result.recommendations),
+    });
+  }, [result, save]);
+
+  return null;
+}
+
+// ─── HistorySidebarWrapper ────────────────────────────────────────────────────
+
+function HistorySidebarWrapper() {
+  const { history, loaded, remove, clear } = useHistory();
+  const [compareIds, setCompareIds] = useState<string[]>([]);
+
+  const toggleCompare = useCallback((id: string) => {
+    setCompareIds((prev) =>
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
+  }, []);
+
+  if (!loaded || history.results.length === 0) return null;
+
   return (
     <>
+      <div className="fixed right-4 top-24 z-40 hidden lg:block">
+        <HistorySidebar
+          items={history.results}
+          onRemove={remove}
+          onClear={clear}
+          position="sidebar"
+          compareIds={compareIds}
+          onToggleCompare={toggleCompare}
+        />
+      </div>
+      <div className="lg:hidden">
+        <HistorySidebar
+          items={history.results}
+          onRemove={remove}
+          onClear={clear}
+          position="bottom-bar"
+          compareIds={compareIds}
+          onToggleCompare={toggleCompare}
+        />
+      </div>
+    </>
+  );
+}
+
+// ─── ResultClientComponents ──────────────────────────────────────────────────
+
+export function ResultClientComponents({
+  resultId,
+  result,
+}: {
+  resultId: string;
+  result?: RecommendationResult;
+}) {
+  return (
+    <>
+      {result && <HistorySaver result={result} />}
+      <HistorySidebarWrapper />
+
       {/* Bouton retour en haut */}
       <div className="mb-6">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-[#FF6B5F]/30 hover:text-[#FF6B5F] hover:shadow-md"
+          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition hover:-translate-y-0.5 hover:shadow-md" style={{border: '1px solid var(--border)', backgroundColor: 'var(--bg-surface)', color: 'var(--text-muted)'}}
         >
           ← Retour à l&apos;accueil
         </Link>
@@ -99,14 +201,6 @@ function RefineSearchButton() {
   return (
     <Link
       href="/"
-      onClick={() => {
-        // L'historique est déjà dans localStorage (sauvegardé par ResultRedirectMessage)
-        // On vérifie qu'il existe, sinon on nettoie
-        const savedHistory = localStorage.getItem("picksy_history");
-        if (!savedHistory) {
-          localStorage.removeItem("picksy_chat");
-        }
-      }}
       className="inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10 focus:outline-none focus:ring-4 focus:ring-white/20"
     >
       🔍 Affiner ma recherche

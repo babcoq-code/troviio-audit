@@ -5,7 +5,7 @@ ASIN Finder v3 - priorise les produits avec marque+modèle spécifiques.
 import json, sys, time, re, os, requests
 from supabase import create_client
 
-SUPABASE_URL = "https://uukshxztoztkwxuuvqzc.supabase.co"
+SUPABASE_URL = "os.getenv("SUPABASE_URL", "")"
 SUPABASE_KEY = "SUPABASE_SERVICE_KEY_PLACEHOLDER"
 
 # Try multiple URLs for the scraper (host network = localhost, docker network = troviio-scraper)

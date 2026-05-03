@@ -89,10 +89,10 @@ export default function Footer() {
           {/* Newsletter */}
           <div>
             <h3 className="text-sm font-semibold text-zinc-900 dark:text-white uppercase tracking-wider mb-4">
-              Newsletter hebdo
+              Newsletter Top 3
             </h3>
             <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-              Le bon choix atterrit dans ta boîte. Un email par semaine, zéro spam.
+              Recevez le Top 3 des meilleurs produits par email chaque mois. Zéro spam.
             </p>
             <form onSubmit={handleSubscribe} className="relative flex items-center">
               <input

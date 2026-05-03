@@ -15,7 +15,7 @@ interface AccessoriesForProductResponse {
 
 function SkeletonCard() {
   return (
-    <div className="animate-pulse overflow-hidden rounded-3xl border border-white/10 bg-[#1A1D2E]">
+    <div className="animate-pulse overflow-hidden rounded-3xl border border-white/10 bg-[var(--bg-surface)]">
       <div className="aspect-[4/3] bg-white/5" />
       <div className="space-y-4 p-5">
         <div className="h-5 w-32 rounded-full bg-white/10" />
@@ -45,7 +45,7 @@ export function AccessoriesTroviioWidget({
 
   if (loading) {
     return (
-      <section className="rounded-3xl border border-white/10 bg-[#1A1D2E] p-6 shadow-xl">
+      <section className="rounded-3xl border border-white/10 bg-[var(--bg-surface)] p-6 shadow-xl">
         <div className="mb-6 h-8 w-80 animate-pulse rounded bg-white/10" />
         <div className="grid gap-5 md:grid-cols-3">
           {[1, 2, 3].map((i) => <SkeletonCard key={i} />)}
@@ -57,7 +57,7 @@ export function AccessoriesTroviioWidget({
   if (!data || displayed.length === 0) return null;
 
   return (
-    <section className="rounded-3xl border border-white/10 bg-[#1A1D2E] p-6 shadow-xl">
+    <section className="rounded-3xl border border-white/10 bg-[var(--bg-surface)] p-6 shadow-xl">
       {/* Header */}
       <div className="mb-7 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
@@ -151,7 +151,7 @@ function AccessoryTroviio({
       {/* Image */}
       <Link
         href={`/accessoires/${accessory.slug}`}
-        className="relative block aspect-[4/3] overflow-hidden bg-[#1A1D2E]"
+        className="relative block aspect-[4/3] overflow-hidden bg-[var(--bg-surface)]"
       >
         {accessory.imageUrl ? (
           <img

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 type ResultRedirectMessageProps = {
@@ -12,63 +12,57 @@ const REDIRECT_DELAY_SECONDS = 3;
 export function ResultRedirectMessage({ result_id }: ResultRedirectMessageProps) {
   const router = useRouter();
   const [remainingSeconds, setRemainingSeconds] = useState(REDIRECT_DELAY_SECONDS);
+  const redirectedRef = useRef(false);
+
+  const doRedirect = useCallback(() => {
+    if (redirectedRef.current) return;
+    redirectedRef.current = true;
+
+    // Nettoyer localStorage pour éviter re-déclenchement
+    try {
+      window.localStorage.removeItem("troviio.chat.history.v2");
+    } catch {}
+
+    router.push(`/resultats/${encodeURIComponent(result_id)}`);
+  }, [result_id, router]);
 
   useEffect(() => {
-    if (!result_id) return;
-
-    // Sauvegarder l'historique du chat dans localStorage pour "Affiner"
-    try {
-      const savedCity = sessionStorage.getItem("picksy_current_history");
-      const savedChatSession = sessionStorage.getItem("picksy_current_chat");
-      if (savedCity) {
-        localStorage.setItem("picksy_history", savedCity);
-        localStorage.setItem("picksy_chat", savedChatSession || "[]");
-        sessionStorage.removeItem("picksy_current_history");
-        sessionStorage.removeItem("picksy_current_chat");
-      }
-    } catch {}
+    if (!result_id || redirectedRef.current) return;
 
     const countdownInterval = window.setInterval(() => {
       setRemainingSeconds((current) => Math.max(current - 1, 0));
     }, 1000);
 
-    const redirectTimeout = window.setTimeout(() => {
-      router.push(`/resultats/${encodeURIComponent(result_id)}`);
-    }, REDIRECT_DELAY_SECONDS * 1000);
+    const redirectTimeout = window.setTimeout(doRedirect, REDIRECT_DELAY_SECONDS * 1000);
 
     return () => {
       window.clearInterval(countdownInterval);
       window.clearTimeout(redirectTimeout);
     };
-  }, [result_id, router]);
+  }, [result_id, doRedirect]);
+
+  const openNow = () => doRedirect();
 
   return (
     <section
       className="my-4 overflow-hidden rounded-3xl p-5 text-white shadow-xl"
       style={{
-        background: "linear-gradient(135deg, #0E1020 0%, #4257FF 100%)",
-        boxShadow: "0 12px 40px rgba(66,87,255,0.3)",
+        background: "linear-gradient(135deg, #FF6B5F 0%, #E5554A 100%)",
       }}
-      aria-live="polite"
     >
-      <div className="flex items-start gap-4">
-        <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-2xl">
-          🏆
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="font-display text-lg font-bold leading-snug">
-            Troviio a trouvé tes recommandations !
-          </p>
-          <p className="mt-1 text-sm text-white/75">
-            Redirection dans {remainingSeconds} seconde{remainingSeconds > 1 ? "s" : ""}…
-          </p>
-          <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/20">
-            <div
-              className="h-full rounded-full animate-picksy-result-progress"
-              style={{ backgroundColor: "#3ED6A3" }}
-            />
-          </div>
-        </div>
+      <div className="flex flex-col items-center gap-3 text-center">
+        <p className="font-semibold text-lg leading-tight">
+          🎯 J&apos;ai trouvé ton produit !
+        </p>
+        <p className="text-sm opacity-90">
+          Redirection vers les résultats dans <strong>{remainingSeconds}s</strong>
+        </p>
+        <button
+          onClick={openNow}
+          className="mt-1 rounded-full bg-white/20 px-6 py-2 text-sm font-bold backdrop-blur-sm transition hover:bg-white/30"
+        >
+          Voir les résultats ✨
+        </button>
       </div>
     </section>
   );

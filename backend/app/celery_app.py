@@ -15,27 +15,13 @@ app = Celery(
         "app.tasks.scraper",
         "app.tasks.prices",
         "app.tasks.newsletter_task",
-        "app.tasks.scraping",  # nouveau pipeline
+        "app.tasks.scraping",
+        "app.tasks.top3_scraper",
     ],
 )
 
 # Tâches planifiées
 app.conf.beat_schedule = {
-    # Scraping hebdomadaire (ancien — à garder pour compatibilité)
-    "weekly-scraping": {
-        "task": "app.tasks.scraper.run_weekly_discovery",
-        "schedule": crontab(hour=3, minute=0, day_of_week="sunday"),
-    },
-    # Nouveau pipeline : refresh tests de tous les produits chaque dimanche 3h30
-    "weekly-refresh-tests": {
-        "task": "troviio.scraping.weekly_refresh_all",
-        "schedule": crontab(hour=3, minute=30, day_of_week="sunday"),
-    },
-    # Newsletter hebdomadaire — lundi 9h00
-    "weekly-newsletter": {
-        "task": "app.tasks.newsletter_task.send_weekly_newsletter",
-        "schedule": crontab(hour=9, minute=0, day_of_week="monday"),
-    },
     # Mise à jour prix Amazon
     "daily-prices-morning": {
         "task": "app.tasks.prices.update_amazon_prices",
@@ -44,6 +30,21 @@ app.conf.beat_schedule = {
     "daily-prices-evening": {
         "task": "app.tasks.prices.update_amazon_prices",
         "schedule": crontab(hour=19, minute=0),
+    },
+    # Scraping bi-mensuel des nouveaux produits (1er et 15 du mois à 3h00)
+    "bi-monthly-scraping": {
+        "task": "app.tasks.newsletter_task.scrape_new_products",
+        "schedule": crontab(hour=3, minute=0, day_of_month="1,15"),
+    },
+    # Newsletter mensuelle — envoi le 2 et le 16 à 10h00 (après le scraping)
+    "monthly-newsletter": {
+        "task": "app.tasks.newsletter_task.send_monthly_newsletter",
+        "schedule": crontab(hour=10, minute=0, day_of_month="2,16"),
+    },
+    # Top 3 hebdomadaire — chaque dimanche 4h00 (complément)
+    "weekly-top3": {
+        "task": "app.tasks.top3_scraper.run_top3_cycle",
+        "schedule": crontab(hour=4, minute=0, day_of_week="sunday"),
     },
 }
 
@@ -57,8 +58,8 @@ app.conf.task_soft_time_limit = 1080
 app.conf.worker_prefetch_multiplier = 1
 app.conf.worker_max_tasks_per_child = 100
 
-# Routing : les tâches de scraping vont dans la queue "scraping"
+# Routing
 app.conf.task_routes = {
     "troviio.scraping.run_product_pipeline": {"queue": "scraping"},
-    "troviio.scraping.weekly_refresh_all": {"queue": "scraping"},
+    "app.tasks.scraping.*": {"queue": "scraping"},
 }

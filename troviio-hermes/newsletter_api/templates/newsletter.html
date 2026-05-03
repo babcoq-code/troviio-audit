@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0E1020; font-family: 'Inter', Arial, sans-serif; color: #FFFFFF; }
+  .container { max-width: 600px; margin: 0 auto; background: #0E1020; }
+  .header { padding: 32px 24px 16px; text-align: center; }
+  .logo { font-family: Georgia, serif; font-size: 28px; font-weight: 700; letter-spacing: -1px; }
+  .logo span:nth-child(2) { color: #FF6B5F; }
+  .logo span:nth-child(3) { color: #3ED6A3; }
+  .gradient-line { height: 4px; background: linear-gradient(135deg, #FF6B5F, #FFB020, #3ED6A3); margin: 12px 0; border-radius: 2px; }
+  .edition { font-size: 12px; color: #9094A8; margin-top: 8px; }
+  .section { padding: 24px; margin: 8px 16px; background: #1A1D2E; border-radius: 24px; }
+  .section.cream { background: #FFF7ED; color: #0E1020; }
+  .section.cream p { color: #0E1020; }
+  h1 { font-family: Georgia, serif; font-size: 22px; margin-bottom: 12px; }
+  h2 { font-family: Georgia, serif; font-size: 18px; margin-bottom: 10px; }
+  p { font-size: 16px; line-height: 1.6; margin-bottom: 10px; color: #d0d2de; }
+  .score-circle { display: inline-flex; width: 56px; height: 56px; border-radius: 50%; background: #4257FF; align-items: center; justify-content: center; font-family: 'Arial Black', sans-serif; font-weight: 800; font-size: 22px; color: #fff; margin: 8px 0; }
+  .btn-coral { display: inline-block; background: #FF6B5F; color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 14px; font-weight: 600; font-size: 16px; margin: 12px 0; }
+  .btn-mint { display: inline-block; background: #3ED6A3; color: #0E1020; text-decoration: none; padding: 12px 28px; border-radius: 14px; font-weight: 600; font-size: 15px; margin: 12px 0; }
+  .tag { display: inline-block; background: rgba(255,107,95,0.15); color: #FF6B5F; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .tag.coral { background: rgba(255,107,95,0.15); color: #FF6B5F; }
+  .tag.mint { background: rgba(62,214,163,0.15); color: #3ED6A3; }
+  .tag.blue { background: rgba(66,87,255,0.15); color: #4257FF; }
+  .footer { padding: 32px 24px; text-align: center; font-size: 12px; color: #9094A8; }
+  .footer a { color: #4257FF; text-decoration: underline; }
+  .product-img { width: 100%; max-width: 240px; height: auto; margin: 12px auto; display: block; border-radius: 12px; }
+  ul { padding-left: 20px; margin-bottom: 10px; }
+  li { font-size: 15px; line-height: 1.5; color: #d0d2de; margin-bottom: 4px; }
+  .pill { display: inline-block; background: rgba(62,214,163,0.12); color: #3ED6A3; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-right: 4px; }
+  @media (prefers-color-scheme: light) {
+    body, .container { background: #f5f5f7; }
+    .section { background: #ffffff; }
+    .section.cream { background: #FFF7ED; }
+    p { color: #2d2d3a; }
+    .section.cream p { color: #0E1020; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">TROV<span>i</span><span>i</span>O</div>
+    <div class="gradient-line"></div>
+    <div class="edition">Édition #{{ edition_number }} · {{ month }}</div>
+  </div>
+
+  <!-- EDITO -->
+  <div class="section">
+    <p>{{ editorial }}</p>
+  </div>
+
+  <!-- PRODUIT DU MOIS -->
+  <div class="section">
+    <span class="tag coral">🌟 Produit du mois</span>
+    <h2>{{ product.name }}</h2>
+    <div class="score-circle">{{ product.score }}</div>
+    <p>Environ {{ product.price }}€</p>
+    {{#if product.image_url}}
+    <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-img">
+    {{/if}}
+    <p>{{ product.copy }}</p>
+    <a href="{{ product.url }}" class="btn-coral">Voir la fiche Troviio →</a>
+  </div>
+
+  <!-- ARNAQUE DU MOIS -->
+  <div class="section">
+    <span class="tag coral">🚨 Arnaque du mois</span>
+    <h2>{{ scam.product.name }}</h2>
+    <p><strong>Prix :</strong> {{ scam.product.price }}€</p>
+    <p>{{ scam.product.copy }}</p>
+    <div class="pill">🔁 Alternative</div>
+    <p><strong>{{ scam.alternative.name }}</strong> — à partir de {{ scam.alternative.price }}€</p>
+    <a href="{{ scam.alternative.url }}" class="btn-mint">Voir l'alternative →</a>
+  </div>
+
+  <!-- HACK -->
+  <div class="section">
+    <span class="tag mint">🔧 Hack anti-obsolescence</span>
+    <p>{{ hack }}</p>
+  </div>
+
+  <!-- QUESTION LECTEUR -->
+  {{#if reader_qa.question}}
+  <div class="section">
+    <span class="tag blue">💬 Question de {{ reader_qa.author }}</span>
+    <p><em>"{{ reader_qa.question }}"</em></p>
+    <p>{{ reader_qa.answer }}</p>
+    <p style="font-size:13px;color:#9094A8;margin-top:12px;">👉 Pose ta question pour le prochain numéro en répondant à cet email.</p>
+  </div>
+  {{/if}}
+
+  <!-- CTA FINAL -->
+  <div class="section" style="text-align:center;">
+    <p style="font-size:14px;">Pas convaincu par ces choix ?<br>Décris ta vie, ton budget, tes contraintes.</p>
+    <a href="{{ cta_url }}" class="btn-coral" style="font-size:15px;">🤖 Trouve mon produit idéal</a>
+    <p style="font-size:12px;color:#9094A8;margin-top:12px;">Gratuit · Sans inscription · 24/7</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="logo" style="font-size:20px;margin-bottom:8px;">TROV<span>i</span><span>i</span>O</div>
+    <p style="font-size:13px;color:#9094A8;">
+      TROViiO · L'IA anti-regret pour vos achats<br>
+      <a href="{{ unsubscribe_url }}">Se désabonner</a> ·
+      <a href="{{ cta_url }}">troviio.com</a>
+    </p>
+    <p style="font-size:11px;color:#606470;margin-top:8px;">
+      On ne vous appelle pas "cher consommateur".<br>
+      On ne vous vend pas de révolution.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -25,6 +25,8 @@
   --color-coral-50:  #FFF1F0;
   --color-coral-100: #FFE0DD;
   --color-coral-300: #FFA39D;
+  --color-amber:          #FFB020;
+  --color-gray-100:       #EFE3D6;
 }
 
 :root {
@@ -35,6 +37,15 @@
   --troviio-text-primary: #fafafa;
   --troviio-text-muted: #8b8b9a;
   --troviio-success: #22c55e;
+  
+  /* Tokens sémantiques utilisés par les composants */
+  --bg: #0a0a0b;
+  --bg-header: #0a0a0b;
+  --bg-surface: #111113;
+  --bg-subtle: #0c0c0e;
+  --border: #1e1e24;
+  --text: #fafafa;
+  --text-muted: #8b8b9a;
 }
 
 html {

@@ -122,7 +122,7 @@ ACCESSORIES = [
         "price": 39.99,
         "merchant_name": "Amazon",
         "url": "https://amazon.fr/dp/EXEMPLE",
-        "affiliate_url": "https://amazon.fr/?tag=picksy-21",
+        "affiliate_url": "https://amazon.fr/?tag=troviio-21",
     },
     {
         "name": "Sacs officiels Roborock — lot de 6",
@@ -140,7 +140,7 @@ ACCESSORIES = [
         "price": 29.99,
         "merchant_name": "Amazon",
         "url": "https://amazon.fr/dp/EXEMPLE2",
-        "affiliate_url": "https://amazon.fr/?tag=picksy-21",
+        "affiliate_url": "https://amazon.fr/?tag=troviio-21",
     },
     {
         "name": "Filtres HEPA officiels iRobot Roomba série j ×3",
@@ -176,7 +176,7 @@ ACCESSORIES = [
         "price": 42.99,
         "merchant_name": "Amazon",
         "url": "https://amazon.fr/dp/EXEMPLE3",
-        "affiliate_url": "https://amazon.fr/?tag=picksy-21",
+        "affiliate_url": "https://amazon.fr/?tag=troviio-21",
     },
     {
         "name": "Filtre officiel Dyson 360 Vis Nav",

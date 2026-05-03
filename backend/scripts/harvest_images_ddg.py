@@ -13,7 +13,7 @@ from urllib.parse import quote
 from bs4 import BeautifulSoup
 
 # Config
-SUPABASE_URL = "https://uukshxztoztkwxuuvqzc.supabase.co"
+SUPABASE_URL = "os.getenv("SUPABASE_URL", "")"
 SUPABASE_SERVICE_KEY = "SUPABASE_SERVICE_KEY_PLACEHOLDER"
 DELAY = 0.8  # délai entre chaque produit
 BATCH_SIZE = 10  # vérification tous les 10 produits

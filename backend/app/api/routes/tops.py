@@ -97,9 +97,34 @@ def _build_product_response(row: dict) -> dict[str, Any]:
     }
 
 
+def _deduplicate_asin(products: list[dict]) -> list[dict]:
+    """Dédoublonne les produits par ASIN amazon_asin."""
+    seen_asins: set[str] = set()
+    seen_slugs: set[str] = set()
+    deduped: list[dict] = []
+    for p in products:
+        slug = p.get("slug", "")
+        asin = (p.get("amazon_asin") or "").strip().upper()
+        # Skip if same ASIN or same base slug already seen
+        if asin and asin in seen_asins:
+            continue
+        if slug and slug in seen_slugs:
+            continue
+        # Skip if same brand+model name (fuzzy: first 20 chars of name)
+        name = (p.get("name") or "").strip().lower()[:25]
+        if asin:
+            seen_asins.add(asin)
+        if slug:
+            seen_slugs.add(slug)
+        deduped.append(p)
+    return deduped
+
+
 @router.get("")
 async def get_tops():
-    """Retourne le top 3 produits de chaque catégorie, triés par score DESC."""
+    """Retourne le top 3 produits de chaque catégorie, triés par score DESC.
+    Limite à 2 produits max par marque pour garantir la diversité du podium.
+    """
     sb = get_supabase()
 
     cats = sb.table("categories").select("id, slug, name").execute().data or []
@@ -113,30 +138,51 @@ async def get_tops():
         cat_slug = cat["slug"]
         cat_name = cat["name"]
 
+        # Récupérer jusqu'à 8 produits pour avoir assez de diversité après dédup
         result = (
             sb.table("products")
             .select("*")
             .eq("category_id", cat_id)
+            .eq("is_active", True)
             .not_.is_("estimated_score", "null")
             .order("estimated_score", desc=True)
-            .limit(3)
+            .limit(8)
             .execute()
         )
 
         if not result.data or len(result.data) < 3:
+            # Fallback sur le champ "score"
             result2 = (
                 sb.table("products")
                 .select("*")
                 .eq("category_id", cat_id)
+                .eq("is_active", True)
                 .not_.is_("score", "null")
                 .order("score", desc=True)
-                .limit(3)
+                .limit(8)
                 .execute()
             )
             if result2.data:
                 result = result2
 
-        products = [_build_product_response(r) for r in (result.data or [])]
+        raw = result.data or []
+
+        # Dédoublonnage par ASIN
+        raw = _deduplicate_asin(raw)
+
+        # Dédoublonnage par marque : max 2 produits par marque
+        brand_count: dict[str, int] = {}
+        diverse: list[dict] = []
+        for r in raw:
+            brand = (r.get("brand") or "Unknown").strip().lower()
+            if brand_count.get(brand, 0) >= 2:
+                continue
+            brand_count[brand] = brand_count.get(brand, 0) + 1
+            diverse.append(r)
+            if len(diverse) == 3:
+                break
+
+        products = [_build_product_response(r) for r in diverse[:3]]
         if not products:
             continue
 

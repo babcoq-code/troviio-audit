@@ -1,6 +1,6 @@
 const { chromium } = require('/tmp/node_modules/playwright');
 const fs = require('fs');
-const supabaseUrl = 'https://uukshxztoztkwxuuvqzc.supabase.co';
+const supabaseUrl = 'os.getenv("SUPABASE_URL", "")';
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY || '';
 
 async function scrapePrice(asin) {

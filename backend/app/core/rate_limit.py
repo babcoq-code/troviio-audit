@@ -43,5 +43,5 @@ async def enforce_chat_rate_limit(request: Request) -> None:
     ip = extract_client_ip(request)
     min_bucket = int(time.time() / 60)
     hour_bucket = int(time.time() / 3600)
-    await check_rate_limit(r, f"rl:chat:ip:min:{ip}:{min_bucket}", 10, 60)
-    await check_rate_limit(r, f"rl:chat:ip:hour:{ip}:{hour_bucket}", 30, 3600)
+    await check_rate_limit(r, f"rl:chat:ip:min:{ip}:{min_bucket}", 20, 60)
+    await check_rate_limit(r, f"rl:chat:ip:hour:{ip}:{hour_bucket}", 60, 3600)

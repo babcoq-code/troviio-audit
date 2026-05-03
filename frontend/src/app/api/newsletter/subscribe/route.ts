@@ -7,10 +7,12 @@ const schema = z.object({
   email: z.string().email("Email invalide.").max(320).transform((v) => v.trim().toLowerCase()),
 });
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
 
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 function isRateLimited(ip: string): boolean {
@@ -33,10 +35,12 @@ export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null);
   const parsed = schema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json({ error: parsed.error.issues[0]?.message ?? "Email invalide." }, { status: 400 });
+    const firstIssue = (parsed as any).error?.issues?.[0]?.message ?? "Email invalide.";
+    return NextResponse.json({ error: firstIssue }, { status: 400 });
   }
 
   const { email } = parsed.data;
+  const supabase = getSupabase();
 
   // Vérifier si déjà inscrit
   const { data: existing } = await supabase

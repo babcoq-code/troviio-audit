@@ -1,10 +1,22 @@
 import { siteConfig } from "@/lib/site";
 
+const pageUrl = "https://www.troviio.com/a-propos";
+
 export const metadata = {
   title: `À propos — ${siteConfig.name}`,
   description: `Découvrez ${siteConfig.name} : notre mission, notre équipe et pourquoi nous avons créé le premier comparateur IA vraiment impartial.`,
   robots: { index: true, follow: true },
+  alternates: { canonical: pageUrl },
   openGraph: {
+    title: `À propos — ${siteConfig.name}`,
+    description: `Découvrez ${siteConfig.name} : notre mission, notre équipe et pourquoi nous avons créé le premier comparateur IA vraiment impartial.`,
+    url: pageUrl,
+    siteName: siteConfig.name,
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
     title: `À propos — ${siteConfig.name}`,
     description: `Découvrez ${siteConfig.name} : notre mission, notre équipe et pourquoi nous avons créé le premier comparateur IA vraiment impartial.`,
   },
@@ -12,19 +24,21 @@ export const metadata = {
 
 export default function AProposPage() {
   return (
-    <main className="min-h-screen bg-slate-50">
-      <div className="mx-auto w-full max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <main className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}>
+      <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <article>
-          <header className="border-b border-slate-200 pb-8">
-            <p className="text-sm font-medium uppercase tracking-wide text-slate-500">Notre histoire</p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+          <header className="pb-8" style={{ borderBottom: "1px solid var(--border)" }}>
+            <p className="text-sm font-medium uppercase tracking-wide" style={{ color: "var(--text-muted)" }}>
+              Notre histoire
+            </p>
+            <h1 className="mt-3 font-sora text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
               À propos de {siteConfig.name}
             </h1>
-            <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
+            <p className="mt-4 text-base leading-7" style={{ color: "var(--text-muted)" }}>
               Pas le meilleur. Le tien. — Nous avons créé {siteConfig.name} pour en finir avec les comparateurs biaisés.
             </p>
           </header>
-          <div className="legal-content mt-8 space-y-8">
+          <div className="mt-8 space-y-8 text-base leading-8 [&_h2]:mt-10 [&_h2]:font-sora [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:first:mt-0 [&_ul]:space-y-3 [&_li]:ml-6 [&_li]:list-disc [&_a]:text-[#FF6B5F] [&_a]:hover:underline">
             <section>
               <h2>Notre mission</h2>
               <p>
@@ -32,7 +46,7 @@ export default function AProposPage() {
                 de comparatifs et de fiches techniques. Les comparateurs classiques affichent 
                 des listes standardisées, souvent influencées par des partenariats commerciaux.
               </p>
-              <p>
+              <p className="mt-4">
                 {siteConfig.name} change la donne. Notre assistant IA ne se contente pas de 
                 lister des produits : il <strong>dialogue avec vous</strong> pour comprendre 
                 votre quotidien, vos contraintes et votre budget. Ensuite, il vous recommande 

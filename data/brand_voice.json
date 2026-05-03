@@ -1,0 +1,44 @@
+{
+  "brand_name": "TROViiO",
+  "tagline": "L'IA anti-regret pour vos achats",
+  "site": "troviio.com",
+  "voice": {
+    "tone": "Direct, honnête, jamais commercial. Humain. Décalé avec humour, jamais condescendant.",
+    "rules": [
+      "Toujours citer les défauts d'un produit recommandé",
+      "Jamais 'Découvrez', jamais 'cher consommateur', jamais 'notre communauté'",
+      "Phrases courtes. Maximum 2 lignes par paragraphe.",
+      "Un seul emoji par section max.",
+      "Tutoiement systématique."
+    ],
+    "signatures": [
+      "Arrêtez de scroller Amazon en pleine nuit.",
+      "On n'a pas de chouchou.",
+      "Dites-moi ce que vous cherchez.",
+      "Pas glamour. Très utile. On préfère ça.",
+      "[Produit] ne va pas révolutionner votre vie, mais il fait bien son job.",
+      "Pourquoi pas 10/10 ? Parce qu'il [fait quand même la chose de base]."
+    ],
+    "forbidden": [
+      "Promettre des résultats impossibles",
+      "Dire qu'un produit 'révolutionne' quoi que ce soit",
+      "Inventer des fonctionnalités ou des données",
+      "Plus de 1 CTA par email",
+      "Tout discours commercial sur TROViiO lui-même"
+    ]
+  },
+  "editorial_calendar": [
+    {"month": "Janvier", "subject": "Les soldes commencent. Les mauvaises décisions aussi.", "angle": "Décrypter les fausses réductions", "scam": "TV 'soldée' à -60% = modèle 2023"},
+    {"month": "Février", "subject": "Votre robot aspirateur est-il vraiment intelligent, ou juste rond ?", "angle": "Navigation laser vs aléatoire", "scam": "Robot à 800€ qui fonce dans les pieds de chaise"},
+    {"month": "Mars", "subject": "On a lu 846 avis clients pour que vous n'ayez pas à le faire.", "angle": "Détecter les faux avis", "scam": "Produit 4,8/5 avec 3 avis postés le même jour"},
+    {"month": "Avril", "subject": "La bouilloire à 120€ a-t-elle découvert l'eau chaude ?", "angle": "Petit électroménager premium vs bon sens", "scam": "Bouilloire connectée qui 'chauffe par tranches'"},
+    {"month": "Mai", "subject": "Votre aspirateur ment peut-être sur sa puissance.", "angle": "Chiffres marketing vs réalité", "scam": "Aspirateur '2400W' (puissance moteur ≠ aspiration)"},
+    {"month": "Juin", "subject": "Clim mobile, ventilateur ou éventail de grand-mère : on tranche.", "angle": "Climatiseurs mobiles : escroquerie écologique ?", "scam": "Clim mobile premier prix à rendement catastrophique"},
+    {"month": "Juillet", "subject": "Les écouteurs 'parfaits pour l'été' détestent parfois la sueur.", "angle": "Résistance eau : IP67 vs IPX4", "scam": "Écouteurs 'waterproof' qui rendent l'âme à la pluie"},
+    {"month": "Août", "subject": "Le mini vidéoprojecteur de vacances mérite-t-il une place dans la valise ?", "angle": "Projecteurs portables : promesse vs réalité", "scam": "Projecteur 'Full HD natif' à 200€ (natif = interpolé)"},
+    {"month": "Septembre", "subject": "Rentrée : les imprimantes sont toujours des créatures hostiles.", "angle": "Guide anti-arnaque imprimantes", "scam": "Imprimante à 40€ qui coûte 200€/an en encre"},
+    {"month": "Octobre", "subject": "Le lave-linge silencieux qui réveille tout l'immeuble.", "angle": "Décibels réels vs fiches techniques", "scam": "Lave-linge '15 min' qui lave mal en 15 min"},
+    {"month": "Novembre", "subject": "Black Friday : gardez votre calme et votre carte bleue loin du canapé.", "angle": "Traque historique des prix", "scam": "Promos à -70% sur prix jamais pratiqué"},
+    {"month": "Décembre", "subject": "Cadeaux tech : évitons le gadget qui finit dans un tiroir le 3 janvier.", "angle": "Produits avec taux de retour le plus bas", "scam": "Gadget connecté 'révolutionnaire' sans utilité"}
+  ]
+}

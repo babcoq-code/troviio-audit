@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Literal
 from uuid import UUID
 
+import json
 from fastapi import APIRouter, HTTPException, Request, status
 from pydantic import BaseModel
 from supabase import Client, create_client
@@ -51,6 +52,8 @@ class ProductResponse(BaseModel):
     image_url: str | None = None
     specs: dict[str, Any] = {}
     amazon_asin: str | None = None
+    merchant_links: list[dict] | None = None
+    affiliate_url: str | None = None
 
 
 class PriceEntry(BaseModel):
@@ -71,37 +74,125 @@ class AffiliateClickPayload(BaseModel):
 @router.get("/api/products/{slug}", response_model=ProductResponse)
 async def get_product(slug: str):
     sb = get_supabase()
-    r = sb.table("products").select("*").eq("slug", slug).single().execute()
-    if not r.data:
-        raise HTTPException(404, "Product not found")
-    return ProductResponse.model_validate(r.data)
+    try:
+        r = sb.table("products").select("*").eq("slug", slug).single().execute()
+        if not r.data:
+            raise HTTPException(404, "Product not found")
+        return ProductResponse.model_validate(r.data)
+    except Exception as e:
+        err_msg = str(e)
+        if "PGRST116" in err_msg or "contains 0 rows" in err_msg:
+            raise HTTPException(404, "Product not found")
+        logger.error(f"get_product error for slug={slug}: {e}")
+        raise HTTPException(500, "Erreur interne du serveur")
 
 
-@router.get("/api/products/{slug}/prices", response_model=list[PriceEntry])
+# ─── GET /api/products/?category=slug ──────────────────────
+
+@router.get("/api/products/", response_model=list[ProductResponse])
+@router.get("/api/products", response_model=list[ProductResponse], include_in_schema=False)
+async def list_products(category: str | None = None, limit: int = 50):
+    sb = get_supabase()
+    # Map frontend URLs to DB slugs
+    ALIASES = {
+        "tv-oled": "tv",
+        "machine-cafe": "machine-a-cafe",
+        "aspirateurs-balai": "aspirateur-balai",
+        "four-micro-onde": "four-micro-ondes",
+        "enceinte-bt": "enceinte-bt",
+    }
+    db_slug = ALIASES.get(category, category)
+    try:
+        query = sb.table("products").select("*").eq("is_active", True)
+        if category:
+            try:
+                cat = sb.table("categories").select("id").eq("slug", db_slug).single().execute()
+            except Exception:
+                cat = type('obj', (object,), {'data': None})()
+            if cat and cat.data:
+                query = query.eq("category_id", cat.data["id"])
+            else:
+                return []
+        r = query.order("estimated_score", desc=True, nullsfirst=False).limit(limit).execute()
+        if not r.data:
+            return []
+        validated = []
+        for p in r.data:
+            if isinstance(p.get("specs"), str):
+                try:
+                    p["specs"] = json.loads(p["specs"])
+                except (json.JSONDecodeError, TypeError):
+                    p["specs"] = {}
+            validated.append(ProductResponse.model_validate(p))
+        return validated
+    except Exception as e:
+        logger.error(f"list_products error: {e}")
+        raise HTTPException(500, "Erreur interne du serveur")
+
+
+# ─── GET /api/products/{slug}/prices ────────────────────────
 async def get_current_prices(slug: str):
     sb = get_supabase()
-    prod = sb.table("products").select("id, slug, amazon_asin, merchant_links, price_eur").eq("slug", slug).single().execute()
-    if not prod.data:
-        raise HTTPException(404, "Product not found")
+    try:
+        prod = sb.table("products").select("id, slug, amazon_asin, merchant_links, price_eur").eq("slug", slug).single().execute()
+        if not prod.data:
+            raise HTTPException(404, "Product not found")
+    except Exception as e:
+        err_msg = str(e)
+        if "PGRST116" in err_msg or "contains 0 rows" in err_msg:
+            raise HTTPException(404, "Product not found")
+        logger.error(f"get_current_prices error for slug={slug}: {e}")
+        raise HTTPException(500, "Erreur interne du serveur")
     pid = prod.data["id"]
     r = sb.from_("latest_price_by_merchant").select("*").eq("product_id", pid).execute()
     rows = sorted(r.data or [], key=lambda x: float(x["price_eur"]))
     if rows:
-        return [PriceEntry.model_validate(row) for row in rows]
+        result = []
+        for row in rows:
+            url = row.get("affiliate_url", "")
+            name = row.get("merchant_name", "")
+            if "amazon" in name.lower() and "tag=" not in url and url:
+                sep = "&" if "?" in url else "?"
+                url = f"{url}{sep}tag=troviio-21"
+            row["affiliate_url"] = url
+            result.append(PriceEntry.model_validate(row))
+        return result
 
     # Fallback: build from merchant_links
     ml = prod.data.get("merchant_links") or {}
+    if isinstance(ml, str):
+        try:
+            ml = json.loads(ml)
+        except (json.JSONDecodeError, TypeError):
+            ml = {}
     entries = []
     for name, info in ml.items():
         if isinstance(info, dict) and info.get("url"):
+            url = info["url"]
+            # Ensure Amazon affiliate tag
+            if "amazon" in name.lower() and "tag=" not in url and "troviio-21" not in url:
+                sep = "&" if "?" in url else "?"
+                url = f"{url}{sep}tag=troviio-21"
             entries.append(PriceEntry(
                 merchant_name=name,
                 merchant_logo_url="",
                 price_eur=info.get("priceEur") or info.get("price_eur") or prod.data.get("price_eur") or 0.0,
-                affiliate_url=info["url"],
+                affiliate_url=url,
                 in_stock=info.get("inStock", True),
                 scraped_at=datetime.now(timezone.utc),
             ))
+
+    # If no merchant_links but ASIN exists, build Amazon link
+    if not entries and prod.data.get("amazon_asin"):
+        asin = prod.data["amazon_asin"]
+        entries.append(PriceEntry(
+            merchant_name="Amazon",
+            merchant_logo_url="",
+            price_eur=prod.data.get("price_eur") or 0.0,
+            affiliate_url=f"https://www.amazon.fr/dp/{asin}?tag=troviio-21",
+            in_stock=True,
+            scraped_at=datetime.now(timezone.utc),
+        ))
     return sorted(entries, key=lambda x: x.price_eur)
 
 
@@ -137,3 +228,90 @@ async def track_click(payload: AffiliateClickPayload, request: Request):
         "clicked_at": datetime.now(timezone.utc).isoformat(),
     }).execute()
     return {"ok": True}
+
+
+@router.get("/api/product-slugs")
+async def get_all_product_slugs():
+    """Return all active product slugs for sitemap."""
+    try:
+        supabase = get_supabase()
+        resp = supabase.table("products").select("slug").eq("is_active", True).execute()
+        slugs = [row["slug"] for row in resp.data if row.get("slug")]
+        return slugs
+    except Exception as e:
+        logger.error(f"Failed to fetch product slugs: {e}")
+        return []
+
+
+@router.get("/api/category-slugs")
+async def get_all_category_slugs():
+    """Return all category slugs for sitemap."""
+    try:
+        supabase = get_supabase()
+        resp = supabase.table("categories").select("slug").execute()
+        slugs = [row["slug"] for row in resp.data if row.get("slug")]
+        return slugs
+    except Exception as e:
+        logger.error(f"Failed to fetch category slugs: {e}")
+        return []
+
+
+@router.get("/api/products/by-category/{slug}")
+async def get_products_by_category(slug: str):
+    """Return all active products for a category slug."""
+    try:
+        supabase = get_supabase()
+        # 1. Trouver la catégorie
+        cat_resp = supabase.table("categories").select("id").eq("slug", slug).limit(1).execute()
+        if not cat_resp.data:
+            return {"products": []}
+        cat_id = cat_resp.data[0]["id"]
+        # 2. Produits actifs de cette catégorie
+        prod_resp = supabase.table("products").select(
+            "id,name,brand,slug,image_url,price_eur,estimated_score,pros,cons,specs,amazon_asin,affiliate_url"
+        ).eq("is_active", True).eq("category_id", cat_id).execute()
+        return {"products": prod_resp.data or []}
+    except Exception as e:
+        logger.error(f"Failed to fetch products by category {slug}: {e}")
+        return {"products": []}
+
+
+# ── Sitemap slugs ──────────────────────────────────────────────
+@router.get("/api/product-slugs")
+async def get_product_slugs():
+    try:
+        supabase = get_supabase()
+        resp = supabase.table("products").select("slug").eq("is_active", True).execute()
+        return [row["slug"] for row in (resp.data or [])]
+    except Exception as e:
+        logger.error(f"Failed to fetch product slugs: {e}")
+        return []
+
+
+@router.get("/api/category-slugs")
+async def get_category_slugs():
+    try:
+        supabase = get_supabase()
+        resp = supabase.table("categories").select("slug").execute()
+        return [row["slug"] for row in (resp.data or [])]
+    except Exception as e:
+        logger.error(f"Failed to fetch category slugs: {e}")
+        return []
+
+
+@router.get("/api/metrics")
+async def get_metrics():
+    """Retourne les métriques daily stockées dans /data/metrics/daily.jsonl"""
+    import json
+    try:
+        with open("/data/metrics/daily.jsonl") as f:
+            lines = [json.loads(l) for l in f if l.strip()]
+        if not lines:
+            return {"error": "No metrics yet"}
+        return {
+            "today": lines[-1],
+            "history": lines[-30:],
+            "total_entries": len(lines),
+        }
+    except FileNotFoundError:
+        return {"error": "No metrics file"}

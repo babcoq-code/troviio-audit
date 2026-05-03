@@ -1,13 +1,25 @@
 import { siteConfig } from "@/lib/site";
 import { LegalPage } from "@/components/legal/LegalPage";
 
+const pageUrl = `https://www.troviio.com/politique-confidentialite`;
+
 export const metadata = {
   title: `Politique de confidentialité — ${siteConfig.name}`,
   description: `Politique de confidentialité de ${siteConfig.name} — collecte, traitement et protection de vos données personnelles sur le comparateur IA.`,
   robots: { index: true, follow: true },
+  alternates: { canonical: pageUrl },
   openGraph: {
     title: `Politique de confidentialité — ${siteConfig.name}`,
-    description: `Politique de confidentialité de ${siteConfig.name} — collecte, traitement et protection de vos données personnelles.`,
+    description: `Politique de confidentialité de ${siteConfig.name} — collecte, traitement et protection de vos données personnelles sur le comparateur IA.`,
+    url: pageUrl,
+    siteName: siteConfig.name,
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Politique de confidentialité — ${siteConfig.name}`,
+    description: `Politique de confidentialité de ${siteConfig.name} — collecte, traitement et protection de vos données personnelles sur le comparateur IA.`,
   },
 };
 

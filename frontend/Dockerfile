@@ -12,6 +12,8 @@ ARG NEXT_PUBLIC_APP_URL
 ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 ARG NEXT_PUBLIC_AMAZON_TAG
 ENV NEXT_PUBLIC_AMAZON_TAG=$NEXT_PUBLIC_AMAZON_TAG
+ARG RESEND_API_KEY
+ENV RESEND_API_KEY=$RESEND_API_KEY
 
 COPY package.json package-lock.json* ./
 RUN --mount=type=cache,target=/root/.npm npm install
@@ -32,6 +34,7 @@ RUN mkdir -p /app/public
 
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/content ./content
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 

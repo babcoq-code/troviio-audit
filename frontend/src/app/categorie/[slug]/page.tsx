@@ -66,6 +66,12 @@ const CATEGORY_META: Record<
     description:
       "Barres de son pour TV, gaming et home cinéma avec Dolby Atmos.",
   },
+  matelas: {
+    name: "Matelas",
+    emoji: "🛏️",
+    description:
+      "Matelas mousse, latex, ressorts et hybrides pour des nuits réparatrices.",
+  },
 };
 
 function getCategoryMeta(slug: string) {
@@ -332,7 +338,7 @@ function ProductCardItem({ product }: { product: Product }) {
                     key={key}
                     className="px-2 py-0.5 rounded-md bg-surface-light text-xs text-muted"
                   >
-                    {key}: {String(value)}
+                    {key}: {String(value) === "true" ? "Oui" : String(value) === "false" ? "Non" : String(value)}
                   </span>
                 ))}
             </div>

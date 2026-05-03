@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from supabase import create_client
 
-SUPABASE_URL = "https://uukshxztoztkwxuuvqzc.supabase.co"
+SUPABASE_URL = "os.getenv("SUPABASE_URL", "")"
 SUPABASE_KEY = "SUPABASE_SERVICE_KEY_PLACEHOLDER"
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 

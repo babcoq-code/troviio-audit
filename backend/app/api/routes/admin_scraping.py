@@ -2,11 +2,16 @@
 Endpoints administrateur pour le scraping/testing.
 """
 from fastapi import APIRouter, HTTPException, Query
+from pydantic import BaseModel
 
 from app.core.supabase import get_supabase_admin
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 supabase = get_supabase_admin()
+
+
+class ScrapeRequest(BaseModel):
+    categories: list[str] | None = None
 
 
 @router.get("/scraping/status")
@@ -50,3 +55,29 @@ def get_products_with_sources():
             "review_generated_at": rev_resp.data[0]["generated_at"] if rev_resp.data else None,
         })
     return result
+
+
+@router.post("/run-scrape")
+def run_scrape(req: ScrapeRequest | None = None):
+    """Déclencher manuellement le scraping bi-mensuel (tâche Celery)."""
+    from app.tasks.newsletter_task import scrape_new_products
+
+    task = scrape_new_products.delay()
+    return {
+        "status": "scraping_started",
+        "task_id": task.id,
+        "message": "Scraping des nouveaux produits déclenché. Vérifiez les logs Celery.",
+    }
+
+
+@router.post("/send-newsletter")
+def send_newsletter():
+    """Déclencher manuellement l'envoi de la newsletter."""
+    from app.tasks.newsletter_task import send_monthly_newsletter
+
+    task = send_monthly_newsletter.delay()
+    return {
+        "status": "newsletter_sending_started",
+        "task_id": task.id,
+        "message": "Envoi de la newsletter déclenché.",
+    }

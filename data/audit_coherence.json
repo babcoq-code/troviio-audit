@@ -1,0 +1,3131 @@
+{
+  "date": "2026-05-03T09:43:29.345605",
+  "total_products": 560,
+  "total_issues": 492,
+  "price_issues": [
+    {
+      "slug": "housse-de-couette-zohome-alice-blue-140x220-cm",
+      "name": "Housse de couette Zo!Home Alice Blue 140x220 cm",
+      "price": 59,
+      "issue": "Prix suspect bas (59€, min attendu: 100€)",
+      "asin": "B07YZRT9CP",
+      "cat": "Matelas"
+    },
+    {
+      "slug": "tv-oled-lg-g6-2026",
+      "name": "LG Tv Oled Lg G6 2026",
+      "price": 90,
+      "issue": "Prix suspect bas (90€, min attendu: 200€)",
+      "asin": "B0015YAH2Q",
+      "cat": "TV"
+    },
+    {
+      "slug": "nettoyant-pour-matelas-nordicare-500ml-spray-désodorisant-efficace-nettoyant-pou",
+      "name": "Nettoyant pour matelas Nordicare 500ml spray, désodorisant e",
+      "price": 16,
+      "issue": "Prix suspect bas (16€, min attendu: 100€)",
+      "asin": "B08Q4H5GLQ",
+      "cat": "Matelas"
+    },
+    {
+      "slug": "oreiller-hybride-simba-mousse-à-mémoire-de-forme-nanotubes-technologie-stratos-5",
+      "name": "Heraldic shield divided into four quadrants, each containing",
+      "price": 43,
+      "issue": "Prix suspect bas (43€, min attendu: 100€)",
+      "asin": "B08B5G7GG8",
+      "cat": "Matelas"
+    },
+    {
+      "slug": "tv-sony-sony-bravia-xr-a95l",
+      "name": "SUNLU AMS Heater for Bambu Lab AMS Gen 1, Quick Dry Upgrade ",
+      "price": 67,
+      "issue": "Prix suspect bas (67€, min attendu: 200€)",
+      "asin": "B07T4TGRV4",
+      "cat": "TV"
+    },
+    {
+      "slug": "lave-vaisselle-electrolux-eem88420w",
+      "name": "EEM88420W",
+      "price": 198,
+      "issue": "Prix suspect bas (198€, min attendu: 250€)",
+      "asin": "B0BMQR2NY1",
+      "cat": "Lave-vaisselle"
+    }
+  ],
+  "name_issues": [
+    {
+      "slug": "levoit-purificateur-dair-hepa-intelligent-contre-allergie-pollen",
+      "name": "Purificateur d'air HEPA intelligent contre allergies et poll",
+      "issue": "Marque 'The' absente du nom"
+    },
+    {
+      "slug": "caméra-de-sécurité-extérieure-sans-fil-2k",
+      "name": "Caméra de sécurité extérieure sans fil 2K",
+      "issue": "Marque 'Generic' absente du nom"
+    },
+    {
+      "slug": "enceinte-bt-ultimate-ears-ultimate-ears-boom-4",
+      "name": "Ultimate Ears Enceinte Bt Ultimate Ears Ultimate Ears Boom 4",
+      "issue": "Nom avec répétition suspecte"
+    },
+    {
+      "slug": "deebot-x8-pro-omni",
+      "name": "Deebot X8 Pro Omni",
+      "issue": "Marque 'Ecovacs' absente du nom"
+    },
+    {
+      "slug": "engwe-velo-electrique-homme-20-pouces-velo-electrique-48v",
+      "name": "Velo Electrique Homme 20 Pouces-vélo électrique 48V ...",
+      "issue": "Marque 'Engwe' absente du nom"
+    },
+    {
+      "slug": "siemens-iq700-bf634lgs1",
+      "name": "iQ700 BF634LGS1",
+      "issue": "Marque 'Siemens' absente du nom"
+    },
+    {
+      "slug": "trottinette-segway-segway-ninebot-max-g30e-ii",
+      "name": "Maxmango V08 Pro 49FT Waterproof Digital Camera - 8K 90MP Wi",
+      "issue": "Marque 'Segway' absente du nom"
+    },
+    {
+      "slug": "poussette-joie-versatrax",
+      "name": "Versatrax",
+      "issue": "Marque 'Joie' absente du nom"
+    },
+    {
+      "slug": "combo-haier-hbw5519erb-slim-55-cm",
+      "name": "HBW5519ERB",
+      "issue": "Marque 'Haier' absente du nom"
+    },
+    {
+      "slug": "lave-vaisselle-whirlpool-wfo3t141pf",
+      "name": "WFO 3T141 PF X",
+      "issue": "Marque 'Whirlpool' absente du nom"
+    },
+    {
+      "slug": "lave-vaisselle-siemens-sn65zx07ce",
+      "name": "iQ500 SN65ZX07CE",
+      "issue": "Marque 'Siemens' absente du nom"
+    },
+    {
+      "slug": "nespresso-essenza-mini",
+      "name": "Essenza Mini",
+      "issue": "Marque 'Nespresso' absente du nom"
+    },
+    {
+      "slug": "samsung-jet-75",
+      "name": "Jet 75 Complete",
+      "issue": "Marque 'Samsung' absente du nom"
+    },
+    {
+      "slug": "lg-neochef-mh6535gib",
+      "name": "NeoChef MH6535GIB",
+      "issue": "Marque 'LG' absente du nom"
+    },
+    {
+      "slug": "hp-pavilion-15-amd",
+      "name": "Pavilion 15 AMD Ryzen 2024",
+      "issue": "Marque 'HP' absente du nom"
+    },
+    {
+      "slug": "ninja-robot-de-cuisine-bn650eu-850w-amazon",
+      "name": "Robot de cuisine BN650EU 850W",
+      "issue": "Marque 'Ninja' absente du nom"
+    },
+    {
+      "slug": "dyson-v10-absolute",
+      "name": "Cyclone V10 Absolute",
+      "issue": "Marque 'Dyson' absente du nom"
+    },
+    {
+      "slug": "lave-linge-samsung-samsung-serie-5-ww90dg5b25ah",
+      "name": "Front washing machine 9 kg 1400 rpm - WW90T4046EE",
+      "issue": "Marque 'Samsung' absente du nom"
+    },
+    {
+      "slug": "trottinette-segway-segway-ninebot-d18u",
+      "name": "Max G3 E, Electric Scooter, Maximum Speed 25 km/h, 80 km Ran",
+      "issue": "Marque 'Segway' absente du nom"
+    },
+    {
+      "slug": "caméra-de-sécurité-intérieure-sans-fil-2k-2",
+      "name": "Caméra de sécurité intérieure sans fil 2K",
+      "issue": "Marque 'TP-Link' absente du nom"
+    }
+  ],
+  "score_issues": [],
+  "all_issues": [
+    {
+      "slug": "levoit-purificateur-dair-hepa-intelligent-contre-allergie-pollen",
+      "issues": [
+        "Marque 'The' absente du nom"
+      ]
+    },
+    {
+      "slug": "caméra-de-sécurité-extérieure-sans-fil-2k",
+      "issues": [
+        "Marque 'Generic' absente du nom"
+      ]
+    },
+    {
+      "slug": "enceinte-bt-ultimate-ears-ultimate-ears-boom-4",
+      "issues": [
+        "Nom avec répétition suspecte"
+      ]
+    },
+    {
+      "slug": "deebot-x8-pro-omni",
+      "issues": [
+        "Marque 'Ecovacs' absente du nom"
+      ]
+    },
+    {
+      "slug": "engwe-velo-electrique-homme-20-pouces-velo-electrique-48v",
+      "issues": [
+        "Marque 'Engwe' absente du nom"
+      ]
+    },
+    {
+      "slug": "siemens-iq700-bf634lgs1",
+      "issues": [
+        "Marque 'Siemens' absente du nom"
+      ]
+    },
+    {
+      "slug": "trottinette-segway-segway-ninebot-max-g30e-ii",
+      "issues": [
+        "Marque 'Segway' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-joie-versatrax",
+      "issues": [
+        "Marque 'Joie' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-haier-hbw5519erb-slim-55-cm",
+      "issues": [
+        "Marque 'Haier' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-whirlpool-wfo3t141pf",
+      "issues": [
+        "Marque 'Whirlpool' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-siemens-sn65zx07ce",
+      "issues": [
+        "Marque 'Siemens' absente du nom"
+      ]
+    },
+    {
+      "slug": "nespresso-essenza-mini",
+      "issues": [
+        "Marque 'Nespresso' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-jet-75",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "lg-neochef-mh6535gib",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "hp-pavilion-15-amd",
+      "issues": [
+        "Marque 'HP' absente du nom"
+      ]
+    },
+    {
+      "slug": "ninja-robot-de-cuisine-bn650eu-850w-amazon",
+      "issues": [
+        "Marque 'Ninja' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyson-v10-absolute",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-linge-samsung-samsung-serie-5-ww90dg5b25ah",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "trottinette-segway-segway-ninebot-d18u",
+      "issues": [
+        "Marque 'Segway' absente du nom"
+      ]
+    },
+    {
+      "slug": "caméra-de-sécurité-intérieure-sans-fil-2k-2",
+      "issues": [
+        "Marque 'TP-Link' absente du nom"
+      ]
+    },
+    {
+      "slug": "x10-pro-omni",
+      "issues": [
+        "Marque 'Eufy' absente du nom"
+      ]
+    },
+    {
+      "slug": "siemens-eq9-s500",
+      "issues": [
+        "Marque 'Siemens' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-yoyo-0plus",
+      "issues": [
+        "Marque 'Babyzen / Stokke' absente du nom"
+      ]
+    },
+    {
+      "slug": "housse-de-couette-zohome-alice-blue-140x220-cm",
+      "issues": [
+        "Prix suspect bas (59€, min attendu: 100€)"
+      ]
+    },
+    {
+      "slug": "lexmark-m3150-imprimante-laser-a4",
+      "issues": [
+        "Marque 'Lexmark' absente du nom"
+      ]
+    },
+    {
+      "slug": "thermostat-connecté-intelligent-wifi-1",
+      "issues": [
+        "Marque 'Generic' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-linge-electrolux-electrolux-ew7f3929bf",
+      "issues": [
+        "Marque 'Electrolux' absente du nom"
+      ]
+    },
+    {
+      "slug": "bosch-bfl523ms0",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "tineco-tineco-floor-one-s7-stretch-ultra",
+      "issues": [
+        "Marque 'Tineco' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyson-outsize",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-macbook-air-13-m5",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "engwe-velo-electrique-pliable-velo-electrique-avec-20x40-pouces",
+      "issues": [
+        "Marque 'Engwe' absente du nom"
+      ]
+    },
+    {
+      "slug": "bosch-bel554ms0",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "sharp-purificateur-et-humidificateur-dair-kc-f32euw-amazon",
+      "issues": [
+        "Marque 'The' absente du nom"
+      ]
+    },
+    {
+      "slug": "lg-mh7265dps",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "eufy-security-indoorcam-e220-caméra-intérieure-sans-fil-2k",
+      "issues": [
+        "Marque 'Eufy' absente du nom"
+      ]
+    },
+    {
+      "slug": "asus-chromebook-plus-cx34",
+      "issues": [
+        "Marque 'ASUS' absente du nom"
+      ]
+    },
+    {
+      "slug": "deebot-t20-omni",
+      "issues": [
+        "Marque 'Ecovacs' absente du nom"
+      ]
+    },
+    {
+      "slug": "cave-a-vin-transtherm-cave-vin-transtherm-18",
+      "issues": [
+        "Marque 'Transtherm' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-samsung-hw-s800b",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "cosori-cosori-dual-blaze-chef-edition-6-4-l",
+      "issues": [
+        "Marque 'Cosori' absente du nom"
+      ]
+    },
+    {
+      "slug": "navee-gt3-serie-trottinette-electrique-adulte-50km-amazon",
+      "issues": [
+        "Marque 'Navee' absente du nom"
+      ]
+    },
+    {
+      "slug": "matelas-premium-confort-160x200-cm",
+      "issues": [
+        "Marque 'Générique' absente du nom"
+      ]
+    },
+    {
+      "slug": "coway-purificateur-dair-maison-ap-1512hh-mighty-amazon",
+      "issues": [
+        "Marque 'Coway' absente du nom"
+      ]
+    },
+    {
+      "slug": "delonghi-delonghi-dinamica-plus-ecam370-95-t",
+      "issues": [
+        "Marque 'DeLonghi' absente du nom"
+      ]
+    },
+    {
+      "slug": "360-vis-nav",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "oneplus-oneplus-13-5g-16-go-512-go",
+      "issues": [
+        "Marque 'OnePlus' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-panasonic-z85a-2025",
+      "issues": [
+        "Marque 'Panasonic' absente du nom"
+      ]
+    },
+    {
+      "slug": "climadiff-cave-à-vin-de-service-simple-zone-cs31b1-31-bouteilles",
+      "issues": [
+        "Marque 'Climadiff' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-sony-ht-a7000",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "epson-ecotank-et-2810",
+      "issues": [
+        "Marque 'Epson' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-bose-smart-900",
+      "issues": [
+        "Marque 'Bose' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-sony-ht-a5000",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-siemens-kg39nxwdf",
+      "issues": [
+        "Marque 'Siemens' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-yoyo-nacelle",
+      "issues": [
+        "Marque 'Babyzen / Stokke' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyson-v11-absolute",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "philips-800-series-purificateur-dair-compact-ac082010-amazon",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "siemens-bf525lms0",
+      "issues": [
+        "Marque 'Siemens' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-smart-air-purifier-4-lite-purificador-de-aire-amazon",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-samsung-bespoke-jet-complete-vs20a95843b",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "hp-smart-tank-515",
+      "issues": [
+        "Marque 'HP' absente du nom"
+      ]
+    },
+    {
+      "slug": "eufy-security-eufycam-s4-caméra-surveillance-wifi-extérieure-sans-fil-bullet-ptz",
+      "issues": [
+        "Marque 'eufy Security' absente du nom"
+      ]
+    },
+    {
+      "slug": "deebot-t90-pro-omni",
+      "issues": [
+        "Marque 'Ecovacs' absente du nom"
+      ]
+    },
+    {
+      "slug": "philips-philips-9000-series-hd9270-airfryer-xl-6-2-l",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-polk-magnifi-mini-ax",
+      "issues": [
+        "Marque 'Polk Audio' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-samsung-brb26705cww-encastrable",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "m210-pro",
+      "issues": [
+        "Marque 'Lefant' absente du nom"
+      ]
+    },
+    {
+      "slug": "sharp-yc-mg01e-s",
+      "issues": [
+        "Marque 'Sharp' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-electric-scooter-essential-trottinette-electrique-adulte",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "roomba-205-dustcompactor-combo",
+      "issues": [
+        "Marque 'iRobot' absente du nom"
+      ]
+    },
+    {
+      "slug": "levoit-purificateur-dair-chambre-avec-filtre-hepa-amazon",
+      "issues": [
+        "Marque 'The' absente du nom"
+      ]
+    },
+    {
+      "slug": "caméra-de-sécurité-intérieure-sans-fil-2k-1",
+      "issues": [
+        "Marque 'TP-Link' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyson-pure-cool-tp00-ventilateur-et-purificateur-dair-amazon",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-bosch-bosch-srie-4-smv46mx01e",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "roomba-combo-j9",
+      "issues": [
+        "Marque 'iRobot' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-samsung-s85f-2025",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "l40s-ultra",
+      "issues": [
+        "Marque 'Dreame' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-bugaboo-donkey-5",
+      "issues": [
+        "Marque 'Bugaboo' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyson-v8-absolute",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "pure-advance-trottinette-electrique-adulte-position-de-conduite",
+      "issues": [
+        "Marque 'Pure' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-samsung-hw-q600c",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "saros-10r",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "winix-zero-s-purificateur-dair-pour-chambre-à-coucher-hom",
+      "issues": [
+        "Marque 'Winix' absente du nom"
+      ]
+    },
+    {
+      "slug": "k11-plus",
+      "issues": [
+        "Marque 'SwitchBot' absente du nom"
+      ]
+    },
+    {
+      "slug": "philips-philips-airfryer-na220-00-6-2-l",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "p10-pro-ultra",
+      "issues": [
+        "Marque 'MOVA' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-denon-dht-s316",
+      "issues": [
+        "Marque 'Denon' absente du nom"
+      ]
+    },
+    {
+      "slug": "x50-ultra",
+      "issues": [
+        "Marque 'Dreame' absente du nom"
+      ]
+    },
+    {
+      "slug": "thermostat-connecté-intelligent-wifi-2",
+      "issues": [
+        "Marque 'Generique' absente du nom"
+      ]
+    },
+    {
+      "slug": "asus-zenbook14x-oled",
+      "issues": [
+        "Marque 'ASUS' absente du nom"
+      ]
+    },
+    {
+      "slug": "bose-bose-quietcomfort-ultra",
+      "issues": [
+        "Marque 'Bose' absente du nom"
+      ]
+    },
+    {
+      "slug": "jabra-jabra-elite-10-true-wireless",
+      "issues": [
+        "Marque 'Jabra' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-beko-rcne560e40zwn-70-cm",
+      "issues": [
+        "Marque 'Beko' absente du nom"
+      ]
+    },
+    {
+      "slug": "la-sommeliere-cave-de-mise-à-temperature-sls41-39-bouteilles",
+      "issues": [
+        "Marque 'La' absente du nom"
+      ]
+    },
+    {
+      "slug": "brother-dcp-l2627dwe-imprimante-multifonction-3-en-1-laser-monochrome",
+      "issues": [
+        "Marque 'Brother' absente du nom"
+      ]
+    },
+    {
+      "slug": "ring-stick-up-cam-plug-in-2eme-gen",
+      "issues": [
+        "Marque 'Ring' absente du nom"
+      ]
+    },
+    {
+      "slug": "philips-3200-lattego",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "omni-e28",
+      "issues": [
+        "Marque 'Eufy' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-lg-gbb92mcb2p",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "sharp-r843inw",
+      "issues": [
+        "Marque 'Sharp' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-stokke-yoyo3",
+      "issues": [
+        "Marque 'Stokke' absente du nom"
+      ]
+    },
+    {
+      "slug": "moulinex-moulinex-easy-fry-pro-ez935b10-6-l",
+      "issues": [
+        "Marque 'Moulinex' absente du nom"
+      ]
+    },
+    {
+      "slug": "siemens-cm676g0s6",
+      "issues": [
+        "Marque 'Siemens' absente du nom"
+      ]
+    },
+    {
+      "slug": "rowenta-x-force-flex-14-60",
+      "issues": [
+        "Marque 'Rowenta' absente du nom"
+      ]
+    },
+    {
+      "slug": "casque-audio-bose-bose-quietcomfort-se",
+      "issues": [
+        "Marque 'Bose' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-mi-thermostat-connecte-intelligent",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "google-pixel10-pro",
+      "issues": [
+        "Marque 'Google' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyson-omni-glide",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "shark-iz300eu",
+      "issues": [
+        "Marque 'Shark' absente du nom"
+      ]
+    },
+    {
+      "slug": "dreamaway-boston-panier-pour-chien-noir-140x110x20-cm",
+      "issues": [
+        "Marque 'Dreamaway' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-imprimante-laser-m2022",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "ecovacs-ecovacs-deebot-t20-omni-b0c21x",
+      "issues": [
+        "Marque 'Ecovacs' absente du nom"
+      ]
+    },
+    {
+      "slug": "velo-electrique-fiido-x",
+      "issues": [
+        "Nom trop court (1 chars)",
+        "Marque 'Fiido' absente du nom"
+      ]
+    },
+    {
+      "slug": "panasonic-nn-sd27hs",
+      "issues": [
+        "Marque 'Panasonic' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-maxi-cosi-leona-2",
+      "issues": [
+        "Marque 'Maxi-Cosi' absente du nom"
+      ]
+    },
+    {
+      "slug": "beko-moc20100w",
+      "issues": [
+        "Marque 'Beko' absente du nom"
+      ]
+    },
+    {
+      "slug": "dreame-r20",
+      "issues": [
+        "Nom trop court (3 chars)",
+        "Marque 'Dreame' absente du nom"
+      ]
+    },
+    {
+      "slug": "delonghi-dinamica-plus",
+      "issues": [
+        "Marque 'De'Longhi' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-lg-s95qr",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "bosch-hmt72g421",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-lg-g6-2026",
+      "issues": [
+        "Prix suspect bas (90€, min attendu: 200€)"
+      ]
+    },
+    {
+      "slug": "apple-iphone15-pro-reconditionne",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "lenovo-ideapad-slim3-chromebook",
+      "issues": [
+        "Marque 'Lenovo' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-uppababy-ridge",
+      "issues": [
+        "Marque 'UPPAbaby' absente du nom"
+      ]
+    },
+    {
+      "slug": "aeg-mbe2658sem",
+      "issues": [
+        "Marque 'AEG' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-samsung-rf23bb8900h",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "asus-zenbook14-oled-intel",
+      "issues": [
+        "Marque 'ASUS' absente du nom"
+      ]
+    },
+    {
+      "slug": "tefal-tefal-easy-fry-grill-steam-ey801815-6-5-l",
+      "issues": [
+        "Marque 'Tefal' absente du nom"
+      ]
+    },
+    {
+      "slug": "deebot-t30s-pro-omni",
+      "issues": [
+        "Marque 'Ecovacs' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-haier-htr3619fnmi",
+      "issues": [
+        "Marque 'Haier' absente du nom"
+      ]
+    },
+    {
+      "slug": "whirlpool-mwp338sx",
+      "issues": [
+        "Marque 'Whirlpool' absente du nom"
+      ]
+    },
+    {
+      "slug": "electrolux-lms4253tmk",
+      "issues": [
+        "Marque 'Electrolux' absente du nom"
+      ]
+    },
+    {
+      "slug": "nettoyant-pour-matelas-nordicare-500ml-spray-désodorisant-efficace-nettoyant-pou",
+      "issues": [
+        "Prix suspect bas (16€, min attendu: 100€)"
+      ]
+    },
+    {
+      "slug": "powerdetect-nevertouch-pro",
+      "issues": [
+        "Marque 'Shark' absente du nom"
+      ]
+    },
+    {
+      "slug": "netatmo-presence-interieure",
+      "issues": [
+        "Marque 'Netatmo' absente du nom"
+      ]
+    },
+    {
+      "slug": "z60-ultra-roller-complete",
+      "issues": [
+        "Marque 'MOVA' absente du nom"
+      ]
+    },
+    {
+      "slug": "panasonic-nn-ds59n",
+      "issues": [
+        "Marque 'Panasonic' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-bosch-kgn39aiat",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "panasonic-nn-cd87k",
+      "issues": [
+        "Marque 'Panasonic' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-joie-evalite-duo",
+      "issues": [
+        "Marque 'Joie' absente du nom"
+      ]
+    },
+    {
+      "slug": "tineco-floor-one-s5",
+      "issues": [
+        "Marque 'Tineco' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-cybex-eezy-s-twist-4",
+      "issues": [
+        "Marque 'Cybex' absente du nom"
+      ]
+    },
+    {
+      "slug": "de'longhi-delonghi-magnifica-evo-ecam290.61.sb-b0bhls",
+      "issues": [
+        "Description trop courte (47 chars)",
+        "Marque 'De'Longhi' absente du nom"
+      ]
+    },
+    {
+      "slug": "bosch-wax32eh0ff",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-galaxys26",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "cave-a-vin-vinvautz-cave-vin-vinvautz-52",
+      "issues": [
+        "Marque 'Vinvautz' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-bosch-smv6zcx42e",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "canon-pixma-ts5350i",
+      "issues": [
+        "Marque 'Canon' absente du nom"
+      ]
+    },
+    {
+      "slug": "avintage-cave-à-vin-de-service-1-temp-50-bouteilles-noir",
+      "issues": [
+        "Marque 'Avintage' absente du nom"
+      ]
+    },
+    {
+      "slug": "fairphone-5",
+      "issues": [
+        "Nom trop court (1 chars)",
+        "Marque 'Fairphone' absente du nom"
+      ]
+    },
+    {
+      "slug": "qrevo-curv",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "moma-bikes-vtt-electrique-vae-emtb-29-full-suspension",
+      "issues": [
+        "Marque 'Moma' absente du nom"
+      ]
+    },
+    {
+      "slug": "bosch-bms100-thermostat-connecte-intelligent",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "thermostat-connecté-intelligent-wifi",
+      "issues": [
+        "Marque 'Mysa' absente du nom"
+      ]
+    },
+    {
+      "slug": "lenovo-ideapad-slim5-gen9",
+      "issues": [
+        "Marque 'Lenovo' absente du nom"
+      ]
+    },
+    {
+      "slug": "matelas-à-mémoire-de-forme-160x200-cm-1",
+      "issues": [
+        "Marque 'Générique' absente du nom"
+      ]
+    },
+    {
+      "slug": "motorola-edge60-fusion",
+      "issues": [
+        "Marque 'Motorola' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-sony-ht-s400",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "q8-max",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "pantum-bm2309w-imprimante-laser-multifonction-noir-et-blanc-connexion-wifi-direc",
+      "issues": [
+        "Marque 'PANTUM' absente du nom"
+      ]
+    },
+    {
+      "slug": "oneplus-13",
+      "issues": [
+        "Nom trop court (2 chars)",
+        "Marque 'OnePlus' absente du nom"
+      ]
+    },
+    {
+      "slug": "miele-m7140-tc",
+      "issues": [
+        "Marque 'Miele' absente du nom"
+      ]
+    },
+    {
+      "slug": "miele-wca030",
+      "issues": [
+        "Marque 'Miele' absente du nom"
+      ]
+    },
+    {
+      "slug": "lg-lg-cordzero-a9k-pro3b",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "electrolux-ew8f168psa",
+      "issues": [
+        "Marque 'Electrolux' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-galaxya17-5g",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-sony-ht-a3000",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "kitchenaid-artisan-robot-de-cuisine-66-l-onyx-noir-amazon",
+      "issues": [
+        "Marque 'KitchenAid' absente du nom"
+      ]
+    },
+    {
+      "slug": "pure-air3-pro-trottinette-electrique-adulte-scooter-electrique",
+      "issues": [
+        "Marque 'The' absente du nom"
+      ]
+    },
+    {
+      "slug": "imprimante-jet-dencre-couleur-haute-performance",
+      "issues": [
+        "Marque 'HP' absente du nom"
+      ]
+    },
+    {
+      "slug": "dell-xps-13-plus-2024",
+      "issues": [
+        "Marque 'Dell' absente du nom"
+      ]
+    },
+    {
+      "slug": "trottinette-pure-pure-air-pro-lr",
+      "issues": [
+        "Marque 'Pure' absente du nom"
+      ]
+    },
+    {
+      "slug": "shark-hz500eu-avec-fil",
+      "issues": [
+        "Marque 'Shark' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-jbl-bar-2-0-aio",
+      "issues": [
+        "Marque 'JBL' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-ms23k3515ak",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-samsung-hw-s60b",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "toshiba-mw2-ag23pf",
+      "issues": [
+        "Marque 'Toshiba' absente du nom"
+      ]
+    },
+    {
+      "slug": "pro-breeze-purificateur-dair-avec-lampe-uv-c-et-ioniseur-amazon",
+      "issues": [
+        "Marque 'Pro' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-thule-urban-glide-2",
+      "issues": [
+        "Marque 'Thule' absente du nom"
+      ]
+    },
+    {
+      "slug": "ninja-3-en-1-robot-de-cuisine-et-mixeur-1200w-bn800eu-amazon",
+      "issues": [
+        "Marque 'Ninja' absente du nom"
+      ]
+    },
+    {
+      "slug": "minimotors-trottinette-electrique-adulte-dualtron-aminia-52-v-13",
+      "issues": [
+        "Marque 'Minimotors' absente du nom"
+      ]
+    },
+    {
+      "slug": "velo-electrique-moma-moma-e-motion-7",
+      "issues": [
+        "Marque 'Moma' absente du nom"
+      ]
+    },
+    {
+      "slug": "saros-z70",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "trottinette-segway-segway-ninebot-d38u",
+      "issues": [
+        "Marque 'Segway' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-macbook-pro-14-m4",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "jura-x8",
+      "issues": [
+        "Marque 'Jura' absente du nom"
+      ]
+    },
+    {
+      "slug": "avintage-cave-à-vin-de-service-1-temp-22-bouteilles-noir",
+      "issues": [
+        "Marque 'Avintage' absente du nom"
+      ]
+    },
+    {
+      "slug": "segway-e3-pro-e-trottinette-electrique-vitesse-maximale-de-25-km",
+      "issues": [
+        "Marque 'Segway' absente du nom"
+      ]
+    },
+    {
+      "slug": "la-sommeliere-cave-de-vieillissement-pro110n-107-bouteilles",
+      "issues": [
+        "Marque 'La' absente du nom"
+      ]
+    },
+    {
+      "slug": "pure-advance-flex-trottinette-electrique-adulte-position-amazon",
+      "issues": [
+        "Marque 'Large' absente du nom"
+      ]
+    },
+    {
+      "slug": "deebot-x11-omnicyclone",
+      "issues": [
+        "Marque 'Ecovacs' absente du nom"
+      ]
+    },
+    {
+      "slug": "lenovo-yoga7-2in1",
+      "issues": [
+        "Marque 'Lenovo' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-macbook-air-13-m4",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-jbl-bar-9-1",
+      "issues": [
+        "Marque 'JBL' absente du nom"
+      ]
+    },
+    {
+      "slug": "whirlpool-w7-mw461",
+      "issues": [
+        "Marque 'Whirlpool' absente du nom"
+      ]
+    },
+    {
+      "slug": "whirlpool-fscr10434",
+      "issues": [
+        "Marque 'Filterwelt' absente du nom"
+      ]
+    },
+    {
+      "slug": "bomann-gs-7340-stand-gefrierschrank-168l-4-schubladen",
+      "issues": [
+        "Marque 'Bomann' absente du nom"
+      ]
+    },
+    {
+      "slug": "thermostat-connecté-intelligent-wifi-4",
+      "issues": [
+        "Marque 'Inconnue' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-trottinette-electrique-4-lite-2eme-edition-de-pliable",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "purificateur-air-prosenic-prosenic-p30",
+      "issues": [
+        "Marque 'Prosenic' absente du nom"
+      ]
+    },
+    {
+      "slug": "trottinette-segway-segway-ninebot-g2-max",
+      "issues": [
+        "Marque 'Segway' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-galaxya16-5g",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "tineco-pure-one-s70",
+      "issues": [
+        "Marque 'Tineco' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-iphonese4",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "magimix-robot-de-cuisine-multifonction-3200-bol-26l-plus-presse",
+      "issues": [
+        "Marque 'Magimix' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-sonos-arc-ultra",
+      "issues": [
+        "Marque 'Sonos' absente du nom"
+      ]
+    },
+    {
+      "slug": "graciella-fit-for-xiaomi-qicycle-ef1-velo-electrique-barre-arriere",
+      "issues": [
+        "Marque 'Graciella' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-iphone17-pro",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-lg-c4-2024",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-liebherr-cbnsdc-5753-prime",
+      "issues": [
+        "Marque 'Liebherr' absente du nom"
+      ]
+    },
+    {
+      "slug": "ninja-ninja-foodi-max-dual-zone-af400eu-9-5-l",
+      "issues": [
+        "Marque 'Ninja' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyson-v15-detect-absolute",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-uppababy-vista-v2",
+      "issues": [
+        "Marque 'UPPAbaby' absente du nom"
+      ]
+    },
+    {
+      "slug": "nespresso-nespresso-vertuo-pop-d72-liquorice-black-b0dvd6",
+      "issues": [
+        "Marque 'Nespresso' absente du nom"
+      ]
+    },
+    {
+      "slug": "romo-s",
+      "issues": [
+        "Marque 'DJI' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-galaxys25-plus",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-nuna-mixx-next",
+      "issues": [
+        "Marque 'Nuna' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-joolz-aer-plus",
+      "issues": [
+        "Nom trop court (4 chars)",
+        "Marque 'Joolz' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-samsung-s95f-65-77-83",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-bespoke-jet-ai",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-mi-air-purifier-3c-eu-version-purificador-de-aire-conexión",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-sony-bravia-8-ii-2025",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-electric-scooter-5-trottinette-electrique-adulte-amazon",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "audio-technica-audio-technica-ath-m50xbt2",
+      "issues": [
+        "Marque 'Audio-Technica' absente du nom"
+      ]
+    },
+    {
+      "slug": "kalamera-cave-a-vin-nouvelle-version-45-bouteilles-amazon",
+      "issues": [
+        "Marque 'Kalamera' absente du nom"
+      ]
+    },
+    {
+      "slug": "l10s-ultra-gen-2",
+      "issues": [
+        "Marque 'Dreame' absente du nom"
+      ]
+    },
+    {
+      "slug": "haier-haier-hfw7720enmp-4-portes-477l-b091cn",
+      "issues": [
+        "Marque 'Haier' absente du nom"
+      ]
+    },
+    {
+      "slug": "jura-jura-e8-ec-expresso-automatique",
+      "issues": [
+        "Marque 'Jura' absente du nom"
+      ]
+    },
+    {
+      "slug": "moma-bikes-vtt-electrique-va-pro-moteur-central-full-suspension",
+      "issues": [
+        "Marque 'Moma' absente du nom"
+      ]
+    },
+    {
+      "slug": "hp-laserjet-m236dw",
+      "issues": [
+        "Marque 'HP' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-gb-pockit-plus",
+      "issues": [
+        "Marque 'GB' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-sony-bravia-8-2024",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "friteuse-air-ninja-ninja-foodi-7-en-1-af350eu",
+      "issues": [
+        "Marque 'Ninja' absente du nom"
+      ]
+    },
+    {
+      "slug": "google-nest-thermostat-connecte-3e-gen",
+      "issues": [
+        "Marque 'Google Nest' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-samsung-galaxy-s25-256-go",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "dualtron-trottinette-electrique-adulte-pop-simple-moteur-52v",
+      "issues": [
+        "Marque 'Dualtron' absente du nom"
+      ]
+    },
+    {
+      "slug": "magimix-robot-de-cuisine-multifonction-5200-xl-hachoir-blender",
+      "issues": [
+        "Marque 'Magimix' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyu-c6-velo-electrique-26-velo-electrique-pour-adultes-36v-12",
+      "issues": [
+        "Marque 'Dyu' absente du nom"
+      ]
+    },
+    {
+      "slug": "fujifilm-instax-mini-film-2x10",
+      "issues": [
+        "Marque 'Fujifilm' absente du nom"
+      ]
+    },
+    {
+      "slug": "oreiller-hybride-simba-mousse-à-mémoire-de-forme-nanotubes-technologie-stratos-5",
+      "issues": [
+        "Prix suspect bas (43€, min attendu: 100€)",
+        "Marque 'SIMBA' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-whirlpool-wnf9-t3bx",
+      "issues": [
+        "Marque 'Whirlpool' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-siemens-sn85ex56ce",
+      "issues": [
+        "Marque 'Siemens' absente du nom"
+      ]
+    },
+    {
+      "slug": "himiway-city-pedelec-e-bike-moteur-250w-femmes-hommes-26",
+      "issues": [
+        "Marque 'Himiway' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-caméra-de-surveillance-magnétique-2k-blanc",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "fujifilm-instax-mini-12-appareil-photo-instantané-blanc-pack-iconique",
+      "issues": [
+        "Marque 'FUJIFILM' absente du nom"
+      ]
+    },
+    {
+      "slug": "matelas-mémoire-de-forme-premium",
+      "issues": [
+        "Marque 'Generic' absente du nom"
+      ]
+    },
+    {
+      "slug": "segway-ninebot-e2-e-trottinette-electrique-amazon",
+      "issues": [
+        "Marque 'Segway' absente du nom"
+      ]
+    },
+    {
+      "slug": "ncm-kit-de-conversion-pedelec-pour-velo-electrique-cadre-de",
+      "issues": [
+        "Marque 'NCM' absente du nom"
+      ]
+    },
+    {
+      "slug": "brother-hl-1430-imprimante-laser-noir-et-blanc-a4",
+      "issues": [
+        "Marque 'Brother' absente du nom"
+      ]
+    },
+    {
+      "slug": "neff-c17wr00n0",
+      "issues": [
+        "Marque 'Neff' absente du nom"
+      ]
+    },
+    {
+      "slug": "honor-magic7-pro",
+      "issues": [
+        "Marque 'Honor' absente du nom"
+      ]
+    },
+    {
+      "slug": "moulinex-fp5441-fp544111-robot-culinaire-amazon",
+      "issues": [
+        "Marque 'Moulinex' absente du nom"
+      ]
+    },
+    {
+      "slug": "kalamera-cave-a-vin-18-bouteilles-cave-à-vin-vieillissement-ecran",
+      "issues": [
+        "Marque 'Kalamera' absente du nom"
+      ]
+    },
+    {
+      "slug": "avintage-av53cdz-cave-à-vin-50-bouteilles-classe-618251",
+      "issues": [
+        "Marque 'Avintage' absente du nom"
+      ]
+    },
+    {
+      "slug": "scoovy-compatible-avec-bennche-pour-cowboy-amazonfr",
+      "issues": [
+        "Marque 'Scoovy' absente du nom"
+      ]
+    },
+    {
+      "slug": "delonghi-magnifica-evo-lattecream",
+      "issues": [
+        "Marque 'De'Longhi' absente du nom"
+      ]
+    },
+    {
+      "slug": "velo-electrique-fiido-fiido-x",
+      "issues": [
+        "Marque 'Fiido' absente du nom"
+      ]
+    },
+    {
+      "slug": "trottinette-segway-segway-ninebot-f2-pro",
+      "issues": [
+        "Marque 'Segway' absente du nom"
+      ]
+    },
+    {
+      "slug": "winix-a330-purificateur-dair-pour-allergies-et-pm25-cadr-228-m³",
+      "issues": [
+        "Marque 'Winix' absente du nom"
+      ]
+    },
+    {
+      "slug": "krups-krups-ea907d-evidence-one-inox-b07x9z",
+      "issues": [
+        "Marque 'Krups' absente du nom"
+      ]
+    },
+    {
+      "slug": "kenwood-multipro-compact-fdm313ss-robot-de-cuisine-compact",
+      "issues": [
+        "Marque 'Kenwood' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-miele-kfn-4795-cd",
+      "issues": [
+        "Marque 'Miele' absente du nom"
+      ]
+    },
+    {
+      "slug": "nespresso-vertuo-pop",
+      "issues": [
+        "Marque 'Nespresso' absente du nom"
+      ]
+    },
+    {
+      "slug": "moulinex-robot-cuisine-multifonctions-doubleforce-silver-fp827e10",
+      "issues": [
+        "Marque 'Moulinex' absente du nom"
+      ]
+    },
+    {
+      "slug": "moulinex-robot-multifonction-doubleforce-fp821811-amazon",
+      "issues": [
+        "Marque 'Moulinex' absente du nom"
+      ]
+    },
+    {
+      "slug": "kitchenaid-artisan-robot-pâtissier-48l-noir-avec-3-accessoires",
+      "issues": [
+        "Marque 'KitchenAid' absente du nom"
+      ]
+    },
+    {
+      "slug": "philips-philips-serie-3200-ep3241-54",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "sharp-yc-ms01e-s",
+      "issues": [
+        "Marque 'Sharp' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-linge-bosch-bosch-serie-6-wau28rh9ff",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-ml-2240-imprimante-laser-monochrome-22-ppm",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-sony-sony-bravia-xr-a95l",
+      "issues": [
+        "Prix suspect bas (67€, min attendu: 200€)",
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "julemy-demi-casque-de-moto-retro-cowboy-western-caps-pour",
+      "issues": [
+        "Marque 'Julemy' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyson-v12-detect-slim",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "velo-electrique-ncm-ncm-moscow-plus",
+      "issues": [
+        "Marque 'NCM' absente du nom"
+      ]
+    },
+    {
+      "slug": "d10-plus-gen-2",
+      "issues": [
+        "Marque 'Dreame' absente du nom"
+      ]
+    },
+    {
+      "slug": "schneider-electric-wiser-thermostat-connecte",
+      "issues": [
+        "Marque 'Schneider Electric' absente du nom"
+      ]
+    },
+    {
+      "slug": "v50-ultra-complete",
+      "issues": [
+        "Marque 'MOVA' absente du nom"
+      ]
+    },
+    {
+      "slug": "trottinette-navee-navee-n65",
+      "issues": [
+        "Marque 'Navee' absente du nom"
+      ]
+    },
+    {
+      "slug": "canon-pixma-tr8550",
+      "issues": [
+        "Marque 'Canon' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-sonos-arc",
+      "issues": [
+        "Nom trop court (3 chars)",
+        "Marque 'Sonos' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-apple-airpods-max-usb-c",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "matelas-emma-hybride",
+      "issues": [
+        "Marque 'Emma' absente du nom"
+      ]
+    },
+    {
+      "slug": "delonghi-magnifica-start",
+      "issues": [
+        "Marque 'De'Longhi' absente du nom"
+      ]
+    },
+    {
+      "slug": "beats-beats-studio-pro",
+      "issues": [
+        "Marque 'Beats' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-15t",
+      "issues": [
+        "Nom trop court (3 chars)",
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "delonghi-dedica-style",
+      "issues": [
+        "Marque 'De'Longhi' absente du nom"
+      ]
+    },
+    {
+      "slug": "honeywell-home-t6-thermostat-intelligent-wifi",
+      "issues": [
+        "Marque 'Honeywell Home' absente du nom"
+      ]
+    },
+    {
+      "slug": "lenovo-thinkpad-x1-carbon-gen12",
+      "issues": [
+        "Marque 'Lenovo' absente du nom"
+      ]
+    },
+    {
+      "slug": "melitta-melitta-barista-smart-ts-f85/0-102-b077zk",
+      "issues": [
+        "Marque 'Melitta' absente du nom"
+      ]
+    },
+    {
+      "slug": "winix-purificateur-dair-5300-2-hepa-charbon-actif-amazon",
+      "issues": [
+        "Marque 'Winix' absente du nom"
+      ]
+    },
+    {
+      "slug": "midea-am820cmf",
+      "issues": [
+        "Marque 'Midea' absente du nom"
+      ]
+    },
+    {
+      "slug": "hp-envy-14-oled",
+      "issues": [
+        "Marque 'HP' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-miele-g7410sc",
+      "issues": [
+        "Marque 'Miele' absente du nom"
+      ]
+    },
+    {
+      "slug": "sonos-sonos-move-2",
+      "issues": [
+        "Marque 'Sonos' absente du nom"
+      ]
+    },
+    {
+      "slug": "qrevo-curvx",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "rowenta-rowenta-x-force-flex-14-60-rh99c0",
+      "issues": [
+        "Marque 'Rowenta' absente du nom"
+      ]
+    },
+    {
+      "slug": "matelas-mémoire-de-forme-confort-premium",
+      "issues": [
+        "Marque 'Générique' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-samsung-hw-q800d",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "philips-4300-lattego",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "rowenta-x-force-8-60",
+      "issues": [
+        "Marque 'Rowenta' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-yamaha-sr-b30a",
+      "issues": [
+        "Marque 'Yamaha' absente du nom"
+      ]
+    },
+    {
+      "slug": "transtherm-cave-à-vin-multi-usages-3-temperatures-amazon",
+      "issues": [
+        "Marque 'Transtherm' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-stokke-xplory-x",
+      "issues": [
+        "Marque 'Stokke' absente du nom"
+      ]
+    },
+    {
+      "slug": "dell-inspiron-15-3000",
+      "issues": [
+        "Marque 'Dell' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-lg-gbp62pznac",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-mc32db7746k",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "microsoft-surface-laptop7",
+      "issues": [
+        "Marque 'Microsoft' absente du nom"
+      ]
+    },
+    {
+      "slug": "casque-audio-sony-sony-wh-ch720n",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "caméra-de-sécurité-intérieure-sans-fil-2k",
+      "issues": [
+        "Marque 'Generic' absente du nom"
+      ]
+    },
+    {
+      "slug": "robot-cuisine-cosori-cosori-co151",
+      "issues": [
+        "Marque 'Cosori' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-bugaboo-butterfly",
+      "issues": [
+        "Marque 'Bugaboo' absente du nom"
+      ]
+    },
+    {
+      "slug": "asus-rog-zephyrus-g14-2025",
+      "issues": [
+        "Marque 'ASUS' absente du nom"
+      ]
+    },
+    {
+      "slug": "ezviz-eb5-caméra-de-sécurité-solaire-4k-avec-panneau-solaire-intégré-détection-i",
+      "issues": [
+        "Marque 'EZVIZ' absente du nom"
+      ]
+    },
+    {
+      "slug": "sennheiser-sennheiser-momentum-4-wireless",
+      "issues": [
+        "Nom avec répétition suspecte"
+      ]
+    },
+    {
+      "slug": "samsung-galaxy-book4",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "rv30-max-plus",
+      "issues": [
+        "Marque 'TP-Link Tapo' absente du nom"
+      ]
+    },
+    {
+      "slug": "matrix10-ultra",
+      "issues": [
+        "Marque 'Dreame' absente du nom"
+      ]
+    },
+    {
+      "slug": "haier-hw80-b14959tu1",
+      "issues": [
+        "Marque 'Haier' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-jbl-bar-1300x",
+      "issues": [
+        "Marque 'JBL' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-yoyo-plus-occasion",
+      "issues": [
+        "Marque 'Babyzen' absente du nom"
+      ]
+    },
+    {
+      "slug": "marshall-marshall-monitor-iii-anc",
+      "issues": [
+        "Marque 'Marshall' absente du nom"
+      ]
+    },
+    {
+      "slug": "robot-cuisine-kenwood-robot-cuisine-kenwood-chef-xl-titanium",
+      "issues": [
+        "Marque 'Kenwood' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-gorenje-nrk4181cs4-slim-55-cm",
+      "issues": [
+        "Marque 'Gorenje' absente du nom"
+      ]
+    },
+    {
+      "slug": "kalamera-cave-a-vin-nouvelle-version-73-bouteilles-amazon",
+      "issues": [
+        "Marque 'Kalamera' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-hisense-a85n-2024",
+      "issues": [
+        "Marque 'Hisense' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-bw400-pro-set-caméra-de-surveillance-extérieure-wi-fi-vision-nocturne",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "panasonic-nn-gt46kbsug",
+      "issues": [
+        "Marque 'Panasonic' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-cybex-balios-s-lux",
+      "issues": [
+        "Marque 'Cybex' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-lg-s75q",
+      "issues": [
+        "Nom trop court (4 chars)",
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "panasonic-nn-ct57jmbpq",
+      "issues": [
+        "Marque 'Panasonic' absente du nom"
+      ]
+    },
+    {
+      "slug": "q5-pro",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "thermostat-connecté-intelligent-wifi-3",
+      "issues": [
+        "Marque 'Inconnue' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-bosch-sms6zci48e",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "huawei-matebook-d16",
+      "issues": [
+        "Marque 'Huawei' absente du nom"
+      ]
+    },
+    {
+      "slug": "tooefft-fiido-t1-utility-velo-electrique-750-w-batterie-de-rechange",
+      "issues": [
+        "Marque 'Tooefft' absente du nom"
+      ]
+    },
+    {
+      "slug": "lenovo-thinkpad-e14-gen5",
+      "issues": [
+        "Marque 'Lenovo' absente du nom"
+      ]
+    },
+    {
+      "slug": "netatmo-thermostat-connecte-intelligent",
+      "issues": [
+        "Marque 'Netatmo' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-yoyo-complet",
+      "issues": [
+        "Marque 'Babyzen / Stokke' absente du nom"
+      ]
+    },
+    {
+      "slug": "philips-philips-5400-lattego-ep5441/50-b08cbj",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "saros-10",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "aeg-lfr83866ue",
+      "issues": [
+        "Marque 'AEG' absente du nom"
+      ]
+    },
+    {
+      "slug": "roomba-j9",
+      "issues": [
+        "Marque 'iRobot' absente du nom"
+      ]
+    },
+    {
+      "slug": "devialet-devialet-dione",
+      "issues": [
+        "Marque 'Devialet' absente du nom"
+      ]
+    },
+    {
+      "slug": "ninja-detect-power-blender-processor-pro-3-en-1-mixeur-1200w",
+      "issues": [
+        "Marque 'Ninja' absente du nom"
+      ]
+    },
+    {
+      "slug": "x-plorer-serie-240-ai",
+      "issues": [
+        "Marque 'Rowenta' absente du nom"
+      ]
+    },
+    {
+      "slug": "velo-electrique-moma-bikes-e-motion-7",
+      "issues": [
+        "Marque 'Moma Bikes' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-candy-cdw1l952dw",
+      "issues": [
+        "Marque 'Candy' absente du nom"
+      ]
+    },
+    {
+      "slug": "sony-sony-ht-s2000-3-1",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "lg-lg-s95qr-9.1.5-b09sjl",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "sony-sony-srs-xg300",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "imou-a1-4mp-caméra-dôme-micro-intérieure-super-hd-2k",
+      "issues": [
+        "Marque 'Imou' absente du nom"
+      ]
+    },
+    {
+      "slug": "cave-a-vin-transtherm-cave-vin-transtherm-30",
+      "issues": [
+        "Marque 'Transtherm' absente du nom"
+      ]
+    },
+    {
+      "slug": "flow",
+      "issues": [
+        "Nom trop court (4 chars)",
+        "Slug sans tirets: 'flow'",
+        "Marque 'Narwal' absente du nom"
+      ]
+    },
+    {
+      "slug": "de'longhi-delonghi-primadonna-soul-ecam610.74.mb-b09j8p",
+      "issues": [
+        "Description trop courte (48 chars)",
+        "Marque 'De'Longhi' absente du nom"
+      ]
+    },
+    {
+      "slug": "tado-thermostat-connecte-intelligent-v3plus",
+      "issues": [
+        "Marque 'Tado°' absente du nom"
+      ]
+    },
+    {
+      "slug": "freo-x-ultra",
+      "issues": [
+        "Marque 'Narwal' absente du nom"
+      ]
+    },
+    {
+      "slug": "purificateur-air-airoe-ap-t1-purificateur-dair-intelligent",
+      "issues": [
+        "Marque 'AirOE' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-smeg-fc48xpdne-70-cm",
+      "issues": [
+        "Marque 'Smeg' absente du nom"
+      ]
+    },
+    {
+      "slug": "scout-rx3-home-vision-hd",
+      "issues": [
+        "Marque 'Miele' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-baby-jogger-city-mini-gt2",
+      "issues": [
+        "Marque 'Baby Jogger' absente du nom"
+      ]
+    },
+    {
+      "slug": "ezviz-cb8-lite-4mp-caméra-de-surveillance-wifi-extérieure-batterie-2k-ptz-360-vi",
+      "issues": [
+        "Marque 'EZVIZ' absente du nom"
+      ]
+    },
+    {
+      "slug": "velo-electrique-fiido-fiido-d21",
+      "issues": [
+        "Marque 'Fiido' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-mc28h5015ak",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "qrevo-s",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-joie-tourist",
+      "issues": [
+        "Marque 'Joie' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-lg-m4-2024",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-bose-smart-600",
+      "issues": [
+        "Marque 'Bose' absente du nom"
+      ]
+    },
+    {
+      "slug": "hp-deskjet-2810e-imprimante-multifonction-couleur",
+      "issues": [
+        "Marque 'HP' absente du nom"
+      ]
+    },
+    {
+      "slug": "instant-pot-instant-vortex-plus-5.7l-6-en-1",
+      "issues": [
+        "Marque 'Instant Pot' absente du nom"
+      ]
+    },
+    {
+      "slug": "nespresso-nespresso-lattissima-one-f111",
+      "issues": [
+        "Marque 'Nespresso' absente du nom"
+      ]
+    },
+    {
+      "slug": "mobius-60",
+      "issues": [
+        "Marque 'MOVA' absente du nom"
+      ]
+    },
+    {
+      "slug": "qrevo-curv-2-flow",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-electrolux-electrolux-esl4ed18s",
+      "issues": [
+        "Marque 'Electrolux' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-linge-lg-lg-f4wv709s1e",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-hotpoint-hf-9t1i-w",
+      "issues": [
+        "Marque 'Hotpoint' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-aeg-rcb736e5mx",
+      "issues": [
+        "Marque 'AEG' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-samsung-rb38c7b5a12",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-galaxys26-ultra",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "asus-vivobook-go-15",
+      "issues": [
+        "Marque 'ASUS' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-denon-dht-s517",
+      "issues": [
+        "Marque 'Denon' absente du nom"
+      ]
+    },
+    {
+      "slug": "lenovo-ideapad-slim3x",
+      "issues": [
+        "Marque 'Lenovo' absente du nom"
+      ]
+    },
+    {
+      "slug": "dreame-t30-neo",
+      "issues": [
+        "Marque 'Dreame' absente du nom"
+      ]
+    },
+    {
+      "slug": "google-pixel9a",
+      "issues": [
+        "Marque 'Google' absente du nom"
+      ]
+    },
+    {
+      "slug": "panasonic-nn-cs89lb",
+      "issues": [
+        "Marque 'Panasonic' absente du nom"
+      ]
+    },
+    {
+      "slug": "climadiff-cave-à-vin-cepage108-108-bouteilles-simple-zone",
+      "issues": [
+        "Marque 'Climadiff' absente du nom"
+      ]
+    },
+    {
+      "slug": "magimix-robot-de-cuisine-multifonction-connecte-cook-expert",
+      "issues": [
+        "Marque 'Magimix' absente du nom"
+      ]
+    },
+    {
+      "slug": "friteuse-air-philips-philips-airfryer-essential-hd9252",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-galaxya36",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "freo-z10",
+      "issues": [
+        "Marque 'Narwal' absente du nom"
+      ]
+    },
+    {
+      "slug": "hp-envy-x360-14",
+      "issues": [
+        "Marque 'HP' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-bugaboo-fox-5",
+      "issues": [
+        "Marque 'Bugaboo' absente du nom"
+      ]
+    },
+    {
+      "slug": "google-google-pixel-10-pro-xl-256-go",
+      "issues": [
+        "Marque 'Google' absente du nom"
+      ]
+    },
+    {
+      "slug": "jbl-jbl-xtreme-4",
+      "issues": [
+        "Marque 'JBL' absente du nom"
+      ]
+    },
+    {
+      "slug": "casque-audio-jbl-jbl-tune-770nc",
+      "issues": [
+        "Marque 'JBL' absente du nom"
+      ]
+    },
+    {
+      "slug": "velo-electrique-xiaomi-himo-c26",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-ww90t534daw",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "whirlpool-mwp253sx",
+      "issues": [
+        "Marque 'Whirlpool' absente du nom"
+      ]
+    },
+    {
+      "slug": "sage-sage-the-barista-express-ses875",
+      "issues": [
+        "Marque 'Sage' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-philips-oled808-2023",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "sony-xperia1-vii",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-redmi-note15-pro",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "purificateur-air-tecnovita-purificateur-dair-tx-120",
+      "issues": [
+        "Marque 'Tecnovita' absente du nom"
+      ]
+    },
+    {
+      "slug": "matelas-mémoire-de-forme-confort-premium-1",
+      "issues": [
+        "Marque 'Générique' absente du nom"
+      ]
+    },
+    {
+      "slug": "velo-electrique-rad-power-rad-power-radrover-6-plus",
+      "issues": [
+        "Marque 'Rad Power' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-smeg-st4512in",
+      "issues": [
+        "Marque 'Smeg' absente du nom"
+      ]
+    },
+    {
+      "slug": "nothing-phone-3a",
+      "issues": [
+        "Marque 'Nothing' absente du nom"
+      ]
+    },
+    {
+      "slug": "toshiba-mw2-mg20p",
+      "issues": [
+        "Marque 'Toshiba' absente du nom"
+      ]
+    },
+    {
+      "slug": "acer-aspire-5-a515",
+      "issues": [
+        "Marque 'Acer' absente du nom"
+      ]
+    },
+    {
+      "slug": "robot-vacuum-s20",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-macbook-air-15-m4",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-nuna-demi-grow",
+      "issues": [
+        "Marque 'Nuna' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-linge-samsung-samsung-ww11dg5b25ah",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "matelas-140x190-cm-mémoire-de-forme",
+      "issues": [
+        "Marque 'Générique' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-samsung-hw-q930d",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-galaxya56",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "epson-ecotant-et-2870-imprimante-à-réservoir-dencre-maison-et-petit-bureau-wi-fi",
+      "issues": [
+        "Marque 'Epson' absente du nom"
+      ]
+    },
+    {
+      "slug": "bose-bose-soundlink-flex-2",
+      "issues": [
+        "Marque 'Bose' absente du nom"
+      ]
+    },
+    {
+      "slug": "m14",
+      "issues": [
+        "Nom trop court (4 chars)",
+        "Slug sans tirets: 'm14'",
+        "Marque 'Yeedi' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-yoyo-connect",
+      "issues": [
+        "Marque 'Babyzen / Stokke' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-iphone16-pro-reconditionne",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "sage-barista-touch",
+      "issues": [
+        "Marque 'Sage' absente du nom"
+      ]
+    },
+    {
+      "slug": "nespresso-vertuo-creatista",
+      "issues": [
+        "Marque 'Nespresso' absente du nom"
+      ]
+    },
+    {
+      "slug": "bissell-powerclean-furguard",
+      "issues": [
+        "Marque 'Bissell' absente du nom"
+      ]
+    },
+    {
+      "slug": "caméra-de-sécurité-extérieure-sans-fil",
+      "issues": [
+        "Marque 'REOLINK' absente du nom"
+      ]
+    },
+    {
+      "slug": "caméra-de-sécurité-sans-fil-hd-1080p",
+      "issues": [
+        "Marque 'Inconnue' absente du nom"
+      ]
+    },
+    {
+      "slug": "bose-bose-quietcomfort-earbuds-ii",
+      "issues": [
+        "Marque 'Bose' absente du nom"
+      ]
+    },
+    {
+      "slug": "spotscrub-ai-robot",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "bodum-chambord-1l",
+      "issues": [
+        "Marque 'Bodum' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-electrolux-lnt7me34g2",
+      "issues": [
+        "Marque 'Electrolux' absente du nom"
+      ]
+    },
+    {
+      "slug": "acer-aspire-3-a315",
+      "issues": [
+        "Marque 'Acer' absente du nom"
+      ]
+    },
+    {
+      "slug": "dualtron-trottinette-electrique-adulte-storm-limited-84v-45ah",
+      "issues": [
+        "Marque 'Dualtron' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-lg-c5-2025",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-sonos-beam-gen2",
+      "issues": [
+        "Marque 'Sonos' absente du nom"
+      ]
+    },
+    {
+      "slug": "bomann-ksw-345-vin-refrigerateur-autonomeb189-kwhan636",
+      "issues": [
+        "Marque 'Bomann' absente du nom"
+      ]
+    },
+    {
+      "slug": "comfee-cmw20g",
+      "issues": [
+        "Marque 'Comfee' absente du nom"
+      ]
+    },
+    {
+      "slug": "denon-denon-home-sound-bar-550",
+      "issues": [
+        "Marque 'Denon' absente du nom"
+      ]
+    },
+    {
+      "slug": "moma-bikes-velo-electrique",
+      "issues": [
+        "Marque 'Moma' absente du nom"
+      ]
+    },
+    {
+      "slug": "xiaomi-mi-vacuum-g10",
+      "issues": [
+        "Marque 'Xiaomi' absente du nom"
+      ]
+    },
+    {
+      "slug": "s8-maxv-ultra",
+      "issues": [
+        "Marque 'Roborock' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-bose-smart-ultra",
+      "issues": [
+        "Marque 'Bose' absente du nom"
+      ]
+    },
+    {
+      "slug": "delonghi-specialista-arte",
+      "issues": [
+        "Marque 'De'Longhi' absente du nom"
+      ]
+    },
+    {
+      "slug": "bespoke-jet-bot-combo-ai",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "tineco-pure-one-s70-pro",
+      "issues": [
+        "Marque 'Tineco' absente du nom"
+      ]
+    },
+    {
+      "slug": "friteuse-air-tefal-tefal-easy-fry-ey2018",
+      "issues": [
+        "Marque 'Tefal' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-apple-iphone-16-pro-max-512-go",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "omni-e25",
+      "issues": [
+        "Marque 'Eufy' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-lg-b5-2025",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "tv-oled-samsung-s90f-2025",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-gorenje-nrc619eaxl4",
+      "issues": [
+        "Marque 'Gorenje' absente du nom"
+      ]
+    },
+    {
+      "slug": "bose-bose-quietcomfort-45",
+      "issues": [
+        "Marque 'Bose' absente du nom"
+      ]
+    },
+    {
+      "slug": "de'longhi-delonghi-magnifica-start-ecam220.21.b-b0fdgf",
+      "issues": [
+        "Description trop courte (48 chars)",
+        "Marque 'De'Longhi' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-miele-kfn-4395-dd",
+      "issues": [
+        "Marque 'Miele' absente du nom"
+      ]
+    },
+    {
+      "slug": "indesit-mtwe-91284-w",
+      "issues": [
+        "Marque 'Indesit' absente du nom"
+      ]
+    },
+    {
+      "slug": "hotpoint-nsws-943c-ws",
+      "issues": [
+        "Marque 'Hotpoint' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-electrolux-eem88420w",
+      "issues": [
+        "Prix suspect bas (198€, min attendu: 250€)",
+        "Marque 'Electrolux' absente du nom"
+      ]
+    },
+    {
+      "slug": "poussette-bugaboo-dragonfly",
+      "issues": [
+        "Marque 'Bugaboo' absente du nom"
+      ]
+    },
+    {
+      "slug": "bose-bose-soundlink-max",
+      "issues": [
+        "Marque 'Bose' absente du nom"
+      ]
+    },
+    {
+      "slug": "melitta-barista-ts-smart",
+      "issues": [
+        "Marque 'Melitta' absente du nom"
+      ]
+    },
+    {
+      "slug": "lave-vaisselle-bosch-bosch-serie-4-smv46mx01e",
+      "issues": [
+        "Marque 'Bosch' absente du nom"
+      ]
+    },
+    {
+      "slug": "brother-hl-l2350dw",
+      "issues": [
+        "Marque 'Epson' absente du nom"
+      ]
+    },
+    {
+      "slug": "dreame-z30",
+      "issues": [
+        "Nom trop court (3 chars)",
+        "Marque 'Dreame' absente du nom"
+      ]
+    },
+    {
+      "slug": "hp-deskjet-2820e-imprimante-multifonction-jet-dencre-couleur-wifi",
+      "issues": [
+        "Marque 'HP' absente du nom"
+      ]
+    },
+    {
+      "slug": "barre-son-samsung-hw-q990d",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "bissell-crosswave-cordless",
+      "issues": [
+        "Marque 'Bissell' absente du nom"
+      ]
+    },
+    {
+      "slug": "krups-krups-sensation-milk-ea912e10",
+      "issues": [
+        "Marque 'Krups' absente du nom"
+      ]
+    },
+    {
+      "slug": "combo-liebherr-cbnd-5223",
+      "issues": [
+        "Marque 'Liebherr' absente du nom"
+      ]
+    },
+    {
+      "slug": "xerox-workcentre-3315-imprimante-laser-multifonction-mono",
+      "issues": [
+        "Marque 'Xerox' absente du nom"
+      ]
+    },
+    {
+      "slug": "sony-sony-wf-1000xm5",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "matelas-à-mémoire-de-forme-160x200-cm",
+      "issues": [
+        "Marque 'Générique' absente du nom"
+      ]
+    },
+    {
+      "slug": "philips-philips-3200-ep3241-lattego-b07m8j",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "nespresso-nespresso-vertuo-pop-d72-b0b8ds",
+      "issues": [
+        "Marque 'Nespresso' absente du nom"
+      ]
+    },
+    {
+      "slug": "robot-cuisine-kitchenaid-artisan-5ksm175",
+      "issues": [
+        "Marque 'KitchenAid' absente du nom"
+      ]
+    },
+    {
+      "slug": "moulinex-moulinex-easy-fry-max-ez801d15-6l",
+      "issues": [
+        "Marque 'Moulinex' absente du nom"
+      ]
+    },
+    {
+      "slug": "google-google-pixel-9-pro-256-go",
+      "issues": [
+        "Marque 'Google' absente du nom"
+      ]
+    },
+    {
+      "slug": "nespresso-lattissima-one",
+      "issues": [
+        "Marque 'Nespresso' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-macbook-pro-14-m4pro",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "jbl-jbl-tour-one-m2",
+      "issues": [
+        "Marque 'JBL' absente du nom"
+      ]
+    },
+    {
+      "slug": "lg-neochef-ms2535gib",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    },
+    {
+      "slug": "cosori-cosori-air-fryer-lite-3.8l",
+      "issues": [
+        "Marque 'Cosori' absente du nom"
+      ]
+    },
+    {
+      "slug": "nespresso-nespresso-vertuo-next-env120",
+      "issues": [
+        "Marque 'Nespresso' absente du nom"
+      ]
+    },
+    {
+      "slug": "ninja-ninja-foodi-dual-zone-af300eu-7-6-l",
+      "issues": [
+        "Marque 'Ninja' absente du nom"
+      ]
+    },
+    {
+      "slug": "cosori-cosori-pro-le-c158-af-4-7-l",
+      "issues": [
+        "Marque 'Cosori' absente du nom"
+      ]
+    },
+    {
+      "slug": "sony-sony-wh-1000xm5",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-apple-iphone-16-pro-128-go",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "samsung-samsung-galaxy-s25-ultra-256-go",
+      "issues": [
+        "Marque 'Samsung' absente du nom"
+      ]
+    },
+    {
+      "slug": "delonghi-delonghi-magnifica-s-ecam11-112-b",
+      "issues": [
+        "Marque 'DeLonghi' absente du nom"
+      ]
+    },
+    {
+      "slug": "sony-sony-wh-1000xm4",
+      "issues": [
+        "Marque 'Sony' absente du nom"
+      ]
+    },
+    {
+      "slug": "dyson-dyson-v12-detect-slim",
+      "issues": [
+        "Marque 'Dyson' absente du nom"
+      ]
+    },
+    {
+      "slug": "philips-philips-airfryer-3000-hd9252",
+      "issues": [
+        "Marque 'Philips' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-apple-airpods-pro-2-usb-c",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "apple-apple-iphone-16-128-go",
+      "issues": [
+        "Marque 'Apple' absente du nom"
+      ]
+    },
+    {
+      "slug": "lg-lg-oled-c4-55-pouces-2024-b0cgcc",
+      "issues": [
+        "Marque 'LG' absente du nom"
+      ]
+    }
+  ]
+}

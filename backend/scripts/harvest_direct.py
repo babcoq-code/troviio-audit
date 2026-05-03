@@ -16,7 +16,7 @@ HEADERS = {
     "Accept-Language": "fr-FR,fr;q=0.9",
 }
 
-SUPABASE_URL = "https://uukshxztoztkwxuuvqzc.supabase.co"
+SUPABASE_URL = "os.getenv("SUPABASE_URL", "")"
 SUPABASE_SERVICE_KEY = "SUPABASE_SERVICE_KEY_PLACEHOLDER"
 
 # ─── Mapping constructeurs → URLs possibles ─────────────────────────────────

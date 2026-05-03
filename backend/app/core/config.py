@@ -46,7 +46,7 @@ class Settings:
     FIRECRAWL_API_KEY: str = os.getenv("FIRECRAWL_API_KEY", "")
 
     # Amazon
-    AMAZON_AFFILIATE_TAG: str = os.getenv("AMAZON_AFFILIATE_TAG", "picksy-21")
+    AMAZON_AFFILIATE_TAG: str = os.getenv("AMAZON_AFFILIATE_TAG", "troviio-21")
 
 
 @lru_cache(maxsize=1)

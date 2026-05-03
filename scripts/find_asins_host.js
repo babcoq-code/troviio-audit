@@ -1,7 +1,7 @@
 const { chromium } = require('playwright');
 const { createClient } = require('@supabase/supabase-js');
 
-const SUPABASE_URL = 'https://uukshxztoztkwxuuvqzc.supabase.co';
+const SUPABASE_URL = 'os.getenv("SUPABASE_URL", "")';
 const SUPABASE_KEY = 'SUPABASE_SERVICE_KEY_PLACEHOLDER';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 

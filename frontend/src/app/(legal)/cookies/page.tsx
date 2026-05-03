@@ -1,13 +1,25 @@
 import { siteConfig } from "@/lib/site";
 import { LegalPage } from "@/components/legal/LegalPage";
 
+const pageUrl = `https://www.troviio.com/cookies`;
+
 export const metadata = {
   title: `Politique de cookies — ${siteConfig.name}`,
   description: `Politique de cookies de ${siteConfig.name} — types de cookies utilisés, finalités et paramétrage de vos préférences.`,
   robots: { index: true, follow: true },
+  alternates: { canonical: pageUrl },
   openGraph: {
     title: `Politique de cookies — ${siteConfig.name}`,
-    description: `Politique de cookies de ${siteConfig.name} — types de cookies utilisés, finalités et paramétrage.`,
+    description: `Politique de cookies de ${siteConfig.name} — types de cookies utilisés, finalités et paramétrage de vos préférences.`,
+    url: pageUrl,
+    siteName: siteConfig.name,
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Politique de cookies — ${siteConfig.name}`,
+    description: `Politique de cookies de ${siteConfig.name} — types de cookies utilisés, finalités et paramétrage de vos préférences.`,
   },
 };
 

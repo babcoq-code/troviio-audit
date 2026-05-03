@@ -32,10 +32,76 @@ def generate_result_id() -> str:
 
 async def enrich_recommendations(recommendations: List[dict], supabase_client) -> List[dict]:
     """
-    Croise les recommandations IA (name + brand) avec la vue v_products_published.
+    Croise les recommandations IA (name + brand) avec la table products.
     Fusion des données pour ajouter image_url, specs, affiliate_url, use_case_scores…
     """
     enriched = []
+
+    # Clés standard pour use_case_scores — normalisées
+    STANDARD_USE_CASE_KEYS = ["qualite_prix", "performance", "design", "durabilite", "innovation"]
+
+    def normalize_scores(scores: dict) -> dict:
+        """Normalise n'importe quelles clés de use_case_scores vers les 5 standards."""
+        if not scores or not isinstance(scores, dict):
+            return {k: 0 for k in STANDARD_USE_CASE_KEYS}
+
+        # Mapping des clés alternatives (français/anglais) vers les standards
+        KEY_MAP = {
+            "qualite_prix": "qualite_prix",
+            "qualité_prix": "qualite_prix",
+            "rapport qualité prix": "qualite_prix",
+            "rapport qualite prix": "qualite_prix",
+            "value": "qualite_prix",
+            "price quality": "qualite_prix",
+            "performance": "performance",
+            "performances": "performance",
+            "efficacité": "performance",
+            "efficacite": "performance",
+            "efficiency": "performance",
+            "puissance": "performance",
+            "design": "design",
+            "style": "design",
+            "look": "design",
+            "apparence": "design",
+            "esthetique": "design",
+            "esthétique": "design",
+            "durabilite": "durabilite",
+            "durabilité": "durabilite",
+            "durability": "durabilite",
+            "qualité": "durabilite",
+            "qualite": "durabilite",
+            "fiabilité": "durabilite",
+            "fiabilite": "durabilite",
+            "solidité": "durabilite",
+            "solidite": "durabilite",
+            "build quality": "durabilite",
+            "materiaux": "durabilite",
+            "matériaux": "durabilite",
+            "innovation": "innovation",
+            "technologie": "innovation",
+            "features": "innovation",
+            "fonctionnalités": "innovation",
+            "fonctionnalites": "innovation",
+        }
+
+        normalized = {}
+        raw_key_lower = {k.lower().replace(" ", "_").replace("-", "_"): k for k in scores.keys()}
+
+        for std_key in STANDARD_USE_CASE_KEYS:
+            found = False
+            for raw_lower, raw_key in raw_key_lower.items():
+                mapped = KEY_MAP.get(raw_lower)
+                if mapped == std_key:
+                    try:
+                        normalized[std_key] = float(scores[raw_key])
+                    except (ValueError, TypeError):
+                        normalized[std_key] = 0
+                    found = True
+                    break
+            if not found:
+                normalized[std_key] = 0
+
+        return normalized
 
     for idx, reco in enumerate(recommendations):
         reco_name = unidecode(reco.get("name", "").lower().strip())
@@ -55,7 +121,7 @@ async def enrich_recommendations(recommendations: List[dict], supabase_client) -
             # Tentative 1 : match exact brand + name partiel (nom nettoyé)
             result = (
                 supabase_client
-                .from_("v_products_published")
+                .table("products")
                 .select("*")
                 .ilike("brand", f"%{reco_brand}%")
                 .ilike("name", f"%{search_name}%")
@@ -69,7 +135,7 @@ async def enrich_recommendations(recommendations: List[dict], supabase_client) -
                 # Tentative 2 : match uniquement sur le nom nettoyé
                 result2 = (
                     supabase_client
-                    .from_("v_products_published")
+                    .table("products")
                     .select("*")
                     .ilike("name", f"%{search_name}%")
                     .limit(1)
@@ -82,7 +148,7 @@ async def enrich_recommendations(recommendations: List[dict], supabase_client) -
                     # Tentative 3 : match sur le nom original (sans nettoyage)
                     result3 = (
                         supabase_client
-                        .from_("v_products_published")
+                        .table("products")
                         .select("*")
                         .ilike("name", f"%{reco_name}%")
                         .limit(1)
@@ -92,23 +158,7 @@ async def enrich_recommendations(recommendations: List[dict], supabase_client) -
                         product_data = result3.data[0]
                         logger.warning(f"[enrich] Produit trouvé via name original pour '{reco['name']}'")
                     else:
-                        # Tentative 4 : match sur slug (si le nom contient un slug-like)
-                        if reco_name.isalnum() or "-" in reco_name:
-                            result4 = (
-                                supabase_client
-                                .from_("v_products_published")
-                                .select("*")
-                                .ilike("slug", f"%{reco_name.replace(' ', '-')}%")
-                                .limit(1)
-                                .execute()
-                            )
-                            if result4.data:
-                                product_data = result4.data[0]
-                                logger.warning(f"[enrich] Produit trouvé via slug pour '{reco['name']}'")
-                            else:
-                                logger.warning(f"[enrich] Aucun match Supabase pour '{reco['name']}' ({reco_brand})")
-                        else:
-                            logger.warning(f"[enrich] Aucun match Supabase pour '{reco['name']}' ({reco_brand})")
+                        logger.warning(f"[enrich] Aucun match Supabase pour '{reco['name']}' ({reco_brand})")
         except Exception as e:
             logger.error(f"[enrich] Erreur Supabase pour '{reco['name']}': {e}")
 
@@ -116,14 +166,20 @@ async def enrich_recommendations(recommendations: List[dict], supabase_client) -
             **reco,
             "rank": idx + 1,  # s'assurer que rank est présent
             "product_id": product_data["id"] if product_data else None,
-            "enriched_data": product_data,
+            "enriched_data": {
+                **(product_data or {}),
+                "why_caution": reco.get("why_caution", ""),
+            },
             # Champs extraits pour la page résultat
             "image_url": product_data.get("image_url") if product_data else None,
             "price_eur": product_data.get("price_eur") if product_data else None,
             "affiliate_url": product_data.get("affiliate_url") if product_data else None,
             "amazon_asin": product_data.get("amazon_asin") if product_data else None,
-            "use_case_scores": product_data.get("use_case_scores") if product_data else {},
+            "use_case_scores": normalize_scores(product_data.get("use_case_scores") if product_data else {}),
             "specs": product_data.get("specs") if product_data else {},
+            "why_caution": reco.get("why_caution", ""),
+            "troviio_score": reco.get("troviio_score", None),
+            "troviio_explanation": reco.get("troviio_explanation", None),
         })
 
     return enriched
@@ -175,7 +231,11 @@ async def save_result(
                     "cons": reco.get("cons", []),
                     "score": reco.get("score", 0),
                     "price_range": reco.get("price_range", ""),
-                    "enriched_data": reco.get("enriched_data"),
+                    "enriched_data": {
+                        **(reco.get("enriched_data") or {}),
+                        "troviio_score": reco.get("troviio_score"),
+                        "troviio_explanation": reco.get("troviio_explanation"),
+                    },
                 })
                 .execute()
             )

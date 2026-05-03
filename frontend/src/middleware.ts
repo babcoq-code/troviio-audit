@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 const API_UPSTREAM = process.env.API_BASE_URL || "http://backend:8000";
 const API_PREFIX = "/api/chat";
-const API_PREFIXES = ["/api/chat", "/api/newsletter", "/api/affiliate", "/api/products", "/api/results", "/api/accessories", "/api/admin", "/api/kelkoo"];
+const API_PREFIXES = ["/api/chat", "/api/newsletter", "/api/affiliate", "/api/products", "/api/results", "/api/accessories", "/api/admin", "/api/kelkoo", "/api/tops"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

@@ -37,7 +37,7 @@ export default function ProductClient({ product }: ProductClientProps) {
 
           <div className="grid gap-8 lg:grid-cols-[380px_1fr] lg:items-center">
             {/* Image produit */}
-            <div className="animate-fade-slide-up relative aspect-square overflow-hidden rounded-3xl border border-white/10 bg-[#1A1D2E] shadow-2xl">
+            <div className="animate-fade-slide-up relative aspect-square overflow-hidden rounded-3xl border border-white/10 bg-[var(--bg-surface)] shadow-2xl">
               {product.image_url ? (
                 <Image
                   src={product.image_url}
@@ -88,7 +88,7 @@ export default function ProductClient({ product }: ProductClientProps) {
                   </div>
                 )}
                 {product.price_eur != null && (
-                  <div className="rounded-3xl border border-white/10 bg-[#1A1D2E]/80 p-5">
+                  <div className="rounded-3xl border border-white/10 bg-[var(--bg-surface)] p-5">
                     <p className="text-xs font-semibold uppercase tracking-widest text-[#8B8FA3]">
                       Prix dès
                     </p>
@@ -119,7 +119,7 @@ export default function ProductClient({ product }: ProductClientProps) {
         <WhyThisProduct product={product} />
 
         {/* Section 3 — Comparaison prix */}
-        <section className="rounded-3xl border border-white/10 bg-[#1A1D2E] p-6 shadow-xl">
+        <section className="rounded-3xl border border-white/10 bg-[var(--bg-surface)] p-6 shadow-xl">
           <p className="text-sm font-semibold uppercase tracking-widest text-[#3ED6A3] mb-2">
             Comparer les prix
           </p>
@@ -132,7 +132,7 @@ export default function ProductClient({ product }: ProductClientProps) {
         </section>
 
         {/* Section 4 — Historique prix */}
-        <section className="rounded-3xl border border-white/10 bg-[#1A1D2E] p-6 shadow-xl">
+        <section className="rounded-3xl border border-white/10 bg-[var(--bg-surface)] p-6 shadow-xl">
           <p className="text-sm font-semibold uppercase tracking-widest text-[#3ED6A3] mb-2">
             Historique prix
           </p>

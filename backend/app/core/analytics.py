@@ -12,7 +12,7 @@ from supabase import create_client
 
 logger = logging.getLogger("troviio.analytics")
 
-SUPABASE_URL = os.getenv("SUPABASE_URL", "os.getenv("SUPABASE_URL", "")")
+SUPABASE_URL = os.getenv("SUPABASE_URL", "")
 SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_KEY", os.getenv("SUPABASE_KEY", ""))
 sb = create_client(SUPABASE_URL, SUPABASE_KEY)
 

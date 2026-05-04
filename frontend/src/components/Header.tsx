@@ -42,13 +42,13 @@ export default function Header() {
           <LogoTroviio />
         </Link>
 
-        {/* NAV DESKTOP */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* NAV DESKTOP — passe au menu hamburger plus tôt (lg au lieu de md) pour éviter le chevauchement sur iPad */}
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
           {nav.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm font-medium transition-colors hover:text-[var(--coral-dark)]"
+              className="text-sm font-medium transition-colors whitespace-nowrap hover:text-[var(--coral-dark)]"
               style={{ color: "var(--text-muted)" }}
             >
               {l.label}
@@ -56,7 +56,7 @@ export default function Header() {
           ))}
           <a
             href="/"
-            className="px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-md hover:shadow-lg"
+            className="px-4 xl:px-5 py-2 rounded-full text-sm font-semibold text-white transition-all shadow-md hover:shadow-lg whitespace-nowrap"
             style={{
               background: "var(--grad-coral)",
               boxShadow: "0 10px 24px -10px rgba(229,85,74,0.6)",
@@ -66,9 +66,9 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* BURGER MOBILE */}
+        {/* BURGER MOBILE + TABLET (iPad) */}
         <button
-          className="md:hidden p-2 rounded-md focus:outline-none transition-colors"
+          className="lg:hidden p-2 rounded-md focus:outline-none transition-colors"
           style={{ color: "var(--text-muted)" }}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
@@ -85,10 +85,10 @@ export default function Header() {
         </button>
       </div>
 
-      {/* MENU MOBILE */}
+      {/* MENU MOBILE + TABLET */}
       {menuOpen && (
         <div
-          className="md:hidden absolute w-full border-b border-[var(--border)] shadow-xl px-4 pt-2 pb-6 space-y-1"
+          className="lg:hidden absolute w-full border-b border-[var(--border)] shadow-xl px-4 pt-2 pb-6 space-y-1"
           style={{ backgroundColor: "var(--bg)" }}
         >
           {nav.map((l) => (

@@ -447,9 +447,9 @@ async def query_db(profile: dict) -> list:
                 logger.warning(f"⚠️ Catégorie slug introuvable: {cat_slug}")
                 return []
         
-        # Filtrer par budget
+        # Filtrer par budget — price_eur est en centimes en DB, le budget extrait est en euros
         if budget:
-            q = q.lte("price_eur", int(budget))
+            q = q.lte("price_eur", int(budget) * 100)
         
         # Exclure les produits sans ASIN (pas de lien affilié possible)
         q = q.not_.is_("amazon_asin", "null")
@@ -505,11 +505,11 @@ async def rank_with_ai(products: list, profile: dict, chat_history: list[dict] |
     system_prompt = """You are a product ranking engine for Picksy, a French e-commerce chatbot.
 Your task is to analyze products and return the 3 best recommendations as json.
 
-CRITICAL: The product list contains items from a SINGLE category. NEVER recommend products from different categories — all 3 recommendations must be the same type of product.
+CRITICAL: The product list below contains items from a SINGLE category. NEVER recommend products from different categories. ALL 3 recommendations MUST be from the provided list.
 
 CRITICAL: Use the EXACT brand and name as provided. Do NOT repeat the brand multiple times in the name field.
 
-CRITICAL: You MUST ONLY recommend products from the list provided below. Do NOT invent or suggest any product that is not in the list. Do NOT generalize to other products in the same category — use ONLY the specific products listed.
+CRITICAL: You MUST ONLY recommend products from the list provided below. Do NOT invent or suggest any product that is not in the list. If the user asks about a specific product, ONLY recommend it if it appears in the list.
 
 TROVIIO SCORE — Tu dois calculer un troviio_score sur /100 qui mesure l'affinité amoureuse entre le client et le produit. C'est notre signature, notre "match amoureux". Pas une note générique — c'est la probabilité que ce produit rende l'utilisateur heureux au quotidien.
 
@@ -727,12 +727,12 @@ async def chat(req: ChatRequest, request: Request):
     # Ajouter le message utilisateur à l'historique
     history.append({"role": "user", "content": req.message})
 
-    # Détection "lance" dans le message
+    # Détection \"lance\" dans le message
     msg_lower = req.message.lower().strip()
     
     # Mots qui déclenchent une recherche immédiate
     # VÉRIFICATION STRICTE : minimum 5 échanges avant de pouvoir lancer (4 réponses DeepSeek + 1 clic)
-    # Tours 1-4 : pas de lancement possible même si l'utilisateur tape "recherche"
+    # Tours 1-4 : pas de lancement possible même si l'utilisateur tape \"recherche\"
     user_wants_search = any(t in msg_lower for t in LAUNCH_TRIGGERS) and exchange_count >= 5
     
     # Auto-trigger APRÈS 8 tours complets (7 questions DeepSeek)
@@ -744,6 +744,10 @@ async def chat(req: ChatRequest, request: Request):
         detected_cat = req.category
         if not detected_cat:
             detected_cat = await detect_category_from_history(history)
+        
+        # IMPORTANT: en priorité, utiliser le chip cliqué s'il y a une catégorie explicite
+        # qui arrive AVEC le message (pas besoin de detect_category dans ce cas)
+        logger.info(f"🔍 Catégorie détectée: detected_cat='{detected_cat}', req.category='{req.category}'")
 
         if not detected_cat:
             logger.warning(f"⚠️ Catégorie non détectée, recherche annulée")

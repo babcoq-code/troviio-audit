@@ -7,7 +7,8 @@ Cron recommandé : tous les jours à 3h du matin
 import os, sys, requests, re, time
 from urllib.parse import quote
 
-KEY = os.environ.get("SUPABASE_SERVICE_KEY", ""SUPABASE_SERVICE_KEY"")
+KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "https://uukshxztoztkwxuuvqzc.supabase.co")
 HEADERS = {"apikey": KEY, "Authorization": f"Bearer {KEY}", "Content-Type": "application/json"}
 CRAWL4AI = "http://localhost:11235/crawl"
 DELAY = 2
@@ -26,7 +27,10 @@ def get_products(limit=50, offset=0, price_lt=None):
         params["price_eur"] = f"lt.{price_lt}"
     if offset:
         params["offset"] = offset
-    r = requests.get("os.getenv("SUPABASE_URL", "")/rest/v1/products", headers=HEADERS, params=params, timeout=15)
+    r = requests.get(
+        f"{SUPABASE_URL}/rest/v1/products",
+        headers=HEADERS, params=params, timeout=15
+    )
     return r.json() if r.status_code == 200 else []
 
 
@@ -87,7 +91,7 @@ def fix_product(p):
     
     # Mettre à jour
     r = requests.patch(
-        f"os.getenv("SUPABASE_URL", "")/rest/v1/products?id=eq.{p['id']}",
+        f"{SUPABASE_URL}/rest/v1/products?id=eq.{p['id']}",
         headers=HEADERS, json={"price_eur": best}, timeout=10
     )
     

@@ -24,6 +24,7 @@ type Props = {
 const CATEGORIES = [
   { slug: "robot-aspirateur",   label: "Robot aspirateur",   emoji: "🤖", family: "home" as Family, hook: "Sol, animaux, patience" },
   { slug: "aspirateur-balai",   label: "Aspirateur balai",   emoji: "🧹", family: "home" as Family, hook: "Léger, puissant, sans fil" },
+  { slug: "aspirateur-laveur",  label: "Aspirateur laveur",  emoji: "🧹", family: "home" as Family, hook: "Lave, aspire, sol propre" },
   { slug: "lave-linge",         label: "Lave-linge",         emoji: "🌀", family: "home" as Family, hook: "Capacité, bruit, conso" },
   { slug: "lave-vaisselle",     label: "Lave-vaisselle",     emoji: "🍽️", family: "home" as Family, hook: "Taille, silencieux, eco" },
   { slug: "refrigerateur",      label: "Réfrigérateur",      emoji: "🧊", family: "home" as Family, hook: "Volume, No Frost, portes" },

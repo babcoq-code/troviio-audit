@@ -46,7 +46,7 @@ interface TopCategory {
 async function fetchTops(): Promise<TopCategory[]> {
   try {
     const base = process.env.INTERNAL_API_URL || "http://backend:8000/api";
-    const res = await fetch(`${base}/tops`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${base}/tops`, { cache: "no-store" });
     if (!res.ok) return [];
     const data = await res.json();
     return data.categories || [];

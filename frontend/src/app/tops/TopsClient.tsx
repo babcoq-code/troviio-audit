@@ -32,6 +32,7 @@ const CATEGORY_EMOJI: Record<string, string> = {
   smartphone: "📱",
   "machine-a-cafe": "☕",
   "aspirateur-balai": "🧹",
+  "aspirateur-laveur": "🧹",
   "friteuse-air": "🍟",
   "casque-audio": "🎧",
   "aspirateur-robot": "🤖",
@@ -204,7 +205,7 @@ function PodiumCard({ product, rank }: { product: TopProduct; rank: number }) {
           </Link>
         </h3>
 
-        {product.price_eur != null && (
+        {product.price_eur != null && product.price_eur > 0 ? (
           <div className="mt-3 rounded-2xl px-4 py-2 ring-1" style={{ backgroundColor: "var(--bg)", borderColor: "var(--border)" }}>
             <span className="text-xs" style={{ color: "var(--text-muted)" }}>Meilleur prix </span>
             <span className="text-xl font-bold ml-1" style={{ color: "var(--text)" }}>
@@ -213,6 +214,13 @@ function PodiumCard({ product, rank }: { product: TopProduct; rank: number }) {
             {product.best_merchant && (
               <span className="text-xs ml-2" style={{ color: "var(--text-muted)" }}>via {product.best_merchant}</span>
             )}
+          </div>
+        ) : (
+          <div className="mt-3 rounded-2xl px-4 py-2 ring-1" style={{ backgroundColor: "var(--bg)", borderColor: "var(--border)" }}>
+            <span className="text-xs" style={{ color: "var(--text-muted)" }}>Prix </span>
+            <span className="text-xl font-bold ml-1" style={{ color: "var(--coral)" }}>
+              Indisponible
+            </span>
           </div>
         )}
 

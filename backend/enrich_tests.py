@@ -5,12 +5,12 @@ import os, json, time, re, sys
 import requests
 import supabase
 
-DEEPSEEK_URL = "https://api.deepseek.com/v1/chat/completions"
-SUPABASE_URL = "os.getenv("SUPABASE_URL", "")"
+DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
 
 if not SUPABASE_KEY:
-    SUPABASE_KEY = ""SUPABASE_SERVICE_KEY""
+    SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
 
 api_key = os.environ.get("DEEPSEEK_API_KEY", "")
 if not api_key:

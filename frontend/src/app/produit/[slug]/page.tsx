@@ -8,7 +8,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.troviio.com";
 
 async function fetchProduct(slug: string) {
   try {
-    const res = await fetch(`${API_BASE}/api/products/${slug}`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_BASE}/api/products/${slug}`, { cache: "no-store" });
     if (!res.ok) return null;
     return res.json();
   } catch { return null; }

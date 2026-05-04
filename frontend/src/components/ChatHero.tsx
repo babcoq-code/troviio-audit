@@ -19,14 +19,14 @@ const CHIP_PROMPTS: Record<string, string> = {
   "🤖 Robot aspirateur": "J'ai la flemme de faire le ménage chaque jour et je cherche un robot aspirateur comme assistant propreté",
   "☕ Machine café": "Je veux un café digne de ce nom sans sortir de chez moi, tu me conseilles quelle machine ?",
   "📺 TV OLED": "J'aimerais regarder mes séries dans des noirs profonds, je cherche une TV OLED qui déchire",
-  "📱 Smartphone photo": "Je prends des photos de mes chats et de mes plats, il me faut un smartphone qui assure en photo",
+  "📱 Smartphone": "Je cherche un smartphone qui correspond à mon quotidien, sans compromis sur l'autonomie",
   "🧹 Aspirateur balai": "Le sol de ma maison c'est le Far West, j'ai besoin d'un aspirateur balai qui craint rien",
 };
 const CHIP_CATEGORIES: Record<string, string> = {
   "🤖 Robot aspirateur": "aspirateur-robot",
   "☕ Machine café": "machine-a-cafe",
   "📺 TV OLED": "tv",
-  "📱 Smartphone photo": "smartphone",
+  "📱 Smartphone": "smartphone",
   "🧹 Aspirateur balai": "aspirateur-balai",
 };
 const CHIPS = Object.keys(CHIP_CATEGORIES);

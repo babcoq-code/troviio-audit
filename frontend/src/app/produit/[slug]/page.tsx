@@ -1,6 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import nextDynamic from "next/dynamic";
 
+const AccessoriesWidgetLoader = nextDynamic(
+  () => import("@/components/accessories/AccessoriesWidget"),
+  { loading: () => <div className="h-24 animate-pulse rounded-2xl bg-white/5" /> }
+);
+
+// Force SSR (not static)
 export const dynamic = "force-dynamic";
 
 const API_BASE = process.env.API_BASE_URL || "http://backend:8000";
@@ -304,35 +311,9 @@ export default async function ProductPage({ params }: PageProps) {
         )}
 
         {/* ===== ACCESSORIES ===== */}
-        {accessories.length > 0 && (
-          <div className="mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl border p-5 sm:p-6" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-            <h2 className="text-xl sm:text-2xl font-bold">🛒 Accessoires recommandés</h2>
-            <div className="mt-4 sm:mt-6 grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              {accessories.map((acc: any, i: number) => (
-                <a
-                  key={i}
-                  href={acc.url_affilie || acc.url || acc.affiliate_url}
-                  target="_blank"
-                  rel="nofollow sponsored noopener noreferrer"
-                  className="rounded-xl sm:rounded-2xl border p-4 transition hover:-translate-y-1 hover:opacity-90 block"
-                  style={{ borderColor: "var(--border)", backgroundColor: "var(--bg)" }}
-                >
-                  <div className="text-xs font-bold uppercase tracking-wide" style={{ color: "var(--coral)" }}>Accessoire</div>
-                  <div className="mt-1 text-sm sm:text-base font-bold">{acc.nom || acc.name}</div>
-                  <div className="mt-1 text-xs sm:text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{acc.description || ""}</div>
-                  {(acc.prix_eur || acc.price_eur) && (
-                    <div className="mt-2 font-bold text-sm sm:text-base" style={{ color: "var(--mint)" }}>
-                      {fmt(acc.prix_eur || acc.price_eur)}
-                    </div>
-                  )}
-                  <div className="mt-2 text-xs sm:text-sm" style={{ color: "var(--coral)" }}>
-                    Voir sur Amazon →
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl border p-5 sm:p-6" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
+          <AccessoriesWidgetLoader productId={product.id} productName={product.name} />
+        </div>
       </div>
     </main>
   );

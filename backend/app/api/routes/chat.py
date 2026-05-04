@@ -247,56 +247,42 @@ Je fais le reste.
 
 ---
 
-# FLOW STRICT — 10 QUESTIONS MAXIMUM
+# FLOW STRICT — QUESTIONS UNE À UNE AVEC 3 OPTIONS CLIQUABLES
 
-Tu DOIS poser exactement UNE question à la fois, avec 3 options numérotées comme ceci :
+## RÈGLE ABSOLUE : UNE SEULE QUESTION PAR MESSAGE
 
-1. Option 1
-2. Option 2
-3. Option 3
+Tu DOIS poser EXACTEMENT UNE question par message. JAMAIS DEUX. JAMAIS TROIS.
+Chaque message DOIT contenir :
+- 1 phrase d'intro empathique (1 ligne max)
+- 1 question
+- 3 options numérotées comme ceci :
 
-Chaque message se termine par ces 3 options. Le client peut cliquer sur une option OU écrire librement — dans les deux cas, tu enchaînes avec la question suivante.
+1. Option A
+2. Option B
+3. Option C
 
-## Ordre des questions (dans cet ordre) :
-1. Contexte logement/usage (lieu, taille, pièce)
-2. Type de sol ou environnement
-3. Budget (petit, moyen, premium)
-4. Usage spécifique (quoi, quand, comment)
-5. Priorité finale + vérification
-6-10. Affinage hyper-pointu (matériaux, marques préférées, fonctionnalités avancées, bruit, design, etc.)
+Les options DOIVENT être courtes (2-6 mots max) — ce sont des chips cliquables dans l'UI.
+Si l'option est trop longue, elle ne rentre pas dans l'interface.
 
-Si le client est indécis, adapte mais reste dans le format 1. / 2. / 3.
+## INTERDICTIONS STRICTES :
+- ❌ JAMAIS 2 questions dans le même message
+- ❌ JAMAIS 3 questions groupées
+- ❌ JAMAIS plus de 3 phrases d'explication avant les options
+- ❌ Pas de liste de questions dans une seule phrase
+- ✅ UNE SEULE question → 3 chips courtes
 
-## Règle \"Proposer le lancement à partir du tour 5\" :
-Les 4 PREMIERS tours (tours 1 à 4) : les 3 options sont UNIQUEMENT des questions d'affinage. Pas d'option de lancement.
+## Ordre des questions :
+1. Contexte logement/usage (lieu, taille, pièce) → 3 chips
+2. Type de sol ou environnement → 3 chips  
+3. Budget (petit, moyen, premium) → 3 chips
+4. Usage spécifique (quoi, quand, comment) → 3 chips
+5. Priorité finale → 3 chips
+6-10. Affinage : marques, fonctionnalités, bruit, design → TOUJOURS 1 question + 3 chips
 
-À partir du tour 5 (tours 5 à 11) : tu DOIS ajouter une 4e option \"🚀 Lancer la recherche\". Les 3 premières options restent des questions d'affinage.
-
-Format pour les tours 5 à 11 :
-```
-1. [Question d'affinage - option classique]
-2. [Question d'affinage - autre option]
-3. [Question d'affinage - troisième option]
-4. 🚀 Lancer la recherche — j'en ai assez dit
-```
-
-Exemple tour 8 :
-```
-1. Tu préfères un modèle compact qui se range facilement
-2. Tu as de la place pour un modèle standard
-3. Tu veux voir plusieurs tailles disponibles
-4. 🚀 Lancer la recherche — j'en ai assez dit
-```
-
-Exemple tour 10 :
-```
-1. Un design compact et discret
-2. Un look moderne qui trône dans la pièce
-3. Tu n'as pas d'avis sur le design
-4. 🚀 Lancer la recherche
-```
-
-Après 12 tours, la recherche est automatique.
+## Règle de lancement :
+Tours 1-4 : uniquement 3 options d'affinage, PAS de bouton lancement.
+Tours 5-11 : 3 options d'affinage + 1 option "🚀 Lancer la recherche".
+Après 12 tours : recherche automatique.
 
 # RÈGLES DE COMPORTEMENT
 
@@ -683,7 +669,35 @@ async def chat_with_deepseek(history: list[dict], exchange_count: int = 1, syste
         raw = resp.choices[0].message.content
         if not raw:
             raw = resp.choices[0].message.model_extra.get("reasoning_content", "")
-        return raw.strip()
+        
+        # POST-TRAITEMENT : forcer UNE seule question si DeepSeek en envoie plusieurs
+        lines = raw.strip().split('\n')
+        question_count = 0
+        clean_lines = []
+        found_first_options = False
+        for line in lines:
+            stripped = line.strip()
+            # Détecter les questions (phrases se terminant par ?)
+            if stripped.endswith('?') and not stripped.startswith(('1.', '2.', '3.', '4.')):
+                question_count += 1
+                if question_count > 1 and not found_first_options:
+                    # On a trouvé une 2ème question avant les options de la 1ère — ignorer
+                    continue
+            
+            # Détecter le début des options numérotées
+            if re.match(r'^\d+\.\s', stripped):
+                found_first_options = True
+                clean_lines.append(stripped)
+            elif not found_first_options:
+                clean_lines.append(stripped)
+            elif found_first_options and not re.match(r'^\d+\.\s', stripped):
+                # Après les options, on arrête (sauf si c'est une autre option ou l'option "Lancer")
+                if re.match(r'^4\\.\s*🚀|🚀', stripped):
+                    clean_lines.append(stripped)
+                continue
+        
+        raw = '\n'.join(clean_lines).strip()
+        return raw
     except Exception as e:
         logger.error(f"❌ DeepSeek error: {e}")
         return "Désolé, je rencontre un problème technique. Peux-tu reformuler ?"

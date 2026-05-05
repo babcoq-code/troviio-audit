@@ -84,10 +84,12 @@ def deepseek_ask(messages, temperature=0.05, max_tokens=3000):
         return None
 
 def main():
-    s = supabase.create_client(
-        'os.getenv("SUPABASE_URL", "")',
-        '"SUPABASE_SERVICE_KEY"'
-    )
+    supabase_url = os.environ.get('SUPABASE_URL', '')
+    supabase_key = os.environ.get('SUPABASE_SERVICE_KEY', '')
+    if not supabase_url or not supabase_key:
+        log("❌ SUPABASE_URL or SUPABASE_SERVICE_KEY not set in environment")
+        sys.exit(1)
+    s = supabase.create_client(supabase_url, supabase_key)
     
     # Load categories
     rc = s.table('categories').select('id,slug,name').execute()

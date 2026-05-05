@@ -10,7 +10,7 @@ from uuid import UUID
 
 import json
 from fastapi import APIRouter, HTTPException, Request, status
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 from supabase import Client, create_client
 
 logger = logging.getLogger(__name__)
@@ -37,6 +37,7 @@ class ProductResponse(BaseModel):
     slug: str
     name: str
     brand: str | None = None
+    category_id: str | None = None
     category_slug: str | None = None
     price_eur: float | None = None
     estimated_score: float | None = None
@@ -54,6 +55,61 @@ class ProductResponse(BaseModel):
     amazon_asin: str | None = None
     merchant_links: list[dict] | None = None
     affiliate_url: str | None = None
+
+    @field_validator("merchant_links", mode="before")
+    @classmethod
+    def parse_merchant_links(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, TypeError):
+                return None
+        if isinstance(v, dict):
+            # Convert dict with price info to list
+            if v:
+                return [v]
+            return None
+        return v
+
+    @field_validator("specs", mode="before")
+    @classmethod
+    def parse_specs(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, TypeError):
+                return {}
+        return v
+
+    @field_validator("use_case_scores", mode="before")
+    @classmethod
+    def parse_use_case_scores(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, TypeError):
+                return {}
+        return v
+
+    @field_validator("pros", mode="before")
+    @classmethod
+    def parse_pros(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, TypeError):
+                return []
+        return v or []
+
+    @field_validator("cons", mode="before")
+    @classmethod
+    def parse_cons(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, TypeError):
+                return []
+        return v or []
 
 
 class PriceEntry(BaseModel):
@@ -78,7 +134,17 @@ async def get_product(slug: str):
         r = sb.table("products").select("*").eq("slug", slug).single().execute()
         if not r.data:
             raise HTTPException(404, "Product not found")
-        return ProductResponse.model_validate(r.data)
+        p = r.data
+        # Map category_id to category_slug
+        cid = p.get("category_id")
+        if cid:
+            try:
+                cat = sb.table("categories").select("slug").eq("id", cid).single().execute()
+                if cat.data:
+                    p["category_slug"] = cat.data["slug"]
+            except Exception:
+                pass
+        return ProductResponse.model_validate(p)
     except Exception as e:
         err_msg = str(e)
         if "PGRST116" in err_msg or "contains 0 rows" in err_msg:
@@ -103,6 +169,13 @@ async def list_products(category: str | None = None, limit: int = 50):
     }
     db_slug = ALIASES.get(category, category)
     try:
+        # Load all categories for mapping category_id -> slug
+        try:
+            cats_result = sb.table("categories").select("id, slug").execute()
+            cat_map = {c["id"]: c["slug"] for c in (cats_result.data or [])}
+        except Exception:
+            cat_map = {}
+        
         query = sb.table("products").select("*").eq("is_active", True)
         if category:
             try:
@@ -123,6 +196,10 @@ async def list_products(category: str | None = None, limit: int = 50):
                     p["specs"] = json.loads(p["specs"])
                 except (json.JSONDecodeError, TypeError):
                     p["specs"] = {}
+            # Map category_id to category_slug
+            cid = p.get("category_id")
+            if cid and cid in cat_map:
+                p["category_slug"] = cat_map[cid]
             validated.append(ProductResponse.model_validate(p))
         return validated
     except Exception as e:

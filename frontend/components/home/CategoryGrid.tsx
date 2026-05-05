@@ -45,6 +45,10 @@ const CATEGORIES = [
   { slug: "velo-electrique",    label: "Vélo électrique",    emoji: "🚲", family: "mobility" as Family, hook: "Urbain, trail, autonomie" },
   { slug: "matelas",            label: "Matelas",            emoji: "🛏️", family: "comfort" as Family, hook: "Fermeté, couple, dos" },
   { slug: "poussette",          label: "Poussette",          emoji: "👶", family: "comfort" as Family, hook: "Légère, pliable, tout terrain" },
+  { slug: "ventilateur-colonne", label: "Ventilateur colonne", emoji: "💨", family: "home" as Family, hook: "Canicule, appart, silence" },
+  { slug: "climatiseur-portable", label: "Climatiseur portable", emoji: "🌡️", family: "home" as Family, hook: "BTU, surface, installation" },
+  { slug: "station-charge-usb-c", label: "Station charge USB-C", emoji: "⚡", family: "tech" as Family, hook: "GaN, multiprise, bureau" },
+  { slug: "onduleur-ups",        label: "Onduleur UPS",        emoji: "🔋", family: "tech" as Family, hook: "NAS, serveur, sauvegarde" },
 ];
 
 const FAMILY_META: Record<Family, { label: string; color: string; bg: string }> = {

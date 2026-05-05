@@ -16,31 +16,46 @@ const defaultOgImage = {
   type: "image/png",
 };
 
-export const metadata = {
-  title: "Troviio | Pas le meilleur. Le tien.",
-  description:
-    "Troviio ne compare pas les produits. Il comprend ta vie, tes contraintes et ton budget pour te recommander LE produit qui te correspond. Zéro biais, zéro commission.",
-  icons: { icon: "/logo-icon.svg" },
-  metadataBase: new URL("https://www.troviio.com"),
-  alternates: { canonical: "https://www.troviio.com" },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
-  },
-  openGraph: {
-    siteName: "Troviio",
-    locale: "fr_FR",
-    type: "website",
-    images: [defaultOgImage],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [defaultOgImage],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export async function generateMetadata() {
+  return {
+    metadataBase: new URL("https://www.troviio.com"),
+    title: "Troviio | Pas le meilleur. Le tien.",
+    description:
+      "Troviio ne compare pas les produits. Il comprend ta vie, tes contraintes et ton budget pour te recommander LE produit qui te correspond. Zéro biais, zéro commission.",
+    icons: { icon: "/logo-icon.svg" },
+    alternates: { canonical: "/" },
+    openGraph: {
+      title: "Troviio | Pas le meilleur. Le tien.",
+      description:
+        "Décris ta vie, tes contraintes, ton budget. L'IA qui trouve le produit parfait pour toi.",
+      siteName: "Troviio",
+      locale: "fr_FR",
+      url: "https://www.troviio.com",
+      type: "website",
+      images: [{
+        url: "https://troviio.com/og-image.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+      }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Troviio | Pas le meilleur. Le tien.",
+      description:
+        "Décris ta vie, tes contraintes, ton budget. L'IA qui trouve le produit parfait pour toi.",
+      images: [{
+        url: "https://troviio.com/og-image.png",
+        width: 1200,
+        height: 630,
+      }],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -49,6 +64,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+        <meta property="og:image" content="https://troviio.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content="https://troviio.com/og-image.png" />
         <JsonLd data={buildWebSiteJsonLd()} />
       </head>
       <body className="min-h-screen flex flex-col">
@@ -56,7 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <UmamiAnalytics />
         <Header />
         <main className="flex-1 pt-20">{children}</main>
-        <Footer />
         <CookieBanner />
       </body>
     </html>

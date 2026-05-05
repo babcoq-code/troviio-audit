@@ -76,7 +76,7 @@ export default async function ProductPage({ params }: PageProps) {
   const prices = product.merchant_links || [];
   const sortedPrices = [...prices].sort((a: any, b: any) => a.price_eur - b.price_eur);
   const bestPrice = sortedPrices[0]?.price_eur ?? product.price_eur;
-  const fmt = (v: number) => v != null ? new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(v) : "";
+  const fmt = (v: number) => v != null ? new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(v / 100) : "";
   const specs = product.specs || {};
   const useCaseScores = product.use_case_scores || {};
   const accessories = specs.accessories || [];

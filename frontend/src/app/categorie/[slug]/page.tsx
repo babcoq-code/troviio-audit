@@ -72,6 +72,30 @@ const CATEGORY_META: Record<
     description:
       "Matelas mousse, latex, ressorts et hybrides pour des nuits réparatrices.",
   },
+  "ventilateur-colonne": {
+    name: "Ventilateur colonne",
+    emoji: "💨",
+    description:
+      "Ventilateurs colonnes puissants et silencieux pour rafraîchir votre intérieur pendant les périodes de chaleur.",
+  },
+  "climatiseur-portable": {
+    name: "Climatiseur portable",
+    emoji: "🌡️",
+    description:
+      "Climatiseurs portables monoblocs pour rafraîchir efficacement votre logement sans installation fixe.",
+  },
+  "station-charge-usb-c": {
+    name: "Station charge USB-C GaN",
+    emoji: "⚡",
+    description:
+      "Chargeurs multiports USB-C GaN haute puissance pour recharger tous vos appareils simultanément.",
+  },
+  "onduleur-ups": {
+    name: "Onduleur UPS",
+    emoji: "🔋",
+    description:
+      "Onduleurs Line-Interactive et Online pour protéger vos équipements sensibles contre les coupures et surtensions.",
+  },
 };
 
 function getCategoryMeta(slug: string) {

@@ -356,7 +356,37 @@ Après 12 tours : recherche automatique.
 - \"Terrain plat ou tu as des côtes ?\" → Puissance moteur
 - \"Autonomie nécessaire : petite course, demi-journée, ou journée complète ?\" → Batterie
 
-## Électroménager général
+## Ventilateurs colonne
+
+- "Tu veux rafraîchir ou juste brasser l'air ?" → Climatisation vs ventilation
+- "Surface de la pièce : petit cube urbain, salon normal, ou open-space ?" → Débit
+- "Le bruit, c'est juste pour dormir ou tu supportes le bruit de fond ?" → Silence
+- "Filtre à air pour les allergiques ou juste du vent tout court ?" → Purification
+- "Tu vas le déplacer souvent ou il a sa place attitrée ?" → Mobilité
+
+## Climatiseurs portables
+
+- "Surface à refroidir : une chambre, un studio, ou tout l'étage ?" → BTU
+- "Tu as une fenêtre adaptable pour la gaine, ou installation compliquée ?" → Installation
+- "Juste froid ou réversible pour l'hiver aussi ?" → Chaud/froid
+- "Budget climatisation : petit coup de frais ou vrai refroidissement ?" → Budget
+- "Tu es prêt à entendre le compresseur ou silence absolu exigé ?" → Bruit
+
+## Stations charge USB-C
+
+- "Combien d'appareils tu branches chaque soir : un laptop ou toute la tribu numérique ?" → Nombre ports
+- "Tu charges surtout en bureau sédentaire ou en mode nomade ?" → Usage
+- "Puissance nécessaire : simple recharge rapide ou alimentation de laptop costaud ?" → Wattage
+- "Apple, PC, ou mix des deux dans ton écosystème ?" → Compatibilité
+- "Support de bureau intégré ou tu préfères un bloc compact à emporter ?" → Format
+
+## Onduleurs UPS
+
+- "Quels équipements critiques : box/routeur, NAS, PC gaming ou serveur de télétravail ?" → Usage
+- "Durée de coupure à encaisser : le temps de sauvegarder, ou continuer à bosser 30 min ?" → Autonomie
+- "Tu as besoin de supervision logicielle ou du simple débranchement forcé propre ?" → Gestion
+- "Format : dans un rack, sous le bureau, ou près de la box dans l'entrée ?" → Encombrement
+- "Budget : protection minimale ou blindage total contre les orages ?" → Budget
 
 - "Tu cherches le meilleur prix, le bon compromis, ou un achat solide pour longtemps ?" → Positionnement
 - "Tu vas t'en servir tous les jours, toutes les semaines, ou quand les planètes s'alignent ?" → Robustesse

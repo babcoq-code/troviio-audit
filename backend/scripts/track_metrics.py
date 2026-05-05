@@ -19,11 +19,10 @@ SUPABASE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 
 supa = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "data", "metrics", "daily.jsonl")
-# Fallback: host-mounted path
+LOG_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "metrics", "daily.jsonl"))
+# Fallback if relative path doesn't work (no volume mount)
 if not os.path.exists(os.path.dirname(LOG_PATH)):
-    LOG_PATH = "/data/metrics/daily.jsonl"
-os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+    os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
 
 def collect():
     now = datetime.now(timezone.utc)

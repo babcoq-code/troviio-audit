@@ -131,6 +131,7 @@ async def list_products(category: str | None = None, limit: int = 50):
 
 
 # ─── GET /api/products/{slug}/prices ────────────────────────
+@router.get("/api/products/{slug}/prices", response_model=list[PriceEntry])
 async def get_current_prices(slug: str):
     sb = get_supabase()
     try:
@@ -159,28 +160,46 @@ async def get_current_prices(slug: str):
         return result
 
     # Fallback: build from merchant_links
-    ml = prod.data.get("merchant_links") or {}
+    ml = prod.data.get("merchant_links") or []
     if isinstance(ml, str):
         try:
             ml = json.loads(ml)
         except (json.JSONDecodeError, TypeError):
-            ml = {}
+            ml = []
     entries = []
-    for name, info in ml.items():
-        if isinstance(info, dict) and info.get("url"):
-            url = info["url"]
-            # Ensure Amazon affiliate tag
-            if "amazon" in name.lower() and "tag=" not in url and "troviio-21" not in url:
-                sep = "&" if "?" in url else "?"
-                url = f"{url}{sep}tag=troviio-21"
-            entries.append(PriceEntry(
-                merchant_name=name,
-                merchant_logo_url="",
-                price_eur=info.get("priceEur") or info.get("price_eur") or prod.data.get("price_eur") or 0.0,
-                affiliate_url=url,
-                in_stock=info.get("inStock", True),
-                scraped_at=datetime.now(timezone.utc),
-            ))
+    if isinstance(ml, dict):
+        # Old format: {"MerchantName": {"price": ..., "url": ...}}
+        for name, info in ml.items():
+            if isinstance(info, dict) and info.get("url"):
+                url = info["url"]
+                if "amazon" in name.lower() and "tag=" not in url and "troviio-21" not in url:
+                    sep = "&" if "?" in url else "?"
+                    url = f"{url}{sep}tag=troviio-21"
+                entries.append(PriceEntry(
+                    merchant_name=name,
+                    merchant_logo_url="",
+                    price_eur=info.get("priceEur") or info.get("price_eur") or prod.data.get("price_eur") or 0.0,
+                    affiliate_url=url,
+                    in_stock=info.get("inStock", True),
+                    scraped_at=datetime.now(timezone.utc),
+                ))
+    elif isinstance(ml, list):
+        # New format: [{"name": "...", "price": ..., "url": "..."}]
+        for item in ml:
+            if isinstance(item, dict) and item.get("url"):
+                url = item["url"]
+                name = item.get("name", "")
+                if "amazon" in name.lower() and "tag=" not in url and "troviio-21" not in url:
+                    sep = "&" if "?" in url else "?"
+                    url = f"{url}{sep}tag=troviio-21"
+                entries.append(PriceEntry(
+                    merchant_name=name,
+                    merchant_logo_url="",
+                    price_eur=item.get("price") or item.get("price_eur") or prod.data.get("price_eur") or 0.0,
+                    affiliate_url=url,
+                    in_stock=item.get("in_stock", True) if isinstance(item.get("in_stock"), bool) else True,
+                    scraped_at=datetime.now(timezone.utc),
+                ))
 
     # If no merchant_links but ASIN exists, build Amazon link
     if not entries and prod.data.get("amazon_asin"):

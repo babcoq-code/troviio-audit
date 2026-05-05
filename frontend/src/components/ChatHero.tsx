@@ -21,6 +21,10 @@ const CHIP_PROMPTS: Record<string, string> = {
   "📺 TV OLED": "J'aimerais regarder mes séries dans des noirs profonds, je cherche une TV OLED qui déchire",
   "📱 Smartphone": "Je cherche un smartphone qui correspond à mon quotidien, sans compromis sur l'autonomie",
   "🧹 Aspirateur balai": "Le sol de ma maison c'est le Far West, j'ai besoin d'un aspirateur balai qui craint rien",
+  "💻 Laptop étudiant": "Je suis étudiant et j'ai pas un rond. Enfin si, un budget. Quel laptop me conseilles-tu sans que je doive vendre un rein ?",
+  "🎮 Laptop gamer": "Je veux un laptop qui fait tourner Cyberpunk en ultra sans ressembler à un sapin de Noël. Des idées ?",
+  "🔊 Enceinte BT": "Je cherche une enceinte Bluetooth portable pour l'apéro en terrasse et la douche. Des recommandations ?",
+  "🚲 Vélo électrique": "Je veux remplacer ma voiture pour les trajets quotidiens, tu me conseilles quel vélo électrique ?",
 };
 const CHIP_CATEGORIES: Record<string, string> = {
   "🤖 Robot aspirateur": "aspirateur-robot",
@@ -28,8 +32,19 @@ const CHIP_CATEGORIES: Record<string, string> = {
   "📺 TV OLED": "tv",
   "📱 Smartphone": "smartphone",
   "🧹 Aspirateur balai": "aspirateur-balai",
+  "💻 Laptop étudiant": "ordinateur-portable",
+  "🎮 Laptop gamer": "laptop-gamer",
+  "🔊 Enceinte BT": "enceinte-bt",
+  "🚲 Vélo électrique": "velo-electrique",
 };
 const CHIPS = Object.keys(CHIP_CATEGORIES);
+
+// ── Lancer recherche trigger ───────────────────────────────────────────────────
+// Détecte si le dernier message assistant contient "Lancer la recherche"
+function hasLaunchOption(text: string): boolean {
+  const lower = text.toLowerCase();
+  return lower.includes("lancer la recherche") || lower.includes("🚀");
+}
 
 export default function ChatHero({ category }: { category?: string }) {
   const [input, setInput] = useState("");
@@ -39,6 +54,8 @@ export default function ChatHero({ category }: { category?: string }) {
   const { state, messages, streamedResponse, error, sendMessage, setMessages } = useChatStream();
 
   const busy = state === "loading" || (state === "response" && streamedResponse.length > 0);
+  // Un échange = un message utilisateur (les history sont déjà envoyés)
+  const exchangeCount = useMemo(() => messages.filter(m => m.role === "user").length + 1, [messages]);
 
   useEffect(() => {
     const id = window.setInterval(() => setPidx((i) => (i + 1) % PLACEHOLDERS.length), 2600);
@@ -112,6 +129,12 @@ export default function ChatHero({ category }: { category?: string }) {
     await sendMessage(value, { category: activeCategory, history: messages });
   };
 
+  /** Déclencher la recherche */
+  const handleLaunch = async () => {
+    if (busy) return;
+    await sendMessage("Lance", { category: activeCategory, history: messages });
+  };
+
   // Auto-scroll vers le bas à chaque nouveau message
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -119,11 +142,12 @@ export default function ChatHero({ category }: { category?: string }) {
     }
   }, [messages]);
 
-  // Filtrer le dernier message assistant steamé + les messages historiques à afficher
-  const historyMessages = messages.filter((m) => {
-    // On garde tout sauf le dernier s'il est en cours de stream
-    return true;
-  });
+  // Vérifier si le dernier message assistant propose "Lancer la recherche"
+  const lastAIMessage = useMemo(() => {
+    const aiMsgs = messages.filter((m) => m.role === "assistant" && !m.result_id);
+    return aiMsgs[aiMsgs.length - 1]?.content || streamedResponse || "";
+  }, [messages, streamedResponse]);
+  const showLaunchButton = lastAIMessage && hasLaunchOption(lastAIMessage);
 
   return (
     <section
@@ -163,7 +187,7 @@ export default function ChatHero({ category }: { category?: string }) {
           </p>
         </div>
 
-        {/* Historique des messages (si on a déjà parlé) */}
+        {/* Historique des messages */}
         {messages.length > 0 && (
           <div ref={chatContainerRef} className="mt-8 w-full space-y-3 max-h-80 overflow-y-auto pr-2">
             {messages.map((msg) => (
@@ -199,6 +223,21 @@ export default function ChatHero({ category }: { category?: string }) {
                 onSuggestionSelect={handleSuggestion}
               />
             ) : null}
+          </div>
+        )}
+
+        {/* Bouton "Lancer la recherche" — en dessous du dernier message */}
+        {showLaunchButton && !busy && (
+          <div className="mt-4 w-full flex justify-center">
+            <button
+              type="button"
+              onClick={handleLaunch}
+              disabled={busy}
+              className="inline-flex items-center gap-3 rounded-full px-8 py-4 text-base font-bold text-white shadow-[0_12px_32px_rgba(229,85,74,0.5)] transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(229,85,74,0.6)] focus:outline-none focus:ring-4 focus:ring-orange-500/25 animate-fade-in"
+              style={{ background: "linear-gradient(135deg, #FF6B5F, #e55a4d)" }}
+            >
+              🚀 Lancer la recherche
+            </button>
           </div>
         )}
 

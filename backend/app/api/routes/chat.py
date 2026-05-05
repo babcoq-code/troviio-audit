@@ -3,7 +3,7 @@ PICKSY — Routes Chat IA
 Flow : entretien → profil → requête Supabase (v_products_published) → ranking IA → recommandations
 """
 
-import os, json, logging
+import os, json, logging, re
 from fastapi import APIRouter, Request, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
@@ -130,9 +130,15 @@ CATEGORY_MAP = {
     "enceinte": "enceinte-bt",
     "bluetooth": "enceinte-bt",
     "jbl": "enceinte-bt",
+    "pc gamer portable": "laptop-gamer",
+    "pc gamer": "laptop-gamer",
+    "gamer": "laptop-gamer",
+    "rtx": "laptop-gamer",
     "ordinateur": "ordinateur-portable",
     "laptop": "ordinateur-portable",
     "macbook": "ordinateur-portable",
+    "étudiant": "ordinateur-portable",
+    "etudiant": "ordinateur-portable",
     "poussette": "poussette",
     "landau": "poussette",
     "caveau": "cave-a-vin",
@@ -286,12 +292,14 @@ Après 12 tours : recherche automatique.
 
 # RÈGLES DE COMPORTEMENT
 
-1. **Empathie d'abord.** Valide toujours l'émotion.
-2. **Pas de jargon technique brut.** Traduis avec des analogies de la vraie vie.
-3. **Humour léger.** Pas de monologue.
-4. **Concise.** 2-4 phrases max par message.
-5. **Une seule question à la fois.** Toujours finir par les 3 options numérotées.
-6. **Si le client arrive avec déjà une question (clic sur chip) :** réponds directement, ne répète pas sa question, enchaîne sur la suivante.
+1. Empathie d'abord. Valide toujours l'emotion.
+2. Pas de jargon technique brut. Traduis avec des analogies de la vraie vie.
+3. Humour leger. Pas de monologue.
+4. Concise. 2-4 phrases max par message.
+5. Une seule question a la fois. Toujours finir par les 3 options numerotees.
+6. Si le client ecrit sa propre reponse (au lieu de cliquer sur une option) : rebondis PRIORITAIREMENT sur ce qu'il a ecrit. Extrais les infos (budget, usage, lieu, etc.) de son texte et enchaîne la question suivante en tenant compte de ses reponses. Ne l'ignore pas, ne lui repose pas la meme question — il a deja repondu, meme si ce n'est pas dans les 3 options.
+7. Tu DOIS lire et analyser le message du client avant de repondre. S'il dit \"j'ai 3 enfants et un chien\", prends-le en compte pour les questions suivantes, ne lui repose pas \"tu as des animaux ?\".
+8. Rebond creatif : Si le client raconte quelque chose (son logement, ses contraintes, une anecdote), integre-le dans la prochaine question. Ca rend la conversation naturelle.
 
 ---
 
@@ -388,10 +396,22 @@ Valider d'abord, diagnostiquer ensuite, jamais contredire :
 
 # FORMAT DES RÉPONSES
 
-- **Longueur :** Maximum 4-5 phrases par bulle. Plus court sur mobile.
-- **Structure :** Intro prose courte (1-2 phrases) → bullets pour les comparaisons → question ou CTA pour relancer
-- **Noms de produits en gras.**
-- **Fin de message :** Toujours terminer par une question ouverte ou un choix à faire.
+- Longueur : Maximum 4-5 phrases par bulle. Plus court sur mobile.
+- Structure : Intro prose courte (1-2 phrases) → question ou CTA pour relancer
+- Fin de message : Toujours terminer par une question ouverte ou un choix a faire.
+
+# INTERDICTION ABSOLUE : JAMAIS DE RECOMMANDATION PRODUIT DANS LE CHAT
+
+NE JAMAIS mentionner de nom de produit, modele, marque, ou lien dans le chat.
+NE JAMAIS proposer de choix entre 2 ou 3 produits dans le chat.
+NE JAMAIS envoyer de lien Amazon ou autre lien commercial dans le chat.
+NE JAMAIS faire de classement ou comparaison de produits dans le chat.
+
+Le seul moment ou les recommandations apparaissent, c'est sur la page resultat dediee, apres que la recherche soit lancee via le bouton "Lancer la recherche".
+
+Ton role dans le chat est UNIQUEMENT de poser des questions pour comprendre le profil et les besoins.
+Une fois le profil assez precis, tu affiches l'option "Lancer la recherche".
+Les resultats seront affiches sur une page apart. Ne les annonce pas et ne les decris pas dans le chat.
 
 ---
 
@@ -433,9 +453,9 @@ async def query_db(profile: dict) -> list:
                 logger.warning(f"⚠️ Catégorie slug introuvable: {cat_slug}")
                 return []
         
-        # Filtrer par budget — price_eur est en centimes en DB, le budget extrait est en euros
+        # Filtrer par budget — price_eur est en euros (pas en centimes)
         if budget:
-            q = q.lte("price_eur", int(budget) * 100)
+            q = q.lte("price_eur", int(budget))
         
         # Exclure les produits sans ASIN (pas de lien affilié possible)
         q = q.not_.is_("amazon_asin", "null")
@@ -745,9 +765,9 @@ async def chat(req: ChatRequest, request: Request):
     msg_lower = req.message.lower().strip()
     
     # Mots qui déclenchent une recherche immédiate
-    # VÉRIFICATION STRICTE : minimum 5 échanges avant de pouvoir lancer (4 réponses DeepSeek + 1 clic)
-    # Tours 1-4 : pas de lancement possible même si l'utilisateur tape \"recherche\"
-    user_wants_search = any(t in msg_lower for t in LAUNCH_TRIGGERS) and exchange_count >= 5
+    # VÉRIFICATION STRICTE : minimum 3 échanges avant de pouvoir lancer (2 réponses DeepSeek + 1 clic)
+    # Tours 1-2 : pas de lancement possible même si l'utilisateur tape \"recherche\"
+    user_wants_search = any(t in msg_lower for t in LAUNCH_TRIGGERS) and exchange_count >= 3
     
     # Auto-trigger APRÈS 8 tours complets (7 questions DeepSeek)
     force_search = (exchange_count >= 12 or user_wants_search) and exchange_count >= 2

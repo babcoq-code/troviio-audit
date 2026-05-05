@@ -440,6 +440,29 @@ export default async function ResultPage({
                     </div>
                   )}
 
+                  {/* 🧪 Test Troviio — le verdict humoristique */}
+                  {(() => {
+                    const ed = (reco as unknown as Record<string, unknown>).enriched_data as Record<string, unknown> | undefined;
+                    const testSummary = (ed?.test_summary as string) || null;
+                    if (!testSummary) return null;
+                    // Nettoyer le markdown basique si présent
+                    const clean = testSummary
+                      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+                      .replace(/\n/g, '<br/>');
+                    return (
+                      <div className="mt-4 rounded-2xl border border-[#FF6B5F]/15 bg-[#FFF7ED] p-4">
+                        <p className="font-sora text-xs font-bold uppercase tracking-widest text-[#FF6B5F] mb-2">
+                          🧪 Test Troviio
+                        </p>
+                        <div
+                          className="text-sm leading-7 break-words [overflow-wrap:anywhere] text-[#0E1020] troviio-test-summary"
+                          dangerouslySetInnerHTML={{ __html: clean }}
+                        />
+                      </div>
+                    );
+                  })()}
+
                   <div className="mt-auto pt-5">
                     <p className="mb-2 font-sora text-xl font-bold">
                       {fmtEur(reco.price_eur) ?? reco.price_range}

@@ -4,6 +4,7 @@ import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useChatStream } from "@/hooks/useChatStream";
 import type { ChatMessage } from "@/types/chat";
 import ChatBubble from "@/components/ChatBubble";
+import { AccessoryPodium } from "@/components/accessories/AccessoryPodium";
 
 export default function AccessoriesChatPage() {
   const [input, setInput] = useState("");
@@ -193,6 +194,12 @@ export default function AccessoriesChatPage() {
             </button>
           </div>
         )}
+      </div>
+
+      {/* Top 3 Podium Accessoires */}
+      <div className="mx-auto max-w-5xl px-4 pb-16">
+        <hr className="mb-12 border-stone-200" />
+        <AccessoryPodium />
       </div>
     </main>
   );

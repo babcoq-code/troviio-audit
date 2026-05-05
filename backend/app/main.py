@@ -21,6 +21,7 @@ logger = logging.getLogger("troviio.api")
 from app.api.routes import chat, products, newsletter, results, tops
 from app.api.routes.result_accessories import router as result_accessories_router
 from app.api.routes.accessories_search import router as accessories_search_router
+from app.api.routes.go import router as go_router
 from app.api.routes.kelkoo import router as kelkoo_router
 from app.api.routes.admin_scraping import router as admin_scraping_router
 from app.routers.accessories import router as accessories_router
@@ -69,6 +70,7 @@ app.include_router(accessories_search_router, prefix="/api", tags=["Accessoires 
 app.include_router(admin_scraping_router)
 app.include_router(accessories_router)
 app.include_router(tops.router, prefix="", tags=["Tops"])
+app.include_router(go_router, tags=["Go"])
 app.include_router(AnalyticsMiddleware.get_router(), prefix="/api", tags=["Analytics"])  # ← ajout
 
 # Analytics middleware — logge chaque visite

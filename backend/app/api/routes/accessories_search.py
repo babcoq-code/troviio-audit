@@ -1,7 +1,8 @@
 """
 Endpoint POST /api/chat/accessories-search
-Chat IA dédié aux accessoires — DeepSeek pose des questions, puis génère 3 accessoires,
-sauvegarde dans Supabase et renvoie un result_id comme le chat principal.
+Chat IA dédié aux accessoires — DeepSeek pose des questions sur l'appareil (marque, modèle, besoin),
+puis génère les accessoires, sauvegarde dans Supabase et redirige vers /accessoires/resultats/[id].
+Ne recommande JAMAIS de produits dans le chat, uniquement des questions.
 """
 import os, json, logging
 from fastapi import APIRouter, Request, HTTPException
@@ -25,39 +26,39 @@ supabase = get_supabase_admin()
 
 ACCESSORIES_SYSTEM_PROMPT = """# IDENTITÉ — CONSEILLER ACCESSOIRES TROVIIO
 
-Tu es l'expert accessoires de Troviio. Tu aides les gens à trouver LE bon accessoire pour leur appareil.
+Tu es l'expert accessoires de Troviio. Tu aides les gens à trouver des accessoires compatibles avec leur appareil.
 
-Ton rôle : identifier précisément l'appareil, comprendre l'usage réel, et recommander l'accessoire adapté — pas le plus cher, le plus compatible.
+# RÈGLE ABSOLUE — JAMAIS DE PRODUITS DANS LE CHAT
+Tu NE DOIS JAMAIS proposer, nommer, suggérer, ou mentionner un produit/accessoire spécifique dans le chat.
+Tu NE DOIS JAMAIS donner de liens, de noms de marques d'accessoires, ou de recommandations produits.
+Tu poses UNIQUEMENT des questions pour comprendre l'appareil et le besoin.
+Les résultats sont affichés sur la page dédiée APRÈS le chat.
 
-# RÈGLES DE FORMAT — IMPORTANT
+# FLOW — 1 QUESTION À LA FOIS, MAX 4 QUESTIONS
 
-Chaque réponse DOIT se terminer par **exactement 3 options numérotées** comme ceci :
+Question 1 (premier message) : "Quel est le modèle exact de ton appareil ? (marque et référence)"
+  → Si l'utilisateur répond avec une marque + modèle court → va directement à Q2
+  → Si l'utilisateur répond avec une marque/un modèle incomplet → demande plus de précisions
 
-1. [Option 1]
-2. [Option 2]
-3. [Option 3]
+Question 2 : "Quel type d'accessoire cherches-tu ? (entretien/filtres, protection/housse, upgrade/amélioration, réparation/pièce, je ne sais pas)"
 
-# FLOW — TRÈS COURT (accessoires = besoin immédiat)
+Question 3 : "À quelle fréquence utilises-tu ton appareil ? (quotidien, plusieurs fois par semaine, occasionnellement)"
 
-1. **Premier message** : Identifie l'appareil et le besoin.
-   Demande le modèle exact.
-   Options : 3 types d'usage ou accessoires courants.
+Question 4 : "Quel budget prévois-tu pour cet accessoire ?"
 
-2. **Deuxième message** : confirme et lance la recherche.
-   La 3e option DOIT être : 🚀 Lancer la recherche — accéder aux accessoires
+Après la Q4 (ou si l'utilisateur dit "go", "trouve", "vas-y", "je suis prêt", "ok", "oui", "lance"):
+→ Réponds : "Super, je lance la recherche des accessoires pour {marque} {modèle} ! 🚀"
+→ Le système détectera automatiquement le déclenchement.
 
-3. **Si l'utilisateur choisit "Lancer la recherche", la recherche est automatique.**
-
-# CONTRAINTES
-
-- Toujours terminer par 3 options numérotées 1. / 2. / 3.
-- Maximum 2 tours de questions, puis proposer "Lancer la recherche"
-- 2-3 phrases max par message (concis)
-- Options courtes et actionnables
-- Ne jamais répondre en texte brut sans options"""
+# STRUCTURE DES RÉPONSES
+- 2-3 phrases max par message
+- 1 question par message
+- Termine par une question claire
+- Si l'utilisateur dit "je sais pas" → propose des exemples courts
+- Ne donne JAMAIS de liste d'options numérotées dans le chat"""
 
 
-LAUNCH_TRIGGERS = {"go", "vas-y", "trouve", "je suis prêt", "je suis prete", "c'est bon", "j'ai assez", "recherche", "ok", "oui", "lance"}
+LAUNCH_TRIGGERS = {"go", "vas-y", "trouve", "je suis prêt", "je suis prete", "c'est bon", "j'ai assez", "recherche", "ok", "oui", "lance", "je lance", "cherche", "montre"}
 
 class AccessoryChatRequest(BaseModel):
     message: str
@@ -77,11 +78,11 @@ async def accessories_search(req: AccessoryChatRequest, request: Request):
     # Compter les échanges utilisateur
     exchange_count = sum(1 for m in history if m["role"] == "user")
 
-    # Détection \"go\" — accessoires : 2 questions max, puis GO
+    # Détection "go" — accessoires : 4 questions max
     msg_lower = req.message.lower().strip()
     user_wants_search = any(t in msg_lower for t in LAUNCH_TRIGGERS)
-    # Auto-go au tour 3 (2 questions DeepSeek + réponse = 3 exchanges)
-    force_search = exchange_count >= 3 or user_wants_search
+    # Auto-go après 4 exchanges (4 questions répondues)
+    force_search = exchange_count >= 4 or user_wants_search
 
     if force_search:
         # Extraire le contexte pour le prompt de génération
@@ -90,32 +91,59 @@ async def accessories_search(req: AccessoryChatRequest, request: Request):
             for m in history if m["content"]
         )
 
-        generation_prompt = f"""# GÉNÉRATION D'ACCESSOIRES
+        generation_prompt = f"""# GÉNÉRATION D'ACCESSOIRES — JSON UNIQUEMENT
 
 Contexte de la conversation :
 {user_context}
 
-À partir de cette conversation, identifie l'appareil exact et ses accessoires.
-Retourne UNIQUEMENT du JSON valide selon le format spécifié plus haut (objet avec done, product_name, product_brand, product_category, usage_summary, accessories).
+À partir de cette conversation, identifie l'appareil exact.
 
-IMPORTANT : 3 accessoires minimum. Prix réalistes. Liens Amazon search avec tag=troviio-21."""
+Retourne UNIQUEMENT du JSON valide (sans markdown, sans texte avant/après) selon ce format :
+{{
+  "product_name": "nom du produit",
+  "product_brand": "marque",
+  "product_category": "catégorie (ex: robot-aspirateur, machine-a-cafe, tv, velo-electrique, casque-audio, etc.)",
+  "usage_summary": "résumé de l'usage (1 phrase)",
+  "accessories": [
+    {{
+      "name": "nom de l'accessoire",
+      "category": "filtre|brosse|batterie|station|sac|chargeur|cable|support|protection|autre",
+      "why": "pourquoi cet accessoire est utile",
+      "compatibility_note": "note de compatibilité avec l'appareil",
+      "estimated_price": "prix estimé ex: ~25€",
+      "amazon_search_url": "https://www.amazon.fr/s?k=Marque+Modèle+accessoire&tag=troviio-21"
+    }}
+  ]
+}}
+
+REGLES :
+- 3 accessoires minimum, 5 maximum
+- Prix réalistes pour le marché français
+- amazon_search_url avec tag=troviio-21 et les bons mots-clés
+- Ne propose que des accessoires réellement compatibles
+- Si tu ne connais pas la compatibilité exacte, mets une note de prudence"""
 
         try:
             resp = await client.chat.completions.create(
                 model="deepseek-chat",
                 messages=[
-                    {"role": "system", "content": ACCESSORIES_SYSTEM_PROMPT},
+                    {"role": "system", "content": "Tu génères du JSON pour des recommandations d'accessoires. Retourne UNIQUEMENT du JSON valide, sans texte ni markdown."},
                     {"role": "user", "content": generation_prompt},
                 ],
                 temperature=0.3,
-                max_tokens=1000,
+                max_tokens=1500,
                 extra_body={"thinking": {"type": "disabled"}},
             )
             raw = resp.choices[0].message.content
             if not raw:
                 raw = resp.choices[0].message.model_extra.get("reasoning_content", "")
 
-            # Parser le JSON
+            if not raw:
+                return AccessoryChatResponse(
+                    reply="Je n'ai pas réussi à identifier les accessoires. Peux-tu me donner le modèle exact ?",
+                    done=False
+                )
+
             # Nettoyer les éventuels markdown fences
             raw_clean = raw.strip()
             if "```json" in raw_clean:
@@ -147,34 +175,27 @@ IMPORTANT : 3 accessoires minimum. Prix réalistes. Liens Amazon search avec tag
             enriched_accessories = []
             for acc in accessories:
                 acc_name = acc.get("name", "").lower()
-                # Chercher dans la table accessories
+
+                # Chercher d'abord par nom exact
+                db_acc_data = {}
                 try:
                     db_acc = (
                         supabase.table("accessories")
-                        .select("id, name, image_url, affiliate_url, merchant_url, score_quality, quality_badge")
-                        .ilike("name", f"%{acc.get('category','')}%")
+                        .select("id, name, affiliate_url, merchant_url, amazon_asin, price_eur")
+                        .ilike("name", f"%{acc_name.split()[-1]}%")
                         .limit(1)
                         .execute()
                     )
-                    # Fallback: chercher par marque ou catégorie
-                    if not db_acc.data:
-                        db_acc = (
-                            supabase.table("accessories")
-                            .select("id, name, image_url, affiliate_url, merchant_url, score_quality, quality_badge, amazon_asin, price_eur")
-                            .ilike("name", f"%{acc.get('category','')}%")
-                            .limit(1)
-                            .execute()
-                        )
+                    if db_acc.data:
+                        db_acc_data = db_acc.data[0]
                 except Exception:
-                    db_acc = type('obj', (object,), {'data': []})()
+                    pass
 
-                db_data = db_acc.data[0] if db_acc.data else {}
-                
                 enriched_acc = {
                     **acc,
-                    "affiliate_url": db_data.get("affiliate_url", "") or acc.get("amazon_search_url", ""),
-                    "image_url": db_data.get("image_url", "") or "",
-                    "merchant_url": db_data.get("merchant_url", "") or acc.get("amazon_search_url", ""),
+                    "affiliate_url": db_acc_data.get("affiliate_url", "") or acc.get("amazon_search_url", ""),
+                    "merchant_url": db_acc_data.get("merchant_url", "") or acc.get("amazon_search_url", ""),
+                    "amazon_asin": db_acc_data.get("amazon_asin", ""),
                 }
                 enriched_accessories.append(enriched_acc)
 
@@ -195,6 +216,7 @@ IMPORTANT : 3 accessoires minimum. Prix réalistes. Liens Amazon search avec tag
                     "enriched_data": {
                         "type": "accessory",
                         "amazon_search_url": acc.get("amazon_search_url", ""),
+                        "amazon_asin": acc.get("amazon_asin", ""),
                         "category": acc.get("category", "autre"),
                         "compatibility_note": acc.get("compatibility_note", ""),
                         "estimated_price": acc.get("estimated_price", ""),
@@ -206,7 +228,7 @@ IMPORTANT : 3 accessoires minimum. Prix réalistes. Liens Amazon search avec tag
                 profile,
                 recos,
                 supabase,
-                metadata={"source": "accessories-chat", "version": "2.0"}
+                metadata={"source": "accessories-chat", "version": "2.1"}
             )
 
             return AccessoryChatResponse(
@@ -237,7 +259,7 @@ IMPORTANT : 3 accessoires minimum. Prix réalistes. Liens Amazon search avec tag
                 *history,
             ],
             temperature=0.7,
-            max_tokens=500,
+            max_tokens=400,
             extra_body={"thinking": {"type": "disabled"}},
         )
         reply = resp.choices[0].message.content

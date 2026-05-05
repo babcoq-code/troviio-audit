@@ -84,7 +84,7 @@ export default function PriceComparisonTable({
         // prices items: { platform, price, is_available, url, updated_at }
         const raw = (json.prices ?? json) as any[];
         const data: PriceEntry[] = raw.map((p: any) => ({
-          platform: p.platform || "",
+          platform: p.platform || p.merchant_name || "",
           price_eur: p.price_eur ?? p.price ?? 0,
           in_stock: p.is_available ?? true,
           url: p.url || p.affiliate_url || null,

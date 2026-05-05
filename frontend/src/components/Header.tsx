@@ -16,8 +16,9 @@ export default function Header() {
 
   const nav = [
     { label: "🔍 Catégories", href: "/#categories" },
+    { label: "📦 Tous les produits", href: "/catalogue" },
     { label: "🏆 Top 3", href: "/tops" },
-    { label: "🔧 Accessoires", href: "/accessoires/chat" },
+    { label: "🔧 Chat Accessoires", href: "/accessoires/chat" },
     { label: "💘 Score Troviio", href: "/score" },
     { label: "🧪 Méthode", href: "/methodologie" },
     { label: "📝 Guides", href: "/guide" },

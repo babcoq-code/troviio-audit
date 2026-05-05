@@ -92,7 +92,11 @@ export default async function AdminProduitsPage() {
                           </span>
                         </td>
                         <td className="px-4 py-2 text-white/80">{p.brand || "?"}</td>
-                        <td className="px-4 py-2 max-w-[250px] truncate">{p.name}</td>
+                        <td className="px-4 py-2 max-w-[250px] truncate">
+                          <Link href={`/produit/${p.slug}`} className="hover:text-blue-400 transition" target="_blank">
+                            {p.name}
+                          </Link>
+                        </td>
                         <td className="px-4 py-2 font-mono text-white/60">
                           {p.price_eur != null ? `${(p.price_eur / 100).toFixed(0)}€` : "?"}
                         </td>

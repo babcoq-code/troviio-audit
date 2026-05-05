@@ -107,7 +107,7 @@ export function useChatStream(): UseChatStreamReturn {
 
         // Redirection accessoire si mots-clés détectés ou forceAccessory
         const isAccessory = options?.forceAccessory || isAccessoryQuery(trimmed);
-        const apiEndpoint = isAccessory ? "/api/chat/chat/accessories" : "/api/chat/chat";
+        const apiEndpoint = isAccessory ? "/api/chat/accessories-search" : "/api/chat/chat";
 
         const response = await fetch(apiEndpoint, {
           method: "POST",
@@ -127,8 +127,37 @@ export function useChatStream(): UseChatStreamReturn {
         const json = await response.json();
         const reply = json.reply ?? "";
         const done = json.done ?? false;
-        const searchProfile = json.search_profile ?? null;
 
+        // Gestion du redirect_url (utilisé par l'endpoint accessories-search)
+        if (done && json.redirect_url) {
+          const assistantMsg: ChatMessage = {
+            id: createMessageId(),
+            role: "assistant",
+            content: reply || "✅ Accessoires trouvés ! Redirection en cours...",
+            createdAt: new Date().toISOString(),
+            category: options?.category,
+          };
+          if (mountedRef.current) {
+            setMessages((prev) => [...prev, assistantMsg]);
+            setStreamedResponse("");
+            setState("done");
+            setError(null);
+          }
+
+          // Nettoyer localStorage
+          try { window.localStorage.removeItem("troviio.chat.history.v2"); } catch {}
+
+          // Redirection vers la page résultat
+          if (typeof window !== "undefined") {
+            window.location.href = json.redirect_url;
+          }
+
+          abortRef.current = null;
+          return;
+        }
+
+        // Gestion du result_id classique (chat principal)
+        const searchProfile = json.search_profile ?? null;
         if (done && searchProfile?.result_id) {
           // Create assistant message with result_id → triggers ResultRedirectMessage
           const assistantMsg: ChatMessage = {
@@ -145,7 +174,7 @@ export function useChatStream(): UseChatStreamReturn {
             setState("done");
             setError(null);
           }
-          
+
           // ✅ Vider localStorage pour éviter de re-déclencher la redirection au retour
           try { window.localStorage.removeItem("troviio.chat.history.v2"); } catch {}
         } else {

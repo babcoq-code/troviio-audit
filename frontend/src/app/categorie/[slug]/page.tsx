@@ -96,6 +96,30 @@ const CATEGORY_META: Record<
     description:
       "Onduleurs Line-Interactive et Online pour protéger vos équipements sensibles contre les coupures et surtensions.",
   },
+  tablette: {
+    name: "Tablette / iPad",
+    emoji: "📱",
+    description:
+      "Les meilleures tablettes et iPad pour le travail, la création, le streaming et le gaming mobile en 2026.",
+  },
+  "manette-switch": {
+    name: "Manette Nintendo Switch",
+    emoji: "🎮",
+    description:
+      "Les meilleures manettes Nintendo Switch : Pro Controller, Joy-Con 2, 8BitDo, et alternatives Hall Effect sans drift.",
+  },
+  "jeu-coop-local": {
+    name: "Jeux Co-op Local",
+    emoji: "🎮",
+    description:
+      "Les meilleurs jeux pour jouer a plusieurs sur le meme canape : It Takes Two, Mario Kart World, TMNT, Cuphead et plus.",
+  },
+  "ventilateur-classique": {
+    name: "Ventilateur classique",
+    emoji: "💨",
+    description:
+      "Les meilleurs ventilateurs sur pied, colonne et table pour survivre a la canicule : Duux, Rowenta, Honeywell, Meaco.",
+  },
 };
 
 function getCategoryMeta(slug: string) {
@@ -368,18 +392,17 @@ function ProductCardItem({ product }: { product: Product }) {
             </div>
           )}
 
-        {/* Price + Score indicator */}
+        {/* Price - replaced by Amazon button */}
         <div className="flex items-center justify-between pt-1">
-          <span className="text-lg font-extrabold text-white">
-            {product.price_eur ? (
-              <>
-                {product.price_eur}€{" "}
-                <span className="text-coral text-sm">↗</span>
-              </>
-            ) : (
-              <span className="text-sm text-muted">Prix non dispo</span>
-            )}
-          </span>
+          <a
+            href={product.affiliate_url || (product.amazon_asin ? `https://www.amazon.fr/dp/${product.amazon_asin}?tag=troviio-21` : `/produit/${product.slug}`)}
+            target={product.affiliate_url || product.amazon_asin ? "_blank" : "_self"}
+            rel={product.affiliate_url || product.amazon_asin ? "noopener noreferrer sponsored" : undefined}
+            className="inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold text-white transition hover:brightness-110"
+            style={{ background: "linear-gradient(135deg, #FF6B5F, #E5554A)" }}
+          >
+            Voir le prix ↗
+          </a>
           <span className="text-xs font-bold text-mint uppercase tracking-wider">
             ● IA vérifiée
           </span>

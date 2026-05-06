@@ -69,6 +69,8 @@ async def get_result(result_id: str):
             "cons": rec.get("cons", []),
             "use_case_scores": ed.get("use_case_scores") or {},
             "specs": ed.get("specs") or {},
+            "test_summary": ed.get("test_summary"),
+            "enriched_data": ed,
         })
 
     return {

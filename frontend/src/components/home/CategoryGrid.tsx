@@ -47,6 +47,8 @@ const CATEGORIES = [
   { slug: "trottinette",         label: "Trottinette élec.", emoji: "🛴", family: "mobility" as Family, hook: "Autonomie, poids, homologuée" },
   { slug: "matelas",            label: "Matelas",            emoji: "🛏️", family: "comfort" as Family, hook: "Fermeté, couple, dos" },
   { slug: "poussette",          label: "Poussette",          emoji: "👶", family: "comfort" as Family, hook: "Légère, pliable, tout terrain" },
+  { slug: "jeu-coop-local",     label: "Jeux co-op",          emoji: "🎮", family: "tech" as Family, hook: "Canapé, 2-6 joueurs, fun" },
+  { slug: "ventilateur-classique",label: "Ventilateur",       emoji: "🌬️", family: "comfort" as Family, hook: "Silence, puissance, budget" },
 ];
 
 const FAMILY_META: Record<Family, { label: string; color: string; bg: string }> = {

@@ -4,8 +4,10 @@ import { useCallback, useState } from "react";
 import { useHistory } from "@/hooks/useHistory";
 import HistorySidebar from "@/components/HistorySidebar";
 import ChatHero from "@/components/ChatHero";
+import TrustBar from "@/components/TrustBar";
 import CategoryGrid from "@/components/CategoryGrid";
-import Testimonials from "@/components/Testimonials";
+import Top3Home from "@/components/Top3Home";
+import SearchOmnibox from "@/components/SearchOmnibox";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
 export default function HomePageClient() {
@@ -20,7 +22,12 @@ export default function HomePageClient() {
 
   return (
     <>
+      <section className="pt-20 sm:pt-28">
+        <SearchOmnibox />
+      </section>
       <ChatHero />
+      <TrustBar />
+      <Top3Home />
       <CategoryGrid />
 
       {/* Historique des recherches */}
@@ -37,7 +44,6 @@ export default function HomePageClient() {
         </div>
       )}
 
-      <Testimonials />
       <NewsletterSignup />
     </>
   );

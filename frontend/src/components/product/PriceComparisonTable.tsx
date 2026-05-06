@@ -186,14 +186,21 @@ export default function PriceComparisonTable({
                 </span>
               </div>
 
-              {/* Price */}
-              <p
-                className={`text-2xl font-extrabold mb-1 ${
-                  isBest ? "text-mint" : "text-white"
-                }`}
-              >
-                {priceFormatter.format(entry.price_eur)}
-              </p>
+              {/* Price - pas de prix fixe */}
+              <div className="flex items-center gap-2 mb-3">
+                <span
+                  className={`w-2 h-2 rounded-full ${
+                    entry.in_stock ? "bg-mint" : "bg-coral"
+                  }`}
+                />
+                <span
+                  className={`text-xs ${
+                    entry.in_stock ? "text-mint" : "text-coral"
+                  }`}
+                >
+                  {entry.in_stock ? "En stock" : "Rupture"}
+                </span>
+              </div>
 
               {/* Stock status */}
               <div className="flex items-center gap-2 mb-3">

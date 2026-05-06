@@ -80,23 +80,57 @@ export default function ProductClient({ product }: ProductClientProps) {
                 </p>
               )}
 
-              {/* Score + Prix */}
+              {/* Score + Prix - Amazon */}
               <div className="flex flex-wrap items-center gap-6">
                 {product.estimated_score != null && (
                   <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
                     <ScoreRing score={product.estimated_score} />
                   </div>
                 )}
-                {product.price_eur != null && (
+                {product.affiliate_url || product.amazon_asin ? (
                   <div className="rounded-3xl border border-white/10 bg-[var(--bg-surface)] p-5">
                     <p className="text-xs font-semibold uppercase tracking-widest text-[#8B8FA3]">
-                      Prix dès
+                      Meilleur prix
+                    </p>
+                    <a
+                      href={product.affiliate_url || `https://www.amazon.fr/dp/${product.amazon_asin}?tag=troviio-21`}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                      className="mt-1 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#FF6B5F] to-[#E5554A] px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110 shadow-lg shadow-[#FF6B5F]/30"
+                    >
+                      Voir le prix → Amazon
+                    </a>
+                    <p className="mt-2 text-xs text-[#8B8FA3]">
+                      Prix mis à jour en direct ↓
+                    </p>
+                  </div>
+                ) : product.affiliate_url || product.amazon_asin ? (
+                  <div className="rounded-3xl border border-white/10 bg-[var(--bg-surface)] p-5">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-[#8B8FA3]">
+                      Meilleur prix
+                    </p>
+                    <a
+                      href={product.affiliate_url || `https://www.amazon.fr/dp/${product.amazon_asin}?tag=troviio-21`}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                      className="mt-1 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#FF6B5F] to-[#E5554A] px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110 shadow-lg shadow-[#FF6B5F]/30"
+                    >
+                      Voir le prix → Amazon
+                    </a>
+                    <p className="mt-2 text-xs text-[#8B8FA3]">
+                      Prix mis à jour en direct ↓
+                    </p>
+                  </div>
+                ) : product.price_eur != null && (
+                  <div className="rounded-3xl border border-white/10 bg-[var(--bg-surface)] p-5">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-[#8B8FA3]">
+                      Prix estimé
                     </p>
                     <p className="mt-1 text-3xl font-bold text-white">
                       {EUR.format(product.price_eur)}
                     </p>
                     <p className="mt-1 text-xs text-[#8B8FA3]">
-                      Comparaison live ci-dessous ↓
+                      * Prix indicatif — susceptible de varier
                     </p>
                   </div>
                 )}

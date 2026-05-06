@@ -2,9 +2,12 @@ import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import { UmamiAnalytics } from "@/components/UmamiAnalytics";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import ClarityScript from "@/components/analytics/ClarityScript";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { JsonLd, buildWebSiteJsonLd } from "@/components/seo/JsonLd";
+import BottomNav from "@/components/BottomNav";
+import TrustBar from "@/components/TrustBar";
+import { JsonLd, buildWebSiteJsonLd, buildOrganizationJsonLd } from "@/components/seo/JsonLd";
 
 // Force dynamic to avoid _not-found static generation bug with React 19
 export const dynamic = "force-dynamic";
@@ -19,11 +22,13 @@ const defaultOgImage = {
 export async function generateMetadata() {
   return {
     metadataBase: new URL("https://www.troviio.com"),
-    title: "Troviio | Pas le meilleur. Le tien.",
+    title: {
+      default: "Troviio | Pas le meilleur. Le tien.",
+      template: "%s — Troviio",
+    },
     description:
       "Troviio ne compare pas les produits. Il comprend ta vie, tes contraintes et ton budget pour te recommander LE produit qui te correspond. Zéro biais, zéro commission.",
     icons: { icon: "/logo-icon.svg" },
-    alternates: { canonical: "/" },
     openGraph: {
       title: "Troviio | Pas le meilleur. Le tien.",
       description:
@@ -68,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:image" content="https://troviio.com/og-image.png" />
+        <JsonLd data={buildOrganizationJsonLd()} />
         <JsonLd data={buildWebSiteJsonLd()} />
       </head>
       <body className="min-h-screen flex flex-col">
@@ -76,6 +82,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1 pt-20">{children}</main>
         <CookieBanner />
+        <ClarityScript trackingId={process.env.NEXT_PUBLIC_CLARITY_ID ?? ""} />
+        <Footer />
+        <BottomNav />
       </body>
     </html>
   );

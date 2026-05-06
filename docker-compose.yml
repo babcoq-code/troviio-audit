@@ -30,10 +30,12 @@ services:
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_SUPABASE_URL: "https://uukshxztoztkwxuuvqzc.supabase.co"
-        NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable_MtlnW7iC23FprNIUrISnZg_6IN8erpB"
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable__kPeUNFUMtISs7u6gxuEKg_zXUH6yOA"
         NEXT_PUBLIC_API_URL: "https://troviio.com/api"
-        NEXT_PUBLIC_APP_URL: "https://troviio.com"
+        NEXT_PUBLIC_APP_URL: "https://www.troviio.com"
         NEXT_PUBLIC_AMAZON_TAG: "troviio-21"
+        NEXT_PUBLIC_CLARITY_ID: "${NEXT_PUBLIC_CLARITY_ID}"
+        NEXT_PUBLIC_SITE_URL: "https://www.troviio.com"
         RESEND_API_KEY: "${RESEND_API_KEY}"
     environment:
       SUPABASE_SERVICE_KEY: "${SUPABASE_SERVICE_KEY}"

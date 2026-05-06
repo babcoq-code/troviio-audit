@@ -205,12 +205,17 @@ function PodiumCard({ product, rank }: { product: TopProduct; rank: number }) {
           </Link>
         </h3>
 
-        {product.price_eur != null && product.price_eur > 0 ? (
+        {product.affiliate_url ? (
           <div className="mt-3 rounded-2xl px-4 py-2 ring-1" style={{ backgroundColor: "var(--bg)", borderColor: "var(--border)" }}>
-            <span className="text-xs" style={{ color: "var(--text-muted)" }}>Meilleur prix </span>
-            <span className="text-xl font-bold ml-1" style={{ color: "var(--text)" }}>
-              {EUR.format(product.price_eur)}
-            </span>
+            <a
+              href={product.affiliate_url}
+              target="_blank"
+              rel="nofollow sponsored noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-bold"
+              style={{ color: "var(--mint)" }}
+            >
+              Voir le prix sur Amazon →
+            </a>
             {product.best_merchant && (
               <span className="text-xs ml-2" style={{ color: "var(--text-muted)" }}>via {product.best_merchant}</span>
             )}

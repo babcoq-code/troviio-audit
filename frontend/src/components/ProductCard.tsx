@@ -52,31 +52,25 @@ export default function ProductCard({ product }: Props) {
           </div>
           <ScoreRing score={product.estimated_score || 85} size="sm" />
         </div>
-
+        {/* Price replaced with Amazon button */}
         <div className="flex items-center justify-between pt-1">
-          {product.affiliate_url ? (
-            <a
-              href={product.affiliate_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-lg font-extrabold text-white hover:text-coral transition-colors"
-            >
-              {product.price_eur}€ <span className="text-coral text-sm">↗</span>
-            </a>
-          ) : (
-            <span className="text-sm text-muted">
-              {product.price_eur ? `${product.price_eur}€` : "Prix non dispo"}
-            </span>
-          )}
+          <a
+            href={product.affiliate_url || (product.amazon_asin ? `https://www.amazon.fr/dp/${product.amazon_asin}?tag=troviio-21` : `/produit/${product.slug}`)}
+            target={product.affiliate_url || product.amazon_asin ? "_blank" : "_self"}
+            rel={product.affiliate_url || product.amazon_asin ? "noopener noreferrer sponsored" : undefined}
+            className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-coral to-coral-dark px-4 py-2 text-xs font-bold text-white transition hover:brightness-110 shadow-lg shadow-coral/20"
+          >
+            Voir le prix sur Amazon ✨
+          </a>
           <span className="text-xs font-bold text-mint uppercase tracking-wider">
             ● IA vérifiée
           </span>
         </div>
 
         <a
-          href={product.affiliate_url || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={product.affiliate_url || (product.amazon_asin ? `https://www.amazon.fr/dp/${product.amazon_asin}?tag=troviio-21` : "#")}
+          target={product.affiliate_url || product.amazon_asin ? "_blank" : "_self"}
+          rel={product.affiliate_url || product.amazon_asin ? "noopener noreferrer sponsored" : undefined}
           className="block w-full text-center bg-gradient-to-r from-coral to-coral-dark hover:from-coral-light hover:to-coral text-white py-3 rounded-xl font-bold text-sm transition-all shadow-lg shadow-coral/20"
         >
           Voir le prix sur Amazon ✨

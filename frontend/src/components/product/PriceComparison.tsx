@@ -70,7 +70,7 @@ export function PriceComparison({
                 Relevé le {fmtDate(p.scraped_at)}
               </p>
             </div>
-            <p className="text-lg font-black">{fmt(p.price_eur)}</p>
+            <span className="text-sm font-bold text-emerald-600">Voir →</span>
           </div>
           <div className="mt-2 flex gap-2 flex-wrap">
             {i === 0 && (

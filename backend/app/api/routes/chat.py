@@ -487,8 +487,8 @@ async def query_db(profile: dict) -> list:
         if budget:
             q = q.lte("price_eur", int(budget))
         
-        # Exclure les produits sans ASIN (pas de lien affilié possible)
-        q = q.not_.is_("amazon_asin", "null")
+        # Nota: on n'exclut PAS les produits sans ASIN — la qualité de réponse prime
+        # sur le lien affilié. Les marchands non-Amazon auront leur propre lien.
         
         data = q.execute()
         return data.data or []
@@ -547,16 +547,24 @@ CRITICAL: Use the EXACT brand and name as provided. Do NOT repeat the brand mult
 
 CRITICAL: You MUST ONLY recommend products from the list provided below. Do NOT invent or suggest any product that is not in the list. If the user asks about a specific product, ONLY recommend it if it appears in the list.
 
-TROVIIO SCORE — Tu dois calculer un troviio_score sur /100 qui mesure l'affinité amoureuse entre le client et le produit. C'est notre signature, notre "match amoureux". Pas une note générique — c'est la probabilité que ce produit rende l'utilisateur heureux au quotidien.
+TROVIIO SCORE EXPLANATION — Tu dois donner un troviio_explanation (1-2 phrases) qui explique POURQUOI ce produit matche avec le profil du client. C'est notre signature : une raison personnalisée, piquante, avec du charisme. Pas générique. Ex: 'Ton appart de 40m² ne justifie pas un aspirateur de chantier, mais ce modèle est taqué pour les poils de chat — taquinerie assumée.'
 
-Le troviio_score prend en compte :
-1. **Adéquation au profil** (60%) — Est-ce que ce produit correspond exactement aux besoins, au budget, aux critères et au mode de vie du client ?
-2. **Qualité intrinsèque** (25%) — notes, specs, durabilité, performance par rapport aux concurrents
-3. **Valeur perçue** (15%) — le rapport entre le prix et ce que ça apporte
+Le score technique (score sur 10) est une note classique de performance et qualité du produit. C'est indépendant du profil client.
 
-Un troviio_score élevé (85+) = "coup de foudre, tu vas l'adorer"
-Un troviio_score moyen (60-84) = "bon plan, solide, fiable"
-Un troviio_score bas (-60) = "ça peut marcher mais sois vigilant"
+TROVIIO TONE — Le ton doit être celui d'un pote un peu cynique qui te dit la vérité en face. On veut faire sourire, déclencher un petit rire. Utilise des métaphores, des références pop culture, des comparaisons absurdes mais justes. Pas de blagues forcées non plus — l'humour doit servir le conseil.
+
+Exemples de ton pour t'inspirer (ne les recopie pas, trouve tes propres formulations) :
+- \"C'est le genre de produit qui rendrait même un moine bouddhiste un peu matérialiste.\"
+- \"Aussi silencieux qu'un espion dans un film d'espionnage. Aussi efficace qu'un ninja avec un balai.\"
+- \"Le meilleur rapport qualité/prix depuis que quelqu'un a inventé la roue.\"
+- \"Passe de 'j'ai un aspirateur' à 'j'ai un pote qui aspire pour moi' – niveau confort.\"
+- \"Si ce produit était un film, ce serait un classique que tu regardes en boucle.\"
+
+why_perfect doit être une petite histoire de 3-4 phrases qui fait référence aux besoins précis du client. Pas une liste de specs. On veut que le client se dise 'putain, oui, c'est exactement ça'.
+
+why_caution doit être honnête, mais pas comme un robot : avec des métaphores, du second degré. Ex: 'Ce modèle aspire comme un champion mais il est plus bruyant qu'un groupe de métal dans un ascenseur' ou 'La batterie tient 3h – assez pour une maison de 200m², pas assez pour celle de ta mère'.
+
+troviio_explanation (1-2 phrases max) : une raison personnalisée, piquante, qui explique POURQUOI ce produit est fait pour ce client. Avec du charisme. Pas générique.
 
 OUTPUT FORMAT — Return this exact JSON structure, nothing else:
 {
@@ -569,23 +577,22 @@ OUTPUT FORMAT — Return this exact JSON structure, nothing else:
       \"why_caution\": \"French, 2-3 sentences. HONNÊTE sur les limites : que manque-t-il à ce produit pour l'utilisateur ? Par exemple : 'Ce modèle est parfait pour les poils d'animaux mais il est un peu bruyant la nuit' ou 'La station dure 2 mois sans vidange mais les consommables coûtent 80€/an'. Toujours trouver un vrai point d'attention, jamais laisser vide. Si vraiment aucun défaut, mettre au moins 'Ce modèle n'a pas de défaut majeur, vérifie juste la compatibilité avec ton mobilier'.\",
       "pros": ["string", "string", "string"],
       "cons": ["string"],
-      "score": 8.5,
-      "troviio_score": 78,
-      "troviio_explanation": "1-2 phrases en français qui expliquent POURQUOI ce score d'affinité. Personnalisé, avec une touche d'humour et de franchise.",
-      "price_range": "500€"
+      \"score\": 8.5,
+      \"troviio_explanation\": \"1-2 phrases en français qui expliquent POURQUOI ce produit est fait pour ce client. Personnalisé, avec une touche d'humour et de franchise.\",
+      \"price_range\": \"500€\"
     }
   ]
 }
 
 STRICT RULES:
 - rank_label: "Meilleur choix" | "Meilleur rapport qualite/prix" | "Option premium"
-- score: between 0 and 10 (note technique classique, comme avant)
-- troviio_score: between 0 and 100 (note d'affinité Troviio — notre signature)
-- troviio_explanation: obligatoire, en français, personnalisée, max 2 phrases
+- score: between 0 and 10 (note technique classique du produit, basée sur ses specs et qualité)
+- troviio_explanation: obligatoire, en français, personnalisée, humoristique, max 2 phrases
+- IMPORTANT: Ne PAS inclure troviio_score dans le JSON. Le troviio_score est calculé côté serveur.
 - Output ONLY the JSON object. No markdown, no explanation, no preamble.
 - recommendations must contain exactly 3 items.
 - why_perfect MUST reference the user's specific needs from the profile.
-- why_caution: honest about potential downsides for THIS user. Empty string if none.
+- why_caution: MUST always be a meaningful, specific caveat. Never empty. If the product is perfect, at least mention a relevant edge case or compatibility consideration. The tone should be honest, slightly humorous, not generic.
 - name must be just the product name (e.g. "L10s Ultra"), NOT "Dreame L10s Ultra" or "Dreame Dreame L10s Ultra".
 """
     user_prompt = f"""Profile utilisateur : {json.dumps(profile, ensure_ascii=False)}
@@ -618,11 +625,13 @@ Rends exactement 3 recommandations au format JSON. Inclus why_caution pour chaqu
         
         # Cross-check : filtrer les recommandations qui ne correspondent à AUCUN produit de la liste
         valid_names = set()
+        valid_names_list = []  # pour substring matching
         for p in products:
             bn = unidecode(p.get('brand','').lower().strip())
             nm = unidecode(p.get('name','').lower().strip())
             valid_names.add(f"{bn} {nm}")
             valid_names.add(nm)
+            valid_names_list.append((bn, nm))
         
         filtered_recs = []
         for r in recs:
@@ -631,6 +640,15 @@ Rends exactement 3 recommandations au format JSON. Inclus why_caution pour chaqu
             lookup = f"{r_brand} {r_name}"
             # Vérifier si le nom complet ou juste le nom correspond à un produit connu
             is_valid = lookup in valid_names or r_name in valid_names
+            # Fallback flexible: le nom AI peut être un sous-ensemble du nom DB
+            # (ex: DB a "SAMSUNG AX9500...", AI retourne "AX9500...")
+            if not is_valid:
+                for db_bn, db_nm in valid_names_list:
+                    # Vérifier si le nom AI est contenu dans le nom DB (après retrait de la marque DB)
+                    clean_db_name = db_nm.replace(db_bn, '', 1).strip()
+                    if r_name and (r_name in db_nm or r_name in clean_db_name):
+                        is_valid = True
+                        break
             if is_valid:
                 filtered_recs.append(r)
             else:
@@ -795,11 +813,11 @@ async def chat(req: ChatRequest, request: Request):
     msg_lower = req.message.lower().strip()
     
     # Mots qui déclenchent une recherche immédiate
-    # VÉRIFICATION STRICTE : minimum 3 échanges avant de pouvoir lancer (2 réponses DeepSeek + 1 clic)
-    # Tours 1-2 : pas de lancement possible même si l'utilisateur tape \"recherche\"
-    user_wants_search = any(t in msg_lower for t in LAUNCH_TRIGGERS) and exchange_count >= 3
+    # VÉRIFICATION STRICTE : minimum 5 échanges (tour 5+) avant de pouvoir lancer
+    # Tours 1-4 : pas de lancement possible même si l'utilisateur tape "recherche"
+    user_wants_search = any(t in msg_lower for t in LAUNCH_TRIGGERS) and exchange_count >= 5
     
-    # Auto-trigger APRÈS 8 tours complets (7 questions DeepSeek)
+    # Auto-trigger APRÈS 12 tours complets (SYSTEM_PROMPT: "Après 12 tours : recherche automatique")
     force_search = (exchange_count >= 12 or user_wants_search) and exchange_count >= 2
 
     if force_search:
@@ -879,15 +897,19 @@ async def chat(req: ChatRequest, request: Request):
                 profile["budget_max"] = max(last_mentioned, highest)
                 logger.info(f"💰 Budget extrait: {profile['budget_max']}€ (dernier={last_mentioned}, plus_haut={highest}, {len(all_budget_matches)} occurence(s))")
         
+        # 3) Fallback: si l'utilisateur a explicitement mentionné un mot-clé budget ET un nombre avec €
+        #    Ne pas fixer de budget_max si le mot "budget" apparaît seul sans montant,
+        #    ou si un nombre avec € apparaît dans un contexte non-budget (ex: "j'ai vu un produit à 800€" sans contexte budget)
         if not profile["budget_max"]:
-            # 3) Fallback: n'importe quel nombre suivi de € mentionné par l'utilisateur
-            all_numbers = re.findall(r'(\d{3,5})\s*(?:€|euros?|eur)', all_user_text)
-            if all_numbers:
-                n = max(int(x) for x in all_numbers)
-                if n < 100000:
-                    profile["budget_max"] = n
-                    logger.info(f"💰 Budget extrait (fallback nombre): {profile['budget_max']}€")
-        elif profile["budget_max"]:
+            has_budget_keyword = bool(re.search(r'\bbudget\b|\bmax\b|\bmaximum\b|jusqu.?(?:a|à)\b|moins\s+de|pas\s+plus\s+(?:de|que)', all_user_text))
+            if has_budget_keyword:
+                all_numbers = re.findall(r'(\d{3,5})\s*(?:€|euros?|eur)', all_user_text)
+                if all_numbers:
+                    n = max(int(x) for x in all_numbers)
+                    if n < 100000:
+                        profile["budget_max"] = n
+                        logger.info(f"💰 Budget extrait (fallback avec mot-clé): {profile['budget_max']}€")
+        if profile["budget_max"]:
             # 4) Cross-check : si un nombre nu plus élevé avec € existe, le prendre (ex: "500€ max -> 1500€")
             all_numbers = re.findall(r'(\d{3,5})\s*(?:€|euros?|eur)', all_user_text)
             if all_numbers:
@@ -901,7 +923,7 @@ async def chat(req: ChatRequest, request: Request):
         products = await query_db(profile)
         if products:
             ranked = await rank_with_ai(products, profile, chat_history=history)
-            enriched = await enrich_recommendations(ranked, supabase)
+            enriched = await enrich_recommendations(ranked, supabase, profile)
             final_recs = enriched if enriched else ranked
             result_id = generate_result_id()
             await save_result(result_id, profile, final_recs, supabase)
@@ -937,21 +959,31 @@ Ton rôle : identifier précisément l'appareil, comprendre l'usage réel, et re
 
 # RÈGLES DE FORMAT — IMPORTANT
 
-Chaque réponse DOIT se terminer par **exactement 3 options numérotées** comme ceci :
+Chaque réponse DOIT se terminer par **exactement 3 options numérotées avec lien Amazon** comme ceci :
 
-1. [Option 1]
-2. [Option 2]
-3. [Option 3]
+1. 🔌 [Nom accessoire] — [raison courte] → [lien Amazon avec tag troviio-21]
+2. 🔧 [Nom accessoire] — [raison courte] → [lien Amazon avec tag troviio-21]
+3. 🚀 Lancer la recherche — accéder à tous les accessoires
+
+Les liens Amazon doivent être au format : https://www.amazon.fr/s?k=MARQUE+APPAREIL+ACCESSOIRE&tag=troviio-21
+Le lien doit contenir la marque + modèle de l'appareil ET le nom de l'accessoire pour que la recherche Amazon soit pertinente.
 
 # FLOW
 
 1. **D'abord, identifie l'appareil et le besoin.** Demande modèle exact et type d'accessoire.
-   Options : 3 types d'usage ou accessoires courants.
+   Options : 3 types d'usage ou accessoires courants, CHACUN avec un lien Amazon.
 
 2. **Puis, confirme et lance la recherche.**
    La 3e option DOIT être : 🚀 Lancer la recherche — accéder aux accessoires
 
 3. **Si l'utilisateur choisit "Lancer la recherche", la recherche est automatique.**
+
+# RÈGLES DE RECOMMANDATION
+
+- Ne JAMAIS donner de prix chiffré. L'utilisateur clique sur le lien Amazon pour voir le prix.
+- Les accessoires recommandés doivent être COMPATIBLES avec le modèle exact.
+- Le lien Amazon doit être une recherche qui trouvera VRAIMENT l'accessoire (ex: "https://www.amazon.fr/s?k=Thermomix+TM6+spatule&tag=troviio-21").
+- Si tu n'es pas sûr du modèle exact, propose une recherche générique (ex: "https://www.amazon.fr/s?k=Thermomix+accessoire&tag=troviio-21").
 
 # CONTRAINTES
 
@@ -1023,7 +1055,7 @@ async def chat_accessories(req: AccessoryChatRequest, request: Request):
         
         if products:
             ranked = await rank_with_ai(products, profile, chat_history=history)
-            enriched = await enrich_recommendations(ranked, supabase)
+            enriched = await enrich_recommendations(ranked, supabase, profile)
             final_recs = enriched if enriched else ranked
             result_id = generate_result_id()
             await save_result(result_id, profile, final_recs, supabase)

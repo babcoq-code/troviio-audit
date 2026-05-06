@@ -22,6 +22,7 @@ export default function Header() {
     { label: "💘 Score Troviio", href: "/score" },
     { label: "🧪 Méthode", href: "/methodologie" },
     { label: "📝 Guides", href: "/guide" },
+    { label: "⚔️ Duels", href: "/duels" },
     { label: "🏠 À propos", href: "/a-propos" },
   ];
 

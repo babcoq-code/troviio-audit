@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { AccessoriesChat } from './AccessoriesChat';
 import { Accessory } from '@/lib/types/accessories';
 
@@ -72,12 +71,14 @@ export function AccessoriesTroviioWidget({
             votre appareil. Chaque accessoire est noté et testé.
           </p>
         </div>
-        <Link
-          href={`/accessoires/pour/${productSlug}`}
+        <a
+          href={`https://www.amazon.fr/s?k=${encodeURIComponent(productName + " accessoire")}&tag=troviio-21`}
+          target="_blank"
+          rel="nofollow sponsored noopener noreferrer"
           className="inline-flex shrink-0 items-center justify-center rounded-2xl border border-white/20 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10"
         >
-          Voir tous les accessoires →
-        </Link>
+          Voir tous les accessoires sur Amazon →
+        </a>
       </div>
 
       {/* Avertissements copies dangereuses */}
@@ -124,12 +125,14 @@ export function AccessoriesTroviioWidget({
 
       {data.accessories.length > 3 && (
         <div className="mt-7 text-center">
-          <Link
-            href={`/accessoires/pour/${productSlug}`}
+          <a
+            href={`https://www.amazon.fr/s?k=${encodeURIComponent(productName + " accessoire")}&tag=troviio-21`}
+            target="_blank"
+            rel="nofollow sponsored noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#4257FF] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#5870FF]"
           >
-            Voir les {data.accessories.length} accessoires compatibles →
-          </Link>
+            Voir les {data.accessories.length} accessoires sur Amazon →
+          </a>
         </div>
       )}
     </section>
@@ -149,8 +152,10 @@ function AccessoryTroviio({
   return (
     <article className="group flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0E1020] transition hover:-translate-y-0.5 hover:shadow-md">
       {/* Image */}
-      <Link
-        href={`/accessoires/${accessory.slug}`}
+      <a
+        href={offerUrl}
+        target="_blank"
+        rel="nofollow sponsored noopener noreferrer"
         className="relative block aspect-[4/3] overflow-hidden bg-[var(--bg-surface)]"
       >
         {accessory.imageUrl ? (
@@ -171,16 +176,16 @@ function AccessoryTroviio({
             {Math.round(accessory.scoreQuality)}
           </div>
         )}
-      </Link>
+      </a>
 
       <div className="flex flex-1 flex-col p-4">
         <p className="text-xs font-bold uppercase tracking-wider text-[#8B8FA3]">
           {accessory.brand}
         </p>
         <h3 className="mt-1 line-clamp-2 text-sm font-bold text-white leading-tight">
-          <Link href={`/accessoires/${accessory.slug}`} className="hover:text-[#3ED6A3] transition">
+          <a href={offerUrl} target="_blank" rel="nofollow sponsored noopener noreferrer" className="hover:text-[#3ED6A3] transition">
             {accessory.name}
-          </Link>
+          </a>
         </h3>
 
         {accessory.description && (

@@ -39,6 +39,7 @@ class ProductResponse(BaseModel):
     brand: str | None = None
     category_id: str | None = None
     category_slug: str | None = None
+    category_name: str | None = None
     price_eur: float | None = None
     estimated_score: float | None = None
     use_case_scores: dict[str, float] = {}
@@ -139,9 +140,10 @@ async def get_product(slug: str):
         cid = p.get("category_id")
         if cid:
             try:
-                cat = sb.table("categories").select("slug").eq("id", cid).single().execute()
+                cat = sb.table("categories").select("slug,name").eq("id", cid).single().execute()
                 if cat.data:
                     p["category_slug"] = cat.data["slug"]
+                    p["category_name"] = cat.data["name"]
             except Exception:
                 pass
         return ProductResponse.model_validate(p)
@@ -153,11 +155,11 @@ async def get_product(slug: str):
         raise HTTPException(500, "Erreur interne du serveur")
 
 
-# ─── GET /api/products/?category=slug ──────────────────────
+# ─── GET /api/products/?category=slug&q=search ─────────────────
 
 @router.get("/api/products/", response_model=list[ProductResponse])
 @router.get("/api/products", response_model=list[ProductResponse], include_in_schema=False)
-async def list_products(category: str | None = None, limit: int = 50):
+async def list_products(category: str | None = None, q: str | None = None, limit: int = 50):
     sb = get_supabase()
     # Map frontend URLs to DB slugs
     ALIASES = {
@@ -171,12 +173,15 @@ async def list_products(category: str | None = None, limit: int = 50):
     try:
         # Load all categories for mapping category_id -> slug
         try:
-            cats_result = sb.table("categories").select("id, slug").execute()
-            cat_map = {c["id"]: c["slug"] for c in (cats_result.data or [])}
+            cats_result = sb.table("categories").select("id, slug, name").execute()
+            cat_map = {c["id"]: {"slug": c["slug"], "name": c["name"]} for c in (cats_result.data or [])}
         except Exception:
             cat_map = {}
         
         query = sb.table("products").select("*").eq("is_active", True)
+        if q and q.strip():
+            qs = q.strip()
+            query = query.ilike("name", f"%{qs}%")
         if category:
             try:
                 cat = sb.table("categories").select("id").eq("slug", db_slug).single().execute()
@@ -196,10 +201,11 @@ async def list_products(category: str | None = None, limit: int = 50):
                     p["specs"] = json.loads(p["specs"])
                 except (json.JSONDecodeError, TypeError):
                     p["specs"] = {}
-            # Map category_id to category_slug
+            # Map category_id to category_slug and category_name
             cid = p.get("category_id")
             if cid and cid in cat_map:
-                p["category_slug"] = cat_map[cid]
+                p["category_slug"] = cat_map[cid]["slug"]
+                p["category_name"] = cat_map[cid]["name"]
             validated.append(ProductResponse.model_validate(p))
         return validated
     except Exception as e:
@@ -357,19 +363,84 @@ async def get_products_by_category(slug: str):
     """Return all active products for a category slug."""
     try:
         supabase = get_supabase()
-        # 1. Trouver la catégorie
         cat_resp = supabase.table("categories").select("id").eq("slug", slug).limit(1).execute()
         if not cat_resp.data:
             return {"products": []}
         cat_id = cat_resp.data[0]["id"]
-        # 2. Produits actifs de cette catégorie
         prod_resp = supabase.table("products").select(
             "id,name,brand,slug,image_url,price_eur,estimated_score,pros,cons,specs,amazon_asin,affiliate_url"
         ).eq("is_active", True).eq("category_id", cat_id).execute()
         return {"products": prod_resp.data or []}
     except Exception as e:
         logger.error(f"Failed to fetch products by category {slug}: {e}")
-        return {"products": []}
+
+
+# ─── GET /api/tops ─────────────────────────────────────────────
+# Returns top 3 products per category for the /tops page
+
+@router.get("/api/tops")
+async def get_tops():
+    """Return top 3 products for each category."""
+    try:
+        sb = get_supabase()
+        cats_result = sb.table("categories").select("id, slug, name").execute()
+        categories = cats_result.data or []
+        prods_result = sb.table("products").select(
+            "id,name,brand,slug,category_id,image_url,estimated_score,price_eur,amazon_asin,affiliate_url,pros,cons,why_perfect,rank_label,merchant_links"
+        ).eq("is_active", True).not_.is_("estimated_score", "null").order("estimated_score", desc=True).limit(200).execute()
+        products = prods_result.data or []
+        cat_products = {}
+        for cat in categories:
+            cat_products[cat["id"]] = []
+        for p in products:
+            cid = p.get("category_id")
+            if cid and cid in cat_products and len(cat_products[cid]) < 3:
+                ml = p.get("merchant_links") or []
+                if isinstance(ml, str):
+                    try:
+                        ml = json.loads(ml)
+                    except Exception:
+                        ml = []
+                best_merchant = None
+                affiliate_url = None
+                if ml:
+                    first = ml[0] if isinstance(ml, list) else ml
+                    if isinstance(first, dict):
+                        best_merchant = first.get("name") or first.get("merchant")
+                        affiliate_url = first.get("affiliate_url") or first.get("url")
+                if not affiliate_url:
+                    affiliate_url = p.get("affiliate_url")
+                    if not affiliate_url and p.get("amazon_asin"):
+                        affiliate_url = f"https://www.amazon.fr/dp/{p['amazon_asin']}?tag=troviio-21"
+                cat_products[cid].append({
+                    "slug": p["slug"],
+                    "name": p["name"],
+                    "brand": p.get("brand"),
+                    "image_url": p.get("image_url"),
+                    "estimated_score": p.get("estimated_score"),
+                    "price_eur": p.get("price_eur"),
+                    "best_merchant": best_merchant,
+                    "affiliate_url": affiliate_url,
+                    "pros": p.get("pros") or [],
+                    "cons": p.get("cons") or [],
+                    "why_perfect": p.get("why_perfect"),
+                    "rank_label": p.get("rank_label"),
+                })
+        result = []
+        for cat in categories:
+            cid = cat["id"]
+            plist = cat_products.get(cid, [])
+            if plist:
+                result.append({
+                    "slug": cat["slug"],
+                    "name": cat["name"],
+                    "products": plist,
+                    "count_products": len(plist),
+                })
+        return {"categories": result}
+    except Exception as e:
+        logger.error(f"get_tops error: {e}")
+        raise HTTPException(500, "Erreur interne du serveur")
 
 
 # ── Sitemap slugs ──────────────────────────────────────────────

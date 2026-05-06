@@ -40,6 +40,9 @@ python-dotenv==1.0.0
 # Icecat / parsing
 requests==2.31.0
 
+# SQLAlchemy (health checks, migrations)
+sqlalchemy[asyncio]>=2.0.36
+
 # Correctifs Cicéron
 gunicorn==22.0.0
 python-json-logger==3.0.0

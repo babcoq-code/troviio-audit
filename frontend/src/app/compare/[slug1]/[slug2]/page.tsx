@@ -101,8 +101,7 @@ export default async function ComparePage({ params }: PageProps) {
             <h2 className="font-bold text-lg">{p1.name}</h2>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>{p1.brand}</p>
             <p className="text-3xl font-bold mt-2" style={{ color: "var(--mint)" }}>{s1.toFixed(1)}/10</p>
-            <p className="text-xl font-bold mt-1">{fmt(p1.price_eur)}</p>
-            <Link href={`/produit/${slug1}`} className="mt-3 inline-block px-5 py-2 rounded-full text-sm font-bold text-white" style={{ backgroundColor: "var(--coral)" }}>Voir la fiche →</Link>
+            <a href={`https://www.amazon.fr/dp/${p1.amazon_asin}?tag=troviio-21`} target="_blank" rel="nofollow sponsored" className="mt-3 inline-block px-5 py-2 rounded-full text-sm font-bold text-white" style={{ backgroundColor: "var(--coral)" }}>Voir sur Amazon →</a>
           </div>
           <div className="rounded-3xl border p-6 text-center" style={{ borderColor: s2 >= s1 ? "var(--mint)" : "var(--border)", backgroundColor: "var(--bg-surface)" }}>
             {s2 >= s1 && <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: "var(--mint)", color: "#000" }}>🏆 Gagnant</span>}
@@ -110,8 +109,7 @@ export default async function ComparePage({ params }: PageProps) {
             <h2 className="font-bold text-lg">{p2.name}</h2>
             <p className="text-sm" style={{ color: "var(--text-muted)" }}>{p2.brand}</p>
             <p className="text-3xl font-bold mt-2" style={{ color: "s1 >= s2 ? 'var(--mint)' : 'var(--coral)'" }}>{s2.toFixed(1)}/10</p>
-            <p className="text-xl font-bold mt-1">{fmt(p2.price_eur)}</p>
-            <Link href={`/produit/${slug2}`} className="mt-3 inline-block px-5 py-2 rounded-full text-sm font-bold text-white" style={{ backgroundColor: "var(--coral)" }}>Voir la fiche →</Link>
+            <a href={`https://www.amazon.fr/dp/${p2.amazon_asin}?tag=troviio-21`} target="_blank" rel="nofollow sponsored" className="mt-3 inline-block px-5 py-2 rounded-full text-sm font-bold text-white" style={{ backgroundColor: "var(--coral)" }}>Voir sur Amazon →</a>
           </div>
         </div>
 

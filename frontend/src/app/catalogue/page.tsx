@@ -11,33 +11,40 @@ const SUPABASE_URL = "https://uukshxztoztkwxuuvqzc.supabase.co";
 const SUPABASE_KEY = "sb_publishable_MtlnW7iC23FprNIUrISnZg_6IN8erpB";
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// ─── Catégories connues avec emoji (fallback) ──────────────
+// ─── Catégories connues avec emoji ─────────────────────────
 const KNOWN_CATEGORY_EMOJI: Record<string, string> = {
-  robot_aspirateur: "🤖", aspirateur_robot: "🤖", aspirateur: "🤖",
-  tv_oled: "📺", tv: "📺",
-  machine_cafe: "☕", machine_à_café: "☕",
-  casque_audio: "🎧", "casque-audio": "🎧",
-  "lave-vaisselle": "🍽️",
-  "lave-linge": "🌀",
-  poussette: "👶",
-  "barre-son": "🔊", "barre-de-son": "🔊",
-  matelas: "🛏️",
-  velo_electrique: "🚲", "velo-electrique": "🚲",
-  trottinette: "🛴",
-  aspirateur_balai: "🧹", "aspirateur-balai": "🧹",
-  camera_securite: "📷", "camera-securite": "📷",
-  refrigerateur: "🧊",
-  thermostat_connecte: "🌡️", "thermostat-connecte": "🌡️",
-  friteuse_air: "🍟", "friteuse-air": "🍟",
-  purificateur_air: "💨", "purificateur-air": "💨",
-  robot_cuisine: "🍳", "robot-cuisine": "🍳",
-  cave_a_vin: "🍷", "cave-a-vin": "🍷",
-  imprimante: "🖨️",
   smartphone: "📱",
-  ordinateur_portable: "💻", "ordinateur-portable": "💻",
-  four_micro_ondes: "🔥", "four-micro-ondes": "🔥",
-  accessoire_velo: "🔧", "accessoire-velo": "🔧",
-  enceinte_bt: "🔊", "enceinte-bt": "🔊",
+  "machine-a-cafe": "☕",
+  "aspirateur-balai": "🧹",
+  "aspirateur-laveur": "🧹",
+  "friteuse-air": "🍟",
+  "casque-audio": "🎧",
+  "aspirateur-robot": "🤖",
+  "barre-de-son": "🔊",
+  refrigerateur: "🧊",
+  "lave-linge": "🌀",
+  "lave-vaisselle": "🍽️",
+  "four-micro-ondes": "🔥",
+  poussette: "👶",
+  "ordinateur-portable": "💻",
+  tv: "📺",
+  "enceinte-bt": "🔊",
+  "cave-a-vin": "🍷",
+  "purificateur-air": "💨",
+  "robot-cuisine": "🍳",
+  trottinette: "🛴",
+  "velo-electrique": "🚲",
+  matelas: "🛏️",
+  imprimante: "🖨️",
+  "camera-securite": "📷",
+  "thermostat-connecte": "🌡️",
+  "accessoire-velo": "🔧",
+  "laptop-gamer": "🎮",
+  "laptop-etudiant": "📚",
+  "climatiseur-portable": "❄️",
+  "ventilateur-colonne": "🌀",
+  "station-charge-usb-c": "🔌",
+  "onduleur-ups": "⚡",
 };
 
 const DEFAULT_EMOJI = "🏷️";
@@ -51,9 +58,35 @@ interface CategoryFilter {
   count: number;
 }
 
+// ─── Fonction lien affilié ────────────────────────────────
+function getAffiliateUrl(product: Product): string {
+  const ml = (product as any).merchant_links;
+  if (Array.isArray(ml) && ml.length > 0) {
+    const first = ml[0];
+    const url = first?.affiliate_url || first?.url;
+    if (url) {
+      if (url.includes("amazon") && !url.includes("tag=")) {
+        const sep = url.includes("?") ? "&" : "?";
+        return `${url}${sep}tag=troviio-21`;
+      }
+      return url;
+    }
+  }
+  const asin = (product as any).amazon_asin;
+  if (asin) return `https://www.amazon.fr/dp/${asin}?tag=troviio-21`;
+  const affiliateUrl = (product as any).affiliate_url;
+  if (affiliateUrl) return affiliateUrl;
+  return `/produit/${product.slug}`;
+}
+
+function hasAmazonLink(product: Product): boolean {
+  const url = getAffiliateUrl(product);
+  return url.includes("amazon") || url.includes("amzn");
+}
+
 // ─── Page Catalogue ────────────────────────────────────────
 export default function CataloguePage() {
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<(Product & { category_slug?: string; category_name?: string })[]>([]);
   const [categories, setCategories] = useState<CategoryFilter[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [loading, setLoading] = useState(true);
@@ -61,33 +94,28 @@ export default function CataloguePage() {
   useEffect(() => {
     async function load() {
       try {
-        // Charger les produits
         const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://troviio.com/api";
         const res = await fetch(`${API_BASE}/products/?limit=300`, { cache: "no-store" });
-        const products: Product[] = res.ok ? await res.json() : [];
+        const products: any[] = res.ok ? await res.json() : [];
 
-        // Charger les catégories depuis Supabase
         const { data: catData } = await sb
           .from("categories")
           .select("id, name, slug");
 
-        // Compter les produits par catégorie (via category_id)
         const counts: Record<string, number> = {};
         const catById: Record<string, CategoryFilter> = {};
         for (const c of catData || []) {
           catById[c.id] = { id: c.id, name: c.name, slug: c.slug, emoji: KNOWN_CATEGORY_EMOJI[c.slug] || DEFAULT_EMOJI, count: 0 };
         }
         for (const p of products) {
-          const cid = (p as any).category_id || "autre";
+          const cid = p.category_id as string;
           counts[cid] = (counts[cid] || 0) + 1;
-          // Also store category info on product
           if (catById[cid]) {
-            (p as any).category_slug = catById[cid].slug;
-            (p as any).category_name = catById[cid].name;
+            p.category_slug = catById[cid].slug;
+            p.category_name = catById[cid].name;
           }
         }
 
-        // Construire la liste des catégories avec vrais counts
         const loaded: CategoryFilter[] = Object.values(catById)
           .map((c) => ({ ...c, count: counts[c.id] || 0 }))
           .filter((c) => c.count > 0)
@@ -104,11 +132,11 @@ export default function CataloguePage() {
     load();
   }, []);
 
-  // Produits filtrés
+  // Produits filtrés par catégorie
   const filteredProducts = useMemo(() => {
     if (activeCategory === "all") return allProducts;
     return allProducts.filter(
-      (p) => p.category_slug === activeCategory || p.category_name === activeCategory
+      (p) => (p as any).category_slug === activeCategory
     );
   }, [allProducts, activeCategory]);
 
@@ -131,7 +159,6 @@ export default function CataloguePage() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#4257FF]/10 blur-[150px] rounded-full" />
           <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#FF6B5F]/5 blur-[100px] rounded-full" />
         </div>
-
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight font-display">
@@ -152,15 +179,13 @@ export default function CataloguePage() {
             <button
               type="button"
               onClick={() => setActiveCategory("all")}
-              className={`relative whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#3ED6A3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0E1020] ${
+              className={`relative whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#3ED6A3] ${
                 activeCategory === "all"
                   ? "text-[#0E1020]"
                   : "text-[#8B8FA3] hover:text-white"
               }`}
             >
-              <span className="relative z-10">
-                🌐 Tout ({allProducts.length})
-              </span>
+              <span className="relative z-10">🌐 Tout ({allProducts.length})</span>
               {activeCategory === "all" && (
                 <span className="absolute inset-0 z-0 rounded-full bg-white" />
               )}
@@ -175,7 +200,7 @@ export default function CataloguePage() {
                     key={cat.id}
                     type="button"
                     onClick={() => setActiveCategory(cat.slug)}
-                    className={`relative whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#3ED6A3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0E1020] ${
+                    className={`relative whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#3ED6A3] ${
                       isActive
                         ? "text-[#0E1020]"
                         : "text-[#8B8FA3] hover:text-white"
@@ -243,8 +268,6 @@ export default function CataloguePage() {
                 <ProductCardItem key={product.id} product={product} />
               ))}
             </div>
-
-            {/* Compteur */}
             <div className="mt-10 text-center">
               <p className="text-sm text-[#8B8FA3]">
                 {sorted.length} produit{sorted.length > 1 ? "s" : ""} affiché{sorted.length > 1 ? "s" : ""}
@@ -258,12 +281,12 @@ export default function CataloguePage() {
 }
 
 // ─── Product Card ──────────────────────────────────────────
-function ProductCardItem({ product }: { product: Product }) {
+function ProductCardItem({ product }: { product: any }) {
   const score = product.estimated_score ?? 0;
   const emoji =
-    KNOWN_CATEGORY_EMOJI[product.category_slug] ||
-    product.category_emoji ||
-    DEFAULT_EMOJI;
+    KNOWN_CATEGORY_EMOJI[product.category_slug] || DEFAULT_EMOJI;
+  const hasAmazon = hasAmazonLink(product);
+  const affiliateUrl = getAffiliateUrl(product);
 
   return (
     <Link
@@ -306,7 +329,7 @@ function ProductCardItem({ product }: { product: Product }) {
           <div className="flex flex-wrap gap-1.5">
             {Object.entries(product.specs)
               .slice(0, 3)
-              .map(([key, value]) => (
+              .map(([key, value]: [string, any]) => (
                 <span
                   key={key}
                   className="px-2 py-0.5 rounded-md bg-[#1A1D2E] text-xs text-[#8B8FA3]"
@@ -317,21 +340,26 @@ function ProductCardItem({ product }: { product: Product }) {
           </div>
         )}
 
-        {/* Price */}
-        <div className="flex items-center justify-between pt-1">
-          <span className="text-lg font-extrabold text-white">
-            {product.price_eur ? (
-              <>
-                {product.price_eur}€{" "}
-                <span className="text-[#FF6B5F] text-sm">↗</span>
-              </>
-            ) : (
-              <span className="text-sm text-[#8B8FA3]">Prix non dispo</span>
-            )}
-          </span>
-          <span className="text-xs font-bold text-[#3ED6A3] uppercase tracking-wider">
-            ● IA vérifiée
-          </span>
+        {/* Bouton lien Amazon / fiche produit — PAS DE PRIX FIXE */}
+
+        <div className="pt-1">
+          {hasAmazon ? (
+            <a
+              href={affiliateUrl}
+              target="_blank"
+              rel="nofollow sponsored noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="block w-full text-center bg-gradient-to-r from-[#FF6B5F] to-[#E5554A] text-white py-2.5 rounded-xl text-xs font-bold transition-all hover:brightness-110 shadow-lg shadow-[#FF6B5F]/20"
+            >
+              Voir sur Amazon →
+            </a>
+          ) : (
+            <span
+              className="block w-full text-center bg-[#1A1D2E] text-[#8B8FA3] py-2.5 rounded-xl text-xs font-medium border border-white/5"
+            >
+              Voir la fiche →
+            </span>
+          )}
         </div>
       </div>
     </Link>

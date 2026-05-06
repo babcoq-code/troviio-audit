@@ -13,6 +13,7 @@ const PLACEHOLDERS = [
   "Machine à café silencieuse pour cuisine ouverte, je me lève à 6h...",
   "TV OLED pour salon lumineux, gaming 120Hz, budget 1 500€ max...",
   "Smartphone avec bonne autonomie, photo correcte, moins de 700€...",
+  "Station USB-C pour ne plus ramper sous le bureau comme un technicien des années 90...",
 ];
 
 const CHIP_PROMPTS: Record<string, string> = {
@@ -25,6 +26,7 @@ const CHIP_PROMPTS: Record<string, string> = {
   "🎮 Laptop gamer": "Je veux un laptop qui fait tourner Cyberpunk en ultra sans ressembler à un sapin de Noël. Des idées ?",
   "🔊 Enceinte BT": "Je cherche une enceinte Bluetooth portable pour l'apéro en terrasse et la douche. Des recommandations ?",
   "🚲 Vélo électrique": "Je veux remplacer ma voiture pour les trajets quotidiens, tu me conseilles quel vélo électrique ?",
+  "🔌 Station USB-C": "J'en ai marre de ramper sous mon bureau pour brancher mon laptop, ma batterie externe et mon téléphone en même temps. Trouve-moi une station USB-C qui me sauve la vie (et mon dos).",
 };
 const CHIP_CATEGORIES: Record<string, string> = {
   "🤖 Robot aspirateur": "aspirateur-robot",
@@ -36,6 +38,7 @@ const CHIP_CATEGORIES: Record<string, string> = {
   "🎮 Laptop gamer": "laptop-gamer",
   "🔊 Enceinte BT": "enceinte-bt",
   "🚲 Vélo électrique": "velo-electrique",
+  "🔌 Station USB-C": "station-charge-usb-c",
 };
 const CHIPS = Object.keys(CHIP_CATEGORIES);
 
@@ -43,7 +46,7 @@ const CHIPS = Object.keys(CHIP_CATEGORIES);
 // Détecte si le dernier message assistant contient "Lancer la recherche"
 function hasLaunchOption(text: string): boolean {
   const lower = text.toLowerCase();
-  return lower.includes("lancer la recherche") || lower.includes("🚀");
+  return lower.includes("lancer la recherche") || lower.includes("lance la recherche") || lower.includes("🚀");
 }
 
 export default function ChatHero({ category }: { category?: string }) {
@@ -93,8 +96,9 @@ export default function ChatHero({ category }: { category?: string }) {
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [categoryFromEvent, setCategoryFromEvent] = useState<string | undefined>(category);
 
-  // Lire la catégorie du category prop et de l'event
-  const activeCategory = category || categoryFromEvent;
+  // Lire la catégorie du category prop et de l'event — et la conserver après clic sur chip
+  const [persistedCategory, setPersistedCategory] = useState<string | undefined>(category);
+  const activeCategory = persistedCategory || category || categoryFromEvent;
 
   useEffect(() => {
     const fn = (e: Event) => {
@@ -147,7 +151,10 @@ export default function ChatHero({ category }: { category?: string }) {
     const aiMsgs = messages.filter((m) => m.role === "assistant" && !m.result_id);
     return aiMsgs[aiMsgs.length - 1]?.content || streamedResponse || "";
   }, [messages, streamedResponse]);
-  const showLaunchButton = lastAIMessage && hasLaunchOption(lastAIMessage);
+  // Le bouton apparaît si :
+  // - DeepSeek a explicitement proposé "Lancer la recherche" dans son texte, OU
+  // - On est au tour 5 ou plus (le SYTEM_PROMPT demande d'ajouter l'option à partir du tour 5)
+  const showLaunchButton = (lastAIMessage && hasLaunchOption(lastAIMessage)) || (!busy && exchangeCount >= 5);
 
   return (
     <section
@@ -285,6 +292,7 @@ export default function ChatHero({ category }: { category?: string }) {
                   type="button"
                   onClick={() => {
                     const selectedCat = CHIP_CATEGORIES[chip] || category;
+                    setPersistedCategory(selectedCat);
                     const prompt = CHIP_PROMPTS[chip] || chip;
                     setInput(prompt);
                     window.setTimeout(() => {

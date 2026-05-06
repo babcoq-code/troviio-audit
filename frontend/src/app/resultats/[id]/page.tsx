@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { RecommendationResult, RecommendationItem } from "@/types/recommendation";
 import { ResultClientComponents } from "./result-client";
-import ScoreRing from "@/components/ScoreRing";
 import TroviioScore from "@/components/TroviioScore";
 import { ResultAccessories } from "@/components/result-accessories";
 
@@ -62,20 +61,14 @@ function fmtEur(v: number | null) {
 }
 
 function rankBadge(score: number, rank: number): string {
-  if (rank === 1) return "Ça sent l'évidence.";
-  if (rank === 2) return "Très, très toi.";
-  return "Candidat sérieux.";
+  if (rank === 1) return "Le choix du patron (et de ta moitié).";
+  if (rank === 2) return "Presque parfait, presque premier.";
+  return "Le dark horse. Sous-estimé, mais costaud.";
 }
 
-function budgetLabel(budget: number | null, recommendations: RecommendationItem[]): string {
+function budgetLabel(budget: number | null, _recommendations: RecommendationItem[]): string {
   if (budget) return fmtEur(budget) ?? `${budget}€`;
-  // Si pas de budget spécifié, estimer le positionnement par les prix des recommandations
-  const prices = recommendations.map((r) => r.price_eur).filter((p): p is number => p !== null && p !== undefined);
-  if (prices.length === 0) return "Non spécifié";
-  const avg = prices.reduce((a, b) => a + b, 0) / prices.length;
-  if (avg < 200) return "~ Économique";
-  if (avg < 600) return "~ Bon rapport qualité/prix";
-  return "~ Premium";
+  return "Non spécifié";
 }
 
 function fmtDate(v: string) {
@@ -233,7 +226,7 @@ export default async function ResultPage({
                           {rankBadge(reco.score, reco.rank)}
                         </h3>
                       </div>
-                      <ScoreRing score={reco.score} size={isFirst ? 84 : 72} />
+                      <TroviioScore score={reco.troviio_score ?? reco.score * 10} size={isFirst ? "lg" : "md"} showExplanation={false} />
                     </div>
 
                     <div className="mt-4 flex flex-1 items-center justify-center rounded-2xl p-4" style={{backgroundColor: 'var(--bg-surface)'}}>
@@ -254,9 +247,6 @@ export default async function ResultPage({
                     <div className="mt-4">
                       <p className="text-sm font-semibold" style={{color: 'var(--text-muted)'}}>{reco.brand}</p>
                       <h4 className="mt-1 font-sora text-xl font-bold tracking-tight">{reco.name}</h4>
-                      <p className="mt-1 font-sora text-2xl font-bold" style={{color: 'var(--text)'}}>
-                        {fmtEur(reco.price_eur) ?? reco.price_range}
-                      </p>
                     </div>
 
                     <div className="mt-4">
@@ -464,9 +454,6 @@ export default async function ResultPage({
                   })()}
 
                   <div className="mt-auto pt-5">
-                    <p className="mb-2 font-sora text-xl font-bold">
-                      {fmtEur(reco.price_eur) ?? reco.price_range}
-                    </p>
                     {affiliateUrl ? (
                       <a
                         href={affiliateUrl}

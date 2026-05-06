@@ -37,11 +37,44 @@ export function buildFAQJsonLd(questions: Array<{ question: string; answer: stri
   };
 }
 
+export function buildOrganizationJsonLd() {
+  return {
+    "@type": "Organization",
+    "@id": "https://www.troviio.com/#organization",
+    name: "Troviio",
+    url: "https://www.troviio.com",
+    logo: {
+      "@type": "ImageObject",
+      "@id": "https://www.troviio.com/#logo",
+      url: "https://www.troviio.com/logo.png",
+      width: 512,
+      height: 512,
+      caption: "Troviio",
+    },
+    description:
+      "Comparateur de produits propulsé par l'IA — recommandations personnalisées pour les consommateurs français.",
+    foundingDate: "2025",
+    areaServed: { "@type": "Country", name: "France" },
+    inLanguage: "fr-FR",
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "contact@troviio.com",
+        availableLanguage: ["French"],
+      },
+    ],
+  };
+}
+
 export function buildWebSiteJsonLd() {
   return {
     "@type": "WebSite",
+    "@id": "https://www.troviio.com/#website",
     name: "Troviio",
     url: "https://www.troviio.com",
+    publisher: { "@id": "https://www.troviio.com/#organization" },
+    inLanguage: "fr-FR",
     description: "Pas le meilleur. Le tien. Recommandations produits personnalisées par IA.",
     potentialAction: {
       "@type": "SearchAction",

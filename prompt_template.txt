@@ -1,0 +1,32 @@
+Genere un guide d'achat humoristique structure pour Troviio sur le theme : THEME_PLACEHOLDER
+
+Retourne EXACTEMENT cette structure, section par section, avec les marqueurs === SECTION === :
+
+=== INTRO ===
+Texte d'accroche humoristique 100-120 mots. Probleme utilisateur + ton drole.
+
+=== TABLEAU_RAPIDE ===
+3 lignes. Format: Emoji Titre | Marque Produit (Score/100) | Description 10 mots
+
+=== CRITERES ===
+4 criteres importants. Un par ligne. Format: **Critere** : explication 15-20 mots.
+
+=== VERDICT_1 ===
+Produit #1 recommande. Verdict 50-60 mots humoristique. Pour qui ? A eviter si ?
+
+=== VERDICT_2 ===
+Produit #2. Verdict 50-60 mots.
+
+=== VERDICT_3 ===
+Produit #3. Verdict 50-60 mots.
+
+=== PROFILS ===
+3 profils. Format: **Pour description profil** : recommandation 15 mots
+
+=== ERREURS ===
+3 erreurs. Format: **titre erreur** : explication 15 mots
+
+=== FAQ ===
+5 questions. Format: Q: question ? | R: reponse 20-30 mots
+
+IMPORTANT: Style Troviio humoristique. References pop culture francaises. Pas de prix fixes. Appelle le lecteur "tu".

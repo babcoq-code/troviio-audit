@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import nextDynamic from "next/dynamic";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const AccessoriesWidgetLoader = nextDynamic(
   () => import("@/components/accessories/AccessoriesWidget"),
@@ -104,7 +105,8 @@ export default async function ProductPage({ params }: PageProps) {
                 "@type": "AggregateOffer",
                 priceCurrency: "EUR",
                 lowPrice: bestPrice,
-                highPrice: sortedPrices.length > 0 ? sortedPrices[sortedPrices.length - 1]?.price_eur : bestPrice,
+                highPrice: sortedPrices.length > 0 ? sortedPrices[sortedPrices.length - 1]?.price_eur || bestPrice : bestPrice,
+                offerCount: sortedPrices.length || 1,
                 offers: sortedPrices.length > 0 ? sortedPrices.map((p: any) => ({
                   "@type": "Offer",
                   url: p.affiliate_url || product.affiliate_url,
@@ -112,7 +114,14 @@ export default async function ProductPage({ params }: PageProps) {
                   priceCurrency: "EUR",
                   availability: "https://schema.org/InStock",
                   seller: { "@type": "Organization", name: p.merchant || "Amazon" },
-                })) : [],
+                })) : [{
+                  "@type": "Offer",
+                  url: product.affiliate_url || `${BASE_URL}/produit/${slug}`,
+                  price: bestPrice,
+                  priceCurrency: "EUR",
+                  availability: "https://schema.org/InStock",
+                  seller: { "@type": "Organization", name: "Troviio" },
+                }],
               },
               ...(product.estimated_score ? {
                 aggregateRating: {
@@ -142,26 +151,16 @@ export default async function ProductPage({ params }: PageProps) {
             }),
           }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Accueil", item: BASE_URL },
-                { "@type": "ListItem", position: 2, name: product.name, item: `${BASE_URL}/produit/${slug}` },
-              ],
-            }),
-          }}
+        {/* Breadcrumb avec catégorie */}
+        <Breadcrumbs
+          crumbs={[
+            { label: "Accueil", href: "/" },
+            ...(product.category_slug && product.category_name
+              ? [{ label: product.category_name, href: `/categorie/${product.category_slug}` }]
+              : []),
+            { label: product.name },
+          ]}
         />
-
-        {/* Breadcrumb */}
-        <nav className="mb-6 text-xs sm:text-sm truncate" style={{ color: "var(--text-muted)" }}>
-          <Link href="/" style={{ color: "var(--text-muted)" }} className="hover:underline">Accueil</Link>
-          <span className="mx-2">/</span>
-          <span className="truncate inline-block max-w-[200px] sm:max-w-none align-bottom">{product.name}</span>
-        </nav>
 
         {/* ===== HERO SECTION ===== */}
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
@@ -180,10 +179,23 @@ export default async function ProductPage({ params }: PageProps) {
                   {product.estimated_score?.toFixed(0)}/100
                 </p>
               </div>
-              {/* Price */}
+              {/* Price - Amazon button */}
               <div className="rounded-2xl sm:rounded-3xl border p-4 sm:p-5" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
                 <p className="text-xs sm:text-sm font-medium" style={{ color: "var(--text-muted)" }}>Meilleur prix</p>
-                <p className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold truncate">{fmt(bestPrice)}</p>
+                <a
+                  href={(() => {
+                    if (sortedPrices.length > 0 && sortedPrices[0].affiliate_url) return sortedPrices[0].affiliate_url;
+                    if (product.affiliate_url) return product.affiliate_url;
+                    if (product.amazon_asin) return `https://www.amazon.fr/dp/${product.amazon_asin}?tag=troviio-21`;
+                    return "#";
+                  })()}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow sponsored"
+                  className="mt-1 sm:mt-2 inline-block text-2xl sm:text-3xl font-bold truncate transition hover:opacity-80"
+                  style={{ color: "var(--mint)" }}
+                >
+                  Voir le prix →
+                </a>
               </div>
               {/* Brand */}
               <div className="rounded-2xl sm:rounded-3xl border p-4 sm:p-5" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
@@ -202,14 +214,14 @@ export default async function ProductPage({ params }: PageProps) {
                     className="absolute inset-0 w-full h-full object-contain p-4 sm:p-6" />
                 </div>
               )}
-              {/* Merchant links */}
+              {/* Merchant links - sans prix fixe */}
               <div className="mt-4 sm:mt-5 space-y-2 sm:space-y-3">
                 {sortedPrices.map((p: any, i: number) => (
                   <a
                     key={`${p.merchant || p.merchant_name}-${i}`}
                     href={p.affiliate_url || p.url}
                     target="_blank"
-                    rel="noopener noreferrer nofollow"
+                    rel="noopener noreferrer nofollow sponsored"
                     className="flex w-full items-center justify-between rounded-xl sm:rounded-2xl border p-3 sm:p-4 transition hover:opacity-80 active:opacity-60"
                     style={{ borderColor: "var(--border)", backgroundColor: "var(--bg)" }}
                   >
@@ -221,7 +233,7 @@ export default async function ProductPage({ params }: PageProps) {
                       </span>
                     )}
                     <span className="text-sm sm:text-base font-bold ml-auto" style={{ color: "var(--mint)" }}>
-                      {p.price_eur != null ? fmt(p.price_eur) : ""}
+                      Voir l'offre →
                     </span>
                   </a>
                 ))}
@@ -229,7 +241,7 @@ export default async function ProductPage({ params }: PageProps) {
                   <a href={product.affiliate_url} target="_blank" rel="noopener noreferrer nofollow"
                     className="flex w-full items-center justify-center rounded-xl sm:rounded-full py-3 font-bold text-white transition hover:opacity-80"
                     style={{ backgroundColor: "var(--coral)" }}>
-                    Voir l&apos;offre → {product.price_eur ? fmt(product.price_eur) : ""}
+                    Voir l'offre sur Amazon →
                   </a>
                 )}
               </div>

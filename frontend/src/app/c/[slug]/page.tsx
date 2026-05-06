@@ -13,31 +13,31 @@ type CatMeta = {
 };
 
 const CAT_META: Record<string, CatMeta> = {
-  "smartphone":               { name: "Smartphone",          emoji: "📱", title: "Meilleur smartphone 2026", description: "Photo, batterie, iOS ou Android : Troviio trouve le smartphone qui te correspond.", guide_title: "Comment choisir son smartphone ?", guide_desc: "Autonomie, appareil photo, puissance : découvrez les critères essentiels pour bien choisir votre smartphone en 2026." },
-  "aspirateur-robot":         { name: "Robot aspirateur",    emoji: "🤖", title: "Meilleur robot aspirateur 2026", description: "Trouve le robot aspirateur parfait : parquet, animaux, appartement ou maison. Comparatif IA personnalisé.", guide_title: "Quel robot aspirateur choisir ?", guide_desc: "Aspiration, autonomie, navigation : tous les critères pour choisir le robot qui nettoiera votre maison." },
-  "aspirateur-balai":         { name: "Aspirateur balai",    emoji: "🧹", title: "Meilleur aspirateur balai 2026", description: "Sans fil, léger, puissant : Troviio sélectionne l'aspirateur balai adapté à ton logement.", guide_title: "Comment choisir un aspirateur balai ?", guide_desc: "Autonomie, puissance, poids : les critères pour trouver l'aspirateur balai idéal pour votre intérieur." },
-  "aspirateur-laveur":        { name: "Aspirateur laveur",   emoji: "🧹", title: "Meilleur aspirateur laveur 2026", description: "Lave et aspire en un passage : Troviio choisit l'aspirateur laveur pour tes sols impeccables.", guide_title: "Quel aspirateur laveur choisir ?", guide_desc: "Puissance, lavage, autonomie : le guide pour choisir un aspirateur laveur performant." },
-  "lave-linge":               { name: "Lave-linge",          emoji: "🌀", title: "Meilleur lave-linge 2026", description: "Capacité, bruit, consommation : Troviio choisit le lave-linge fait pour ta famille.", guide_title: "Quel lave-linge choisir ?", guide_desc: "Capacité, essorage, classe énergétique : le guide complet pour choisir sa machine à laver." },
-  "lave-vaisselle":           { name: "Lave-vaisselle",      emoji: "🍽️", title: "Meilleur lave-vaisselle 2026", description: "Taille, silence, éco : Troviio sélectionne le lave-vaisselle pour ton usage réel.", guide_title: "Bien choisir son lave-vaisselle", guide_desc: "Capacité, bruit, programmes : tout savoir pour acheter le bon lave-vaisselle." },
-  "refrigerateur":            { name: "Réfrigérateur",       emoji: "🧊", title: "Meilleur réfrigérateur 2026", description: "Volume, No Frost, multi-portes : Troviio trouve le frigo adapté à ton foyer.", guide_title: "Quel réfrigérateur acheter ?", guide_desc: "Volume, froid ventilé, consommation : le guide pour bien choisir son réfrigérateur." },
-  "friteuse-air":             { name: "Friteuse à air",      emoji: "🍟", title: "Meilleure friteuse à air 2026", description: "Capacité, rapidité, nettoyage : Troviio choisit la friteuse à air adaptée à ta famille.", guide_title: "Comment choisir une friteuse à air ?", guide_desc: "Capacité, puissance, nettoyage : les critères pour une friteuse healthy et pratique." },
-  "machine-a-cafe":           { name: "Machine à café",      emoji: "☕", title: "Meilleure machine à café 2026", description: "Grains, capsules, silence, entretien : Troviio choisit la machine à café faite pour ta vie.", guide_title: "Quelle machine à café choisir ?", guide_desc: "Grain ou capsule, pression, entretien : le guide ultime pour votre café quotidien." },
-  "tv":                       { name: "TV",                  emoji: "📺", title: "Meilleure TV 2026", description: "Salon lumineux, gaming, cinéma : Troviio sélectionne la TV pour ton usage réel.", guide_title: "Quelle TV acheter en 2026 ?", guide_desc: "OLED, QLED, taille, taux de rafraîchissement : tous les critères pour bien choisir votre téléviseur." },
-  "casque-audio":             { name: "Casque audio",        emoji: "🎧", title: "Meilleur casque audio 2026", description: "Nomade, réduction de bruit, qualité son : Troviio choisit le casque adapté à toi.", guide_title: "Quel casque audio choisir ?", guide_desc: "Réduction de bruit, confort, qualité sonore : le guide pour trouver le casque parfait." },
-  "ordinateur-portable":      { name: "Ordinateur portable", emoji: "💻", title: "Meilleur ordinateur portable 2026", description: "Légèreté, autonomie, perfs : Troviio choisit le laptop idéal pour tes études ou ton travail.", guide_title: "Quel PC portable choisir ?", guide_desc: "Processeur, RAM, autonomie, poids : le guide complet de l'ordinateur portable." },
-  "barre-de-son":             { name: "Barre de son",        emoji: "🔊", title: "Meilleure barre de son 2026", description: "TV, gaming, Dolby Atmos : Troviio choisit la barre de son pour ton salon.", guide_title: "Comment choisir une barre de son ?", guide_desc: "Canaux, caisson, connectique : le guide pour transformer votre salon en home cinéma." },
-  "enceinte-bt":              { name: "Enceinte Bluetooth",   emoji: "🔊", title: "Meilleure enceinte Bluetooth 2026", description: "Nomade, puissante, étanche : Troviio trouve l'enceinte pour ta vie.", guide_title: "Quelle enceinte Bluetooth choisir ?", guide_desc: "Portabilité, puissance, autonomie : le guide de l'enceinte sans fil qui vous accompagne." },
-  "poussette":                { name: "Poussette",           emoji: "👶", title: "Meilleure poussette 2026", description: "Légère, pliable, tout terrain, nouveau-né : Troviio trouve la poussette parfaite pour toi.", guide_title: "Quelle poussette choisir ?", guide_desc: "Poids, pliage, confort : le guide pour choisir la poussette de votre bébé." },
-  "four-micro-ondes":         { name: "Four / Micro-ondes",   emoji: "🔥", title: "Meilleur four micro-ondes 2026", description: "Seul, combiné, compact : Troviio choisit le four adapté à ta cuisine.", guide_title: "Quel micro-ondes choisir ?", guide_desc: "Puissance, capacité, fonctions : le guide pour un micro-ondes adapté à vos besoins." },
-  "cave-a-vin":               { name: "Cave à vin",          emoji: "🍷", title: "Meilleure cave à vin 2026", description: "Température, capacité, silence : Troviio sélectionne la cave à vin pour ta collection.", guide_title: "Bien choisir sa cave à vin", guide_desc: "Capacité, température, encastrable : le guide de la cave à vin idéale." },
-  "robot-cuisine":            { name: "Robot cuisine",       emoji: "🍳", title: "Meilleur robot cuisine 2026", description: "Polyvalence, puissance, accessoires : Troviio trouve le robot cuisine qui transforme ta cuisine.", guide_title: "Quel robot cuisine choisir ?", guide_desc: "Puissance, fonctions, accessoires : le guide pour cuisiner sans effort." },
-  "trottinette":              { name: "Trottinette électrique", emoji: "🛴", title: "Meilleure trottinette électrique 2026", description: "Autonomie, puissance, poids : Troviio trouve la trottinette pour tes trajets.", guide_title: "Quelle trottinette électrique choisir ?", guide_desc: "Autonomie, vitesse, poids : le guide de la trottinette pour vos déplacements urbains." },
-  "velo-electrique":          { name: "Vélo électrique",     emoji: "🚲", title: "Meilleur vélo électrique 2026", description: "Autonomie, moteur, confort : Troviio choisit le VAE adapté à ta pratique.", guide_title: "Quel vélo électrique choisir ?", guide_desc: "Autonomie, moteur, batterie : le guide complet du vélo à assistance électrique." },
-  "purificateur-air":         { name: "Purificateur d'air",  emoji: "🌬️", title: "Meilleur purificateur d'air 2026", description: "Filtration, surface, bruit : Troviio choisit le purificateur pour ton intérieur.", guide_title: "Quel purificateur d'air choisir ?", guide_desc: "Filtration, surface, niveau sonore : le guide pour respirer un air sain chez vous." },
-  "thermostat-connecte":      { name: "Thermostat connecté", emoji: "🌡️", title: "Meilleur thermostat connecté 2026", description: "Économies, compatibilité, pilotage : Troviio trouve le thermostat qui réduit ta facture.", guide_title: "Quel thermostat connecté choisir ?", guide_desc: "Compatibilité chaudière, pilotage, économies : le guide du thermostat intelligent." },
-  "camera-securite":          { name: "Caméra sécurité",     emoji: "📹", title: "Meilleure caméra sécurité 2026", description: "Intérieur, extérieur, vision nocturne : Troviio choisit la caméra qui protège ton chez-toi.", guide_title: "Quelle caméra de sécurité choisir ?", guide_desc: "Résolution, vision nocturne, stockage : le guide pour sécuriser votre domicile." },
-  "imprimante":               { name: "Imprimante",          emoji: "🖨️", title: "Meilleure imprimante 2026", description: "Laser, jet d'encre, multifonction : Troviio choisit l'imprimante pour ton usage.", guide_title: "Quelle imprimante choisir ?", guide_desc: "Laser ou jet d'encre, vitesse, coût à la page : le guide de l'imprimante idéale." },
-  "matelas":                  { name: "Matelas",             emoji: "🛏️", title: "Meilleur matelas 2026", description: "Ferme, mémoire de forme, naturel : Troviio trouve le matelas pour tes nuits.", guide_title: "Quel matelas choisir ?", guide_desc: "Fermeté, matière, soutien : le guide pour des nuits réparatrices." },
+  smartphone: { name: "Smartphone", emoji: "📱", title: "Meilleur smartphone 2026", description: "Photo, batterie, iOS ou Android : Troviio trouve le smartphone qui te correspond.", guide_title: "Comment choisir son smartphone ?", guide_desc: "Autonomie, appareil photo, puissance : découvrez les critères essentiels pour bien choisir votre smartphone en 2026." },
+  "aspirateur-robot": { name: "Robot aspirateur", emoji: "🤖", title: "Meilleur robot aspirateur 2026", description: "Trouve le robot aspirateur parfait : parquet, animaux, appartement ou maison. Comparatif IA personnalisé.", guide_title: "Quel robot aspirateur choisir ?", guide_desc: "Aspiration, autonomie, navigation : tous les critères pour choisir le robot qui nettoiera votre maison." },
+  "aspirateur-balai": { name: "Aspirateur balai", emoji: "🧹", title: "Meilleur aspirateur balai 2026", description: "Sans fil, léger, puissant : Troviio sélectionne l'aspirateur balai adapté à ton logement.", guide_title: "Comment choisir un aspirateur balai ?", guide_desc: "Autonomie, puissance, poids : les critères pour trouver l'aspirateur balai idéal pour votre intérieur." },
+  "aspirateur-laveur": { name: "Aspirateur laveur", emoji: "🧹", title: "Meilleur aspirateur laveur 2026", description: "Lave et aspire en un passage : Troviio choisit l'aspirateur laveur pour tes sols impeccables.", guide_title: "Quel aspirateur laveur choisir ?", guide_desc: "Puissance, lavage, autonomie : le guide pour choisir un aspirateur laveur performant." },
+  "lave-linge": { name: "Lave-linge", emoji: "🌀", title: "Meilleur lave-linge 2026", description: "Capacité, bruit, consommation : Troviio choisit le lave-linge fait pour ta famille.", guide_title: "Quel lave-linge choisir ?", guide_desc: "Capacité, essorage, classe énergétique : le guide complet pour choisir sa machine à laver." },
+  "lave-vaisselle": { name: "Lave-vaisselle", emoji: "🍽️", title: "Meilleur lave-vaisselle 2026", description: "Taille, silence, éco : Troviio sélectionne le lave-vaisselle pour ton usage réel.", guide_title: "Bien choisir son lave-vaisselle", guide_desc: "Capacité, bruit, programmes : tout savoir pour acheter le bon lave-vaisselle." },
+  refrigerateur: { name: "Réfrigérateur", emoji: "🧊", title: "Meilleur réfrigérateur 2026", description: "Volume, No Frost, multi-portes : Troviio trouve le frigo adapté à ton foyer.", guide_title: "Quel réfrigérateur acheter ?", guide_desc: "Volume, froid ventilé, consommation : le guide pour bien choisir son réfrigérateur." },
+  "friteuse-air": { name: "Friteuse à air", emoji: "🍟", title: "Meilleure friteuse à air 2026", description: "Capacité, rapidité, nettoyage : Troviio choisit la friteuse à air adaptée à ta famille.", guide_title: "Comment choisir une friteuse à air ?", guide_desc: "Capacité, puissance, nettoyage : les critères pour une friteuse healthy et pratique." },
+  "machine-a-cafe": { name: "Machine à café", emoji: "☕", title: "Meilleure machine à café 2026", description: "Grains, capsules, silence, entretien : Troviio choisit la machine à café faite pour ta vie.", guide_title: "Quelle machine à café choisir ?", guide_desc: "Grain ou capsule, pression, entretien : le guide ultime pour votre café quotidien." },
+  tv: { name: "TV", emoji: "📺", title: "Meilleure TV 2026", description: "Salon lumineux, gaming, cinéma : Troviio sélectionne la TV pour ton usage réel.", guide_title: "Quelle TV acheter en 2026 ?", guide_desc: "OLED, QLED, taille, taux de rafraîchissement : tous les critères pour bien choisir votre téléviseur." },
+  "casque-audio": { name: "Casque audio", emoji: "🎧", title: "Meilleur casque audio 2026", description: "Nomade, réduction de bruit, qualité son : Troviio choisit le casque adapté à toi.", guide_title: "Quel casque audio choisir ?", guide_desc: "Réduction de bruit, confort, qualité sonore : le guide pour trouver le casque parfait." },
+  "ordinateur-portable": { name: "Ordinateur portable", emoji: "💻", title: "Meilleur ordinateur portable 2026", description: "Légèreté, autonomie, perfs : Troviio choisit le laptop idéal pour tes études ou ton travail.", guide_title: "Quel PC portable choisir ?", guide_desc: "Processeur, RAM, autonomie, poids : le guide complet de l'ordinateur portable." },
+  "barre-de-son": { name: "Barre de son", emoji: "🔊", title: "Meilleure barre de son 2026", description: "TV, gaming, Dolby Atmos : Troviio choisit la barre de son pour ton salon.", guide_title: "Comment choisir une barre de son ?", guide_desc: "Canaux, caisson, connectique : le guide pour transformer votre salon en home cinéma." },
+  "enceinte-bt": { name: "Enceinte Bluetooth", emoji: "🔈", title: "Meilleure enceinte Bluetooth 2026", description: "Nomade, puissante, étanche : Troviio trouve l'enceinte pour ta vie.", guide_title: "Quelle enceinte Bluetooth choisir ?", guide_desc: "Portabilité, puissance, autonomie : le guide de l'enceinte sans fil qui vous accompagne." },
+  poussette: { name: "Poussette", emoji: "👶", title: "Meilleure poussette 2026", description: "Légère, pliable, tout terrain, nouveau-né : Troviio trouve la poussette parfaite pour toi.", guide_title: "Quelle poussette choisir ?", guide_desc: "Poids, pliage, confort : le guide pour choisir la poussette de votre bébé." },
+  "four-micro-ondes": { name: "Four / Micro-ondes", emoji: "🔥", title: "Meilleur four micro-ondes 2026", description: "Seul, combiné, compact : Troviio choisit le four adapté à ta cuisine.", guide_title: "Quel micro-ondes choisir ?", guide_desc: "Puissance, capacité, fonctions : le guide pour un micro-ondes adapté à vos besoins." },
+  "cave-a-vin": { name: "Cave à vin", emoji: "🍷", title: "Meilleure cave à vin 2026", description: "Température, capacité, silence : Troviio sélectionne la cave à vin pour ta collection.", guide_title: "Bien choisir sa cave à vin", guide_desc: "Capacité, température, encastrable : le guide de la cave à vin idéale." },
+  "robot-cuisine": { name: "Robot cuisine", emoji: "🍳", title: "Meilleur robot cuisine 2026", description: "Polyvalence, puissance, accessoires : Troviio trouve le robot cuisine qui transforme ta cuisine.", guide_title: "Quel robot cuisine choisir ?", guide_desc: "Puissance, fonctions, accessoires : le guide pour cuisiner sans effort." },
+  trottinette: { name: "Trottinette électrique", emoji: "🛴", title: "Meilleure trottinette électrique 2026", description: "Autonomie, puissance, poids : Troviio trouve la trottinette pour tes trajets.", guide_title: "Quelle trottinette électrique choisir ?", guide_desc: "Autonomie, vitesse, poids : le guide de la trottinette pour vos déplacements urbains." },
+  "velo-electrique": { name: "Vélo électrique", emoji: "🚲", title: "Meilleur vélo électrique 2026", description: "Autonomie, moteur, confort : Troviio choisit le VAE adapté à ta pratique.", guide_title: "Quel vélo électrique choisir ?", guide_desc: "Autonomie, moteur, batterie : le guide complet du vélo à assistance électrique." },
+  "purificateur-air": { name: "Purificateur d'air", emoji: "🌬️", title: "Meilleur purificateur d'air 2026", description: "Filtration, surface, bruit : Troviio choisit le purificateur pour ton intérieur.", guide_title: "Quel purificateur d'air choisir ?", guide_desc: "Filtration, surface, niveau sonore : le guide pour respirer un air sain chez vous." },
+  "thermostat-connecte": { name: "Thermostat connecté", emoji: "🌡️", title: "Meilleur thermostat connecté 2026", description: "Économies, compatibilité, pilotage : Troviio trouve le thermostat qui réduit ta facture.", guide_title: "Quel thermostat connecté choisir ?", guide_desc: "Compatibilité chaudière, pilotage, économies : le guide du thermostat intelligent." },
+  "camera-securite": { name: "Caméra sécurité", emoji: "📹", title: "Meilleure caméra sécurité 2026", description: "Intérieur, extérieur, vision nocturne : Troviio choisit la caméra qui protège ton chez-toi.", guide_title: "Quelle caméra de sécurité choisir ?", guide_desc: "Résolution, vision nocturne, stockage : le guide pour sécuriser votre domicile." },
+  imprimante: { name: "Imprimante", emoji: "🖨️", title: "Meilleure imprimante 2026", description: "Laser, jet d'encre, multifonction : Troviio choisit l'imprimante pour ton usage.", guide_title: "Quelle imprimante choisir ?", guide_desc: "Laser ou jet d'encre, vitesse, coût à la page : le guide de l'imprimante idéale." },
+  matelas: { name: "Matelas", emoji: "🛏️", title: "Meilleur matelas 2026", description: "Ferme, mémoire de forme, naturel : Troviio trouve le matelas pour tes nuits.", guide_title: "Quel matelas choisir ?", guide_desc: "Fermeté, matière, soutien : le guide pour des nuits réparatrices." },
 };
 
 export async function generateStaticParams() {
@@ -68,7 +68,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Types
+// Map des slugs de guide longtail existants (premier guide par catégorie)
+const GUIDES_BY_CATEGORY: Record<string, string> = {
+  "aspirateur-robot": "laveur-station-vidange",
+  "aspirateur-balai": "guide-achat",
+  "aspirateur-laveur": "guide-achat",
+  "barre-de-son": "appartement-voisins",
+  "camera-securite": "guide-achat",
+  "casque-audio": "guide-achat",
+  "cave-a-vin": "guide-achat",
+  "climatiseur-portable": "guide-achat",
+  "enceinte-bt": "guide-achat",
+  "four-micro-ondes": "pyrolyse-vs-catalyse",
+  "friteuse-air": "guide-achat",
+  "imprimante": "guide-achat",
+  "laptop-etudiant": "guide-achat",
+  "laptop-gamer": "guide-achat",
+  "lave-linge": "silencieux-appartement",
+  "lave-vaisselle": "45cm-ou-60cm",
+  "machine-a-cafe": "guide-achat",
+  "matelas": "guide-achat",
+  "onduleur-ups": "guide-achat",
+  "ordinateur-portable": "autonomie-legere",
+  "poussette": "terrain-mixte",
+  "purificateur-air": "guide-achat",
+  "refrigerateur": "grande-capacite-famille",
+  "robot-cuisine": "guide-achat",
+  "smartphone": "guide-achat",
+  "station-charge-usb-c": "guide-achat",
+  "thermostat-connecte": "guide-achat",
+  "trottinette": "guide-achat",
+  "tv": "salon-lumineux",
+  "velo-electrique": "guide-achat",
+  "ventilateur-colonne": "guide-achat",
+};
 type Product = {
   id: string;
   name: string;
@@ -86,8 +119,8 @@ type Product = {
 
 async function fetchProducts(slug: string): Promise<Product[]> {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://troviio.com/api";
-    const res = await fetch(`${apiUrl}/products/by-category/${slug}`, {
+    const apiUrl = process.env.API_BASE_URL || "http://backend:8000";
+    const res = await fetch(`${apiUrl}/api/products/by-category/${slug}`, {
       cache: "no-store",
       signal: AbortSignal.timeout(5000),
     });
@@ -119,7 +152,7 @@ function SpecItem({ label, value }: { label: string; value: string }) {
 function Top3Card({ product, rank }: { product: Product; rank: number }) {
   const medals = ["🥇", "🥈", "🥉"];
   const score = product.estimated_score ?? 0;
-  const price = product.price_eur ? `${product.price_eur} €` : "Voir le prix";
+  const price = ""; // No fixed prices — using affiliate button below
   const img = product.image_url || "";
   const productUrl = `/produit/${product.slug}`;
   const affiliateUrl = getAffiliateUrl(product);
@@ -150,8 +183,7 @@ function Top3Card({ product, rank }: { product: Product; rank: number }) {
           {score.toFixed(1)}/10
         </div>
       )}
-      {/* Price */}
-      <div className="text-sm mb-3" style={{ color: "var(--mint, #3ED6A3)" }}>{price}</div>
+      {/* Price removed — replaced by affiliate button below */}
       {/* Buttons */}
       <div className="flex gap-2 w-full">
         <a href={productUrl} className="flex-1 text-center text-xs py-2 rounded-xl font-medium transition-all hover:brightness-110"
@@ -161,7 +193,7 @@ function Top3Card({ product, rank }: { product: Product; rank: number }) {
         <a href={affiliateUrl} target="_blank" rel="noopener noreferrer"
            className="flex-1 text-center text-xs py-2 rounded-xl font-bold text-white transition-all hover:brightness-110"
            style={{ background: "linear-gradient(135deg, #FF6B5F 0%, #3ED6A3 100%)" }}>
-          Voir le prix
+          Voir le prix sur Amazon
         </a>
       </div>
     </div>
@@ -292,12 +324,15 @@ export default async function CategoryPage({ params }: Props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* Ligne prix */}
+                  {/* Ligne prix - lien Amazon */}
                   <tr style={{ borderTop: "1px solid var(--border, #1E1E24)" }}>
                     <td className="p-3 font-medium" style={{ color: "#8B8B9A" }}>Prix</td>
                     {top3.map((p) => (
                       <td key={p.id} className="p-3 text-center font-semibold" style={{ color: "var(--mint, #3ED6A3)" }}>
-                        {p.price_eur ? `${p.price_eur} €` : "—"}
+                        <a href={getAffiliateUrl(p)} target="_blank" rel="noopener noreferrer"
+                           className="text-xs underline decoration-dotted">
+                          Voir →
+                        </a>
                       </td>
                     ))}
                   </tr>
@@ -329,7 +364,6 @@ export default async function CategoryPage({ params }: Props) {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
               {sorted.slice(3).map((product) => {
                 const score = product.estimated_score ?? 0;
-                const price = product.price_eur ? `${product.price_eur} €` : "";
                 return (
                   <a key={product.id} href={`/produit/${product.slug}`}
                      className="rounded-xl p-4 flex flex-col items-center text-center transition-all hover:brightness-110"
@@ -343,11 +377,14 @@ export default async function CategoryPage({ params }: Props) {
                       {product.brand} {product.name}
                     </div>
                     {score > 0 && (
-                      <div className="text-xs font-bold" style={{ color: "var(--coral, #FF6B5F)" }}>
+                      <div className="text-xs font-bold mb-1" style={{ color: "var(--coral, #FF6B5F)" }}>
                         {score.toFixed(1)}/10
                       </div>
                     )}
-                    {price && <div className="text-xs" style={{ color: "var(--mint, #3ED6A3)" }}>{price}</div>}
+                    <span className="text-[10px] font-bold px-2 py-1 rounded-full text-white"
+                      style={{ background: "linear-gradient(135deg, #FF6B5F 0%, #3ED6A3 100%)" }}>
+                      Voir le prix
+                    </span>
                   </a>
                 );
               })}
@@ -373,13 +410,20 @@ export default async function CategoryPage({ params }: Props) {
             Contrairement aux comparateurs traditionnels qui affichent les produits les mieux commissionnés,
             Troviio ne perçoit aucune rémunération des fabricants. Le choix reste 100% objectif.
           </p>
-          <div className="mt-6 text-center">
-            <a href={`/guide/${slug}`}
-               className="inline-block text-sm font-semibold py-3 px-6 rounded-xl text-white transition-all hover:brightness-110"
-               style={{ background: "linear-gradient(135deg, #FF6B5F 0%, #3ED6A3 100%)" }}>
-              📖 Lire le guide complet {meta.name}
-            </a>
-          </div>
+          {(() => {
+            const guideSlug = GUIDES_BY_CATEGORY[slug];
+            const href = guideSlug ? `/guide-longtail/${slug}/${guideSlug}` : `/c/${slug}#guides`;
+            const label = guideSlug ? `📖 Lire le guide ${meta.name}` : `📖 Voir tous les guides ${meta.name}`;
+            return (
+              <div className="mt-6 text-center">
+                <a href={href}
+                   className="inline-block text-sm font-semibold py-3 px-6 rounded-xl text-white transition-all hover:brightness-110"
+                   style={{ background: "linear-gradient(135deg, #FF6B5F 0%, #3ED6A3 100%)" }}>
+                  {label}
+                </a>
+              </div>
+            );
+          })()}
         </div>
       </section>
 

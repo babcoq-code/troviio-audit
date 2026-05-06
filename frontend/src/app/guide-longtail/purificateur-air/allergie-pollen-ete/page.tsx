@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Purificateur d'air anti-allergie et pollen : lequel choisir pour l'ete 2026 ?</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Purificateur d'air anti-allergie et pollen : lequel choisir pour l'ete 2026 ?</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Allergies saisonnieres ? Le bon purificateur peut changer vos etes.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Filtration HEPA** : Filtre les pollens mieux que ta mère ne filtre tes amis.
-**Débit d’air** : Plus c’est rapide, moins tu éternues comme un personnage de sitcom.
-**Niveau sonore** : Sinon, tu crois qu’un moustique fait du beatbox dans ta chambre.
-**Capteurs intelligents** : Détectent l’air pourri avant que ton nez ne se rebelle.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Filtration HEPA</strong> : Filtre les pollens mieux que ta mère ne filtre tes amis.
+<strong>Débit d’air</strong> : Plus c’est rapide, moins tu éternues comme un personnage de sitcom.
+<strong>Niveau sonore</strong> : Sinon, tu crois qu’un moustique fait du beatbox dans ta chambre.
+<strong>Capteurs intelligents</strong> : Détectent l’air pourri avant que ton nez ne se rebelle.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour allergique chronique qui éternue en regardant une fleur** : Prends le Dyson, il te sauvera la vie sans te ruiner en Kleenex.
-**Pour le citadin stressé qui veut dormir en paix** : Le Philips, silencieux comme un complice de braquage.
-**Pour le étudiant fauché avec un studio sous les toits** : Le Xiaomi, efficace sans pleurer sur ton compte en banque.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour allergique chronique qui éternue en regardant une fleur</strong> : Prends le Dyson, il te sauvera la vie sans te ruiner en Kleenex.
+<strong>Pour le citadin stressé qui veut dormir en paix</strong> : Le Philips, silencieux comme un complice de braquage.
+<strong>Pour le étudiant fauché avec un studio sous les toits</strong> : Le Xiaomi, efficace sans pleurer sur ton compte en banque.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Négliger le filtre** : Un filtre sale, c’est comme un balai qui pue : inutile et dégueu.
-**Acheter trop petit** : Un purificateur pour hamster dans un salon, c’est l’échec assuré.
-**Oublier le bruit** : Un modèle bruyant, et tu te crois dans un concert de métal à 3h du mat.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Négliger le filtre</strong> : Un filtre sale, c’est comme un balai qui pue : inutile et dégueu.
+<strong>Acheter trop petit</strong> : Un purificateur pour hamster dans un salon, c’est l’échec assuré.
+<strong>Oublier le bruit</strong> : Un modèle bruyant, et tu te crois dans un concert de métal à 3h du mat.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

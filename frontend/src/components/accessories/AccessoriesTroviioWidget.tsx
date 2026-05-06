@@ -2,9 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { AccessoriesChat } from './AccessoriesChat';
-import { Accessory } from '@/lib/types/accessories';
-
-const EUR = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
+import type { Accessory } from '@/lib/types/accessories';
 
 interface AccessoriesForProductResponse {
   product: { id: string; slug: string; name: string; brand: string | null; model: string | null };
@@ -113,7 +111,7 @@ export function AccessoriesTroviioWidget({
             💬 Posez une question sur les accessoires
           </p>
           <p className="mt-1 text-sm text-[#8B8FA3]">
-            Filtre à eau, batterie, brosse… notre IA vous guide vers l&apos;accessoire
+            Filtre à eau, batterie, brosse… notre IA vous guide vers l'accessoire
             compatible avec votre appareil.
           </p>
         </div>
@@ -196,18 +194,23 @@ function AccessoryTroviio({
 
         {/* Prix */}
         <div className="mt-auto pt-4">
-          <div className="mb-3 flex items-center justify-between rounded-2xl bg-white/5 px-3 py-2">
+      <div className="mb-3 flex items-center justify-between rounded-2xl bg-white/5 px-3 py-2">
             <div>
-              <p className="text-xs text-[#8B8FA3]">Meilleur prix</p>
-              <p className="text-base font-bold text-white">
-                {bestPrice?.price != null
-                  ? EUR.format(bestPrice.price)
-                  : 'Prix indisponible'}
-              </p>
+              <p className="text-xs text-[#8B8FA3]">Voir l'offre</p>
+              {bestPrice?.affiliateUrl && (
+                <a
+                  href={bestPrice.affiliateUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow sponsored"
+                  className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-[#ff6b2b] px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-[#e55a1f]"
+                >
+                  Chez {bestPrice.merchantName || "le marchand"} →
+                </a>
+              )}
+              {!bestPrice?.affiliateUrl && (
+                <p className="text-sm font-bold text-white">Voir les offres</p>
+              )}
             </div>
-            {bestPrice?.merchantName && (
-              <span className="text-xs font-bold text-[#8B8FA3]">{bestPrice.merchantName}</span>
-            )}
           </div>
 
           <a
@@ -216,7 +219,7 @@ function AccessoryTroviio({
             rel="nofollow sponsored noopener noreferrer"
             className="inline-flex w-full items-center justify-center rounded-2xl bg-[#4257FF] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#5870FF]"
           >
-            Voir l&apos;offre →
+            Voir l'offre →
           </a>
         </div>
       </div>

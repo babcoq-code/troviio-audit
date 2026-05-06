@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Robot aspirateur silencieux pour appartement 2026</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Robot aspirateur silencieux pour appartement 2026</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Voisins, bebe, teletravail : les modeles les plus silencieux pour nettoyer sans deranger.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Décibels max** : Pas plus de 50 dB, sinon ton voisin du dessous croit à un déménagement.
-**Autonomie rusée** : Minimum 120 minutes, pour pas qu’il s’endorme sur le tapis en pleine mission.
-**Détection obstacle** : Évite les câbles comme un mec qui esquive son ex dans un supermarché.
-**Auto-vidage** : Sinon tu vas le vider toi-même, et t’as mieux à faire que jouer les égoutiers.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Décibels max</strong> : Pas plus de 50 dB, sinon ton voisin du dessous croit à un déménagement.
+<strong>Autonomie rusée</strong> : Minimum 120 minutes, pour pas qu’il s’endorme sur le tapis en pleine mission.
+<strong>Détection obstacle</strong> : Évite les câbles comme un mec qui esquive son ex dans un supermarché.
+<strong>Auto-vidage</strong> : Sinon tu vas le vider toi-même, et t’as mieux à faire que jouer les égoutiers.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson 360 Vis Nav** : Le roi du silence, à peine plus bruyant qu’une libellule en yoga. Il aspire la poussière sans faire de vagues, parfait si tu veux passer pour un fantôme. Pour qui ? Les paranos du bruit qui cachent leur téléphone sous l’oreiller. À éviter si ? Tu kiffes les concerts de métal pendant que ton robot fait le ménage.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Dyson 360 Vis Nav</strong> : Le roi du silence, à peine plus bruyant qu’une libellule en yoga. Il aspire la poussière sans faire de vagues, parfait si tu veux passer pour un fantôme. Pour qui ? Les paranos du bruit qui cachent leur téléphone sous l’oreiller. À éviter si ? Tu kiffes les concerts de métal pendant que ton robot fait le ménage.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Roborock S8 MaxV** : Le ninja de l’aspiration, furtif comme un espion de la CIA. Il détecte les obstacles avec une précision chirurgicale, mais son prix fait mal au portefeuille. Pour qui ? Les geeks qui veulent une IA qui nettoie sans les déranger. À éviter si ? Tu préfères un robot qui chante du karaoké en travaillant.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Roborock S8 MaxV</strong> : Le ninja de l’aspiration, furtif comme un espion de la CIA. Il détecte les obstacles avec une précision chirurgicale, mais son prix fait mal au portefeuille. Pour qui ? Les geeks qui veulent une IA qui nettoie sans les déranger. À éviter si ? Tu préfères un robot qui chante du karaoké en travaillant.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**iRobot Roomba j9+** : Le vieux sage du silence, fiable comme un métro parisien en grève. Il se vide tout seul, mais son intelligence artificielle a parfois des bugs dignes de Windows 95. Pour qui ? Les flemmards qui veulent juste appuyer sur un bouton. À éviter si ? Tu attends une révolution technologique, pas un robot qui tourne en rond.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>iRobot Roomba j9+</strong> : Le vieux sage du silence, fiable comme un métro parisien en grève. Il se vide tout seul, mais son intelligence artificielle a parfois des bugs dignes de Windows 95. Pour qui ? Les flemmards qui veulent juste appuyer sur un bouton. À éviter si ? Tu attends une révolution technologique, pas un robot qui tourne en rond.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour le télétravailleur insomniaque** : Dyson 360 Vis Nav, pour bosser sans bruit parasite.
-**Pour le geek parano des capteurs** : Roborock S8 MaxV, le garde du corps silencieux.
-**Pour le père noël débordé** : iRobot Roomba j9+, il se vide, tu rêves.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour le télétravailleur insomniaque</strong> : Dyson 360 Vis Nav, pour bosser sans bruit parasite.
+<strong>Pour le geek parano des capteurs</strong> : Roborock S8 MaxV, le garde du corps silencieux.
+<strong>Pour le père noël débordé</strong> : iRobot Roomba j9+, il se vide, tu rêves.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Croire que silence = faible puissance** : Faux, 2026, les moteurs sont des murmures de tueur.
-**Ignorer les capteurs de chute** : Sans ça, ton robot se suicide dans l’escalier façon Bambi.
-**Oublier le filtre HEPA** : Sinon il recrache la poussière comme un ado qui tousse dans le métro.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Croire que silence = faible puissance</strong> : Faux, 2026, les moteurs sont des murmures de tueur.
+<strong>Ignorer les capteurs de chute</strong> : Sans ça, ton robot se suicide dans l’escalier façon Bambi.
+<strong>Oublier le filtre HEPA</strong> : Sinon il recrache la poussière comme un ado qui tousse dans le métro.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

@@ -103,7 +103,7 @@ export default async function AccessoryDetailPage({
                 rel="nofollow sponsored noopener noreferrer"
                 className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-stone-900 px-6 py-3 text-sm font-bold text-white transition hover:bg-stone-700"
               >
-                Voir l&apos;offre
+                Voir l'offre
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>

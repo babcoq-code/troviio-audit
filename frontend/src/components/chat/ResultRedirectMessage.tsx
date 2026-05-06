@@ -52,7 +52,7 @@ export function ResultRedirectMessage({ result_id }: ResultRedirectMessageProps)
     >
       <div className="flex flex-col items-center gap-3 text-center">
         <p className="font-semibold text-lg leading-tight">
-          🎯 J&apos;ai trouvé ton produit !
+          🎯 J'ai trouvé ton produit !
         </p>
         <p className="text-sm opacity-90">
           Redirection vers les résultats dans <strong>{remainingSeconds}s</strong>

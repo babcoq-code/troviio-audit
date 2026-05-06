@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">TV OLED 120Hz pas chere pour PS5 et Xbox : guide budget 2026</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">TV OLED 120Hz pas chere pour PS5 et Xbox : guide budget 2026</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">120Hz sur PS5 sans vendre un rein ? TV OLED 120Hz les moins cheres.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**OLED vs Mini-LED** : L’OLED offre noirs parfaits, mais risque de burn-in si tu joues 24h/24 à FIFA.
-**120Hz Natif vs Upscalé** : Vérifie que le 120Hz est natif, pas un mirage marketing façon « café sans caféine ».
-**HDMI 2.1** : Obligatoire pour VRR et ALLM, sinon ta PS5 pleure comme un ado privé de TikTok.
-**Taille et Budget** : 55 pouces max pour 500-800€ ; ne cherche pas du 65 pouces à 300 balles, c’est une arnaque.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>OLED vs Mini-LED</strong> : L’OLED offre noirs parfaits, mais risque de burn-in si tu joues 24h/24 à FIFA.
+<strong>120Hz Natif vs Upscalé</strong> : Vérifie que le 120Hz est natif, pas un mirage marketing façon « café sans caféine ».
+<strong>HDMI 2.1</strong> : Obligatoire pour VRR et ALLM, sinon ta PS5 pleure comme un ado privé de TikTok.
+<strong>Taille et Budget</strong> : 55 pouces max pour 500-800€ ; ne cherche pas du 65 pouces à 300 balles, c’est une arnaque.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**LG OLED B4** : Le ninja discret des télés pas chères. 120Hz natif, VRR, et un prix qui fait sourire ton banquier. Parfait pour le joueur qui veut du piqué sans hypothéquer son chat. À éviter si tu es un puriste Sony qui jure que par le Dolby Vision et le design « premium » (spoiler : tu paieras deux fois plus). Pour les autres, c’est le Graal de 2026.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>LG OLED B4</strong> : Le ninja discret des télés pas chères. 120Hz natif, VRR, et un prix qui fait sourire ton banquier. Parfait pour le joueur qui veut du piqué sans hypothéquer son chat. À éviter si tu es un puriste Sony qui jure que par le Dolby Vision et le design « premium » (spoiler : tu paieras deux fois plus). Pour les autres, c’est le Graal de 2026.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Sony A95L** : La Rolls des OLED, mais avec un prix qui sent le financement sur 10 ans. HDR époustouflant, idéal pour les cinéphiles qui veulent voir chaque pixel de The Last of Us. Mais à 1200€, ton portefeuille va saigner. À éviter si tu es fauché ou si tu préfères manger que jouer. Pour les riches hipsters du gaming, ça passe.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Sony A95L</strong> : La Rolls des OLED, mais avec un prix qui sent le financement sur 10 ans. HDR époustouflant, idéal pour les cinéphiles qui veulent voir chaque pixel de The Last of Us. Mais à 1200€, ton portefeuille va saigner. À éviter si tu es fauché ou si tu préfères manger que jouer. Pour les riches hipsters du gaming, ça passe.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Hisense U8N** : Le caméléon qui défie les lois du marché. Mini-LED, 144Hz, et un prix qui défie toute logique. Les noirs sont presque parfaits, mais le HDR est un peu mou. Idéal pour le joueur qui veut de la performance sans se ruiner et qui supporte un menu télé buggé façon Windows 95. À éviter si tu es allergique aux compromis.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Hisense U8N</strong> : Le caméléon qui défie les lois du marché. Mini-LED, 144Hz, et un prix qui défie toute logique. Les noirs sont presque parfaits, mais le HDR est un peu mou. Idéal pour le joueur qui veut de la performance sans se ruiner et qui supporte un menu télé buggé façon Windows 95. À éviter si tu es allergique aux compromis.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour le joueur compétitif** : LG OLED B4, 120Hz natif et VRR pour dominer en Call of.
-**Pour le fan de solo avec budget serré** : Hisense U8N, bon rapport qualité/prix pour des graphismes solides.
-**Pour le riche geek perfectionniste** : Sony A95L, la Rolls qui fait briller tes jeux et vider ton compte.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour le joueur compétitif</strong> : LG OLED B4, 120Hz natif et VRR pour dominer en Call of.
+<strong>Pour le fan de solo avec budget serré</strong> : Hisense U8N, bon rapport qualité/prix pour des graphismes solides.
+<strong>Pour le riche geek perfectionniste</strong> : Sony A95L, la Rolls qui fait briller tes jeux et vider ton compte.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Acheter sans HDMI 2.1** : Ta PS5 en 4K 60Hz, c’est comme jouer à Tetris sur une Game Boy.
-**Ignorer le burn-in** : Un écran allumé 10h/jour sur FIFA, adieu les pixels.
-**Choisir 120Hz upscalé** : Le marketing ment, vérifie les specs techniques avant d’acheter.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Acheter sans HDMI 2.1</strong> : Ta PS5 en 4K 60Hz, c’est comme jouer à Tetris sur une Game Boy.
+<strong>Ignorer le burn-in</strong> : Un écran allumé 10h/jour sur FIFA, adieu les pixels.
+<strong>Choisir 120Hz upscalé</strong> : Le marketing ment, vérifie les specs techniques avant d’acheter.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

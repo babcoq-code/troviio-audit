@@ -32,15 +32,15 @@ export default function MethodePage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8" style={{ color: "var(--text-muted)" }}>
             Chaque site te donne une note sur 10. On trouve ça un peu léger. 
-            Nous, on a créé le <strong>Troviio Score</strong> : une mesure d&apos;affinité réelle entre 
-            <em> toi</em> et un produit. Pas de la poudre aux yeux, de l&apos;amour computationnel.
+            Nous, on a créé le <strong>Troviio Score</strong> : une mesure d'affinité réelle entre 
+            <em> toi</em> et un produit. Pas de la poudre aux yeux, de l'amour computationnel.
           </p>
         </section>
 
         {/* ── LE PROBLÈME ── */}
         <section className="mt-20">
           <h2 className="font-sora text-2xl font-bold tracking-tight sm:text-3xl">
-            Pourquoi les notes classiques, c&apos;est un peu du flan
+            Pourquoi les notes classiques, c'est un peu du flan
           </h2>
           <div className="mt-6 space-y-4 text-base leading-8" style={{ color: "var(--text)" }}>
             <p>
@@ -49,8 +49,8 @@ export default function MethodePage() {
               nombreuse avec un chien qui mue et 120m² de carrelage ?
             </p>
             <p>
-              <strong>Une note universelle n&apos;existe pas.</strong> Parce que le bon produit 
-              dépend de qui tu es, de comment tu vis, de ce qui t&apos;énerve le matin.
+              <strong>Une note universelle n'existe pas.</strong> Parce que le bon produit 
+              dépend de qui tu es, de comment tu vis, de ce qui t'énerve le matin.
             </p>
             <p>
               Alors on a créé la nôtre. Avec un seul principe : <strong>elle change 
@@ -73,7 +73,7 @@ export default function MethodePage() {
                 Le Troviio Score
               </h2>
               <p className="mt-2 font-sora text-lg font-semibold text-[#FF6B5F]">
-                /100 — pas /10. Parce que l&apos;amour ne se mesure pas en dixièmes.
+                /100 — pas /10. Parce que l'amour ne se mesure pas en dixièmes.
               </p>
             </div>
 
@@ -87,7 +87,7 @@ export default function MethodePage() {
                 <p className="mt-2 text-sm leading-6" style={{ color: "var(--text-muted)" }}>
                   <strong className="text-[#FF6B5F]">60% du score.</strong> Est-ce que ce produit colle à ton 
                   mode de vie, ton budget, tes contraintes ? Un robot aspirateur génial 
-                  mais trop grand pour ton studio, c&apos;est un mauvais match, point.
+                  mais trop grand pour ton studio, c'est un mauvais match, point.
                 </p>
               </div>
 
@@ -99,7 +99,7 @@ export default function MethodePage() {
                 <h3 className="mt-4 font-sora text-lg font-bold">Qualité intrinsèque</h3>
                 <p className="mt-2 text-sm leading-6" style={{ color: "var(--text-muted)" }}>
                   <strong className="text-[#4257FF]">25% du score.</strong> Notes, specs techniques, 
-                  fiabilité, avis utilisateurs. On ne recommande pas un produit juste parce qu&apos;il 
+                  fiabilité, avis utilisateurs. On ne recommande pas un produit juste parce qu'il 
                   te plaît — il doit aussi être bon.
                 </p>
               </div>
@@ -113,7 +113,7 @@ export default function MethodePage() {
                 <p className="mt-2 text-sm leading-6" style={{ color: "var(--text-muted)" }}>
                   <strong className="text-[#3ED6A3]">15% du score.</strong> Le rapport entre ce que 
                   tu paies et ce que tu reçois. Un produit à 2000 balles qui fait la même chose 
-                  qu&apos;un à 600€, ça sent le vol — notre score le reflète.
+                  qu'un à 600€, ça sent le vol — notre score le reflète.
                 </p>
               </div>
             </div>
@@ -135,7 +135,7 @@ export default function MethodePage() {
                 <h3 className="font-sora text-lg font-bold">Tu parles, on écoute</h3>
                 <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
                   Pendant le chat, on collecte bien plus que « je cherche un aspirateur ». 
-                  Ton logement, tes habitudes, ton budget réel, tes traumas d&apos;achat 
+                  Ton logement, tes habitudes, ton budget réel, tes traumas d'achat 
                   passés, tes priorités. Tout ça construit <strong>ton profil unique</strong>.
                 </p>
               </div>
@@ -162,11 +162,11 @@ export default function MethodePage() {
                 3
               </div>
               <div>
-                <h3 className="font-sora text-lg font-bold">L&apos;IA calcule l&apos;amour</h3>
+                <h3 className="font-sora text-lg font-bold">L'IA calcule l'amour</h3>
                 <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
                   Une intelligence artificielle analyse chaque candidat selon les 3 
                   piliers du Troviio Score. Elle pondère, compare, élimine. 
-                  Résultat : <strong>3 produits, chacun avec son score d&apos;affinité</strong> 
+                  Résultat : <strong>3 produits, chacun avec son score d'affinité</strong> 
                   et une explication en français. Pas de boîte noire.
                 </p>
               </div>
@@ -181,7 +181,7 @@ export default function MethodePage() {
                 <h3 className="font-sora text-lg font-bold">Tu juges sur pièces</h3>
                 <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
                   Chaque recommandation arrive avec son Troviio Score, son explication 
-                  personnalisée, ses points forts, ses petits défauts qu&apos;on assume, ses 
+                  personnalisée, ses points forts, ses petits défauts qu'on assume, ses 
                   specs clés. À toi de valider — ou de relancer une recherche.
                 </p>
               </div>
@@ -207,7 +207,7 @@ export default function MethodePage() {
               <p className="text-center text-3xl">💙</p>
               <p className="mt-2 text-center font-sora text-lg font-bold text-[#4257FF]">75-89</p>
               <p className="mt-1 text-center text-sm" style={{ color: "var(--text-muted)" }}>
-                Âme sœur. Excellent choix, tu risques de l&apos;adorer au quotidien. 
+                Âme sœur. Excellent choix, tu risques de l'adorer au quotidien. 
                 Un des meilleurs rapports affinité/prix.
               </p>
             </div>
@@ -221,7 +221,7 @@ export default function MethodePage() {
             </div>
             <div className="rounded-2xl border border-[#FFB347]/20 bg-[#FFB347]/5 p-5">
               <p className="text-center text-3xl">🧡</p>
-              <p className="mt-2 text-center font-sora text-lg font-bold text-[#FFB347]">&lt;60</p>
+              <p className="mt-2 text-center font-sora text-lg font-bold text-[#FFB347]">{'<'}60</p>
               <p className="mt-1 text-center text-sm" style={{ color: "var(--text-muted)" }}>
                 Ça peut le faire — ou pas. Regarde bien les points de vigilance. 
                 Ce produit a des compromis à accepter.
@@ -237,22 +237,22 @@ export default function MethodePage() {
             style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}
           >
             <h2 className="font-sora text-2xl font-bold tracking-tight sm:text-3xl">
-              Et le conflit d&apos;intérêts dans tout ça ?
+              Et le conflit d'intérêts dans tout ça ?
             </h2>
             <div className="mt-6 space-y-4 text-base leading-8" style={{ color: "var(--text)" }}>
               <p>
-                Bonne question. Oui, on gagne de l&apos;argent via les liens Amazon si tu 
-                achètes. Et non, ça n&apos;influence pas le Troviio Score.
+                Bonne question. Oui, on gagne de l'argent via les liens Amazon si tu 
+                achètes. Et non, ça n'influence pas le Troviio Score.
               </p>
               <p>
-                <strong>Pourquoi on pourrait tricher ?</strong> Parce qu&apos;un produit 
+                <strong>Pourquoi on pourrait tricher ?</strong> Parce qu'un produit 
                 plus cher nous rapporterait plus. <strong>Pourquoi on ne le fait pas ?</strong> 
-                Parce qu&apos;on tient à ce truc plus qu&apos;à une commission. Si on te 
-                recommande un truc nul, tu ne reviens pas. Et sans toi, on n&apos;est rien.
+                Parce qu'on tient à ce truc plus qu'à une commission. Si on te 
+                recommande un truc nul, tu ne reviens pas. Et sans toi, on n'est rien.
               </p>
               <p>
                 Notre algorithme ne voit même pas les marges. Il ne connaît que ton profil 
-                et les données produits. Le reste, c&apos;est entre toi et le bouton 
+                et les données produits. Le reste, c'est entre toi et le bouton 
                 « Voir le prix ».
               </p>
             </div>
@@ -265,7 +265,7 @@ export default function MethodePage() {
             Prêt à trouver ton match ?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-8" style={{ color: "var(--text-muted)" }}>
-            Pas de note générique. Pas de bullshit. Un vrai score d&apos;affinité 
+            Pas de note générique. Pas de bullshit. Un vrai score d'affinité 
             calculé pour toi, par toi, grâce à tes réponses.
           </p>
           <Link
@@ -280,8 +280,8 @@ export default function MethodePage() {
         {/* ── FOOTER ── */}
         <footer className="mt-20 pb-6 text-center text-xs leading-7" style={{ color: "var(--text-muted)" }}>
           <p>
-            Troviio participe au Programme Partenaires d&apos;Amazon EU. Les liens 
-            d&apos;affiliation n&apos;influencent en aucun cas nos scores ou recommandations.
+            Troviio participe au Programme Partenaires d'Amazon EU. Les liens 
+            d'affiliation n'influencent en aucun cas nos scores ou recommandations.
           </p>
         </footer>
       </div>

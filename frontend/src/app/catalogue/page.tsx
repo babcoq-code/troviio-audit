@@ -94,13 +94,16 @@ export default function CataloguePage() {
   useEffect(() => {
     async function load() {
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://troviio.com/api";
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || "/api";
         const res = await fetch(`${API_BASE}/products/?limit=300`, { cache: "no-store" });
         const products: any[] = res.ok ? await res.json() : [];
 
-        const { data: catData } = await sb
+        console.log("FETCHED", products.length, "products");
+        const { data: catData, error: catErr } = await sb
           .from("categories")
           .select("id, name, slug");
+        if (catErr) console.error("SUPABASE_CAT_ERR", catErr);
+        console.log("CATEGORIES", catData?.length, "loaded");
 
         const counts: Record<string, number> = {};
         const catById: Record<string, CategoryFilter> = {};

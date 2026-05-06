@@ -20,7 +20,7 @@ export function PriceChartWrapper({ slug }: { slug: string }) {
   if (data.length === 0) {
     return (
       <div className="flex h-64 items-center justify-center rounded-3xl border border-dashed border-stone-300 text-sm text-stone-500">
-        L&apos;historique sera disponible après les premières semaines de suivi des prix.
+        L'historique sera disponible après les premières semaines de suivi des prix.
       </div>
     );
   }

@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">TV OLED 65 pouces pour recul de 3 metres : le guide 2026</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">TV OLED 65 pouces pour recul de 3 metres : le guide 2026</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">3 metres entre le canape et la TV ? La taille ideale c'est 65 pouces.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pic lumineux** : Pour mater *Game of Thrones* dans le noir sans perdre les détails dans les ombres.
-**Anti-reflets** : Évite de voir ta tronche déprimée quand tu manges devant *Top Chef*.
-**Taux de rafraîchissement** : 120 Hz minimum pour que les débiles de *Fortnite* aient pas l’air de danser le jerk.
-**Processeur** : Un bon chip qui upscale tes vieux DVD de *Taxi* en 4K sans les rendre flous comme un filtre TikTok.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pic lumineux</strong> : Pour mater *Game of Thrones* dans le noir sans perdre les détails dans les ombres.
+<strong>Anti-reflets</strong> : Évite de voir ta tronche déprimée quand tu manges devant *Top Chef*.
+<strong>Taux de rafraîchissement</strong> : 120 Hz minimum pour que les débiles de *Fortnite* aient pas l’air de danser le jerk.
+<strong>Processeur</strong> : Un bon chip qui upscale tes vieux DVD de *Taxi* en 4K sans les rendre flous comme un filtre TikTok.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**LG G4 (94/100)** : Le roi du OLED, avec des noirs si profonds que tu crois avoir éteint la TV. Parfait pour le geek qui veut mater *Interstellar* en boucle. À éviter si tu es radin comme un personnage de *Les Bronzés*, car le prix fait saigner plus fort qu’une scène de *Scarface*.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>LG G4 (94/100)</strong> : Le roi du OLED, avec des noirs si profonds que tu crois avoir éteint la TV. Parfait pour le geek qui veut mater *Interstellar* en boucle. À éviter si tu es radin comme un personnage de *Les Bronzés*, car le prix fait saigner plus fort qu’une scène de *Scarface*.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Samsung S95D (91/100)** : Le ninja des reflets, idéal pour ton salon bordélique où la lumière du jour te nargue. Parfait pour le gamer qui veut voir ses ennemis dans *Apex Legends* avant qu’ils le déchirent. À éviter si tu es allergique au menu Tizen, plus ergonomique qu’un manuel de *Mode d’emploi* de ta grand-mère.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Samsung S95D (91/100)</strong> : Le ninja des reflets, idéal pour ton salon bordélique où la lumière du jour te nargue. Parfait pour le gamer qui veut voir ses ennemis dans *Apex Legends* avant qu’ils le déchirent. À éviter si tu es allergique au menu Tizen, plus ergonomique qu’un manuel de *Mode d’emploi* de ta grand-mère.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Sony A80L (87/100)** : Le sage de la bande, avec un processeur qui rend les films de *Asterix & Obélix* presque regardables. Idéal pour le cinéphile fauché qui veut du bon sans vendre sa collection de figurines *Star Wars*. À éviter si tu veux jouer à *Elden Ring* en 120 Hz, car c’est plus lent qu’un épisode de *Plus belle la vie*.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Sony A80L (87/100)</strong> : Le sage de la bande, avec un processeur qui rend les films de *Asterix & Obélix* presque regardables. Idéal pour le cinéphile fauché qui veut du bon sans vendre sa collection de figurines *Star Wars*. À éviter si tu veux jouer à *Elden Ring* en 120 Hz, car c’est plus lent qu’un épisode de *Plus belle la vie*.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour le cinéphile exigeant** : LG G4 – noirs parfaits, mais prépare ton porte-monnaie à pleurer.
-**Pour le gamer compétitif** : Samsung S95D – anti-reflets et 120 Hz, sans devenir aveugle.
-**Pour le père de famille raisonnable** : Sony A80L – bon équilibre, sans que les gosses piquent un fric.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour le cinéphile exigeant</strong> : LG G4 – noirs parfaits, mais prépare ton porte-monnaie à pleurer.
+<strong>Pour le gamer compétitif</strong> : Samsung S95D – anti-reflets et 120 Hz, sans devenir aveugle.
+<strong>Pour le père de famille raisonnable</strong> : Sony A80L – bon équilibre, sans que les gosses piquent un fric.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Oublier le pic lumineux** : Un OLED trop sombre en plein jour, c’est comme un film d’horreur sans peur.
-**Négliger l’anti-reflets** : Voir ta tête en double, c’est le cauchemar d’un épisode de *Black Mirror*.
-**Ignorer le processeur** : Un upscale pourri transforme *Le Cinquième Élément* en *Vidéo Gag*.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Oublier le pic lumineux</strong> : Un OLED trop sombre en plein jour, c’est comme un film d’horreur sans peur.
+<strong>Négliger l’anti-reflets</strong> : Voir ta tête en double, c’est le cauchemar d’un épisode de *Black Mirror*.
+<strong>Ignorer le processeur</strong> : Un upscale pourri transforme *Le Cinquième Élément* en *Vidéo Gag*.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

@@ -70,8 +70,8 @@ export default function AccessoriesChatPage() {
               <p className="py-8 text-center text-sm" style={{ color: "var(--text-muted)" }}>
                 Dis-moi quel appareil tu as !<br />
                 <span className="text-xs">
-                  Ex: &quot;Roborock Qrevo S&quot;, &quot;Dreame L10s Ultra&quot;,
-                  &quot;Samsung TV 65S90F&quot;, &quot;Dyson V15&quot;...
+                  Ex: "Roborock Qrevo S", "Dreame L10s Ultra",
+                  "Samsung TV 65S90F", "Dyson V15"...
                 </span>
               </p>
             )}

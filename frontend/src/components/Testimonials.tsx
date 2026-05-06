@@ -107,7 +107,7 @@ export default function Testimonials() {
                 className="flex-1 text-base leading-relaxed sm:text-[15px] sm:leading-7"
                 style={{ color: "var(--text)" }}
               >
-                &ldquo;{t.quote}&rdquo;
+                "{t.quote}"
               </blockquote>
 
               {/* Author */}
@@ -146,7 +146,7 @@ export default function Testimonials() {
             className="text-sm"
             style={{ color: "var(--text-muted)" }}
           >
-            Envie d&rsquo;être le prochain témoignage ?{" "}
+            Envie d'être le prochain témoignage ?{" "}
             <a
               href="/"
               className="font-medium underline decoration-dotted underline-offset-2 transition hover:no-underline"

@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Machine a cafe grain pour debutant : laquelle choisir en 2026 ?</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Machine a cafe grain pour debutant : laquelle choisir en 2026 ?</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Premiere machine expresso broyeur ? Les plus simples pour se lancer sans stress.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Facilité d’utilisation** : Si tu as besoin d’un diplôme en robotique, passe ton chemin. Choisis un modèle avec écran intuitif.
-**Broyeur intégré** : Un moulin céramique, pas en plastique, sinon ton café sentira le jouet cassé.
-**Nettoyage** : Si la machine te demande de démonter 15 pièces, tu finiras par la laisser moisir. Préfère les cycles automatiques.
-**Réservoir d’eau** : Assez grand pour ne pas remplir tous les matins comme un hamster hydraté.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Facilité d’utilisation</strong> : Si tu as besoin d’un diplôme en robotique, passe ton chemin. Choisis un modèle avec écran intuitif.
+<strong>Broyeur intégré</strong> : Un moulin céramique, pas en plastique, sinon ton café sentira le jouet cassé.
+<strong>Nettoyage</strong> : Si la machine te demande de démonter 15 pièces, tu finiras par la laisser moisir. Préfère les cycles automatiques.
+<strong>Réservoir d’eau</strong> : Assez grand pour ne pas remplir tous les matins comme un hamster hydraté.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Delonghi Magnifica :** La copine parfaite pour ton premier amour caféiné. Pas de fioritures, pas de bugs, juste un expresso qui te réveille comme un coup de pied aux fesses. Pour qui ? Le flemmard ambitieux qui veut un bon café sans lire le manuel. À éviter si tu rêves de faire mousser du lait comme un hipster barbu.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Delonghi Magnifica :</strong> La copine parfaite pour ton premier amour caféiné. Pas de fioritures, pas de bugs, juste un expresso qui te réveille comme un coup de pied aux fesses. Pour qui ? Le flemmard ambitieux qui veut un bon café sans lire le manuel. À éviter si tu rêves de faire mousser du lait comme un hipster barbu.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Jura E8 :** Le Tesla des machines à café : beau, connecté, et tellement cher que tu pleures dans ton mug. Pour qui ? Le geek qui veut contrôler sa dose via une app et impressionner ses potes. À éviter si tu as un budget de stagiaire, ou si tu préfères un café qui ne nécessite pas une mise à jour firmware.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Jura E8 :</strong> Le Tesla des machines à café : beau, connecté, et tellement cher que tu pleures dans ton mug. Pour qui ? Le geek qui veut contrôler sa dose via une app et impressionner ses potes. À éviter si tu as un budget de stagiaire, ou si tu préfères un café qui ne nécessite pas une mise à jour firmware.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Krupp YY8161 :** Le compromis de la dernière chance pour ceux qui veulent un grain sans se ruiner. Il fait son boulot, mais gare au bruit : ça ressemble à un marteau-piqueur en mode doux. Pour qui ? L’étudiant fauché ou le colocataire qui veut survivre à ses partiels. À éviter si tu vis dans un studio avec des murs en carton.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Krupp YY8161 :</strong> Le compromis de la dernière chance pour ceux qui veulent un grain sans se ruiner. Il fait son boulot, mais gare au bruit : ça ressemble à un marteau-piqueur en mode doux. Pour qui ? L’étudiant fauché ou le colocataire qui veut survivre à ses partiels. À éviter si tu vis dans un studio avec des murs en carton.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour le flemmard assumé** : Prends une Delonghi Magnifica, elle fait tout toute seule comme un robot domestique.
-**Pour l’influenceur en herbe** : Jura E8 pour des lattes Instagrammables et un compte en banque vide.
-**Pour le survivant du budget** : Krupp YY8161, le café de l’espoir sans la faillite.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour le flemmard assumé</strong> : Prends une Delonghi Magnifica, elle fait tout toute seule comme un robot domestique.
+<strong>Pour l’influenceur en herbe</strong> : Jura E8 pour des lattes Instagrammables et un compte en banque vide.
+<strong>Pour le survivant du budget</strong> : Krupp YY8161, le café de l’espoir sans la faillite.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Acheter une machine trop chère** : Tu finiras par boire du Nespresso par culpabilité, comme un hypocrite.
-**Ignorer l’entretien** : Si tu nettoies pas, ton café aura le goût d’un fond de casserole oublié.
-**Choisir sans test** : Un broyeur bruyant, c’est comme un voisin qui perce à 7h du mat’ : insupportable.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Acheter une machine trop chère</strong> : Tu finiras par boire du Nespresso par culpabilité, comme un hypocrite.
+<strong>Ignorer l’entretien</strong> : Si tu nettoies pas, ton café aura le goût d’un fond de casserole oublié.
+<strong>Choisir sans test</strong> : Un broyeur bruyant, c’est comme un voisin qui perce à 7h du mat’ : insupportable.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

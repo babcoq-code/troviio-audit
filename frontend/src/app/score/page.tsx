@@ -29,7 +29,7 @@ export default function ScorePage() {
           <h1 className="mt-6 font-sora text-4xl font-extrabold tracking-[-0.04em] sm:text-5xl lg:text-6xl">
             Le <span className="text-[#FF6B5F]">match parfait</span>
             <br />
-            n&apos;existe pas.
+            n'existe pas.
             <br />
             <span className="text-2xl sm:text-3xl text-[#3ED6A3]">Sauf que si, en fait.</span>
           </h1>
@@ -54,22 +54,22 @@ export default function ScorePage() {
           </div>
           <div className="space-y-4 text-base leading-8">
             <p>
-              Imagine : t&apos;es là, à scroller les avis Amazon à 23h, à te demander 
+              Imagine : t'es là, à scroller les avis Amazon à 23h, à te demander 
               si le robot aspirateur à 350€ est vraiment « excellent » ou juste 
-              « excellent pour quelqu&apos;un qui a un loft de 200m² et pas de chat ».
+              « excellent pour quelqu'un qui a un loft de 200m² et pas de chat ».
             </p>
             <p>
-              Une note sur 10, c&apos;est un peu comme un test de QI qui te dirait juste 
-              « t&apos;es intelligent » sans préciser si t&apos;es Einstein ou 
+              Une note sur 10, c'est un peu comme un test de QI qui te dirait juste 
+              « t'es intelligent » sans préciser si t'es Einstein ou 
               juste capable de pas manger la fourchette en fer.
             </p>
             <p className="font-semibold" style={{ color: "var(--coral)" }}>
-              Ça nous a tellement gonflés qu&apos;on a décidé de créer notre propre système.
+              Ça nous a tellement gonflés qu'on a décidé de créer notre propre système.
             </p>
             <p>
-              Pas une note. Une vraie mesure d&apos;affinité entre TOI (ton mode de vie, 
-              ton budget, tes traumas d&apos;achat passés) et un produit. 
-              Avec des maths, de l&apos;amour, et zéro bullshit marketing.
+              Pas une note. Une vraie mesure d'affinité entre TOI (ton mode de vie, 
+              ton budget, tes traumas d'achat passés) et un produit. 
+              Avec des maths, de l'amour, et zéro bullshit marketing.
             </p>
           </div>
         </section>
@@ -119,7 +119,7 @@ export default function ScorePage() {
                     <strong className="text-[#3ED6A3]"> Match parfait.</strong>
                   </p>
                   <p className="mt-2 text-xs italic" style={{ color: "var(--text-muted)" }}>
-                    En gros, on regarde si toi et le produit, vous êtes faits l&apos;un pour l&apos;autre. 
+                    En gros, on regarde si toi et le produit, vous êtes faits l'un pour l'autre. 
                     Comme un test de compatibilité, mais pour du matériel.
                   </p>
                 </div>
@@ -139,16 +139,16 @@ export default function ScorePage() {
                     <span className="rounded-full bg-[#4257FF]/15 px-2.5 py-0.5 font-sora text-xs font-bold text-[#4257FF]">25%</span>
                   </div>
                   <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
-                    <strong>Le produit est-il bon dans l&apos;absolu ?</strong> On regarde les specs, 
+                    <strong>Le produit est-il bon dans l'absolu ?</strong> On regarde les specs, 
                     les notes, les avis, la fiabilité. Si le produit est un pétard mouillé, 
-                    même s&apos;il correspond à 100% à ton profil, on ne va pas te le vendre 
+                    même s'il correspond à 100% à ton profil, on ne va pas te le vendre 
                     comme le messie.
                   </p>
                   <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
-                    C&apos;est la partie la moins romantique du score, mais la plus utile. 
+                    C'est la partie la moins romantique du score, mais la plus utile. 
                     <strong className="text-[#4257FF]"> Un peu comme un ami honnête</strong> qui te dit 
                     « écoute, je sais que tu kiffes son look, mais il a des problèmes 
-                    d&apos;humidité ». Merci l&apos;ami.
+                    d'humidité ». Merci l'ami.
                   </p>
                 </div>
               </div>
@@ -169,12 +169,12 @@ export default function ScorePage() {
                   <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
                     <strong>Le rapport qualité-prix, mais en moins chiant.</strong> On compare 
                     ce que tu paies à ce que tu reçois. Un smartphone à 1200€ qui fait 
-                    la même chose qu&apos;un à 400€ ? <strong className="text-[#FF6B5F]"> On le dit.</strong>
+                    la même chose qu'un à 400€ ? <strong className="text-[#FF6B5F]"> On le dit.</strong>
                   </p>
                   <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
-                    La valeur perçue, c&apos;est subjectif. Un étudiant et un cadre sup 
-                    n&apos;ont pas la même définition de « abordable ». Du coup on ajuste 
-                    <strong> selon ton budget</strong> que t&apos;as partagé pendant le chat.
+                    La valeur perçue, c'est subjectif. Un étudiant et un cadre sup 
+                    n'ont pas la même définition de « abordable ». Du coup on ajuste 
+                    <strong> selon ton budget</strong> que t'as partagé pendant le chat.
                     Malin, non ?
                   </p>
                 </div>
@@ -188,7 +188,7 @@ export default function ScorePage() {
           <div className="flex items-center gap-3 mb-6">
             <span className="text-3xl">⚙️</span>
             <h2 className="font-sora text-2xl font-bold tracking-tight sm:text-3xl">
-              Dans les coulisses de l&apos;algorithme cupidon
+              Dans les coulisses de l'algorithme cupidon
             </h2>
           </div>
 
@@ -198,9 +198,9 @@ export default function ScorePage() {
               <div>
                 <h3 className="font-sora font-bold">Tu causes, on prend des notes</h3>
                 <p className="mt-1 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
-                  Pendant le chat, t&apos;es pas juste « un utilisateur qui cherche un aspirateur ».
-                  T&apos;es <strong>Sarah</strong>, 32 ans, 68m², deux chats, allergie à la poussière, 
-                  budget 300€ max, et t&apos;as horreur du bruit le soir. On collecte tout ça façon psy 
+                  Pendant le chat, t'es pas juste « un utilisateur qui cherche un aspirateur ».
+                  T'es <strong>Sarah</strong>, 32 ans, 68m², deux chats, allergie à la poussière, 
+                  budget 300€ max, et t'as horreur du bruit le soir. On collecte tout ça façon psy 
                   bienveillant.
                 </p>
               </div>
@@ -212,7 +212,7 @@ export default function ScorePage() {
                 <h3 className="font-sora font-bold">On fouille notre base de 500+ produits</h3>
                 <p className="mt-1 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
                   Chaque produit a été épluché, testé, noté. On a ses specs, ses notes, ses forces, 
-                  <strong> ses petits défauts qu&apos;on assume</strong> (oui, même ceux que le fabricant 
+                  <strong> ses petits défauts qu'on assume</strong> (oui, même ceux que le fabricant 
                   cache dans les FAQs page 47). On sort les candidats qui pourraient te plaire.
                 </p>
               </div>
@@ -221,11 +221,11 @@ export default function ScorePage() {
             <div className="flex items-start gap-4">
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#3ED6A3] text-sm font-bold text-white">3</span>
               <div>
-                <h3 className="font-sora font-bold">L&apos;IA cuisine les scores</h3>
+                <h3 className="font-sora font-bold">L'IA cuisine les scores</h3>
                 <p className="mt-1 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
                   Une intelligence artificielle (oui, une vraie, pas un type dans une cave) analyse 
-                  chaque candidat sous l&apos;angle des 3 piliers. Elle pondère, compare, élimine les 
-                  incohérences. Au final elle pond <strong>un score d&apos;affinité personnalisé</strong> 
+                  chaque candidat sous l'angle des 3 piliers. Elle pondère, compare, élimine les 
+                  incohérences. Au final elle pond <strong>un score d'affinité personnalisé</strong> 
                   avec une explication que même ta grand-mère comprendrait.
                 </p>
               </div>
@@ -255,7 +255,7 @@ export default function ScorePage() {
             </h2>
           </div>
           <p className="mt-2 text-sm mb-8" style={{ color: "var(--text-muted)" }}>
-            (spoiler : plus c&apos;est haut, moins t&apos;auras de regrets après l&apos;achat)
+            (spoiler : plus c'est haut, moins t'auras de regrets après l'achat)
           </p>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -265,7 +265,7 @@ export default function ScorePage() {
               <p className="mt-1 text-sm font-bold">Coup de foudre</p>
               <p className="mt-1 text-xs leading-6" style={{ color: "var(--text-muted)" }}>
                 Tu peux y aller les yeux fermés, la bouche ouverte, et même en faisant 
-                du jonglage. Ce produit a été <strong>spécialement conçu pour toi</strong> par l&apos;univers. 
+                du jonglage. Ce produit a été <strong>spécialement conçu pour toi</strong> par l'univers. 
                 Aucune chance de déception.
               </p>
             </div>
@@ -274,9 +274,9 @@ export default function ScorePage() {
               <p className="mt-2 font-sora text-lg font-bold text-[#4257FF]">75 — 89</p>
               <p className="mt-1 text-sm font-bold">Âme sœur</p>
               <p className="mt-1 text-xs leading-6" style={{ color: "var(--text-muted)" }}>
-                Excellent choix. Tu risques de l&apos;adorer. C&apos;est pas LE coup de foudre 
-                absolu, mais c&apos;est <strong>un des meilleurs plans du marché</strong>. 
-                Tu vas pas te lever la nuit pour vérifier qu&apos;il va bien, mais presque.
+                Excellent choix. Tu risques de l'adorer. C'est pas LE coup de foudre 
+                absolu, mais c'est <strong>un des meilleurs plans du marché</strong>. 
+                Tu vas pas te lever la nuit pour vérifier qu'il va bien, mais presque.
               </p>
             </div>
             <div className="rounded-2xl border border-[#3ED6A3]/20 bg-[#3ED6A3]/5 p-5 text-center">
@@ -284,18 +284,18 @@ export default function ScorePage() {
               <p className="mt-2 font-sora text-lg font-bold text-[#3ED6A3]">60 — 74</p>
               <p className="mt-1 text-sm font-bold">Belle rencontre</p>
               <p className="mt-1 text-xs leading-6" style={{ color: "var(--text-muted)" }}>
-                Solide et fiable. Un bon compromis. C&apos;est comme rencontrer quelqu&apos;un 
-                de sympa sur une appli : <strong>ça peut marcher</strong>, mais t&apos;auras 
+                Solide et fiable. Un bon compromis. C'est comme rencontrer quelqu'un 
+                de sympa sur une appli : <strong>ça peut marcher</strong>, mais t'auras 
                 peut-être des compromis à faire. Regarde bien les points de vigilance.
               </p>
             </div>
             <div className="rounded-2xl border border-[#FFB347]/20 bg-[#FFB347]/5 p-5 text-center">
               <p className="text-4xl">🧡</p>
-              <p className="mt-2 font-sora text-lg font-bold text-[#FFB347]">&lt; 60</p>
+              <p className="mt-2 font-sora text-lg font-bold text-[#FFB347]">{'<'} 60</p>
               <p className="mt-1 text-sm font-bold">Ça peut le faire</p>
               <p className="mt-1 text-xs leading-6" style={{ color: "var(--text-muted)" }}>
                 Ou pas. Ce produit a des <strong>compromis importants</strong> par rapport 
-                à ton profil. Il peut dépanner, mais t&apos;auras probablement mieux. Lis 
+                à ton profil. Il peut dépanner, mais t'auras probablement mieux. Lis 
                 les points de vigilance <em>avant</em> de cliquer sur « Voir le prix ».
               </p>
             </div>
@@ -319,10 +319,10 @@ export default function ScorePage() {
               </summary>
               <p className="mt-4 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
                 On pourrait. Mais <strong>8,5/10, ça veut rien dire</strong>. 8,5/10 pour qui ? 
-                Pour quoi ? Pour une machine à café que t&apos;as pas les moyens d&apos;entretenir ? 
-                Pour un aspirateur trop lourd pour ton poignet d&apos;informaticien ? Non merci. 
-                On préfère te dire « 82/100, c&apos;est un bon match mais le réservoir est petit, 
-                vérifie si t&apos;as la place ». C&apos;est plus long, mais plus utile.
+                Pour quoi ? Pour une machine à café que t'as pas les moyens d'entretenir ? 
+                Pour un aspirateur trop lourd pour ton poignet d'informaticien ? Non merci. 
+                On préfère te dire « 82/100, c'est un bon match mais le réservoir est petit, 
+                vérifie si t'as la place ». C'est plus long, mais plus utile.
               </p>
             </details>
 
@@ -332,11 +332,11 @@ export default function ScorePage() {
                 <span className="text-xl transition-transform group-open:rotate-180">▾</span>
               </summary>
               <p className="mt-4 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
-                Techniquement, tu peux. Mais <strong>le seul perdant, c&apos;est toi</strong>. 
-                Si tu dis que ton budget c&apos;est 1000€ et qu&apos;en vrai t&apos;as 300€, 
-                on va te recommander un truc qui va te ruiner. Si tu dis que t&apos;as 
-                200m² alors que t&apos;as un studio, on va te proposer un purificateur 
-                d&apos;air taille usine. <strong>Sois honnête, l&apos;IA est ton amie.</strong> 
+                Techniquement, tu peux. Mais <strong>le seul perdant, c'est toi</strong>. 
+                Si tu dis que ton budget c'est 1000€ et qu'en vrai t'as 300€, 
+                on va te recommander un truc qui va te ruiner. Si tu dis que t'as 
+                200m² alors que t'as un studio, on va te proposer un purificateur 
+                d'air taille usine. <strong>Sois honnête, l'IA est ton amie.</strong> 
                 (Enfin, elle juge pas. Elle.)
               </p>
             </details>
@@ -349,10 +349,10 @@ export default function ScorePage() {
               <p className="mt-4 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
                 Non. <strong>Personne ne nous paie pour recommander un produit.</strong> 
                 (Enfin si, Amazon nous file une commission si tu passes par nos liens. 
-                Mais ça n&apos;influence <em>aucunement</em> le score.) On gagnerait 
-                plus à te recommander un produit à 800€ qu&apos;un à 250€, et pourtant 
+                Mais ça n'influence <em>aucunement</em> le score.) On gagnerait 
+                plus à te recommander un produit à 800€ qu'un à 250€, et pourtant 
                 tu verras souvent des petits budgets avec des scores plus hauts. 
-                <strong>Parce qu&apos;on préfère dormir tranquille que gagner 3 balles de plus.</strong>
+                <strong>Parce qu'on préfère dormir tranquille que gagner 3 balles de plus.</strong>
               </p>
             </details>
 
@@ -362,11 +362,11 @@ export default function ScorePage() {
                 <span className="text-xl transition-transform group-open:rotate-180">▾</span>
               </summary>
               <p className="mt-4 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
-                Carrément. Si aujourd&apos;hui t&apos;es plutôt « j&apos;ai besoin d&apos;un 
-                aspirateur silencieux pour mon appart » et que dans 6 mois t&apos;es 
-                « j&apos;ai une maison avec un labrador qui mue façon calendrier de 
-                l&apos;avent » — <strong>les scores changent avec toi.</strong> 
-                Parce qu&apos;un bon produit aujourd&apos;hui peut être un mauvais produit 
+                Carrément. Si aujourd'hui t'es plutôt « j'ai besoin d'un 
+                aspirateur silencieux pour mon appart » et que dans 6 mois t'es 
+                « j'ai une maison avec un labrador qui mue façon calendrier de 
+                l'avent » — <strong>les scores changent avec toi.</strong> 
+                Parce qu'un bon produit aujourd'hui peut être un mauvais produit 
                 demain. Comme les relations. (Ok on arrête les métaphores amoureuses.)
               </p>
             </details>
@@ -395,7 +395,7 @@ export default function ScorePage() {
                 <p className="mt-1 text-sm leading-6" style={{ color: "var(--text-muted)" }}>
                   Pas une note générique. Chaque score est calculé pour TOI, avec TES critères, 
                   TON budget, TON mode de vie. Le même produit peut avoir 92 pour toi et 54 
-                  pour ton voisin. Et c&apos;est normal.
+                  pour ton voisin. Et c'est normal.
                 </p>
               </div>
               <div className="rounded-xl border p-5" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg)" }}>
@@ -403,7 +403,7 @@ export default function ScorePage() {
                 <h3 className="font-sora font-bold">Il est TRANSPARENT</h3>
                 <p className="mt-1 text-sm leading-6" style={{ color: "var(--text-muted)" }}>
                   Chaque score vient avec son explication. Tu sais POURQUOI tel produit a 85 
-                  et pas 72. On te cache rien. Pas d&apos;algorithme mystérieux qui sort une note 
+                  et pas 72. On te cache rien. Pas d'algorithme mystérieux qui sort une note 
                   sortie de nulle part façon boîte noire.
                 </p>
               </div>
@@ -419,8 +419,8 @@ export default function ScorePage() {
                 <p className="text-2xl mb-2">🤖</p>
                 <h3 className="font-sora font-bold">Il est HONNÊTE</h3>
                 <p className="mt-1 text-sm leading-6" style={{ color: "var(--text-muted)" }}>
-                  On gagne de l&apos;argent si tu achètes via nos liens. Mais le score 
-                  ne le sait même pas. <strong>L&apos;IA qui calcule les scores ne voit 
+                  On gagne de l'argent si tu achètes via nos liens. Mais le score 
+                  ne le sait même pas. <strong>L'IA qui calcule les scores ne voit 
                   pas les marges.</strong> Elle voit juste ton profil et les specs 
                   produits. Résultat : des recommandations intègres.
                 </p>
@@ -441,7 +441,7 @@ export default function ScorePage() {
               <p>✅ <strong>3 piliers</strong> — adéquation profil, qualité intrinsèque, valeur perçue. La trinité du bon achat.</p>
               <p>✅ <strong>Transparent</strong> — tu sais pourquoi 85 et pas 72. On cache rien.</p>
               <p>✅ <strong>Désintéressé</strong> — les commissions Amazon ne touchent pas le score. Point.</p>
-              <p>✅ <strong>/100</strong> — parce que l&apos;amour, ça se mesure pas en dixièmes. (Oui on assume la punchline.)</p>
+              <p>✅ <strong>/100</strong> — parce que l'amour, ça se mesure pas en dixièmes. (Oui on assume la punchline.)</p>
             </div>
 
             <Link
@@ -479,7 +479,7 @@ export default function ScorePage() {
         {/* ── FOOTER ── */}
         <footer className="mt-20 pb-6 text-center text-xs leading-7" style={{ color: "var(--text-muted)" }}>
           <p>
-            Troviio participe au Programme Partenaires d&apos;Amazon EU, mais ça n&apos;influence 
+            Troviio participe au Programme Partenaires d'Amazon EU, mais ça n'influence 
             pas nos scores. On ne se vend pas. (Enfin, pas à ce point-là.)
           </p>
         </footer>

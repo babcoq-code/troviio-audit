@@ -249,7 +249,7 @@ export default async function CategoryPage({ params }: Props) {
             <p className="text-4xl mb-4">{meta.emoji}</p>
             <h2 className="text-xl font-bold mb-2">Aucun produit trouvé</h2>
             <p className="text-muted text-sm mb-6">
-              Cette catégorie est en cours d&apos;alimentation. Reviens
+              Cette catégorie est en cours d'alimentation. Reviens
               bientôt !
             </p>
             <Link
@@ -260,7 +260,7 @@ export default async function CategoryPage({ params }: Props) {
                 boxShadow: "0 4px 16px rgba(66,87,255,0.3)",
               }}
             >
-              ← Retour à l&apos;accueil
+              ← Retour à l'accueil
             </Link>
           </div>
         ) : (

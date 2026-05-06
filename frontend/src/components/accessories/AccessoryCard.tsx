@@ -103,7 +103,7 @@ export function AccessoryCard({
           <a href={offerUrl} target="_blank" rel="nofollow sponsored noopener noreferrer"
             onClick={handleClick}
             className="inline-flex w-full items-center justify-center rounded-2xl bg-stone-950 px-5 py-3 text-sm font-black text-white transition hover:bg-stone-800">
-            Voir l&apos;offre
+            Voir l'offre
           </a>
         </div>
       </div>

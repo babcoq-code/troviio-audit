@@ -432,7 +432,7 @@ export default async function CategoryPage({ params }: Props) {
         <div className="max-w-3xl mx-auto">
           <p className="text-xs leading-6" style={{ color: "#6B6B7A" }}>
             * Les prix indiqués sont susceptibles de varier. Troviio participe au Programme
-            d&apos;Associés d&apos;Amazon EU, un programme d&apos;affiliation qui nous permet de percevoir
+            d'Associés d'Amazon EU, un programme d'affiliation qui nous permet de percevoir
             une commission sur les achats effectués via nos liens, sans surcoût pour vous.
           </p>
         </div>

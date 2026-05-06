@@ -2,8 +2,6 @@
 
 import { useEffect, useState, useMemo } from 'react';
 
-const EUR = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
-
 interface AccessoryData {
   id: string;
   slug: string;
@@ -86,14 +84,16 @@ export default function AccessoriesWidget({ productId, productName }: { productI
                   {acc.description}
                 </div>
               )}
-              {bestPrice?.price != null && (
+              {bestPrice?.affiliateUrl && (
                 <div className="mt-2 font-bold text-sm sm:text-base" style={{ color: "var(--mint)" }}>
-                  {EUR.format(bestPrice.price)}
-                  {bestPrice.merchantName && (
-                    <span className="ml-2 text-xs font-normal" style={{ color: "var(--text-muted)" }}>
-                      sur {bestPrice.merchantName}
-                    </span>
-                  )}
+                  <a
+                    href={bestPrice.affiliateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow sponsored"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-[#ff6b2b] px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-[#e55a1f]"
+                  >
+                    Voir sur {bestPrice.merchantName || "le marchand"} →
+                  </a>
                 </div>
               )}
               {acc.scoreQuality > 0 && (
@@ -102,7 +102,7 @@ export default function AccessoriesWidget({ productId, productName }: { productI
                 </div>
               )}
               <div className="mt-2 text-xs sm:text-sm font-bold" style={{ color: "var(--coral)" }}>
-                Voir l&apos;offre →
+                Voir l'offre →
               </div>
             </a>
           );

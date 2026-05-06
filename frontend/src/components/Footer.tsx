@@ -66,6 +66,53 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Bloc confiance : gratuit, sans inscription, liens transparents, IA indé */}
+      <div className="max-w-7xl mx-auto mt-12 pt-10"
+           style={{ borderTop: "1px solid var(--border)" }}>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div className="text-center">
+            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full"
+                 style={{ backgroundColor: "var(--accent-bg)" }}>
+              <span className="text-lg">💰</span>
+            </div>
+            <h4 className="text-sm font-semibold" style={{ color: "var(--text)" }}>100% Gratuit</h4>
+            <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
+              Accès à tout le site. Zéro abonnement, zéro paywall.
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full"
+                 style={{ backgroundColor: "var(--accent-bg)" }}>
+              <span className="text-lg">🔐</span>
+            </div>
+            <h4 className="text-sm font-semibold" style={{ color: "var(--text)" }}>Sans inscription</h4>
+            <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
+              Pas besoin de compte. Tu arrives, tu compares, tu repars.
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full"
+                 style={{ backgroundColor: "var(--accent-bg)" }}>
+              <span className="text-lg">🔗</span>
+            </div>
+            <h4 className="text-sm font-semibold" style={{ color: "var(--text)" }}>Liens transparents</h4>
+            <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
+              Liens affiliés (commissions si achat). Toujours indiqué, jamais caché.
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full"
+                 style={{ backgroundColor: "var(--accent-bg)" }}>
+              <span className="text-lg">🤖</span>
+            </div>
+            <h4 className="text-sm font-semibold" style={{ color: "var(--text)" }}>IA Indépendante</h4>
+            <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
+              Aucune marque ne paie pour être recommandée. Classement sans conflit.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="mt-10 pt-8 flex flex-col md:flex-row items-center justify-between text-xs border-t"
            style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}>
         <p>© {year} Troviio. Tous droits réservés.</p>

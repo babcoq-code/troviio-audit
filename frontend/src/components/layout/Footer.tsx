@@ -119,7 +119,49 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between border-t border-zinc-200 pt-8 dark:border-zinc-800 md:flex-row">
+        {/* Bloc confiance : gratuit, sans inscription, liens affiliés transparents, IA indé */}
+        <div className="mt-12 border-t border-zinc-200 pt-10 dark:border-zinc-800">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+            <div className="text-center">
+              <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
+                <span className="text-lg">💰</span>
+              </div>
+              <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">100% Gratuit</h4>
+              <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                Accès à tout le site. Zéro abonnement, zéro paywall.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
+                <span className="text-lg">🔐</span>
+              </div>
+              <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">Sans inscription</h4>
+              <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                Pas besoin de compte. Tu arrives, tu compares, tu repars.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
+                <span className="text-lg">🔗</span>
+              </div>
+              <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">Liens transparents</h4>
+              <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                Nos liens sont affiliés (on touche une commission si tu achètes). Toujours indiqué, jamais caché.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
+                <span className="text-lg">🤖</span>
+              </div>
+              <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">IA Indépendante</h4>
+              <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                Aucune marque ne paie pour être recommandée. L'IA classifie sans conflit d'intérêts.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col items-center justify-between border-t border-zinc-200 pt-8 dark:border-zinc-800 md:flex-row">
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             © {new Date().getFullYear()} Troviio — Tous droits réservés. Site indépendant.
           </p>

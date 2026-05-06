@@ -1,25 +1,28 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import nextDynamic from "next/dynamic";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const AccessoriesWidgetLoader = nextDynamic(
   () => import("@/components/accessories/AccessoriesWidget"),
   { loading: () => <div className="h-24 animate-pulse rounded-2xl bg-white/5" /> }
 );
 
-// Force SSR (not static)
 export const dynamic = "force-dynamic";
 
-const API_BASE = process.env.API_BASE_URL || "http://backend:8000";
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.troviio.com";
 
 async function fetchProduct(slug: string) {
   try {
-    const res = await fetch(`${API_BASE}/api/products/${slug}`, { cache: "no-store" });
+    const res = await fetch(
+      `http://localhost:3000/api/proxy/produit/${slug}`,
+      { cache: "no-store", signal: AbortSignal.timeout(15000) }
+    );
     if (!res.ok) return null;
     return res.json();
-  } catch { return null; }
+  } catch (e: any) {
+    console.error("FETCH_PRODUCT_ERROR", slug, e?.message || e);
+    return null;
+  }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -27,7 +30,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const product = await fetchProduct(slug);
   if (!product) return { title: "Produit introuvable — Troviio" };
   const name = product.name || "";
-  const brand = product.brand || "";
   const title = `${name} — Avis, Test & Prix 2026 | Troviio`;
   const description = product.description
     ? product.description.substring(0, 155)
@@ -36,22 +38,55 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title,
     description,
     openGraph: {
-      title,
-      description,
-      type: "article",
+      title, description, type: "article",
       images: product.image_url ? [{ url: product.image_url, width: 1200, height: 630 }] : undefined,
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: product.image_url ? [product.image_url] : undefined,
-    },
+    twitter: { card: "summary_large_image", title, description, images: product.image_url ? [product.image_url] : undefined },
     alternates: { canonical: `${BASE_URL}/produit/${slug}` },
   };
 }
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+function fmtPrice(v: number | null): string {
+  if (v == null) return "";
+  // v is in euros
+  return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(v);
+}
+
+// ─── Badge component ────────────────────────────────
+function Badge({ label, color }: { label: string; color: string }) {
+  return (
+    <span
+      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold font-[Sora] uppercase tracking-wider"
+      style={{
+        color,
+        backgroundColor: `${color}1a`,
+        border: `1px solid ${color}44`,
+      }}
+    >
+      {label}
+    </span>
+  );
+}
+
+// ─── Score badge conic ──────────────────────────────
+function ScoreBadge({ score, size = 60, fontSize = 20 }: { score: number; size?: number; fontSize?: number }) {
+  const c = score >= 80 ? "#3ED6A3" : score >= 60 ? "#FFB020" : "#FF6B5F";
+  return (
+    <div
+      className="inline-grid place-items-center rounded-full shrink-0 cursor-default hover:scale-105 transition-transform"
+      style={{
+        width: size, height: size,
+        fontFamily: "'Nunito', sans-serif", fontWeight: 900,
+        fontSize,
+        background: `radial-gradient(circle at center, #181B2E 58%, transparent 60%), conic-gradient(${c} ${score}%, rgba(255,255,255,.08) 0)`,
+      }}
+    >
+      {score}
+    </div>
+  );
+}
 
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
@@ -63,10 +98,10 @@ export default async function ProductPage({ params }: PageProps) {
           <div className="max-w-md text-center">
             <div className="text-5xl mb-4">🔍</div>
             <h1 className="text-3xl font-bold">Produit introuvable</h1>
-            <p className="mt-4" style={{ color: "var(--text-muted)" }}>Ce produit n&apos;existe pas ou a été retiré du catalogue.</p>
+            <p className="mt-4" style={{ color: "var(--text-muted)" }}>Ce produit n'existe pas ou a été retiré du catalogue.</p>
             <Link href="/" className="mt-8 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-bold text-white transition"
-              style={{ backgroundColor: "var(--coral)" }}>
-              Retour à l&apos;accueil
+              style={{ backgroundColor: "#ff6b2b" }}>
+              Retour à l'accueil
             </Link>
           </div>
         </div>
@@ -75,240 +110,309 @@ export default async function ProductPage({ params }: PageProps) {
   }
 
   const prices = product.merchant_links || [];
-  const sortedPrices = [...prices].sort((a: any, b: any) => a.price_eur - b.price_eur);
+  const sortedPrices = [...prices].sort((a: any, b: any) => (a.price_eur ?? 999999) - (b.price_eur ?? 999999));
   const bestPrice = sortedPrices[0]?.price_eur ?? product.price_eur;
-  const fmt = (v: number) => v != null ? new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(v / 100) : "";
   const specs = product.specs || {};
   const useCaseScores = product.use_case_scores || {};
-  const accessories = specs.accessories || [];
-
-  // Filter out accessories from specs for the accordion table
   const techSpecs = Object.entries(specs).filter(([k]) => k !== "accessories" && k !== "test");
+
+  // Merchant logos
+  const merchantLogo = (m: string) => {
+    const s = m.toLowerCase();
+    if (s.includes("amazon")) return { logo: "a.", color: "#FF9900" };
+    if (s.includes("fnac")) return { logo: "F", color: "#E2001A" };
+    if (s.includes("darty")) return { logo: "D", color: "#008B8E" };
+    return { logo: m[0], color: "#8B8FA3" };
+  };
+
+  // Pills from specs (first 4)
+  const specPills = techSpecs.slice(0, 4);
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+
         {/* Schema.org JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Product",
-              name: product.name,
-              brand: { "@type": "Brand", name: product.brand || "" },
-              description: (product.description || "").substring(0, 500),
-              image: product.image_url || undefined,
-              sku: product.slug || undefined,
-              mpn: product.amazon_asin || undefined,
-              offers: {
-                "@type": "AggregateOffer",
-                priceCurrency: "EUR",
-                lowPrice: bestPrice,
-                highPrice: sortedPrices.length > 0 ? sortedPrices[sortedPrices.length - 1]?.price_eur || bestPrice : bestPrice,
-                offerCount: sortedPrices.length || 1,
-                offers: sortedPrices.length > 0 ? sortedPrices.map((p: any) => ({
-                  "@type": "Offer",
-                  url: p.affiliate_url || product.affiliate_url,
-                  price: p.price_eur,
-                  priceCurrency: "EUR",
-                  availability: "https://schema.org/InStock",
-                  seller: { "@type": "Organization", name: p.merchant || "Amazon" },
-                })) : [{
-                  "@type": "Offer",
-                  url: product.affiliate_url || `${BASE_URL}/produit/${slug}`,
-                  price: bestPrice,
-                  priceCurrency: "EUR",
-                  availability: "https://schema.org/InStock",
-                  seller: { "@type": "Organization", name: "Troviio" },
-                }],
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org", "@type": "Product",
+            name: product.name,
+            brand: { "@type": "Brand", name: product.brand || "" },
+            description: (product.description || "").substring(0, 500),
+            image: product.image_url || undefined,
+            sku: product.slug || undefined,
+            mpn: product.amazon_asin || undefined,
+            offers: {
+              "@type": "AggregateOffer", priceCurrency: "EUR",
+              lowPrice: bestPrice, highPrice: sortedPrices.length > 0 ? sortedPrices[sortedPrices.length - 1]?.price_eur || bestPrice : bestPrice,
+              offerCount: sortedPrices.length || 1,
+            },
+            ...(product.estimated_score ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: (product.estimated_score / 20).toFixed(1),
+                bestRating: 5, worstRating: 0,
+                ratingCount: Math.max(1, Math.round(product.estimated_score * 3)),
               },
-              ...(product.estimated_score ? {
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: (product.estimated_score / 20).toFixed(1),
-                  bestRating: 5,
-                  worstRating: 0,
-                  ratingCount: Math.max(1, Math.round(product.estimated_score * 3)),
-                },
-              } : {}),
-              review: (product.pros?.length || product.cons?.length) ? [
-                ...(product.pros || []).slice(0, 3).map((p: string) => ({
-                  "@type": "Review",
-                  reviewRating: { "@type": "Rating", ratingValue: "4", bestRating: "5" },
-                  name: "Point fort",
-                  reviewBody: p,
-                  author: { "@type": "Organization", name: "Troviio" },
-                })),
-                ...(product.cons || []).slice(0, 3).map((c: string) => ({
-                  "@type": "Review",
-                  reviewRating: { "@type": "Rating", ratingValue: "2", bestRating: "5" },
-                  name: "Point faible",
-                  reviewBody: c,
-                  author: { "@type": "Organization", name: "Troviio" },
-                })),
-              ] : undefined,
-            }),
-          }}
-        />
-        {/* Breadcrumb avec catégorie */}
-        <Breadcrumbs
-          crumbs={[
-            { label: "Accueil", href: "/" },
-            ...(product.category_slug && product.category_name
-              ? [{ label: product.category_name, href: `/categorie/${product.category_slug}` }]
-              : []),
-            { label: product.name },
-          ]}
-        />
+            } : {}),
+          }),
+        }} />
 
-        {/* ===== HERO SECTION ===== */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
-          {/* Left: title + description + stats */}
-          <div className="flex-1 min-w-0">
-            <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight leading-tight">{product.name}</h1>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
-              {product.description}
-            </p>
-            {/* 3 stat cards — stack on mobile, 3-col on sm+ */}
-            <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-              {/* Score */}
-              <div className="rounded-2xl sm:rounded-3xl border p-4 sm:p-5" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-                <p className="text-xs sm:text-sm font-medium" style={{ color: "var(--text-muted)" }}>Score Troviio</p>
-                <p className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold truncate" style={{ color: "var(--mint)" }}>
-                  {product.estimated_score?.toFixed(0)}/100
-                </p>
-              </div>
-              {/* Price - Amazon button */}
-              <div className="rounded-2xl sm:rounded-3xl border p-4 sm:p-5" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-                <p className="text-xs sm:text-sm font-medium" style={{ color: "var(--text-muted)" }}>Meilleur prix</p>
-                <a
-                  href={(() => {
-                    if (sortedPrices.length > 0 && sortedPrices[0].affiliate_url) return sortedPrices[0].affiliate_url;
-                    if (product.affiliate_url) return product.affiliate_url;
-                    if (product.amazon_asin) return `https://www.amazon.fr/dp/${product.amazon_asin}?tag=troviio-21`;
-                    return "#";
-                  })()}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow sponsored"
-                  className="mt-1 sm:mt-2 inline-block text-2xl sm:text-3xl font-bold truncate transition hover:opacity-80"
-                  style={{ color: "var(--mint)" }}
-                >
-                  Voir le prix →
-                </a>
-              </div>
-              {/* Brand */}
-              <div className="rounded-2xl sm:rounded-3xl border p-4 sm:p-5" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-                <p className="text-xs sm:text-sm font-medium" style={{ color: "var(--text-muted)" }}>Marque</p>
-                <p className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold truncate">{product.brand}</p>
-              </div>
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-2 text-sm mb-6" style={{ color: "var(--text-muted)" }}>
+          <Link href="/" className="hover:text-[var(--text)] transition-colors">Accueil</Link>
+          <span style={{ color: "#3a3a45" }}>›</span>
+          {product.category_slug && product.category_name && (
+            <>
+              <Link href={`/categorie/${product.category_slug}`} className="hover:text-[var(--text)] transition-colors">{product.category_name}</Link>
+              <span style={{ color: "#3a3a45" }}>›</span>
+            </>
+          )}
+          <span style={{ color: "var(--text)" }}>{product.name}</span>
+        </nav>
+
+        {/* ===== HERO ===== */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-start">
+
+          {/* LEFT: Gallery + Title + Pills */}
+          <div>
+            {/* Badges row */}
+            <div className="flex gap-2 flex-wrap mb-4">
+              {product.estimated_score && product.estimated_score >= 80 && (
+                <Badge label="🏆 Choix Troviio" color="#3ED6A3" />
+              )}
+              {product.amazon_asin && (
+                <Badge label="🔥 Bestseller" color="#ff6b2b" />
+              )}
             </div>
-          </div>
 
-          {/* Right: Image + Prices */}
-          <div className="w-full lg:w-[380px] shrink-0">
-            <div className="rounded-2xl sm:rounded-3xl border p-4 sm:p-5" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-              {product.image_url && product.image_url.trim() && (
-                <div className="relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden" style={{ backgroundColor: "var(--bg)" }}>
-                  <img src={product.image_url.trim()} alt={product.name}
-                    className="absolute inset-0 w-full h-full object-contain p-4 sm:p-6" />
+            {/* Product image */}
+            {product.image_url && product.image_url.trim() && (
+              <div
+                className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6"
+                style={{
+                  background: "linear-gradient(135deg, #1a1d2e, #111113)",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "radial-gradient(ellipse at 30% 30%, rgba(255,107,43,.08), transparent 60%)" }}
+                />
+                <img
+                  src={product.image_url.trim()}
+                  alt={product.name}
+                  className="absolute inset-0 w-full h-full object-contain p-8 transition duration-300 hover:scale-105"
+                />
+              </div>
+            )}
+
+            <h1
+              className="text-3xl sm:text-4xl font-black leading-tight"
+              style={{ fontFamily: "'Sora', sans-serif", letterSpacing: "-0.04em" }}
+            >
+              {product.name}
+            </h1>
+            {product.brand && (
+              <p className="mt-1 text-base" style={{ color: "var(--text-muted)" }}>
+                {product.brand}
+              </p>
+            )}
+
+            {/* Meta row */}
+            <div className="flex items-center gap-4 flex-wrap mt-4">
+              {product.estimated_score != null && (
+                <div className="flex items-center gap-2">
+                  <ScoreBadge score={Math.round(product.estimated_score)} size={52} fontSize={16} />
+                  <span className="text-sm" style={{ color: "var(--text-muted)" }}>sur 100</span>
                 </div>
               )}
-              {/* Merchant links - sans prix fixe */}
-              <div className="mt-4 sm:mt-5 space-y-2 sm:space-y-3">
-                {sortedPrices.map((p: any, i: number) => (
-                  <a
-                    key={`${p.merchant || p.merchant_name}-${i}`}
-                    href={p.affiliate_url || p.url}
-                    target="_blank"
-                    rel="noopener noreferrer nofollow sponsored"
-                    className="flex w-full items-center justify-between rounded-xl sm:rounded-2xl border p-3 sm:p-4 transition hover:opacity-80 active:opacity-60"
-                    style={{ borderColor: "var(--border)", backgroundColor: "var(--bg)" }}
+              <span className="update-badge" style={{
+                display: "inline-flex", alignItems: "center", gap: "6px",
+                padding: "5px 10px", borderRadius: "8px",
+                background: "rgba(62,214,163,.08)",
+                border: "1px solid rgba(62,214,163,.2)",
+                color: "#3ED6A3", fontSize: "12px", fontWeight: 700,
+              }}>
+                <span style={{
+                  width: "6px", height: "6px", borderRadius: "50%",
+                  background: "#3ED6A3", boxShadow: "0 0 8px #3ED6A3",
+                  display: "inline-block",
+                }} />
+                Testé régulièrement
+              </span>
+            </div>
+
+            {/* Spec pills */}
+            {specPills.length > 0 && (
+              <div className="flex gap-2 flex-wrap mt-5">
+                {specPills.map(([k, v]) => (
+                  <span
+                    key={k}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold"
+                    style={{
+                      border: "1px solid var(--border)",
+                      backgroundColor: "var(--bg-surface)",
+                    }}
                   >
-                    <span className="text-sm sm:text-base font-semibold">{p.merchant || p.merchant_name}</span>
-                    {i === 0 && (
-                      <span className="text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full shrink-0 ml-1"
-                        style={{ backgroundColor: "var(--coral)", color: "white" }}>
-                        Meilleur prix
-                      </span>
-                    )}
-                    <span className="text-sm sm:text-base font-bold ml-auto" style={{ color: "var(--mint)" }}>
-                      Voir l'offre →
-                    </span>
-                  </a>
+                    <span>{k.charAt(0).toUpperCase()}</span>
+                    <span>{String(v)}</span>
+                  </span>
                 ))}
-                {sortedPrices.length === 0 && product.affiliate_url && (
-                  <a href={product.affiliate_url} target="_blank" rel="noopener noreferrer nofollow"
-                    className="flex w-full items-center justify-center rounded-xl sm:rounded-full py-3 font-bold text-white transition hover:opacity-80"
-                    style={{ backgroundColor: "var(--coral)" }}>
-                    Voir l'offre sur Amazon →
-                  </a>
-                )}
               </div>
+            )}
+
+            {/* Description */}
+            {product.description && (
+              <p className="mt-6 text-base leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                {product.description}
+              </p>
+            )}
+          </div>
+
+          {/* RIGHT: Sticky sidebar */}
+          <div className="lg:sticky lg:top-24">
+            <div
+              className="rounded-2xl p-6"
+              style={{
+                backgroundColor: "#181B2E",
+                border: "1px solid var(--border)",
+              }}
+            >
+              {/* Marchands */}
+              <div className="space-y-2.5">
+                {sortedPrices.map((p: any, i: number) => {
+                  const ml = merchantLogo(p.merchant || p.merchant_name || "");
+                  return (
+                    <a
+                      key={`${p.merchant || i}`}
+                      href={p.affiliate_url || p.url || "#"}
+                      target="_blank"
+                      rel="nofollow sponsored noopener noreferrer"
+                      className="flex items-center justify-between px-4 py-3 rounded-xl transition-all merchant-row"
+                      style={{
+                        backgroundColor: "var(--bg)",
+                        border: "1px solid var(--border)",
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="w-9 h-9 rounded-xl grid place-items-center text-xs font-black font-[Sora] shrink-0"
+                          style={{ backgroundColor: "var(--bg)", color: ml.color }}
+                        >
+                          {ml.logo}
+                        </div>
+                        <div className="font-semibold text-sm">{p.merchant || p.merchant_name}</div>
+                      </div>
+                      <span
+                        className="px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors"
+                        style={{
+                          color: "#fff",
+                          backgroundColor: "#ff6b2b",
+                        }}
+                      >
+                        Voir →
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Verdict IA sidebar */}
+              {product.verdict && (
+                <div
+                  className="mt-4 p-4 rounded-xl text-sm leading-relaxed"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(66,87,255,.1), rgba(62,214,163,.05))",
+                    border: "1px solid rgba(66,87,255,.25)",
+                  }}
+                >
+                  <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#4257FF" }}>
+                    🤖 Verdict IA Troviio
+                  </p>
+                  <p style={{ color: "var(--text-muted)" }}>{product.verdict}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* ===== VERDICT ===== */}
-        <div className="mt-6 sm:mt-10 rounded-2xl sm:rounded-3xl border p-5 sm:p-6" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-          <h2 className="text-xl sm:text-2xl font-bold">⚡ Notre verdict</h2>
-          <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-7 sm:leading-8" style={{ color: "var(--text-muted)" }}>
-            {product.verdict ?? ""}
-          </p>
+        {/* ===== PROS / CONS + Pour qui ? ===== */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-black mb-6" style={{ fontFamily: "'Sora', sans-serif" }}>
+            🎯 Pour qui est-il fait ?
+          </h2>
+          <div className="grid md:grid-cols-2 gap-5">
+            <div
+              className="rounded-2xl p-6"
+              style={{
+                backgroundColor: "var(--bg-surface)",
+                border: "1px solid rgba(62,214,163,.2)",
+              }}
+            >
+              <h3 className="font-bold text-base mb-4" style={{ color: "#3ED6A3" }}>
+                ✅ Idéal pour
+              </h3>
+              {(product.pros ?? []).length > 0 ? (
+                <ul className="space-y-3">
+                  {(product.pros ?? []).slice(0, 4).map((p: string) => (
+                    <li key={p} className="flex items-start gap-3 text-sm" style={{ color: "var(--text-muted)" }}>
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0 mt-1.5" style={{ backgroundColor: "#3ED6A3" }} />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm" style={{ color: "var(--text-muted)" }}>{product.why_perfect || "Produit recommandé par notre IA."}</p>
+              )}
+            </div>
+            <div
+              className="rounded-2xl p-6"
+              style={{
+                backgroundColor: "var(--bg-surface)",
+                border: "1px solid rgba(255,107,95,.2)",
+              }}
+            >
+              <h3 className="font-bold text-base mb-4" style={{ color: "#FF6B5F" }}>
+                ⚠️ Moins adapté si
+              </h3>
+              {(product.cons ?? []).length > 0 ? (
+                <ul className="space-y-3">
+                  {(product.cons ?? []).slice(0, 4).map((c: string) => (
+                    <li key={c} className="flex items-start gap-3 text-sm" style={{ color: "var(--text-muted)" }}>
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0 mt-1.5" style={{ backgroundColor: "#FF6B5F" }} />
+                      <span>{c}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm" style={{ color: "var(--text-muted)" }}>Prix premium pour certains budgets.</p>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* ===== WHY PERFECT ===== */}
-        {product.why_perfect && (
-          <div className="mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl border p-5 sm:p-6" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-            <h2 className="text-xl sm:text-2xl font-bold">🎯 Pourquoi ce produit est parfait</h2>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-7 sm:leading-8" style={{ color: "var(--text-muted)" }}>{product.why_perfect}</p>
-          </div>
-        )}
-
-        {/* ===== TEST COMPLET ===== */}
-        {product.test_summary && (
-          <div className="mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl border p-5 sm:p-6" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-            <h2 className="text-xl sm:text-2xl font-bold">🧪 Test complet</h2>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-7 sm:leading-8 whitespace-pre-line" style={{ color: "var(--text-muted)" }}>{product.test_summary}</p>
-          </div>
-        )}
-
-        {/* ===== PROS / CONS ===== */}
-        <div className="mt-4 sm:mt-6 grid md:grid-cols-2 gap-4 sm:gap-6">
-          <div className="rounded-2xl sm:rounded-3xl border p-5 sm:p-6" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-            <h2 className="text-lg sm:text-xl font-bold" style={{ color: "var(--mint)" }}>✅ Points forts</h2>
-            <ul className="mt-3 sm:mt-4 space-y-2 text-sm sm:text-base" style={{ color: "var(--text-muted)" }}>
-              {(product.pros ?? []).map((p: string) => <li key={p}>• {p}</li>)}
-            </ul>
-          </div>
-          <div className="rounded-2xl sm:rounded-3xl border p-5 sm:p-6" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-            <h2 className="text-lg sm:text-xl font-bold" style={{ color: "var(--coral)" }}>❌ Points faibles</h2>
-            <ul className="mt-3 sm:mt-4 space-y-2 text-sm sm:text-base" style={{ color: "var(--text-muted)" }}>
-              {(product.cons ?? []).map((c: string) => <li key={c}>• {c}</li>)}
-            </ul>
-          </div>
-        </div>
-
-        {/* ===== USE CASE SCORES ===== */}
+        {/* ===== SCORES IA ===== */}
         {Object.keys(useCaseScores).length > 0 && (
-          <div className="mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl border p-5 sm:p-6" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-            <h2 className="text-xl sm:text-2xl font-bold">📊 Scores par profil d&apos;usage</h2>
-            <div className="mt-4 sm:mt-6 grid gap-3 sm:gap-4 grid-cols-1 xs:grid-cols-2 sm:grid-cols-3">
+          <div className="mt-12">
+            <h2 className="text-2xl font-black mb-6" style={{ fontFamily: "'Sora', sans-serif" }}>
+              📊 Analyse IA
+            </h2>
+            <div className="space-y-4">
               {Object.entries(useCaseScores).sort(([, a]: any, [, b]: any) => (b as number) - (a as number))
                 .map(([k, v]: [string, any]) => {
                   const s = Math.max(0, Math.min(100, Number(v)));
+                  const c = s >= 80 ? "#3ED6A3" : s >= 60 ? "#FFB020" : "#FF6B5F";
                   return (
-                    <div key={k} className="rounded-2xl border p-4" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg)" }}>
-                      <p className="text-xs sm:text-sm font-bold" style={{ color: "var(--text-muted)" }}>
-                        {k.replace(/_/g, " ").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                      </p>
-                      <div className="mt-1 sm:mt-2 flex items-end gap-1">
-                        <span className="text-2xl sm:text-3xl font-bold">{s.toFixed(0)}</span>
-                        <span className="mb-0.5 sm:mb-1 text-xs sm:text-sm" style={{ color: "var(--text-muted)" }}>/100</span>
+                    <div key={k}>
+                      <div className="flex justify-between mb-1">
+                        <span className="text-sm font-semibold" style={{ color: "var(--text)" }}>
+                          {k.replace(/_/g, " ").replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+                        </span>
+                        <span className="text-sm font-black" style={{ fontFamily: "'Nunito', sans-serif", color: c }}>{s.toFixed(0)}/100</span>
                       </div>
-                      <div className="mt-2 sm:mt-3 h-1.5 sm:h-2 rounded-full overflow-hidden" style={{ backgroundColor: "var(--bg-surface)" }}>
-                        <div className="h-full rounded-full transition-all"
-                          style={{ width: `${s}%`, backgroundColor: s >= 90 ? "var(--mint)" : s >= 75 ? "var(--coral)" : "var(--blue)" }} />
+                      <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(255,255,255,.06)" }}>
+                        <div className="h-full rounded-full transition-all" style={{ width: `${s}%`, background: `linear-gradient(90deg, ${c}, ${c}dd)` }} />
                       </div>
                     </div>
                   );
@@ -317,51 +421,67 @@ export default async function ProductPage({ params }: PageProps) {
           </div>
         )}
 
-        {/* ===== SPECS ACCORDION ===== */}
+        {/* ===== TEST SUMMARY ===== */}
+        {product.test_summary && (
+          <div className="mt-12">
+            <h2 className="text-2xl font-black mb-6" style={{ fontFamily: "'Sora', sans-serif" }}>
+              🧪 Test Troviio
+            </h2>
+            <div
+              className="rounded-2xl p-6 leading-relaxed whitespace-pre-line text-sm"
+              style={{
+                backgroundColor: "var(--bg-surface)",
+                border: "1px solid var(--border)",
+                color: "var(--text-muted)",
+              }}
+            >
+              {product.test_summary}
+            </div>
+          </div>
+        )}
+
+        {/* ===== SPECS ===== */}
         {techSpecs.length > 0 && (
-          <SpecsAccordion specs={techSpecs} />
+          <div className="mt-12">
+            <h2 className="text-2xl font-black mb-6" style={{ fontFamily: "'Sora', sans-serif" }}>
+              📊 Caractéristiques
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-5">
+              {(() => {
+                const half = Math.ceil(techSpecs.length / 2);
+                return [techSpecs.slice(0, half), techSpecs.slice(half)].map((group, gi) => (
+                  <div
+                    key={gi}
+                    className="rounded-2xl p-5"
+                    style={{
+                      backgroundColor: "var(--bg-surface)",
+                      border: "1px solid var(--border)",
+                    }}
+                  >
+                    <div className="divide-y" style={{ borderColor: "var(--border)" }}>
+                      {group.map(([k, v]) => (
+                        <div key={k} className="flex justify-between items-center py-2.5 text-sm">
+                          <span style={{ color: "var(--text-muted)" }}>
+                            {k.replace(/_/g, " ").replace(/-/g, " ")}
+                          </span>
+                          <span className="font-semibold text-right">
+                            {String(v) === "true" ? "Oui" : String(v) === "false" ? "Non" : String(v)}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ));
+              })()}
+            </div>
+          </div>
         )}
 
         {/* ===== ACCESSORIES ===== */}
-        <div className="mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl border p-5 sm:p-6" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
+        <div className="mt-12">
           <AccessoriesWidgetLoader productId={product.id} productName={product.name} />
         </div>
       </div>
     </main>
-  );
-}
-
-/* ===== SPECS ACCORDION COMPONENT ===== */
-function SpecsAccordion({ specs }: { specs: [string, any][] }) {
-  return (
-    <div className="mt-4 sm:mt-6 rounded-2xl sm:rounded-3xl border" style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}>
-      <details className="group">
-        <summary className="flex cursor-pointer items-center justify-between p-5 sm:p-6 list-none select-none">
-          <h2 className="text-xl sm:text-2xl font-bold">🔧 Caractéristiques techniques</h2>
-          <span className="shrink-0 transition-transform duration-200 group-open:rotate-180 ml-4">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ color: "var(--text-muted)" }}>
-              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </span>
-        </summary>
-        <div className="overflow-hidden border-t" style={{ borderColor: "var(--border)" }}>
-          <table className="w-full text-xs sm:text-sm text-left border-collapse">
-            <tbody className="divide-y" style={{ borderColor: "var(--border)" }}>
-              {specs.map(([k, v]) => (
-                <tr key={k}>
-                  <th scope="row" className="px-3 sm:px-4 py-2.5 sm:py-3 font-bold w-[40%] sm:w-1/3 align-top"
-                    style={{ backgroundColor: "var(--bg)", color: "var(--text-muted)" }}>
-                    {k.replace(/_/g, " ").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                  </th>
-                  <td className="px-3 sm:px-4 py-2.5 sm:py-3">
-                    {String(v) === "true" ? "Oui" : String(v) === "false" ? "Non" : String(v)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </details>
-    </div>
   );
 }

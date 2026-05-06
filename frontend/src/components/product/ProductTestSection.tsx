@@ -202,7 +202,7 @@ export default function ProductTestSection({ product }: ProductTestSectionProps)
                 Verdict
               </h3>
               <blockquote className="text-base text-white/90 font-medium leading-relaxed font-display">
-                &ldquo;{product.verdict}&rdquo;
+                "{product.verdict}"
               </blockquote>
             </div>
           </div>

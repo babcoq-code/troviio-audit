@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Machine a cafe grain a moins de 400 euros : meilleur rapport qualite-prix</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Machine a cafe grain a moins de 400 euros : meilleur rapport qualite-prix</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Expresso broyeur pour moins de 400 euros, c'est possible. Selection des meilleurs.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Broyeur** : Meule conique ou plate ? La meule conique, c'est le Louis de Funès du café : précis et durable.
-**Pression** : 15 bars minimum, sinon ton expresso aura la force d'un chaton endormi.
-**Facilité d'entretien** : Si tu dois démonter un Rubik's Cube pour nettoyer, fuis. La simplicité, c'est la vie.
-**Bruit** : Un niveau sonore acceptable, sinon tes voisins croiront que tu passes l'aspirateur à 6h du matin.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Broyeur</strong> : Meule conique ou plate ? La meule conique, c'est le Louis de Funès du café : précis et durable.
+<strong>Pression</strong> : 15 bars minimum, sinon ton expresso aura la force d'un chaton endormi.
+<strong>Facilité d'entretien</strong> : Si tu dois démonter un Rubik's Cube pour nettoyer, fuis. La simplicité, c'est la vie.
+<strong>Bruit</strong> : Un niveau sonore acceptable, sinon tes voisins croiront que tu passes l'aspirateur à 6h du matin.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Delonghi Magnifica S** : Le tonton gâteau des machines à grain. Fiable, compacte, elle te sort un expresso correct sans te prendre la tête. Parfaite pour le mec qui veut un café sympa sans devenir un expert en torréfaction. À éviter si tu es du genre à pleurer sur un mauvais dosage de lait ou si tu rêves de faire des dessins dans la mousse. Elle est là pour le café, pas pour l'art.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Delonghi Magnifica S</strong> : Le tonton gâteau des machines à grain. Fiable, compacte, elle te sort un expresso correct sans te prendre la tête. Parfaite pour le mec qui veut un café sympa sans devenir un expert en torréfaction. À éviter si tu es du genre à pleurer sur un mauvais dosage de lait ou si tu rêves de faire des dessins dans la mousse. Elle est là pour le café, pas pour l'art.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Krups EA8108** : La machine de bureau qui se prend pour une Ferrari. Simple d'utilisation, elle crache un café correct avec une rapidité suspecte. Son défaut ? Un bruit digne d'un moteur de 2CV qui démarre sous la pluie. À prendre si tu es matinal et sourd ; à fuir si tu vis en coloc et que la paix est une priorité. Elle fait le job, mais en mode rock'n'roll.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Krups EA8108</strong> : La machine de bureau qui se prend pour une Ferrari. Simple d'utilisation, elle crache un café correct avec une rapidité suspecte. Son défaut ? Un bruit digne d'un moteur de 2CV qui démarre sous la pluie. À prendre si tu es matinal et sourd ; à fuir si tu vis en coloc et que la paix est une priorité. Elle fait le job, mais en mode rock'n'roll.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Melitta Solo** : Le café low-cost qui assume. Pas de bling-bling, pas de gadgets inutiles, juste un bon café sans prise de tête. Elle est parfaite pour le solitaire qui boit son noir sans chichis. À éviter si tu es un hipster de la torréfaction ou si tu veux impressionner ta belle-mère avec des boissons lactées. C’est la machine du mec pragmatique qui sait qu’un café, c’est avant tout du café.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Melitta Solo</strong> : Le café low-cost qui assume. Pas de bling-bling, pas de gadgets inutiles, juste un bon café sans prise de tête. Elle est parfaite pour le solitaire qui boit son noir sans chichis. À éviter si tu es un hipster de la torréfaction ou si tu veux impressionner ta belle-mère avec des boissons lactées. C’est la machine du mec pragmatique qui sait qu’un café, c’est avant tout du café.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour le lève-tôt pressé** : Delonghi Magnifica S, fiable et rapide pour ton matin de loser.
-**Pour le bricoleur du dimanche** : Krups EA8108, simple mais bruyante, pour tester sans stress.
-**Pour l'étudiant endetté** : Melitta Solo, le café correct sans vendre ton âme au crédit.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour le lève-tôt pressé</strong> : Delonghi Magnifica S, fiable et rapide pour ton matin de loser.
+<strong>Pour le bricoleur du dimanche</strong> : Krups EA8108, simple mais bruyante, pour tester sans stress.
+<strong>Pour l'étudiant endetté</strong> : Melitta Solo, le café correct sans vendre ton âme au crédit.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ignorer le bruit** : Tu crois que le silence est d’or ? Krups en mode réveil, c’est le heavy metal.
-**Miser sur les "programmes"** : 15 options, tu n'en utiliseras que deux : expresso et allongé.
-**Négliger l'entretien** : Une machine crade, c'est un café au goût de vieux chaussette, même en grain.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Ignorer le bruit</strong> : Tu crois que le silence est d’or ? Krups en mode réveil, c’est le heavy metal.
+<strong>Miser sur les "programmes"</strong> : 15 options, tu n'en utiliseras que deux : expresso et allongé.
+<strong>Négliger l'entretien</strong> : Une machine crade, c'est un café au goût de vieux chaussette, même en grain.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

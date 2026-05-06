@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, LayoutGrid, Sparkles, Trophy } from "lucide-react";
+import { Home, Swords, Sparkles, Trophy, Wrench } from "lucide-react";
 
 const items = [
   { href: "/", icon: Home, label: "Accueil" },
-  { href: "/catalogue", icon: LayoutGrid, label: "Catalogue" },
+  { href: "/duels", icon: Swords, label: "Duels" },
   { href: "/#chat", icon: Sparkles, label: "Chat IA", featured: true },
+  { href: "/accessoires/chat", icon: Wrench, label: "Accessoires" },
   { href: "/tops", icon: Trophy, label: "Tops" },
 ];
 
@@ -17,7 +18,7 @@ export default function BottomNav() {
   return (
     <nav className="fixed bottom-0 inset-x-0 z-40 lg:hidden border-t pb-[env(safe-area-inset-bottom)]"
       style={{ backgroundColor: "rgba(14,16,32,0.97)", borderColor: "var(--border)", backdropFilter: "blur(12px)" }}>
-      <ul className="grid grid-cols-4 h-16">
+      <ul className="grid grid-cols-5 h-16">
         {items.map((item) => {
           const Icon = item.icon;
           const active = pathname === item.href;

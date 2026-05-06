@@ -4,7 +4,6 @@ import { useCallback, useState } from "react";
 import { useHistory } from "@/hooks/useHistory";
 import HistorySidebar from "@/components/HistorySidebar";
 import ChatHero from "@/components/ChatHero";
-import TrustBar from "@/components/TrustBar";
 import CategoryGrid from "@/components/CategoryGrid";
 import Top3Home from "@/components/Top3Home";
 import SearchOmnibox from "@/components/SearchOmnibox";
@@ -26,7 +25,6 @@ export default function HomePageClient() {
         <SearchOmnibox />
       </section>
       <ChatHero />
-      <TrustBar />
       <Top3Home />
       <CategoryGrid />
 

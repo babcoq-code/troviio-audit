@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">TV OLED pour le sport et la coupe du monde 2026</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">TV OLED pour le sport et la coupe du monde 2026</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Voir le ballon filer sans flou ? Guide des meilleures TV sport : OLED 120Hz.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Taux de rafraîchissement** : 120Hz minimum pour éviter les effets de flou sur les ballons qui fusent.
-**Anti-reflet** : Indispensable si tu veux pas voir ta tête de dépit reflétée à chaque but encaissé.
-**Taille d’écran** : 65 pouces minimum, sinon le hors-jeu sera aussi invisible que ton espoir de gagner un pari.
-**Processeur** : Un bon upscaler pour que les rediffusions en 720p aient l’air de la 4K UHD.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Taux de rafraîchissement</strong> : 120Hz minimum pour éviter les effets de flou sur les ballons qui fusent.
+<strong>Anti-reflet</strong> : Indispensable si tu veux pas voir ta tête de dépit reflétée à chaque but encaissé.
+<strong>Taille d’écran</strong> : 65 pouces minimum, sinon le hors-jeu sera aussi invisible que ton espoir de gagner un pari.
+<strong>Processeur</strong> : Un bon upscaler pour que les rediffusions en 720p aient l’air de la 4K UHD.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour le fan qui mate en plein jour** : Prends le Samsung S95D, ses anti-reflets sont aussi solides que tes excuses après un match nul.
-**Pour le streamer qui veut tout** : Le LG C4, avec son HDMI 2.1, pour le foot et le gaming, sans concession.
-**Pour le réfractaire au changement** : Le Sony Bravia, si tu veux une image proche de la perfection sans devoir apprendre le chinois technique.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour le fan qui mate en plein jour</strong> : Prends le Samsung S95D, ses anti-reflets sont aussi solides que tes excuses après un match nul.
+<strong>Pour le streamer qui veut tout</strong> : Le LG C4, avec son HDMI 2.1, pour le foot et le gaming, sans concession.
+<strong>Pour le réfractaire au changement</strong> : Le Sony Bravia, si tu veux une image proche de la perfection sans devoir apprendre le chinois technique.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Oublier le 120Hz** : Tu verras le ballon se déplacer comme un escargot en PLS.
-**Ignorer l’anti-reflet** : Ta télé deviendra miroir de tes émotions, surtout sur les buts encaissés.
-**Choisir trop petit** : Les hors-jeu et les dribbles seront aussi clairs que le règlement du VAR.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Oublier le 120Hz</strong> : Tu verras le ballon se déplacer comme un escargot en PLS.
+<strong>Ignorer l’anti-reflet</strong> : Ta télé deviendra miroir de tes émotions, surtout sur les buts encaissés.
+<strong>Choisir trop petit</strong> : Les hors-jeu et les dribbles seront aussi clairs que le règlement du VAR.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

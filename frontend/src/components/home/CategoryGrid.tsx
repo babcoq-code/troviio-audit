@@ -135,14 +135,14 @@ export default function CategoryGrid({ onSelect }: Props) {
           >
             Troviio sait tout choisir.{" "}
             <br className="hidden sm:block" />
-            <span className="text-[#FF6B5F]">Même ce à quoi tu n&apos;avais pas pensé.</span>
+            <span className="text-[#FF6B5F]">Même ce à quoi tu n'avais pas pensé.</span>
           </h2>
 
           <p
             className="animate-fade-slide-up mx-auto mt-5 max-w-xl text-base leading-7 text-[#8B8FA3] sm:text-lg"
             style={{ animationDelay: "0.14s" }}
           >
-            Clique sur une catégorie — l&apos;IA démarre la conversation.
+            Clique sur une catégorie — l'IA démarre la conversation.
           </p>
         </div>
 

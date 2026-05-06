@@ -17,37 +17,37 @@ interface TopProduct {
 
 // Funny Troviio-style taglines mapped by product slug
 const TAGLINES: Record<string, string> = {
-  "asus-rog-zephyrus-g14-2025": "Le GPU qui fait de l&apos;ombre &agrave; ton micro-ondes. Et &agrave; tes nuits.",
+  "asus-rog-zephyrus-g14-2025": "Le GPU qui fait de l'ombre à ton micro-ondes. Et à tes nuits.",
   "razer-blade-16-2025": "Tellement beau que tu vas le sortir en rendez-vous. Vraiment.",
-  "asus-rog-zephyrus-g16-2025": "Gaming, montage, crypto — et accessoirement, il fait les caf&eacute;s.",
-  "hp-omen-max-16-2025": "Les jeux tournent si bien que tu oublies de manger. Pr&eacute;vois des snacks.",
-  "lenovo-legion-pro-7i-gen-10": "Le PC qui fait tourner Crysis. Oui, encore celui-l&agrave;.",
-  "jeu-coop-ittakestwo-ps5": "Le seul jeu qui sauve des couples. Et des canap&apos;.",
-  "jeu-coop-splitfiction-ps5": "Coop&apos;rative &eacute;pique — vos doigts vont se parler.",
+  "asus-rog-zephyrus-g16-2025": "Gaming, montage, crypto — et accessoirement, il fait les cafés.",
+  "hp-omen-max-16-2025": "Les jeux tournent si bien que tu oublies de manger. Prévois des snacks.",
+  "lenovo-legion-pro-7i-gen-10": "Le PC qui fait tourner Crysis. Oui, encore celui-là.",
+  "jeu-coop-ittakestwo-ps5": "Le seul jeu qui sauve des couples. Et des canap'.",
+  "jeu-coop-splitfiction-ps5": "Coop'rative épique — vos doigts vont se parler.",
   "dyson-gen5-detect-absolute": "Aspire tellement fort que ta moquette se souvient de 1998.",
-  "tablette-apple-ipadpro-m5-11-b0fwd6": "Tellement fine qu&apos;elle passe sous une porte sans la toucher.",
+  "tablette-apple-ipadpro-m5-11-b0fwd6": "Tellement fine qu'elle passe sous une porte sans la toucher.",
   "thermomix-tm7": "Chef cuisto, nutritionniste et psy culinaire tout en un.",
-  "dreame-x50-ultra-complete": "Nettoie mieux que ta m&egrave;re. Ne lui dis pas.",
+  "dreame-x50-ultra-complete": "Nettoie mieux que ta mère. Ne lui dis pas.",
   "lg-g6-oled-65-oled65g6-2026": "Les noirs sont si profonds que tu vas ranger ton ampli.",
-  "apple-macbook-air-13-m4": "Tellement rapide qu&apos;il arrive avant toi au caf&eacute;.",
-  "sonos-arc-ultra": "Le son qui fait regretter tous tes haut-parleurs d&apos;avant.",
+  "apple-macbook-air-13-m4": "Tellement rapide qu'il arrive avant toi au café.",
+  "sonos-arc-ultra": "Le son qui fait regretter tous tes haut-parleurs d'avant.",
   "samsung-s95h-65-qd-oled-tq65s95hf-2026": "Les couleurs sont plus vives que tes souvenirs de vacances.",
-  "bugaboo-fox-5-renew": "La Rolls de la poussette. Ton b&eacute;b&eacute; m&eacute;rite le meilleur.",
-  "artevino-oxygen-oxg1t230npd": "Fait du caf&eacute; meilleur que ta machine &agrave; bureau. Et avec le sourire.",
+  "bugaboo-fox-5-renew": "La Rolls de la poussette. Ton bébé mérite le meilleur.",
+  "artevino-oxygen-oxg1t230npd": "Fait du café meilleur que ta machine à bureau. Et avec le sourire.",
   "sony-wh-1000xm6": "Tellement silencieux que tu vas rater ta correspondance.",
   "manette-nintendo-switch2-procontroller": "Tes pouces te remercieront. Tes adversaires pas du tout.",
   "ninja-foodi-flexdrawer-af500eu": "Friteuse, four, gril — le couteau suisse de ta cuisine.",
-  "lg-g5-oled-65-oled65g56ls-2025": "Tellement beau que tes voisins vont s&apos;inviter tous les soirs.",
-  "eufy-solocam-s340": "Regarde ton facteur comme si t&apos;&eacute;tais James Bond.",
-  "ventilateur-rowenta-vu5890f0": "Brise tellement silencieuse que tu crois &ecirc;tre &agrave; la plage.",
-  "lg-c6-oled-65-oled65c6-2026": "Le cin&eacute;ma &agrave; la maison sans les miettes sur le fauteuil.",
+  "lg-g5-oled-65-oled65g56ls-2025": "Tellement beau que tes voisins vont s'inviter tous les soirs.",
+  "eufy-solocam-s340": "Regarde ton facteur comme si t'étais James Bond.",
+  "ventilateur-rowenta-vu5890f0": "Brise tellement silencieuse que tu crois être à la plage.",
+  "lg-c6-oled-65-oled65c6-2026": "Le cinéma à la maison sans les miettes sur le fauteuil.",
   "samsung-galaxy-s26-ultra": "Le zoom va voir ce que ton voisin mange ce soir.",
-  "iphone-17-pro-max": "Tellement cher que tu le montres &agrave; ta m&egrave;re pour la fiert&eacute;.",
-  "dyson-supersonic-nural": "S&egrave;che tes cheveux plus vite que tes mauvaises id&eacute;es.",
-  "samsung-qn900f-65-8k-2026": "8K pour voir les cernes des acteurs. Effrayant de pr&eacute;cision.",
-  "dyson-airwrap-i-d": "Tes cheveux vont &ecirc;tre plus styl&eacute;s que ta vie sociale.",
+  "iphone-17-pro-max": "Tellement cher que tu le montres à ta mère pour la fierté.",
+  "dyson-supersonic-nural": "Sèche tes cheveux plus vite que tes mauvaises idées.",
+  "samsung-qn900f-65-8k-2026": "8K pour voir les cernes des acteurs. Effrayant de précision.",
+  "dyson-airwrap-i-d": "Tes cheveux vont être plus stylés que ta vie sociale.",
   "roomba-combo-j9plus": "Navigue dans ton salon mieux que toi dans Google Maps.",
-  "manette-flydigi-vader4pro": "Tes adversaires vont croire que tu triches. Et t&apos;auras raison.",
+  "manette-flydigi-vader4pro": "Tes adversaires vont croire que tu triches. Et t'auras raison.",
 };
 
 function getTagline(slug: string): string | null {
@@ -63,11 +63,26 @@ export default function Top3Home() {
       try {
         const API_BASE = "/api";
 
-        // Top 5 par score
-        const topRes = await fetch(`${API_BASE}/products?limit=5&sort=estimated_score&order=desc.nullslast`);
+        const topRes = await fetch(`${API_BASE}/products?limit=20&sort=estimated_score&order=desc.nullslast&is_active=eq.true&amazon_asin=not.is.null`);
         let topData: TopProduct[] = [];
         if (topRes.ok) {
-          topData = await topRes.json() || [];
+          const all = await topRes.json() || [];
+
+          // Sélectionne les meilleurs produits avec UN par catégorie maximum
+          // pour garantir un Top 5 diversifié
+          const seenCategories = new Set<string>();
+          const diversified: TopProduct[] = [];
+
+          for (const p of all) {
+            const catKey = p.category_id || p.category_slug || "unknown";
+            if (!seenCategories.has(catKey) && p.estimated_score > 0) {
+              seenCategories.add(catKey);
+              diversified.push(p);
+            }
+            if (diversified.length >= 5) break;
+          }
+
+          topData = diversified.length >= 3 ? diversified : all.slice(0, 5);
           setProducts(topData);
         }
       } catch (e) {
@@ -104,7 +119,7 @@ export default function Top3Home() {
             Les 5 meilleurs produits du moment
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6" style={{ color: "var(--text-muted)" }}>
-            Class&eacute;s par leur score Troviio — le vrai match entre tes besoins et ce que le produit propose.
+            Classés par leur score Troviio — le vrai match entre tes besoins et ce que le produit propose.
           </p>
         </div>
 

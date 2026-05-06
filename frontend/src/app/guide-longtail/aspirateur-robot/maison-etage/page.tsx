@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Robot aspirateur pour maison a etage : les meilleurs modeles 2026</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Robot aspirateur pour maison a etage : les meilleurs modeles 2026</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Quel robot aspirateur pour une maison avec escaliers et plusieurs niveaux ?</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Cartographie multi-étages** : Crucial pour qu’il ne se prenne pas pour un explorateur du Titanic à chaque étage.
-**Autonomie en mode étage** : Sinon il s’endort en bas et tu le retrouves en mode plantage.
-**Détection d’obstacles** : Indispensable pour ne pas transformer ton câble HDMI en confetti.
-**Niveau sonore** : Un aspirateur qui hurle comme un fan de foot réveille les voisins ET le bébé.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Cartographie multi-étages</strong> : Crucial pour qu’il ne se prenne pas pour un explorateur du Titanic à chaque étage.
+<strong>Autonomie en mode étage</strong> : Sinon il s’endort en bas et tu le retrouves en mode plantage.
+<strong>Détection d’obstacles</strong> : Indispensable pour ne pas transformer ton câble HDMI en confetti.
+<strong>Niveau sonore</strong> : Un aspirateur qui hurle comme un fan de foot réveille les voisins ET le bébé.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour le fainéant assumé** : Roomba i9+ – il fait tout, même te préparer un café (non, mais presque).
-**Pour l’esthète insomniaque** : Samsung Jet Bot Pro – discret comme un ninja en mission secrète.
-**Pour le geek sans escalier** : Dreame L20 Ultra – le roi de l’entretien automatique, mais pas de l’alpinisme.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour le fainéant assumé</strong> : Roomba i9+ – il fait tout, même te préparer un café (non, mais presque).
+<strong>Pour l’esthète insomniaque</strong> : Samsung Jet Bot Pro – discret comme un ninja en mission secrète.
+<strong>Pour le geek sans escalier</strong> : Dreame L20 Ultra – le roi de l’entretien automatique, mais pas de l’alpinisme.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ignorer la cartographie multi-étages** : Ton robot se perdra plus qu’un touriste sans Google Maps.
-**Oublier la hauteur des marches** : S’il mesure 10 cm, il ne montera pas ; c’est mathématique, Einstein.
-**Croire que le wifi suffit** : Sans connexion stable, il devient un presse-papier high-tech.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Ignorer la cartographie multi-étages</strong> : Ton robot se perdra plus qu’un touriste sans Google Maps.
+<strong>Oublier la hauteur des marches</strong> : S’il mesure 10 cm, il ne montera pas ; c’est mathématique, Einstein.
+<strong>Croire que le wifi suffit</strong> : Sans connexion stable, il devient un presse-papier high-tech.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

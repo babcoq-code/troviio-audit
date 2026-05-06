@@ -134,7 +134,7 @@ export default async function ResultPage({
               {result.profile.resume && result.profile.type !== "accessories" && (
                 <blockquote className="mt-4 rounded-2xl border-l-4 border-[#4257FF] px-4 py-3 text-sm italic leading-7 break-words [overflow-wrap:anywhere]"
                   style={{ backgroundColor: "rgba(66,87,255,0.08)", color: "var(--text-muted)" }}>
-                  &ldquo;{result.profile.resume}&rdquo;
+                  "{result.profile.resume}"
                 </blockquote>
               )}
 

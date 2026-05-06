@@ -21,41 +21,7 @@ export const metadata: Metadata = {
   },
 };
 
-interface TopProduct {
-  slug: string;
-  name: string;
-  brand: string | null;
-  image_url: string | null;
-  estimated_score: number | null;
-  price_eur: number | null;
-  best_merchant: string | null;
-  affiliate_url: string | null;
-  pros: string[];
-  cons: string[];
-  why_perfect: string | null;
-  rank_label: string | null;
-}
-
-interface TopCategory {
-  slug: string;
-  name: string;
-  products: TopProduct[];
-  count_products: number;
-}
-
-async function fetchTops(): Promise<TopCategory[]> {
-  try {
-    const base = process.env.INTERNAL_API_URL || "http://backend:8000/api";
-    const res = await fetch(`${base}/tops`, { cache: "no-store" });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.categories || [];
-  } catch {
-    return [];
-  }
-}
-
 export default async function TopsPage() {
-  const categories = await fetchTops();
-  return <TopsClient categories={categories} />;
+  // Les tops sont chargés côté client via TopsClient
+  return <TopsClient />;
 }

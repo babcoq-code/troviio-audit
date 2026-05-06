@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Purificateur d'air pour chambre de bebe : le guide essentiel</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Purificateur d'air pour chambre de bebe : le guide essentiel</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">L'air que respire votre bebe est crucial. Purificateurs silencieux sans ozone.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Filtration HEPA** : Le seul truc qui compte. Filtre les virus, les pollens, et tes larmes de fatigue.
-**Niveau sonore** : Un purificateur bruyant réveille bébé, et là, c’est toi qui pleures.
-**Taille de la pièce** : Choisis un modèle adapté à la chambre, pas un aspirateur industriel.
-**Sécurité** : Pas de bords tranchants, pas de câbles pendants, et verrouillage enfant obligatoire.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Filtration HEPA</strong> : Le seul truc qui compte. Filtre les virus, les pollens, et tes larmes de fatigue.
+<strong>Niveau sonore</strong> : Un purificateur bruyant réveille bébé, et là, c’est toi qui pleures.
+<strong>Taille de la pièce</strong> : Choisis un modèle adapté à la chambre, pas un aspirateur industriel.
+<strong>Sécurité</strong> : Pas de bords tranchants, pas de câbles pendants, et verrouillage enfant obligatoire.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Levoit Core 300** : Le roi du silence. Il ronronne comme un chat en peluche, mais tue les allergènes. Pour les parents qui veulent un truc efficace sans se prendre la tête. À éviter si tu es un hipster qui juge le design “trop fade” – mais ton bébé s’en fout de ton esthétique Instagram.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Levoit Core 300</strong> : Le roi du silence. Il ronronne comme un chat en peluche, mais tue les allergènes. Pour les parents qui veulent un truc efficace sans se prendre la tête. À éviter si tu es un hipster qui juge le design “trop fade” – mais ton bébé s’en fout de ton esthétique Instagram.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Philips Série 800** : Le minimaliste chic. Il ressemble à une mini-tour de contrôle, mais ne fait que purifier. Idéal pour les parents qui veulent un objet discret, pas un vaisseau spatial. À éviter si tu veux une appli pour suivre la qualité de l’air en temps réel – ici, c’est juste un bouton on/off. Comme tes nuits.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Philips Série 800</strong> : Le minimaliste chic. Il ressemble à une mini-tour de contrôle, mais ne fait que purifier. Idéal pour les parents qui veulent un objet discret, pas un vaisseau spatial. À éviter si tu veux une appli pour suivre la qualité de l’air en temps réel – ici, c’est juste un bouton on/off. Comme tes nuits.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson Pure Cool Link** : Le gadget ultime. Il ventile, purifie, et se connecte à ton téléphone pour te dire que l’air est “mauvais” – comme si t’avais besoin d’une machine pour ça. Pour les geeks qui veulent un objet qui claque. À éviter si ton budget est serré – ça coûte le prix d’un mois de couches.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Dyson Pure Cool Link</strong> : Le gadget ultime. Il ventile, purifie, et se connecte à ton téléphone pour te dire que l’air est “mauvais” – comme si t’avais besoin d’une machine pour ça. Pour les geeks qui veulent un objet qui claque. À éviter si ton budget est serré – ça coûte le prix d’un mois de couches.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour parent stressé** : Levoit Core 300 – fiable, silencieux, et ne te fera pas de crise d’angoisse.
-**Pour esthète Instagram** : Philips Série 800 – minimaliste, discret, passe partout dans ta déco scandinave.
-**Pour tech-addict** : Dyson Pure Cool Link – appli, stats, et look futuriste pour briller en soirée.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour parent stressé</strong> : Levoit Core 300 – fiable, silencieux, et ne te fera pas de crise d’angoisse.
+<strong>Pour esthète Instagram</strong> : Philips Série 800 – minimaliste, discret, passe partout dans ta déco scandinave.
+<strong>Pour tech-addict</strong> : Dyson Pure Cool Link – appli, stats, et look futuriste pour briller en soirée.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ignorer le filtre HEPA** : Sans lui, ton purificateur est juste un ventilateur cher qui déplace la poussière.
-**Mettre un modèle trop petit** : Il va tourner en boucle sans jamais purifier la pièce, comme ta vie.
-**Oublier le bruit** : Le mode nuit est un mythe – certains modèles réveillent les morts, et les bébés.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Ignorer le filtre HEPA</strong> : Sans lui, ton purificateur est juste un ventilateur cher qui déplace la poussière.
+<strong>Mettre un modèle trop petit</strong> : Il va tourner en boucle sans jamais purifier la pièce, comme ta vie.
+<strong>Oublier le bruit</strong> : Le mode nuit est un mythe – certains modèles réveillent les morts, et les bébés.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

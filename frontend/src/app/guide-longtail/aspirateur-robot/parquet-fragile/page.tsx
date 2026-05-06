@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Robot aspirateur pour parquet fragile : les modeles qui rayent pas</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Robot aspirateur pour parquet fragile : les modeles qui rayent pas</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Parquet qui se raye au moindre choc ? Decouvrez les robots avec roues caoutchouc et brosses douces.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Capteurs de sol** : Détecte le type de surface pour ajuster la pression et éviter les rayures idiotes.  
-**Brosse adaptée** : Préfère les brosses en caoutchouc souple, pas en nylon qui gratte comme un chat en colère.  
-**Puissance réglable** : Évite le mode « aspirateur de chantier » qui soulève le parquet comme un tapis volant.  
-**Silence de fonctionnement** : Un robot bruyant réveille les voisins et fait fuir la poussière, mais pas les rayures.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Capteurs de sol</strong> : Détecte le type de surface pour ajuster la pression et éviter les rayures idiotes.  
+<strong>Brosse adaptée</strong> : Préfère les brosses en caoutchouc souple, pas en nylon qui gratte comme un chat en colère.  
+<strong>Puissance réglable</strong> : Évite le mode « aspirateur de chantier » qui soulève le parquet comme un tapis volant.  
+<strong>Silence de fonctionnement</strong> : Un robot bruyant réveille les voisins et fait fuir la poussière, mais pas les rayures.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Roborock S8 Pro Ultra** : Le roi du parquet fragile. Il nettoie comme un majordome suisse, sans laisser de traces. Parfait pour ceux qui veulent un sol impeccable sans avoir à supplier un génie. À éviter si tu aimes les robots qui font des loopings sur tes lattes – ici, c’est tout doux, comme un câlin de panda.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Roborock S8 Pro Ultra</strong> : Le roi du parquet fragile. Il nettoie comme un majordome suisse, sans laisser de traces. Parfait pour ceux qui veulent un sol impeccable sans avoir à supplier un génie. À éviter si tu aimes les robots qui font des loopings sur tes lattes – ici, c’est tout doux, comme un câlin de panda.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**iRobot Roomba j7+** : Le petit frère un peu bourrin, mais qui a appris les bonnes manières. Il évite les obstacles comme un ninja, mais sa brosse peut être un peu agressive sur les parquets super fragiles. Idéal pour les maisons avec animaux, à condition de le surveiller comme un ado en crise.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>iRobot Roomba j7+</strong> : Le petit frère un peu bourrin, mais qui a appris les bonnes manières. Il évite les obstacles comme un ninja, mais sa brosse peut être un peu agressive sur les parquets super fragiles. Idéal pour les maisons avec animaux, à condition de le surveiller comme un ado en crise.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ecovacs Deebot N8 Pro+** : Le modèle « je fais semblant d’être fragile ». Il nettoie gentiment, mais sa puissance d’aspiration est celle d’une grenouille fatiguée. Pour les petits espaces ou les parquets en bambou, ça passe. Mais si tu as un tapis, prépare-toi à le voir abandonner comme un gamin devant une dictée.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Ecovacs Deebot N8 Pro+</strong> : Le modèle « je fais semblant d’être fragile ». Il nettoie gentiment, mais sa puissance d’aspiration est celle d’une grenouille fatiguée. Pour les petits espaces ou les parquets en bambou, ça passe. Mais si tu as un tapis, prépare-toi à le voir abandonner comme un gamin devant une dictée.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour le perfectionniste maniaque** : Roborock S8 Pro Ultra – nettoie sans laisser une miette, ni une rayure.  
-**Pour le proprio d’animaux** : iRobot Roomba j7+ – gère les poils, mais check le sol après.  
-**Pour le locataire pressé** : Ecovacs Deebot N8 Pro+ – fait le job sans prétention, mais sans génie.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour le perfectionniste maniaque</strong> : Roborock S8 Pro Ultra – nettoie sans laisser une miette, ni une rayure.  
+<strong>Pour le proprio d’animaux</strong> : iRobot Roomba j7+ – gère les poils, mais check le sol après.  
+<strong>Pour le locataire pressé</strong> : Ecovacs Deebot N8 Pro+ – fait le job sans prétention, mais sans génie.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ignorer les capteurs** : Un robot sans capteur de sol raye ton parquet comme un DJ scratch sur vinyle.  
-**Choisir une brosse dure** : Les brosses nylon transforment ton parquet en patinoire rayée façon « Harry Potter ».  
-**Oublier le bac à eau** : Un robot qui fuit ruine ton sol plus vite qu’un épisode de « Koh-Lanta » sans eau.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Ignorer les capteurs</strong> : Un robot sans capteur de sol raye ton parquet comme un DJ scratch sur vinyle.  
+<strong>Choisir une brosse dure</strong> : Les brosses nylon transforment ton parquet en patinoire rayée façon « Harry Potter ».  
+<strong>Oublier le bac à eau</strong> : Un robot qui fuit ruine ton sol plus vite qu’un épisode de « Koh-Lanta » sans eau.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

@@ -235,7 +235,7 @@ export default function PriceComparisonTable({
                       : "bg-blue text-white hover:bg-blue-dark"
                   }`}
                 >
-                  Voir l&apos;offre
+                  Voir l'offre
                 </a>
               ) : (
                 <button

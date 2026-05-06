@@ -18,9 +18,11 @@ ARG NEXT_PUBLIC_CLARITY_ID
 ENV NEXT_PUBLIC_CLARITY_ID=$NEXT_PUBLIC_CLARITY_ID
 ARG RESEND_API_KEY
 ENV RESEND_API_KEY=$RESEND_API_KEY
+ARG API_BASE_URL
+ENV API_BASE_URL=$API_BASE_URL
 
 COPY package.json package-lock.json* ./
-RUN --mount=type=cache,target=/root/.npm npm install
+RUN npm install
 
 COPY . .
 RUN npm run build

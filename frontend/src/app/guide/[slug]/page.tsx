@@ -604,7 +604,7 @@ export default async function GuidePage({ params }: Props) {
             <span className="text-5xl">{meta.emoji}</span>
             <div>
               <p className="text-sm font-semibold uppercase tracking-widest mb-1" style={{ color: "var(--coral)" }}>
-                Guide d&apos;achat {meta.date.split("-")[0]}
+                Guide d'achat {meta.date.split("-")[0]}
               </p>
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight" style={{ color: "var(--text)" }}>
                 {meta.title}
@@ -634,7 +634,7 @@ export default async function GuidePage({ params }: Props) {
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition hover:bg-[rgba(62,214,163,0.2)]"
               style={{ backgroundColor: "rgba(62,214,163,0.12)", color: "var(--mint)" }}
             >
-              ✨ Demander à l&apos;IA
+              ✨ Demander à l'IA
             </Link>
           </div>
         </header>

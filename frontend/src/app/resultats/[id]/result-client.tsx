@@ -114,7 +114,7 @@ export function ResultClientComponents({
           href="/"
           className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition hover:-translate-y-0.5 hover:shadow-md" style={{border: '1px solid var(--border)', backgroundColor: 'var(--bg-surface)', color: 'var(--text-muted)'}}
         >
-          ← Retour à l&apos;accueil
+          ← Retour à l'accueil
         </Link>
       </div>
 

@@ -31,7 +31,7 @@ export default function DuelPage() {
 
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="rounded-2xl border border-white/5 bg-[#161827] p-6 mb-10">
-          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Bon alors, on tranche ce duel comme du jambon, et pas n&apos;importe lequel : on met sur la table le poids lourd officiel de Nintendo, le Switch 2 Pro Controller, face au couteau suisse des manettes, le 8BitDo Pro 2 Hall Effect. C&apos;est un peu comme opposer Mario a un Toad super equipe : l&apos;un est la star, l&apos;autre a des astuces dans sa poche. Accrochez vos ceintures, ca va secouer plus fort qu&apos;un Bowser en colere !</p>
+          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Bon alors, on tranche ce duel comme du jambon, et pas n'importe lequel : on met sur la table le poids lourd officiel de Nintendo, le Switch 2 Pro Controller, face au couteau suisse des manettes, le 8BitDo Pro 2 Hall Effect. C'est un peu comme opposer Mario a un Toad super equipe : l'un est la star, l'autre a des astuces dans sa poche. Accrochez vos ceintures, ca va secouer plus fort qu'un Bowser en colere !</p>
         </div>
 
         <div className="mb-12">
@@ -59,9 +59,9 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥇 #1 Pro Controller</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/manette-nintendo-switch2-procontroller">Nintendo Switch 2 Pro Controller - 94/100</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Nintendo Switch 2 Pro Controller** - C&apos;est le Link de ce duel : tout le monde l&apos;attend, il brille avec son HD Rumble 2 (qui fait trembler les fesses de vos Pokemons preferes) et ses 40h d&apos;autonomie qui vous evitent de chercher un chargeur en pleine bataille contre Ganon. A 109.99 EUR, il vous offre le NFC pour scanner vos Amiibo comme un chef, et son poids de 297g le rend solide, presque comme un bouclier Hylian. Mais attention : il ne parle qu&apos;a la Switch. Pas de PC, pas de Steam Deck. Un peu comme si Mario refusait de quitter le Royaume Champignon.
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Nintendo Switch 2 Pro Controller** - C'est le Link de ce duel : tout le monde l'attend, il brille avec son HD Rumble 2 (qui fait trembler les fesses de vos Pokemons preferes) et ses 40h d'autonomie qui vous evitent de chercher un chargeur en pleine bataille contre Ganon. A 109.99 EUR, il vous offre le NFC pour scanner vos Amiibo comme un chef, et son poids de 297g le rend solide, presque comme un bouclier Hylian. Mais attention : il ne parle qu'a la Switch. Pas de PC, pas de Steam Deck. Un peu comme si Mario refusait de quitter le Royaume Champignon.
 
-→ **Vainqueur pour l&apos;experience Nintendo premium : Pro Controller**</p>
+→ **Vainqueur pour l'experience Nintendo premium : Pro Controller**</p>
           
             <div className="mt-4">
               <Link href="/produit/manette-nintendo-switch2-procontroller" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>
@@ -70,7 +70,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">🥈 #2 8BitDo Pro 2</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/manette-8bitdo-pro2-halleffect">8BitDo Pro 2 Hall Effect - 86/100</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**8BitDo Pro 2 Hall Effect** - C&apos;est le Pikachu des manettes : mignon, efficace, et surtout increvable. Avec ses joysticks Hall Effect anti-drift, vous pouvez dire adieu aux derives dignes d&apos;un Yoshi alcoolise. Il pese 228g, soit le poids plume parfait pour des sessions marathon, et propose 18 boutons pour les combos les plus fous. A 59.99 EUR, il est multi-plateforme : Switch, PC, Mac, Android, Steam Deck... bref, il s&apos;invite partout, comme un Toad hyperactif. Seul hic : pas de NFC. Si vous voulez scanner vos Amiibo, faudra sortir la console, desole.
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**8BitDo Pro 2 Hall Effect** - C'est le Pikachu des manettes : mignon, efficace, et surtout increvable. Avec ses joysticks Hall Effect anti-drift, vous pouvez dire adieu aux derives dignes d'un Yoshi alcoolise. Il pese 228g, soit le poids plume parfait pour des sessions marathon, et propose 18 boutons pour les combos les plus fous. A 59.99 EUR, il est multi-plateforme : Switch, PC, Mac, Android, Steam Deck... bref, il s'invite partout, comme un Toad hyperactif. Seul hic : pas de NFC. Si vous voulez scanner vos Amiibo, faudra sortir la console, desole.
 
 → **Vainqueur pour le rapport qualite-prix et la polyvalence : 8BitDo Pro 2**</p>
           
@@ -82,9 +82,9 @@ export default function DuelPage() {
 
         <div className="rounded-2xl border border-[#FFB020]/30 bg-[#161827] p-8 mb-12 text-center">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-4">🏆 Verdict Troviio</h2>
-          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Alors, qui remporte le trophee ? Le Pro Controller gagne sur l&apos;autonomie (40h contre 20h) et le HD Rumble 2, une experience immersive qui fait presque oublier que vous avez paye le prix d&apos;un jeu complet. Mais le 8BitDo Pro 2 Hall Effect riposte avec ses joysticks anti-drift (bye bye les drift de joie) et sa polyvalence multiplateforme. Pour 50 euros de moins, il fait le job avec un sourire malicieux.
+          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Alors, qui remporte le trophee ? Le Pro Controller gagne sur l'autonomie (40h contre 20h) et le HD Rumble 2, une experience immersive qui fait presque oublier que vous avez paye le prix d'un jeu complet. Mais le 8BitDo Pro 2 Hall Effect riposte avec ses joysticks anti-drift (bye bye les drift de joie) et sa polyvalence multiplateforme. Pour 50 euros de moins, il fait le job avec un sourire malicieux.
 
-→ **VERDICT : Le Nintendo Switch 2 Pro Controller est →  pour les puristes Nintendo qui veulent le top du confort officiel. Mais le 8BitDo Pro 2 Hall Effect gagne en rapport qualite-prix et en flexibilite.** Si vous etes pret a sacrifier un peu d&apos;autonomie pour economiser des roupies, foncez. Et si vous voulez le grand frisson officiel, le Pro Controller reste le roi. (Oui, on dirait un choix entre Mario et Luigi - les deux sont geniaux, mais l&apos;un est plus costaud.)
+→ **VERDICT : Le Nintendo Switch 2 Pro Controller est →  pour les puristes Nintendo qui veulent le top du confort officiel. Mais le 8BitDo Pro 2 Hall Effect gagne en rapport qualite-prix et en flexibilite.** Si vous etes pret a sacrifier un peu d'autonomie pour economiser des roupies, foncez. Et si vous voulez le grand frisson officiel, le Pro Controller reste le roi. (Oui, on dirait un choix entre Mario et Luigi - les deux sont geniaux, mais l'un est plus costaud.)
 
 → **Le meilleur rapport qualite-prix : 8BitDo Pro 2 Hall Effect (59.99 EUR)**
 → **La reference absolue : Switch 2 Pro Controller (94/100)**</p>
@@ -94,12 +94,12 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🎯 Pour qui ?</p>
             <h3 className="text-xl font-bold mb-4">Switch 2 Pro Controller</h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le Pro Controller est fait pour vous si vous etes un collectionneur d&apos;Amiibo, un amateur de HD Rumble qui veut sentir chaque pas de votre personnage, et si vous ne quittez jamais votre Switch. Vous etes le genre a dire &quot;Je suis un vrai fan Nintendo&quot; en sortant votre manette noire. Parfait pour les joueurs qui veulent une experience premium sans se poser de questions - meme si votre porte-monnaie pleure un peu.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le Pro Controller est fait pour vous si vous etes un collectionneur d'Amiibo, un amateur de HD Rumble qui veut sentir chaque pas de votre personnage, et si vous ne quittez jamais votre Switch. Vous etes le genre a dire "Je suis un vrai fan Nintendo" en sortant votre manette noire. Parfait pour les joueurs qui veulent une experience premium sans se poser de questions - meme si votre porte-monnaie pleure un peu.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">🎯 Pour qui ?</p>
             <h3 className="text-xl font-bold mb-4">8BitDo Pro 2 Hall Effect</h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le 8BitDo Pro 2 Hall Effect est pour les joueurs nomades, les multi-plateformes, et ceux qui en ont marre de remplacer leur manette tous les six mois a cause du drift. Si vous avez un Steam Deck, un PC, et une Switch, et que vous voulez une seule manette pour les dominer tous (comme un Pokemon legendaire), c&apos;est pour vous. Et avec son prix plus doux que la voix de Princesse Peach, vous pourrez meme vous offrir un jeu en prime.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le 8BitDo Pro 2 Hall Effect est pour les joueurs nomades, les multi-plateformes, et ceux qui en ont marre de remplacer leur manette tous les six mois a cause du drift. Si vous avez un Steam Deck, un PC, et une Switch, et que vous voulez une seule manette pour les dominer tous (comme un Pokemon legendaire), c'est pour vous. Et avec son prix plus doux que la voix de Princesse Peach, vous pourrez meme vous offrir un jeu en prime.</p>
           </div>
         </div>
 

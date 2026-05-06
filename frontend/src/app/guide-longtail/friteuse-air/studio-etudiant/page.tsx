@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Friteuse a air pour etudiant ou studio : petit budget, petit espace</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Friteuse a air pour etudiant ou studio : petit budget, petit espace</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Studio 20m2, budget serre ? Friteuses a air compactes 3-4L pour manger sain.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Capacité idéale** : 2-3 litres max, pour une portion de frites sans envahir ton plan de travail.
-**Nettoyage facile** : Panier antiadhésif ou vaisselle compatible lave-vaisselle, sinon adieu tes soirées.
-**Consommation électrique** : Moins de 1500W pour éviter de faire sauter le disjoncteur de ton studio.
-**Silence de fonctionnement** : Un bourdonnement discret, pas un bruit de tracteur qui réveille les voisins.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Capacité idéale</strong> : 2-3 litres max, pour une portion de frites sans envahir ton plan de travail.
+<strong>Nettoyage facile</strong> : Panier antiadhésif ou vaisselle compatible lave-vaisselle, sinon adieu tes soirées.
+<strong>Consommation électrique</strong> : Moins de 1500W pour éviter de faire sauter le disjoncteur de ton studio.
+<strong>Silence de fonctionnement</strong> : Un bourdonnement discret, pas un bruit de tracteur qui réveille les voisins.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Cosori Pro LE** – Le roi du petit budget. Pour toi, l’étudiant qui préfère dépenser son argent en bières qu’en électroménager. Il fait des frites croustillantes, chauffe vite, et tient dans un placard Ikea. À éviter si tu as une coloc de 4 personnes ou si tu veux cuire un poulet entier – là, c’est plutôt un four ou une pizzeria de quartier.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Cosori Pro LE</strong> – Le roi du petit budget. Pour toi, l’étudiant qui préfère dépenser son argent en bières qu’en électroménager. Il fait des frites croustillantes, chauffe vite, et tient dans un placard Ikea. À éviter si tu as une coloc de 4 personnes ou si tu veux cuire un poulet entier – là, c’est plutôt un four ou une pizzeria de quartier.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ninja Air Fryer Max** – La ninja du studio. Pour toi, le minimaliste qui veut ranger son appareil après usage sans pleurer. Design empilable, panier qui se glisse partout, et cuisson uniforme. À éviter si tu es allergique aux marques hype ou si tu comptes faire des frites pour toute la coloc – c’est le gadget solo, pas le banquet.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Ninja Air Fryer Max</strong> – La ninja du studio. Pour toi, le minimaliste qui veut ranger son appareil après usage sans pleurer. Design empilable, panier qui se glisse partout, et cuisson uniforme. À éviter si tu es allergique aux marques hype ou si tu comptes faire des frites pour toute la coloc – c’est le gadget solo, pas le banquet.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Philips Essential** – Le vieux sage de la friture. Pour toi, l’étudiant qui veut du sérieux sans prise de tête. Chauffe comme une maman italienne, facile à nettoyer, et discret. À éviter si ton budget est ultra serré (prix un poil plus élevé) ou si tu cherches des options bluetooth – ici, on fait des frites, pas du code.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Philips Essential</strong> – Le vieux sage de la friture. Pour toi, l’étudiant qui veut du sérieux sans prise de tête. Chauffe comme une maman italienne, facile à nettoyer, et discret. À éviter si ton budget est ultra serré (prix un poil plus élevé) ou si tu cherches des options bluetooth – ici, on fait des frites, pas du code.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour l'étudiant fauché** : Cosori Pro LE – frites correctes sans te ruiner, idéal pour survivre en mode Nouilles+.
-**Pour le colocataire discret** : Ninja Air Fryer Max – se range comme un ninja, parfait pour studio exigu.
-**Pour le foodie en herbe** : Philips Essential – cuisson homogène, pour impressionner tes crush sans cramer ton chez-toi.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour l'étudiant fauché</strong> : Cosori Pro LE – frites correctes sans te ruiner, idéal pour survivre en mode Nouilles+.
+<strong>Pour le colocataire discret</strong> : Ninja Air Fryer Max – se range comme un ninja, parfait pour studio exigu.
+<strong>Pour le foodie en herbe</strong> : Philips Essential – cuisson homogène, pour impressionner tes crush sans cramer ton chez-toi.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Acheter trop grand** : Une friteuse de 5 litres dans un studio, c’est comme un frigo dans une Smart.
-**Ignorer le nettoyage** : Un panier non antiadhésif, c’est la corvée du dimanche qui te pourrit la vie.
-**Choisir trop bruyant** : Un modèle qui ronronne fort, adieu les révisions et les séances Netflix.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Acheter trop grand</strong> : Une friteuse de 5 litres dans un studio, c’est comme un frigo dans une Smart.
+<strong>Ignorer le nettoyage</strong> : Un panier non antiadhésif, c’est la corvée du dimanche qui te pourrit la vie.
+<strong>Choisir trop bruyant</strong> : Un modèle qui ronronne fort, adieu les révisions et les séances Netflix.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

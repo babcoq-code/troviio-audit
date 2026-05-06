@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Friteuse a air pour famille de 4 personnes : quel modele choisir ?</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Friteuse a air pour famille de 4 personnes : quel modele choisir ?</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Vous etes 4 a la maison ? Les meilleures friteuses a air de 6L et plus.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Capacite** : Minimum 5,5 litres pour nourrir 4 affames sans faire cuire en plusieurs fournees.
-**Puissance** : 1700W+ pour que tes nuggets soient croustillants avant que ton ado finisse son steak.
-**Nettoyage** : Elements amovibles au lave-vaisselle, sinon tu vas pleurer comme dans "Le Chagrin et la Pitie".
-**Programmes** : Au moins 8 presets, parce que tu sais pas cuire un oeuf sans tuto YouTube.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Capacite</strong> : Minimum 5,5 litres pour nourrir 4 affames sans faire cuire en plusieurs fournees.
+<strong>Puissance</strong> : 1700W+ pour que tes nuggets soient croustillants avant que ton ado finisse son steak.
+<strong>Nettoyage</strong> : Elements amovibles au lave-vaisselle, sinon tu vas pleurer comme dans "Le Chagrin et la Pitie".
+<strong>Programmes</strong> : Au moins 8 presets, parce que tu sais pas cuire un oeuf sans tuto YouTube.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ninja Foodi 10-en-1** : Le choix du chef (ou du parent qui veut impressionner ses beaux-parents). Il fait tout : frites, pizza, gateau, et meme un roti qui sauve ton dimanche soir. Mais evite si tes enfants sont des picky eaters style "je veux que des pâtes à la bolo", car ses 10 fonctions te rendront tyran. Pour les familles qui veulent un airfryer capable de dompter l’ennui culinaire.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Ninja Foodi 10-en-1</strong> : Le choix du chef (ou du parent qui veut impressionner ses beaux-parents). Il fait tout : frites, pizza, gateau, et meme un roti qui sauve ton dimanche soir. Mais evite si tes enfants sont des picky eaters style "je veux que des pâtes à la bolo", car ses 10 fonctions te rendront tyran. Pour les familles qui veulent un airfryer capable de dompter l’ennui culinaire.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Philips XXL Combi** : Le mastodonte qui te rappelle que ta cuisine est trop petite. Il croustille les frites comme un chef et peut cuire un poulet entier, mais son format te force à jouer au Tetris avec tes placards. À éviter si tu vis dans un studio parisien ou si ton plan de travail est déjà encombré par une machine à pain inutile. Pour ceux qui ont de la place et l’amour du gras.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Philips XXL Combi</strong> : Le mastodonte qui te rappelle que ta cuisine est trop petite. Il croustille les frites comme un chef et peut cuire un poulet entier, mais son format te force à jouer au Tetris avec tes placards. À éviter si tu vis dans un studio parisien ou si ton plan de travail est déjà encombré par une machine à pain inutile. Pour ceux qui ont de la place et l’amour du gras.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Cosori Dual Blaze** : Le hipster des airfryers, design sobre et fonctions cools (maintien au chaud, prechauffage). Parfait pour les familles qui aiment la précision, mais son panier est un peu petit pour 4 grosses portions de wings. Évite si tes ados ont faim juste après le dîner, car tu devras relancer une fournée en pleine partie de FIFA. Pour les contrôle-freaks de la cuisson.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Cosori Dual Blaze</strong> : Le hipster des airfryers, design sobre et fonctions cools (maintien au chaud, prechauffage). Parfait pour les familles qui aiment la précision, mais son panier est un peu petit pour 4 grosses portions de wings. Évite si tes ados ont faim juste après le dîner, car tu devras relancer une fournée en pleine partie de FIFA. Pour les contrôle-freaks de la cuisson.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour la famille nombreuse qui commande souvent Deliveroo** : Prends le Ninja Foodi, il te fera oublier que tu sais pas cuisiner.
-**Pour les parents eco-responsables qui trient leurs dechets** : Choisis le Philips XXL, il consomme moins d'énergie qu’un chargeur d’iPhone.
-**Pour les ados qui veulent impressionner sur TikTok** : Le Cosori Dual Blaze, avec son rendu digne d’un food vlog.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour la famille nombreuse qui commande souvent Deliveroo</strong> : Prends le Ninja Foodi, il te fera oublier que tu sais pas cuisiner.
+<strong>Pour les parents eco-responsables qui trient leurs dechets</strong> : Choisis le Philips XXL, il consomme moins d'énergie qu’un chargeur d’iPhone.
+<strong>Pour les ados qui veulent impressionner sur TikTok</strong> : Le Cosori Dual Blaze, avec son rendu digne d’un food vlog.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Acheter le moins cher** : Un modele a 40€ te fera des frites molles, comme ton ex.
-**Oublier la taille du panier** : Un petit airfryer pour 4 personnes, c’est comme un lit pour une famille de hobbits.
-**Ignorer le bruit** : Certains modèles hurlent comme un moteur de Twingo ; verifie les decibels.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Acheter le moins cher</strong> : Un modele a 40€ te fera des frites molles, comme ton ex.
+<strong>Oublier la taille du panier</strong> : Un petit airfryer pour 4 personnes, c’est comme un lit pour une famille de hobbits.
+<strong>Ignorer le bruit</strong> : Certains modèles hurlent comme un moteur de Twingo ; verifie les decibels.</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

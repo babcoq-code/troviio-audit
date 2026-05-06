@@ -241,7 +241,7 @@ export default function SearchOmnibox() {
             color: "var(--text-muted)",
           }}
         >
-          Aucun produit trouvé pour &quot;{query}&quot;.
+          Aucun produit trouvé pour "{query}".
         </div>
       )}
     </div>

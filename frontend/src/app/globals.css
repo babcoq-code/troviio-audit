@@ -69,6 +69,16 @@ body {
   background: radial-gradient(circle at top, rgba(255, 107, 43, 0.12), transparent 38%);
 }
 
+/* Merchant row hover */
+.merchant-row:hover {
+  border-color: #3ED6A3 !important;
+  background: linear-gradient(90deg, rgba(62,214,163,.04), transparent) !important;
+}
+.merchant-row:hover .merchant-cta {
+  background: #ff6b2b !important;
+  color: #fff !important;
+}
+
 .troviio-placeholder-anim {
   animation: fadeSlide 2600ms ease-in-out;
 }

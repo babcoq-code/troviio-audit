@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Machine a cafe grain silencieuse pour la maison et le bureau</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Machine a cafe grain silencieuse pour la maison et le bureau</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Marre du bruit de broyeur qui reveille tout le monde ? Machines a cafe les plus silencieuses.</p>
           </div>
@@ -44,10 +44,10 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les criteres importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Bruit en décibels** : Un critère crucial pour ne pas ressembler à un chantier. On vise sous 50 dB.
-**Qualité de mouture** : Des grains bien broyés pour un espresso qui claque. Pas de poudre de perlimpinpin.
-**Capacité du réservoir** : Assez d’eau pour survivre à une réunion sans devoir faire le plein toutes les 30 minutes.
-**Nettoyage automatique** : Parce que laver manuellement, c’est pour les pigeons. L’auto-nettoyage, c’est la vie.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Bruit en décibels</strong> : Un critère crucial pour ne pas ressembler à un chantier. On vise sous 50 dB.
+<strong>Qualité de mouture</strong> : Des grains bien broyés pour un espresso qui claque. Pas de poudre de perlimpinpin.
+<strong>Capacité du réservoir</strong> : Assez d’eau pour survivre à une réunion sans devoir faire le plein toutes les 30 minutes.
+<strong>Nettoyage automatique</strong> : Parce que laver manuellement, c’est pour les pigeons. L’auto-nettoyage, c’est la vie.</p>
           </div>
         </div>
 
@@ -55,13 +55,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**De’Longhi Magnifica S** – Le meilleur pour les mortels. Si tu veux un café digne d’un barista sans vendre un rein, prends ça. C’est silencieux (pour une machine à grain), robuste, et ça fait le café sans faire de cinéma. À éviter si tu es un bourge qui exige le silence absolu d’un tombeau. Pour le commun des mortels, c’est le Graal.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>De’Longhi Magnifica S</strong> – Le meilleur pour les mortels. Si tu veux un café digne d’un barista sans vendre un rein, prends ça. C’est silencieux (pour une machine à grain), robuste, et ça fait le café sans faire de cinéma. À éviter si tu es un bourge qui exige le silence absolu d’un tombeau. Pour le commun des mortels, c’est le Graal.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Jura E8** – La machine des vrais snobs. Ultra silencieuse, design sexy, et café de qualité supérieure. Mais attention, ton compte en banque va pleurer. Parfait pour les cadres qui veulent impressionner leur patron. À éviter si tu es encore en stage non rémunéré ou si tu préfères manger des pâtes que boire du bon café. Un bijou, mais avec un prix de bijou.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Jura E8</strong> – La machine des vrais snobs. Ultra silencieuse, design sexy, et café de qualité supérieure. Mais attention, ton compte en banque va pleurer. Parfait pour les cadres qui veulent impressionner leur patron. À éviter si tu es encore en stage non rémunéré ou si tu préfères manger des pâtes que boire du bon café. Un bijou, mais avec un prix de bijou.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Siemens EQ.6** – Le couteau suisse des expressos. Compact, silencieux, et avec un écran tactile qui te fait croire que tu pilotes un vaisseau spatial. Idéal pour les bureaux où l’espace est limité. Par contre, le réservoir d’eau est un peu petit : prévois une pause café toutes les 5 tasses. À éviter si tu es un goinfre de caféine. Un bon plan pour les petits espaces.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Siemens EQ.6</strong> – Le couteau suisse des expressos. Compact, silencieux, et avec un écran tactile qui te fait croire que tu pilotes un vaisseau spatial. Idéal pour les bureaux où l’espace est limité. Par contre, le réservoir d’eau est un peu petit : prévois une pause café toutes les 5 tasses. À éviter si tu es un goinfre de caféine. Un bon plan pour les petits espaces.</p>
           </div>
         </div>
 
@@ -69,9 +69,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modele selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Pour le barista du dimanche matin** : Prends la De’Longhi Magnifica S. Rapport qualité-prix imbattable.
-**Pour le télétravailleur insomniaque** : La Jura E8, pour un café silencieux même à 5h du matin.
-**Pour le bureau en open space** : La Siemens EQ.6, compacte et discrète pour éviter les regards noirs.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Pour le barista du dimanche matin</strong> : Prends la De’Longhi Magnifica S. Rapport qualité-prix imbattable.
+<strong>Pour le télétravailleur insomniaque</strong> : La Jura E8, pour un café silencieux même à 5h du matin.
+<strong>Pour le bureau en open space</strong> : La Siemens EQ.6, compacte et discrète pour éviter les regards noirs.</p>
           </div>
         </div>
 
@@ -79,9 +79,9 @@ export default function GuidePage() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs a eviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Choisir le prix comme seul critère** : Une machine à 200€ fait souvent un bruit d’enfer et un café infect.
-**Oublier l’entretien** : Si tu ne nettoies pas, tu bois du café au goût de rouille. Dégueu.
-**Ignorer le bruit de la mouture** : Certaines sont silencieuses, d’autres réveillent les morts. Vérifie les décibels !</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Choisir le prix comme seul critère</strong> : Une machine à 200€ fait souvent un bruit d’enfer et un café infect.
+<strong>Oublier l’entretien</strong> : Si tu ne nettoies pas, tu bois du café au goût de rouille. Dégueu.
+<strong>Ignorer le bruit de la mouture</strong> : Certaines sont silencieuses, d’autres réveillent les morts. Vérifie les décibels !</p>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d&apos;Associes d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiques sont susceptibles de varier. Troviio participe au Programme d'Associes d'Amazon EU...</p>
         </div>
       </section>
 

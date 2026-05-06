@@ -130,7 +130,7 @@ export default function DuelsPage() {
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#FF6B5F]">⚔️ LES DUELS TROVIIO</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Tous nos duels produits</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">
-              Deux produits, un vainqueur. On les confronte sur les specs, le prix et l&apos;usage pour te dire lequel mérite ta thune. Avec des références pop culture, parce que la vie est trop courte pour des comparatifs chiants.
+              Deux produits, un vainqueur. On les confronte sur les specs, le prix et l'usage pour te dire lequel mérite ta thune. Avec des références pop culture, parce que la vie est trop courte pour des comparatifs chiants.
             </p>
           </div>
         </div>
@@ -185,7 +185,7 @@ export default function DuelsPage() {
               boxShadow: "0 8px 32px rgba(255,107,95,0.35)"
             }}
           >
-            ← Retour à l&apos;accueil
+            ← Retour à l'accueil
           </Link>
         </div>
       </section>

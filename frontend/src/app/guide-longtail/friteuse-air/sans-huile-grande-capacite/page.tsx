@@ -16,7 +16,7 @@ export default function GuidePage() {
             <span className="text-white font-medium">Friteuse a air sans huile grande capacite : pour les vraies familles</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Friteuse a air sans huile grande capacite : pour les vraies familles</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Friteuse a air 8L+ pour nourrir toute la tribu sans se prendre la tete avec l'huile.</p>
           </div>
@@ -32,7 +32,7 @@ export default function GuidePage() {
 
         {/* Reponse rapide */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">R&eacute;ponse rapide</h2>
+          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Réponse rapide</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Si tu veux l’essentiel sans te prendre la tête : prends un modèle de 8 à 10 litres pour une vraie famille de 4-6 personnes. Les meilleurs rapport qualité/prix sont chez Ninja et Philips, mais Cosori fait de l’œil au portefeuille. Recommandations : Ninja Foodi MAX Dual Zone (10L, environ 180€, deux paniers pour cuire frites et poulet en même temps), Philips Premium XXL (8L, 220€, fiable comme un couteau suisse), Cosori Pro II (8L, 120€, le petit budget qui tue).</p>
           </div>
@@ -40,52 +40,52 @@ export default function GuidePage() {
 
         {/* Criteres */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les crit&egrave;res importants</h2>
+          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les critères importants</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">- **Capacité réelle** : 8 litres, ce n’est pas 8 frites. Les fabricants gonflent les chiffres comme un influenceur son nombre d’abonnés. Vérifie les dimensions intérieures : si tu ne peux pas y glisser un poulet entier ou 1,5 kg de frites, c’est un grille-pain déguisé.
-- **Puissance et cuisson homogène** : 1700W minimum, sinon tes nuggets seront moisis d’un côté et carbonisés de l’autre. Les modèles avec ventilation 360° ou double hélice sont les héros méconnus de la frite parfaite.
-- **Nettoyage** : Les paniers anti-adhésifs qui passent au lave-vaisselle sont des licornes. Sinon, tu finis par gratter du gras comme un archéologue. Cherche des résistances accessibles – les coins morts, c’est le mal.
-- **Fonctions et bruit** : Les préréglages « poulet » ou « frites » sont souvent inutiles, mais un mode « réchauffe » est plus utile que ta belle-mère. Le bruit ? Un bon modèle fait moins de 55 dB. Au-dessus, c’est un aspirateur en pleine crise.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">- <strong>Capacité réelle</strong> : 8 litres, ce n’est pas 8 frites. Les fabricants gonflent les chiffres comme un influenceur son nombre d’abonnés. Vérifie les dimensions intérieures : si tu ne peux pas y glisser un poulet entier ou 1,5 kg de frites, c’est un grille-pain déguisé.
+- <strong>Puissance et cuisson homogène</strong> : 1700W minimum, sinon tes nuggets seront moisis d’un côté et carbonisés de l’autre. Les modèles avec ventilation 360° ou double hélice sont les héros méconnus de la frite parfaite.
+- <strong>Nettoyage</strong> : Les paniers anti-adhésifs qui passent au lave-vaisselle sont des licornes. Sinon, tu finis par gratter du gras comme un archéologue. Cherche des résistances accessibles – les coins morts, c’est le mal.
+- <strong>Fonctions et bruit</strong> : Les préréglages « poulet » ou « frites » sont souvent inutiles, mais un mode « réchauffe » est plus utile que ta belle-mère. Le bruit ? Un bon modèle fait moins de 55 dB. Au-dessus, c’est un aspirateur en pleine crise.</p>
           </div>
         </div>
 
         {/* Verdicts */}
-        <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre s&eacute;lection</h2>
+        <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre sélection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ninja Foodi MAX Dual Zone AF400EU** (10L, 180€) : Le roi de la famille nombreuse. Deux paniers indépendants – tu peux cuire des frites et des ailes de poulet en même temps sans qu’elles se battent pour la place. C’est comme avoir deux fours dans un seul, mais sans le look années 80. Le seul défaut : il prend autant de place qu’un micro-ondes, donc prépare-toi à ranger ta bouilloire. Idéal pour les repas de 6 personnes où tout le monde veut manger chaud en même temps.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Ninja Foodi MAX Dual Zone AF400EU</strong> (10L, 180€) : Le roi de la famille nombreuse. Deux paniers indépendants – tu peux cuire des frites et des ailes de poulet en même temps sans qu’elles se battent pour la place. C’est comme avoir deux fours dans un seul, mais sans le look années 80. Le seul défaut : il prend autant de place qu’un micro-ondes, donc prépare-toi à ranger ta bouilloire. Idéal pour les repas de 6 personnes où tout le monde veut manger chaud en même temps.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Cosori Pro II CP158-AF** (8L, 120€) : Le rapport qualité/prix qui te fait sourire en caisse. 8 litres, 1700W, une cuisson uniforme grâce à sa technologie « QuickHeat » – tu oublies les zones crues. Il a 12 préréglages, mais franchement, tu n’utiliseras que « frites » et « poulet ». Le petit plus : une fonction de mémoire pour tes recettes perso, comme si la machine te connaissait mieux que ton ex. Pour 120€, c’est le deal du siècle.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Cosori Pro II CP158-AF</strong> (8L, 120€) : Le rapport qualité/prix qui te fait sourire en caisse. 8 litres, 1700W, une cuisson uniforme grâce à sa technologie « QuickHeat » – tu oublies les zones crues. Il a 12 préréglages, mais franchement, tu n’utiliseras que « frites » et « poulet ». Le petit plus : une fonction de mémoire pour tes recettes perso, comme si la machine te connaissait mieux que ton ex. Pour 120€, c’est le deal du siècle.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Philips Premium XXL HD9860/90** (8L, 220€) : L’option premium pour ceux qui veulent du matos qui dure plus longtemps que leur dernier régime. Technologie « Fat Removal » qui réduit la graisse des aliments – parfait si tu fais semblant de manger sain. Il chauffe en 30 secondes et cuit 1,5 kg de frites en 20 minutes. Le prix pique, mais tu l’achètes une fois et tu le lègues à tes petits-enfants.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Philips Premium XXL HD9860/90</strong> (8L, 220€) : L’option premium pour ceux qui veulent du matos qui dure plus longtemps que leur dernier régime. Technologie « Fat Removal » qui réduit la graisse des aliments – parfait si tu fais semblant de manger sain. Il chauffe en 30 secondes et cuit 1,5 kg de frites en 20 minutes. Le prix pique, mais tu l’achètes une fois et tu le lègues à tes petits-enfants.</p>
           </div>
         </div>
 
         {/* Profils */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel mod&egrave;le selon votre profil</h2>
+          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Quel modèle selon votre profil</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">- **La famille de 6 avec des ados affamés** : Ninja Foodi MAX Dual Zone. Les paniers jumeaux évitent les bagarres pour la dernière aile de poulet.
-- **Le couple qui veut cuisiner sans se ruiner** : Cosori Pro II. Assez pour deux, avec une marge pour les restes du lendemain.
-- **Le flexeur qui veut impressionner ses invités** : Philips Premium XXL. Le design et la fiabilité justifient le prix – et tu peux frimer avec la fonction « roast » pour le dimanche.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">- <strong>La famille de 6 avec des ados affamés</strong> : Ninja Foodi MAX Dual Zone. Les paniers jumeaux évitent les bagarres pour la dernière aile de poulet.
+- <strong>Le couple qui veut cuisiner sans se ruiner</strong> : Cosori Pro II. Assez pour deux, avec une marge pour les restes du lendemain.
+- <strong>Le flexeur qui veut impressionner ses invités</strong> : Philips Premium XXL. Le design et la fiabilité justifient le prix – et tu peux frimer avec la fonction « roast » pour le dimanche.</p>
           </div>
         </div>
 
         {/* Erreurs */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs &agrave; &eacute;viter</h2>
+          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Les erreurs à éviter</h2>
           <div className="bg-[#161827] rounded-2xl border border-white/5 p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">1. **Acheter un modèle de 5 litres pour 5 personnes** : Tu vas faire 2 fournées, comme avec un four classique. La friteuse à air « grande capacité » commence à 8 litres. 5 litres, c’est pour les célibataires ou les hamsters.
-2. **Croire que tous les paniers anti-adhésifs passent au lave-vaisselle** : Beaucoup se dégradent au bout de 3 cycles. Lis les avis comme si c’était le texte d’une loi – la durabilité, ça se vérifie.
-3. **Ignorer le bruit** : Un modèle à 60 dB, c’est un sèche-cheveux en pleine nuit. Teste-le en magasin ou regarde les specs. Sinon, tu vas détester la cuisine.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">1. <strong>Acheter un modèle de 5 litres pour 5 personnes</strong> : Tu vas faire 2 fournées, comme avec un four classique. La friteuse à air « grande capacité » commence à 8 litres. 5 litres, c’est pour les célibataires ou les hamsters.
+2. <strong>Croire que tous les paniers anti-adhésifs passent au lave-vaisselle</strong> : Beaucoup se dégradent au bout de 3 cycles. Lis les avis comme si c’était le texte d’une loi – la durabilité, ça se vérifie.
+3. <strong>Ignorer le bruit</strong> : Un modèle à 60 dB, c’est un sèche-cheveux en pleine nuit. Teste-le en magasin ou regarde les specs. Sinon, tu vas détester la cuisine.</p>
           </div>
         </div>
 
         {/* FAQ */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Questions fr&eacute;quentes</h2>
+          <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Questions fréquentes</h2>
           <div className="divide-y divide-white/10 rounded-3xl border border-white/5 bg-[#161827]">
             <details className="p-5 group">
   <summary className="cursor-pointer list-none font-semibold text-sm flex items-center justify-between">
@@ -141,7 +141,7 @@ export default function GuidePage() {
       {/* Disclaimer */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiqu&eacute;s sont susceptibles de varier. Troviio participe au Programme d&apos;Associ&eacute;s d&apos;Amazon EU...</p>
+          <p className="text-xs leading-6 text-[#6B6B7A]">* Les prix indiqués sont susceptibles de varier. Troviio participe au Programme d'Associés d'Amazon EU...</p>
         </div>
       </section>
 

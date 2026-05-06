@@ -60,7 +60,6 @@ export default async function ComparePage({ params }: PageProps) {
     );
   }
 
-  const fmt = (v: number) => v != null ? new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(v) : "N/C";
   const allKeys = [...new Set([...Object.keys(p1.specs || {}), ...Object.keys(p2.specs || {})])];
   const s1 = p1.estimated_score || 0;
   const s2 = p2.estimated_score || 0;

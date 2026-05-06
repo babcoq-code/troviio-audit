@@ -10,8 +10,6 @@ import PriceHistoryChart from "@/components/product/PriceHistoryChart";
 import ProductTestSection from "@/components/product/ProductTestSection";
 import { AccessoriesTroviioWidget } from "@/components/accessories/AccessoriesTroviioWidget";
 
-const EUR = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
-
 interface ProductClientProps {
   product: any;
 }
@@ -121,17 +119,19 @@ export default function ProductClient({ product }: ProductClientProps) {
                       Prix mis à jour en direct ↓
                     </p>
                   </div>
-                ) : product.price_eur != null && (
+                ) : product.amazon_asin && (
                   <div className="rounded-3xl border border-white/10 bg-[var(--bg-surface)] p-5">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-[#8B8FA3]">
-                      Prix estimé
+                    <p className="text-xs font-semibold uppercase tracking-widest text-[#8B8FA3] mb-1">
+                      Disponible sur Amazon
                     </p>
-                    <p className="mt-1 text-3xl font-bold text-white">
-                      {EUR.format(product.price_eur)}
-                    </p>
-                    <p className="mt-1 text-xs text-[#8B8FA3]">
-                      * Prix indicatif — susceptible de varier
-                    </p>
+                    <a
+                      href={`https://www.amazon.fr/dp/${product.amazon_asin}?tag=troviio-21`}
+                      target="_blank"
+                      rel="nofollow sponsored noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-[#ff6b2b] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#e55a1f]"
+                    >
+                      Voir sur Amazon →
+                    </a>
                   </div>
                 )}
               </div>
@@ -140,7 +140,7 @@ export default function ProductClient({ product }: ProductClientProps) {
               <p className="text-xs text-[#8B8FA3] border-t border-white/10 pt-4">
                 🔗 Certains liens vers les marchands sont des <strong>liens affiliés</strong>.
                 En tant que Partenaire Amazon, Troviio perçoit une commission sur les achats éligibles.
-                Cela n&apos;influence pas nos recommandations.
+                Cela n'influence pas nos recommandations.
               </p>
             </div>
           </div>
@@ -158,7 +158,7 @@ export default function ProductClient({ product }: ProductClientProps) {
             Comparer les prix
           </p>
           <h2 className="text-2xl font-bold mb-6">
-            Où l&apos;acheter au meilleur prix ?
+            Où l'acheter au meilleur prix ?
           </h2>
           <React.Suspense fallback={<PriceSkeleton />}>
             <PriceComparisonTable slug={product.slug} />

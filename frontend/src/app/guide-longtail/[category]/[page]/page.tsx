@@ -173,7 +173,7 @@ export default async function SeoLongTailPage({ params }: PageProps) {
             <span className="text-white font-medium">{seoPage.h1}</span>
           </nav>
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d&apos;achat Troviio</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">{seoPage.h1}</h1>
             <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">{seoPage.intro_text}</p>
           </div>
@@ -269,7 +269,7 @@ export default async function SeoLongTailPage({ params }: PageProps) {
         {/* Sidebar Chat */}
         <aside className="lg:sticky lg:top-8 lg:self-start">
           <section className="rounded-3xl border border-white/5 bg-[#1A1D2E] p-6">
-            <p className="text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Assistant d&apos;achat</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Assistant d'achat</p>
             <h2 className="mt-2 text-xl font-bold tracking-tight font-display">Affiner cette sélection</h2>
             <p className="mt-3 text-sm leading-6 text-[#8B8FA3]">Votre intention est pré-remplie — Troviio adapte ses recommandations à votre contexte exact.</p>
             <form action="/chat" method="GET" className="mt-5 space-y-4">
@@ -304,7 +304,7 @@ export default async function SeoLongTailPage({ params }: PageProps) {
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <p className="text-xs leading-6 text-[#6B6B7A]">
-            * Les prix indiqués sont susceptibles de varier. Troviio participe au Programme d&apos;Associés d&apos;Amazon EU, un programme d&apos;affiliation qui nous permet de percevoir une commission sur les achats effectués via nos liens, sans surcoût pour vous.
+            * Les prix indiqués sont susceptibles de varier. Troviio participe au Programme d'Associés d'Amazon EU, un programme d'affiliation qui nous permet de percevoir une commission sur les achats effectués via nos liens, sans surcoût pour vous.
           </p>
         </div>
       </section>

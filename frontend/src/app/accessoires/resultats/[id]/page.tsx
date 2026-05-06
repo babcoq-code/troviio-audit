@@ -139,7 +139,7 @@ export default async function AccessoriesResultPage({
               </span>
 
               <h1 className="mt-5 font-sora text-4xl font-extrabold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
-                Les accessoires qu&apos;il te faut{" "}
+                Les accessoires qu'il te faut{" "}
                 <span className="text-[#FF6B5F]">
                   pour {productBrand} {productName}
                 </span>
@@ -147,7 +147,7 @@ export default async function AccessoriesResultPage({
 
               {usageSummary && (
                 <blockquote className="mt-4 rounded-2xl border-l-4 border-[#4257FF] bg-[#4257FF]/5 px-4 py-3 text-sm italic leading-7 text-slate-600 break-words [overflow-wrap:anywhere]">
-                  &ldquo;{usageSummary}&rdquo;
+                  "{usageSummary}"
                 </blockquote>
               )}
 
@@ -203,7 +203,7 @@ export default async function AccessoriesResultPage({
               id="accessories-title"
               className="mt-2 font-sora text-3xl font-bold tracking-tight sm:text-4xl"
             >
-              Voici les accessoires qu&apos;on a dénichés pour toi 🔧
+              Voici les accessoires qu'on a dénichés pour toi 🔧
             </h2>
           </div>
 
@@ -314,7 +314,7 @@ export default async function AccessoriesResultPage({
                 Troviio a analysé les caractéristiques de ton appareil et cherché
                 les accessoires compatibles sur le marché. Filtres, brosses,
                 batteries, protections, stations — chaque accessoire a été vérifié
-                mentalement pour s&apos;assurer qu&apos;il est bien compatible avec
+                mentalement pour s'assurer qu'il est bien compatible avec
                 ton modèle exact.
               </p>
               <p className="mt-4">
@@ -324,7 +324,7 @@ export default async function AccessoriesResultPage({
               </p>
               <p className="mt-4 rounded-xl border border-[#4257FF]/20 bg-[#4257FF]/5 px-4 py-3 text-xs text-slate-600">
                 ⚡ <strong>EU AI Act — Article 50.</strong> Ces recommandations
-                ont été générées par un système d&apos;IA. Les prix et
+                ont été générées par un système d'IA. Les prix et
                 disponibilités peuvent varier. Vérifiez les informations sur
                 Amazon avant achat.
               </p>
@@ -335,10 +335,10 @@ export default async function AccessoriesResultPage({
         {/* ── FOOTER DISCLOSURE ── */}
         <footer className="mt-10 pb-6 text-center text-xs leading-7 text-slate-500">
           <p>
-            Troviio participe au Programme Partenaires d&apos;Amazon EU. En tant
+            Troviio participe au Programme Partenaires d'Amazon EU. En tant
             que Partenaire Amazon, Troviio réalise un bénéfice sur les achats
             remplissant les conditions requises. Les liens de cette page peuvent
-            être des liens d&apos;affiliation. Cela ne vous coûte rien de plus et
+            être des liens d'affiliation. Cela ne vous coûte rien de plus et
             nous permet de rester gratuit.
           </p>
         </footer>

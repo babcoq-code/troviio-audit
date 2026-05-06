@@ -73,6 +73,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "ipad-pro-m5-11-vs-samsung-galaxy-tab-s11-ultra",
     "switch-2-pro-controller-vs-8bitdo-pro2-halleffect",
     "samsung-galaxy-s26-ultra-vs-iphone-17-pro-max",
+    "apple-watch-ultra-2-vs-samsung-galaxy-watch-ultra",
+    "tesla-model-y-juniper-vs-tesla-model-3-highland",
     "dyson-gen5-detect-vs-samsung-bespoke-jet",
     "ninja-foodi-flexdrawer-vs-cosori-turboblaze",
     "miele-wcr870-vs-bosch-wgb244a2fr",
@@ -99,6 +101,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "meilleur-robot-cuisine",
     "meilleure-friteuse-air",
     "meilleur-aspirateur-balai",
+    "meilleure-montre-connectee",
+    "meilleure-voiture-electrique",
   ];
   const topRoutes: MetadataRoute.Sitemap = TOP_SLUGS.map((slug) => ({
     url: `${SITE_URL}/tops/${slug}`,
@@ -127,6 +131,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Café grain
     "cafe-grain/bureau-entreprise",
     // Friteuse air
+    "montre-connectee/meilleure-montre-sport",
+    "montre-connectee/montre-connectee-pas-chere",
+    "voiture-electrique/voiture-electrique-autonomie-maximum",
+    "voiture-electrique/voiture-electrique-premier-achat",
     "friteuse-air/famille-4-personnes",
     "friteuse-air/studio-etudiant",
     "friteuse-air/sans-huile-grande-capacite",

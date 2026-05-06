@@ -26,6 +26,8 @@ const CHIP_PROMPTS: Record<string, string> = {
   "🎮 Laptop gamer": "Je veux un laptop qui fait tourner Cyberpunk en ultra sans ressembler à un sapin de Noël. Des idées ?",
   "🔊 Enceinte BT": "Je cherche une enceinte Bluetooth portable pour l'apéro en terrasse et la douche. Des recommandations ?",
   "🚲 Vélo électrique": "Je veux remplacer ma voiture pour les trajets quotidiens, tu me conseilles quel vélo électrique ?",
+  "⌚ Montre connectée": "Je cherche une montre connectée qui me suit à la salle, au bureau et au lit. Pas besoin de satellite, juste une bonne batterie et des notifs fiables.",
+  "🚗 Voiture électrique": "Je veux passer à l'électrique mais j'y connais rien. Entre autonomie, recharge et bonus, tu m'aides à y voir clair ?",
   "🔌 Station USB-C": "J'en ai marre de ramper sous mon bureau pour brancher mon laptop, ma batterie externe et mon téléphone en même temps. Trouve-moi une station USB-C qui me sauve la vie (et mon dos).",
 };
 const CHIP_CATEGORIES: Record<string, string> = {
@@ -39,6 +41,8 @@ const CHIP_CATEGORIES: Record<string, string> = {
   "🔊 Enceinte BT": "enceinte-bt",
   "🚲 Vélo électrique": "velo-electrique",
   "🔌 Station USB-C": "station-charge-usb-c",
+  "⌚ Montre connectée": "montre-connectee",
+  "🚗 Voiture électrique": "voiture-electrique",
 };
 const CHIPS = Object.keys(CHIP_CATEGORIES);
 
@@ -329,7 +333,7 @@ export default function ChatHero({ category }: { category?: string }) {
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm" style={{ color: "var(--text-muted)" }}>
           <span>✅ Gratuit · Sans inscription</span>
-          <span>🔍 24 catégories</span>
+          <span>🔍 32 catégories</span>
           <span>⭐ 94% de précision</span>
           <span>🔒 Données privées</span>
         </div>

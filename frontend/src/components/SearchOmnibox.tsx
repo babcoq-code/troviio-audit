@@ -2,18 +2,23 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Search, X } from "lucide-react";
+import { Search, X, TrendingUp, ArrowRight } from "lucide-react";
 
 interface SearchHit {
   slug: string;
   name: string;
   brand: string;
   category_name?: string;
+  category_slug?: string;
   estimated_score: number;
   image_url?: string;
 }
 
-const DEBOUNCE_MS = 200;
+const DEBOUNCE_MS = 250;
+const POPULAR_SEARCHES = [
+  "machine à café", "aspirateur robot", "TV", "casque audio",
+  "matelas", "friteuse à air", "enceinte", "smartphone"
+];
 
 export default function SearchOmnibox() {
   const [query, setQuery] = useState("");
@@ -25,6 +30,7 @@ export default function SearchOmnibox() {
   const listRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const hasResults = results.length > 0;
 
   const search = useCallback(async (q: string) => {
     if (q.trim().length < 2) {
@@ -33,7 +39,6 @@ export default function SearchOmnibox() {
       return;
     }
 
-    // Cancel previous request
     if (abortRef.current) abortRef.current.abort();
     const controller = new AbortController();
     abortRef.current = controller;
@@ -45,10 +50,9 @@ export default function SearchOmnibox() {
       });
       if (!res.ok) return;
       const data = await res.json();
-      // data can be array directly or { products: [...] }
       const hits = Array.isArray(data) ? data : data.products || data.results || [];
       setResults(hits);
-      setOpen(hits.length > 0);
+      setOpen(true);
       setSelectedIdx(-1);
     } catch (err: unknown) {
       if (err instanceof Error && err.name !== "AbortError") {
@@ -78,16 +82,20 @@ export default function SearchOmnibox() {
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
         setSelectedIdx((i) => Math.max(i - 1, 0));
-      } else if (e.key === "Enter" && selectedIdx >= 0) {
+      } else if (e.key === "Enter") {
         e.preventDefault();
-        const hit = results[selectedIdx];
-        if (hit) window.location.href = `/produit/${hit.slug}`;
+        if (selectedIdx >= 0) {
+          const hit = results[selectedIdx];
+          if (hit) window.location.href = `/produit/${hit.slug}`;
+        } else if (query.trim()) {
+          window.location.href = `/produit/${query.trim().toLowerCase().replace(/\s+/g, '-')}`;
+        }
       } else if (e.key === "Escape") {
         setOpen(false);
         inputRef.current?.blur();
       }
     },
-    [open, results, selectedIdx]
+    [open, results, selectedIdx, query]
   );
 
   // Close on click outside
@@ -113,18 +121,36 @@ export default function SearchOmnibox() {
     inputRef.current?.focus();
   };
 
+  const popularSearch = (term: string) => {
+    setQuery(term);
+    search(term);
+    inputRef.current?.focus();
+  };
+
   return (
-    <div className="relative w-full max-w-2xl mx-auto mb-6">
+    <div className="relative w-full max-w-2xl mx-auto mb-6 px-4 sm:px-0">
+      {/* Label */}
+      <label className="block text-center text-sm font-medium mb-3" style={{ color: "var(--text-muted)" }}>
+        🔍 <span className="font-semibold" style={{ color: "var(--text)" }}>Recherche directe</span>
+        {" — "}Trouve un produit par son nom ou sa marque
+      </label>
+
+      {/* Input wrapper */}
       <div
-        className="relative flex items-center rounded-2xl border transition-all duration-200 focus-within:shadow-lg"
+        className="relative flex items-center rounded-2xl border-2 transition-all duration-300 shadow-lg"
         style={{
-          borderColor: open && results.length > 0 ? "var(--coral)" : "var(--border)",
-          backgroundColor: "rgba(17,17,19,0.9)",
+          borderColor: open && query.length >= 2
+            ? "var(--coral)"
+            : "var(--border)",
+          backgroundColor: "rgba(17,17,19,0.92)",
+          boxShadow: open && query.length >= 2
+            ? "0 0 0 4px rgba(255,107,95,0.12), 0 8px 32px rgba(0,0,0,0.4)"
+            : "0 4px 24px rgba(0,0,0,0.25)",
         }}
       >
         <Search
-          className="ml-4 h-5 w-5 shrink-0"
-          style={{ color: loading ? "var(--coral)" : "var(--text-muted)" }}
+          className="ml-4 h-5 w-5 shrink-0 transition-colors duration-200"
+          style={{ color: loading ? "var(--coral)" : query ? "var(--coral)" : "var(--text-muted)" }}
         />
         <input
           ref={inputRef}
@@ -133,115 +159,148 @@ export default function SearchOmnibox() {
           onChange={(e) => handleInput(e.target.value)}
           onKeyDown={handleKey}
           onFocus={() => { if (results.length > 0) setOpen(true); }}
-          placeholder="Cherche un produit par nom, marque, catégorie..."
+          placeholder="Cherche un produit par nom, marque..."
           aria-label="Rechercher un produit"
           aria-expanded={open}
           aria-controls="search-results"
           aria-autocomplete="list"
-          aria-activedescendant={selectedIdx >= 0 ? `search-hit-${selectedIdx}` : undefined}
-          className="h-12 w-full bg-transparent px-3 text-sm outline-none placeholder:text-sm"
+          role="combobox"
+          className="h-14 w-full bg-transparent px-3 text-base outline-none placeholder:text-sm placeholder:opacity-60 tracking-wide"
           style={{ color: "var(--text)" }}
           autoComplete="off"
-          role="combobox"
         />
         {query && (
           <button
             type="button"
             onClick={clear}
-            className="mr-2 flex h-7 w-7 items-center justify-center rounded-full transition-colors hover:bg-white/10"
+            className="mr-2 flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-white/10 active:scale-95"
             aria-label="Effacer la recherche"
           >
             <X className="h-4 w-4" style={{ color: "var(--text-muted)" }} />
           </button>
         )}
         {loading && (
-          <span className="mr-4 h-4 w-4 animate-spin rounded-full border-2" 
+          <span className="mr-4 h-5 w-5 shrink-0 animate-spin rounded-full border-2"
             style={{ borderColor: "var(--border)", borderTopColor: "var(--coral)" }} />
         )}
       </div>
 
-      {open && results.length > 0 && (
+      {/* Results dropdown */}
+      {open && (
         <div
           ref={listRef}
           id="search-results"
           role="listbox"
-          className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-2xl border shadow-2xl"
+          className="absolute left-4 right-4 sm:left-0 sm:right-0 top-full z-50 mt-2 overflow-hidden rounded-2xl border shadow-2xl animate-fade-in"
           style={{
             borderColor: "var(--border)",
             backgroundColor: "rgba(20,22,35,0.98)",
+            backdropFilter: "blur(20px)",
           }}
         >
-          {results.map((hit, idx) => (
-            <Link
-              key={hit.slug}
-              id={`search-hit-${idx}`}
-              href={`/produit/${hit.slug}`}
-              role="option"
-              aria-selected={idx === selectedIdx}
-              className="flex items-center gap-3 px-4 py-3 text-sm transition-colors"
-              style={{
-                backgroundColor:
-                  idx === selectedIdx ? "rgba(255,107,95,0.12)" : "transparent",
-                borderBottom:
-                  idx < results.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
-              }}
-              onMouseEnter={() => setSelectedIdx(idx)}
-            >
-              {/* Mini image si dispo */}
-              {hit.image_url ? (
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg"
-                  style={{ backgroundColor: "var(--bg)" }}>
-                  <img
-                    src={hit.image_url}
-                    alt=""
-                    className="h-full w-full object-contain p-1"
-                    loading="lazy"
-                  />
-                </div>
-              ) : (
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-lg"
-                  style={{ backgroundColor: "var(--bg)" }}>
-                  🔍
-                </div>
-              )}
-
-              {/* Infos */}
-              <div className="min-w-0 flex-1">
-                <p className="truncate font-semibold" style={{ color: "var(--text)" }}>
-                  {hit.name}
-                </p>
-                <p className="truncate text-xs" style={{ color: "var(--text-muted)" }}>
-                  {hit.brand}
-                  {hit.category_name && <span> · {hit.category_name}</span>}
-                </p>
+          {hasResults ? (
+            <>
+              <div className="px-4 py-2 text-xs font-medium uppercase tracking-wider"
+                style={{ color: "var(--text-muted)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                {results.length} résultat{results.length > 1 ? "s" : ""}
               </div>
+              {results.map((hit, idx) => (
+                <Link
+                  key={hit.slug}
+                  id={`search-hit-${idx}`}
+                  href={`/produit/${hit.slug}`}
+                  role="option"
+                  aria-selected={idx === selectedIdx}
+                  className="flex items-center gap-3 px-4 py-3 text-sm transition-all duration-150"
+                  style={{
+                    backgroundColor: idx === selectedIdx
+                      ? "rgba(255,107,95,0.10)"
+                      : "transparent",
+                    borderBottom: idx < results.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+                    transform: idx === selectedIdx ? "translateX(4px)" : "none",
+                  }}
+                  onMouseEnter={() => setSelectedIdx(idx)}
+                >
+                  {/* Image */}
+                  {hit.image_url ? (
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl"
+                      style={{ backgroundColor: "var(--bg)" }}>
+                      <img
+                        src={hit.image_url}
+                        alt=""
+                        className="h-full w-full object-contain p-1"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-lg"
+                      style={{ backgroundColor: "var(--bg)" }}>
+                      📦
+                    </div>
+                  )}
 
-              {/* Score */}
-              <span
-                className="shrink-0 text-xs font-bold rounded-full px-2 py-1"
-                style={{
-                  color: "var(--mint)",
-                  backgroundColor: "rgba(52,211,153,0.1)",
-                }}
-              >
-                {hit.estimated_score?.toFixed(0) || "?"}/100
-              </span>
-            </Link>
-          ))}
-        </div>
-      )}
+                  {/* Infos */}
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate font-semibold text-sm" style={{ color: "var(--text)" }}>
+                      {hit.name}
+                    </p>
+                    <p className="truncate text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
+                      {hit.brand}
+                      {hit.category_name && <span> · <span style={{ color: "var(--coral-light)" }}>{hit.category_name}</span></span>}
+                    </p>
+                  </div>
 
-      {/* Aucun résultat */}
-      {open && query.length >= 2 && results.length === 0 && !loading && (
-        <div
-          className="absolute left-0 right-0 top-full z-50 mt-2 rounded-2xl border p-4 text-center text-sm shadow-2xl"
-          style={{
-            borderColor: "var(--border)",
-            backgroundColor: "rgba(20,22,35,0.98)",
-            color: "var(--text-muted)",
-          }}
-        >
-          Aucun produit trouvé pour "{query}".
+                  {/* Score */}
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span
+                      className="text-xs font-bold rounded-full px-2.5 py-1"
+                      style={{
+                        color: "var(--mint)",
+                        backgroundColor: "rgba(52,211,153,0.10)",
+                        border: "1px solid rgba(52,211,153,0.15)",
+                      }}
+                    >
+                      {hit.estimated_score?.toFixed(0) || "?"}
+                    </span>
+                    <ArrowRight className="h-3.5 w-3.5" style={{ color: "var(--text-muted)" }} />
+                  </div>
+                </Link>
+              ))}
+            </>
+          ) : query.length >= 2 && !loading ? (
+            <div className="p-6 text-center" style={{ color: "var(--text-muted)" }}>
+              <p className="text-sm">Aucun produit trouvé pour &quot;{query}&quot;</p>
+              <p className="text-xs mt-2 opacity-60">Essaie avec un autre terme ou consulte nos catégories</p>
+            </div>
+          ) : query.length < 2 && (
+            <div className="p-5">
+              <p className="text-xs font-medium uppercase tracking-wider mb-3" style={{ color: "var(--text-muted)" }}>
+                🔥 Recherches populaires
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {POPULAR_SEARCHES.map((term) => (
+                  <button
+                    key={term}
+                    type="button"
+                    onClick={() => popularSearch(term)}
+                    className="rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all hover:scale-105 active:scale-95"
+                    style={{
+                      borderColor: "var(--border)",
+                      color: "var(--text-muted)",
+                      backgroundColor: "rgba(255,255,255,0.03)",
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--coral)"; e.currentTarget.style.color = "var(--text)"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-muted)"; }}
+                  >
+                    {term}
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs mt-3 opacity-40" style={{ color: "var(--text-muted)" }}>
+                Tape au moins 2 caractères pour lancer la recherche
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>

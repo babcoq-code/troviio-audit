@@ -40,6 +40,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/"],
       },
     ],
-    sitemap: "https://troviio.com/sitemap.xml",
+    sitemap: "https://www.troviio.com/sitemap.xml",
   };
 }

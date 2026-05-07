@@ -10,7 +10,7 @@ from uuid import UUID
 
 import json
 from fastapi import APIRouter, HTTPException, Request, status
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, model_validator
 from supabase import Client, create_client
 
 logger = logging.getLogger(__name__)
@@ -48,6 +48,7 @@ class ProductResponse(BaseModel):
     description: str | None = None
     why_perfect: str | None = None
     rank_label: str | None = None
+    best_for: str | None = None
     test_summary: str | None = None
     verdict: str | None = None
     ratings: ProductRatings | None = None
@@ -56,6 +57,15 @@ class ProductResponse(BaseModel):
     amazon_asin: str | None = None
     merchant_links: list[dict] | None = None
     affiliate_url: str | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def map_best_for_to_rank_label(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            # Si rank_label est None mais best_for existe, recopier
+            if not data.get("rank_label") and data.get("best_for"):
+                data["rank_label"] = data["best_for"]
+        return data
 
     @field_validator("merchant_links", mode="before")
     @classmethod
@@ -181,7 +191,10 @@ async def list_products(category: str | None = None, q: str | None = None, limit
         query = sb.table("products").select("*").eq("is_active", True)
         if q and q.strip():
             qs = q.strip()
+            # Cherche dans name ET brand, combine les résultats
+            # Utilise le filtre ilike sur name d'abord
             query = query.ilike("name", f"%{qs}%")
+            # Note: la recherche sur brand se fait via un second appel plus bas
         if category:
             try:
                 cat = sb.table("categories").select("id").eq("slug", db_slug).single().execute()
@@ -192,10 +205,77 @@ async def list_products(category: str | None = None, q: str | None = None, limit
             else:
                 return []
         r = query.order("estimated_score", desc=True, nullsfirst=False).limit(limit).execute()
-        if not r.data:
+        raw_data = r.data or []
+        
+        # 🔍 Si q fourni et peu de résultats, cherche aussi par brand
+        if q and q.strip() and len(raw_data) < limit:
+            qs = q.strip()
+            try:
+                brand_query = sb.table("products").select("*").eq("is_active", True).ilike("brand", f"%{qs}%").order("estimated_score", desc=True, nullsfirst=False).limit(limit).execute()
+                seen_slugs = {p["slug"] for p in raw_data}
+                for p in (brand_query.data or []):
+                    if p["slug"] not in seen_slugs and len(raw_data) < limit:
+                        raw_data.append(p)
+                        seen_slugs.add(p["slug"])
+            except Exception:
+                pass
+        
+        # 🔍 Si toujours peu de résultats, cherche des produits par catégorie (mapping de termes génériques)
+        if q and q.strip() and len(raw_data) < 3:
+            qs = q.strip().lower()
+            generic_terms = {
+                "casque": "casque-audio",
+                "casques": "casque-audio",
+                "tv": "tv",
+                "télé": "tv",
+                "television": "tv",
+                "télévision": "tv",
+                "aspirateur": "aspirateur-balai",
+                "aspirateurs": "aspirateur-balai",
+                "robot": "aspirateur-robot",
+                "robots": "aspirateur-robot",
+                "café": "machine-a-cafe",
+                "cafe": "machine-a-cafe",
+                "friteuse": "friteuse-air",
+                "enceinte": "enceinte-bt",
+                "enceintes": "enceinte-bt",
+                "smartphone": "smartphone",
+                "téléphone": "smartphone",
+                "portable": "ordinateur-portable",
+                "pc": "ordinateur-portable",
+                "laptop": "ordinateur-portable",
+                "montre": "montre-connectee",
+                "montres": "montre-connectee",
+                "tablette": "tablette",
+                "ipad": "tablette",
+                "clavier": "clavier",
+                "claviers": "clavier",
+                "matelas": "matelas",
+                "bureau": "bureau-electrique",
+                "poussette": "poussette",
+                "trottinette": "trottinette-electrique",
+                "vélo": "velo-electrique",
+                "velo": "velo-electrique",
+            }
+            if qs in generic_terms:
+                cat_slug = generic_terms[qs]
+                try:
+                    cat_match = sb.table("categories").select("id").eq("slug", cat_slug).single().execute()
+                    if cat_match.data:
+                        cat_id = cat_match.data["id"]
+                        cat_prods = sb.table("products").select("*").eq("is_active", True).eq("category_id", cat_id).order("estimated_score", desc=True, nullsfirst=False).limit(limit).execute()
+                        seen_slugs = {p["slug"] for p in raw_data}
+                        for p in (cat_prods.data or []):
+                            if p["slug"] not in seen_slugs and len(raw_data) < limit:
+                                raw_data.append(p)
+                                seen_slugs.add(p["slug"])
+                except Exception:
+                    pass
+        
+        if not raw_data:
             return []
         validated = []
-        for p in r.data:
+        for p in raw_data:
             if isinstance(p.get("specs"), str):
                 try:
                     p["specs"] = json.loads(p["specs"])
@@ -386,7 +466,7 @@ async def get_tops():
         cats_result = sb.table("categories").select("id, slug, name").execute()
         categories = cats_result.data or []
         prods_result = sb.table("products").select(
-            "id,name,brand,slug,category_id,image_url,estimated_score,price_eur,amazon_asin,affiliate_url,pros,cons,why_perfect,rank_label,merchant_links"
+            "id,name,brand,slug,category_id,image_url,estimated_score,price_eur,amazon_asin,affiliate_url,pros,cons,why_perfect,merchant_links,best_for"
         ).eq("is_active", True).not_.is_("estimated_score", "null").order("estimated_score", desc=True).limit(200).execute()
         products = prods_result.data or []
         cat_products = {}
@@ -424,7 +504,7 @@ async def get_tops():
                     "pros": p.get("pros") or [],
                     "cons": p.get("cons") or [],
                     "why_perfect": p.get("why_perfect"),
-                    "rank_label": p.get("rank_label"),
+                    "rank_label": p.get("best_for"),
                 })
         result = []
         for cat in categories:

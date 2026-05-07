@@ -30,6 +30,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.prod
+      args:
+        NEXT_PUBLIC_API_URL: "https://troviio.com/api"
     env_file: .env
     restart: always
     ports:

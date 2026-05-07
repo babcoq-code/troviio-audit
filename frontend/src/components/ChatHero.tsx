@@ -58,7 +58,7 @@ export default function ChatHero({ category }: { category?: string }) {
   const [pidx, setPidx] = useState(0);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const respRef = useRef<HTMLDivElement>(null);
-  const { state, messages, streamedResponse, error, sendMessage, setMessages } = useChatStream();
+  const { state, messages, streamedResponse, error, sendMessage, reset, setMessages } = useChatStream();
 
   const busy = state === "loading" || (state === "response" && streamedResponse.length > 0);
   // Un échange = un message utilisateur (les history sont déjà envoyés)
@@ -150,6 +150,14 @@ export default function ChatHero({ category }: { category?: string }) {
     }
   }, [messages]);
 
+  /** Clear complet : réinitialise le state + localStorage */
+  const handleNewChat = () => {
+    reset();
+    window.localStorage.removeItem(STORAGE_KEY);
+    window.localStorage.removeItem("troviio.chat.history.v2");
+    if (taRef.current) taRef.current.focus();
+  };
+
   // Vérifier si le dernier message assistant propose "Lancer la recherche"
   const lastAIMessage = useMemo(() => {
     const aiMsgs = messages.filter((m) => m.role === "assistant" && !m.result_id);
@@ -200,7 +208,23 @@ export default function ChatHero({ category }: { category?: string }) {
 
         {/* Historique des messages */}
         {messages.length > 0 && (
-          <div ref={chatContainerRef} className="mt-8 w-full space-y-3 max-h-80 overflow-y-auto pr-2">
+          <>
+          <div className="mt-6 mb-2 flex w-full items-center justify-end">
+            <button
+              type="button"
+              onClick={handleNewChat}
+              disabled={busy}
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition hover:bg-white/10 focus:outline-none"
+              style={{ color: "var(--text-muted)", borderColor: "var(--border)" }}
+            >
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="23 4 23 10 17 10" />
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+              </svg>
+              Nouvelle conversation
+            </button>
+          </div>
+          <div ref={chatContainerRef} className="w-full space-y-3 max-h-80 overflow-y-auto pr-2">
             {messages.map((msg) => (
               <ChatBubble
                 key={msg.id}
@@ -211,6 +235,7 @@ export default function ChatHero({ category }: { category?: string }) {
               />
             ))}
           </div>
+          </>
         )}
 
         {/* Message en cours de stream */}

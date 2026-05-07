@@ -21,7 +21,7 @@ const defaultOgImage = {
 
 export async function generateMetadata() {
   return {
-    metadataBase: new URL("https://troviio.com"),
+    metadataBase: new URL("https://www.troviio.com"),
     title: {
       default: "Troviio | Pas le meilleur. Le tien.",
       template: "%s — Troviio",
@@ -38,7 +38,7 @@ export async function generateMetadata() {
         "Décris ta vie, tes contraintes, ton budget. L'IA qui trouve le produit parfait pour toi.",
       siteName: "Troviio",
       locale: "fr_FR",
-      url: "https://troviio.com",
+      url: "https://www.troviio.com",
       type: "website",
       images: [{
         url: "https://troviio.com/og-image.png",

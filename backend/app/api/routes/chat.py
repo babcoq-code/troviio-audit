@@ -862,7 +862,7 @@ LAUNCH_TRIGGERS = {"lance", "go", "vas-y", "trouve", "je suis prêt", "je suis p
 
 # ─── Chat endpoint ──────────────────────────────────────────
 
-@router.post("/chat", response_model=ChatResponse)
+@router.post("", response_model=ChatResponse)
 async def chat(req: ChatRequest, request: Request):
     """Point d'entrée principal du Chat IA — 5 tours max + options cliquables."""
     client_ip = request.client.host if request.client else "unknown"
@@ -1120,7 +1120,7 @@ Le lien doit contenir la marque + modèle de l'appareil ET le nom de l'accessoir
 - Ne jamais répondre en texte brut sans options
 """
 
-@router.post("/chat/accessories", response_model=ChatResponse)
+@router.post("/accessories", response_model=ChatResponse)
 async def chat_accessories(req: AccessoryChatRequest, request: Request):
     """Chat IA dédié aux accessoires — avec recherche produits + liens Amazon."""
     client_ip = request.client.host if request.client else "unknown"

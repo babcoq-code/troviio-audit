@@ -6,6 +6,7 @@ import HistorySidebar from "@/components/HistorySidebar";
 import ChatHero from "@/components/ChatHero";
 import CategoryGrid from "@/components/CategoryGrid";
 import Top3Home from "@/components/Top3Home";
+import RecentTests from "@/components/RecentTests";
 import SearchOmnibox from "@/components/SearchOmnibox";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
@@ -26,6 +27,7 @@ export default function HomePageClient() {
       </section>
       <ChatHero />
       <Top3Home />
+      <RecentTests />
       <CategoryGrid />
 
       {/* Historique des recherches */}

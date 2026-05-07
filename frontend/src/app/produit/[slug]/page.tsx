@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const product = await fetchProduct(slug);
   if (!product) return { title: "Produit introuvable — Troviio" };
   const name = product.name || "";
-  const title = `${name} — Avis, Test & Prix 2026 | Troviio`;
+  const title = `${name} — Avis, Test & Prix 2026`;
   const description = product.description
     ? product.description.substring(0, 155)
     : `Découvrez notre avis complet sur ${name} : test, prix, caractéristiques et verdict Troviio.`;
@@ -38,7 +38,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title,
     description,
     openGraph: {
-      title, description, type: "article",
+      title, description,
+      url: `${BASE_URL}/produit/${slug}`,
+      siteName: "Troviio",
+      locale: "fr_FR",
+      type: "article",
       images: product.image_url ? [{ url: product.image_url, width: 1200, height: 630 }] : undefined,
     },
     twitter: { card: "summary_large_image", title, description, images: product.image_url ? [product.image_url] : undefined },
@@ -440,6 +444,25 @@ export default async function ProductPage({ params }: PageProps) {
           </div>
         )}
 
+        {/* ===== CTA TEST TROVIIO ===== */}
+        {sortedPrices.length > 0 && (
+          <div className="mt-8 flex justify-center">
+            <a
+              href={sortedPrices[0].affiliate_url || sortedPrices[0].url || "#"}
+              target="_blank"
+              rel="nofollow sponsored noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-bold text-white transition-all hover:-translate-y-1 hover:shadow-xl"
+              style={{
+                background: "linear-gradient(135deg, #FF6B5F, #FFB067)",
+                boxShadow: "0 10px 30px -10px rgba(255,107,95,0.5)",
+              }}
+            >
+              🛒 Voir le prix sur {sortedPrices[0].merchant || "Amazon"}
+              <span className="text-sm opacity-80">→</span>
+            </a>
+          </div>
+        )}
+
         {/* ===== SPECS ===== */}
         {techSpecs.length > 0 && (
           <div className="mt-12">
@@ -482,6 +505,32 @@ export default async function ProductPage({ params }: PageProps) {
           <AccessoriesWidgetLoader productId={product.id} productName={product.name} />
         </div>
       </div>
+
+      {/* ===== CTA STICKY MOBILE ===== */}
+      {sortedPrices.length > 0 && (
+        <div
+          className="fixed bottom-0 left-0 right-0 z-50 lg:hidden p-4 border-t pb-[calc(1rem+env(safe-area-inset-bottom))]"
+          style={{
+            backgroundColor: "rgba(10,10,11,0.97)",
+            borderColor: "var(--border)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          <a
+            href={sortedPrices[0].affiliate_url || sortedPrices[0].url || "#"}
+            target="_blank"
+            rel="nofollow sponsored noopener noreferrer"
+            className="flex items-center justify-center gap-3 w-full px-6 py-3.5 rounded-full text-base font-bold text-white transition-all active:scale-[0.98]"
+            style={{
+              background: "linear-gradient(135deg, #FF6B5F, #FFB067)",
+              boxShadow: "0 10px 30px -10px rgba(255,107,95,0.5)",
+            }}
+          >
+            🛒 Voir le prix sur {sortedPrices[0].merchant || "Amazon"}
+            <span className="text-sm opacity-80">→</span>
+          </a>
+        </div>
+      )}
     </main>
   );
 }

@@ -24,11 +24,15 @@ supabase = get_supabase_admin()
 # ─── Mapping catégories ──────────────────────────────────────
 CATEGORY_MAP = {
     # Clés longues d'abord pour éviter les faux positifs (tri par len décroissant)
+    "aspirateur robot laveur": "aspirateur-laveur",
+    "aspirateur-laveur": "aspirateur-laveur",
     "aspirateur robot": "aspirateur-robot",
     "robot aspirateur": "aspirateur-robot",
     "aspirateur-robot": "aspirateur-robot",
     "aspirateur balai": "aspirateur-balai",
     "aspirateur-balai": "aspirateur-balai",
+    "laveur aspirateur": "aspirateur-laveur",
+    "aspirateur laveur": "aspirateur-laveur",
     "cave à vin": "cave-a-vin",
     "cave a vin": "cave-a-vin",
     "barre de son": "barre-de-son",
@@ -40,6 +44,8 @@ CATEGORY_MAP = {
     "machine a cafe": "machine-a-cafe",
     "machine à laver": "lave-linge",
     "machine a laver": "lave-linge",
+    "lave linge sechant": "lave-linge",
+    "lave-linge sechant": "lave-linge",
     "ordinateur portable": "ordinateur-portable",
     "ordinateur-portable": "ordinateur-portable",
     "pc portable": "ordinateur-portable",
@@ -63,6 +69,7 @@ CATEGORY_MAP = {
     "friteuse air": "friteuse-air",
     "friteuse-a-air": "friteuse-air",
     "aire fryer": "friteuse-air",
+    "air fryer": "friteuse-air",
     "four micro-ondes": "four-micro-ondes",
     "four micro ondes": "four-micro-ondes",
     "micro-onde": "four-micro-ondes",
@@ -71,8 +78,81 @@ CATEGORY_MAP = {
     "lave linge": "lave-linge",
     "lave-vaisselle": "lave-vaisselle",
     "lave vaisselle": "lave-vaisselle",
+    "montre connectee": "montre-connectee",
+    "montre connectée": "montre-connectee",
+    "smart watch": "montre-connectee",
+    "smartwatch": "montre-connectee",
+    "apple watch": "montre-connectee",
+    "garmin": "montre-connectee",
+    "tablette tactile": "tablette",
+    "station charge": "station-charge-usb-c",
+    "station usb": "station-charge-usb-c",
+    "chargeur usb": "station-charge-usb-c",
+    "chargeur gan": "station-charge-usb-c",
+    "multiprise usb": "station-charge-usb-c",
+    "hub usb": "station-charge-usb-c",
+    "onduleur ups": "onduleur-ups",
+    "onduleur": "onduleur-ups",
+    "ups onduleur": "onduleur-ups",
+    "climatiseur mobile": "climatiseur-portable",
+    "climatiseur portable": "climatiseur-portable",
+    "climatiseur": "climatiseur-portable",
+    "clim portable": "climatiseur-portable",
+    "ventilateur colonne": "ventilateur-colonne",
+    "ventilateur-colonne": "ventilateur-colonne",
+    "ventilateur brumisateur": "ventilateur-colonne",
+    "purificateur air": "purificateur-air",
+    "purificateur d air": "purificateur-air",
+    "purificateur d'air": "purificateur-air",
+    "robot cuisine": "robot-cuisine",
+    "robot-cuisine": "robot-cuisine",
+    "robot patissier": "robot-cuisine",
+    "robot pâtissier": "robot-cuisine",
+    "thermomix": "robot-cuisine",
+    "cook expert": "robot-cuisine",
+    "manette switch": "manette-switch",
+    "manette nintendo": "manette-switch",
+    "manette ps5": "manette-switch",
+    "manette xbox": "manette-switch",
+    "manette pro": "manette-switch",
+    "jeu cooperatif": "jeu-coop-local",
+    "jeu coop": "jeu-coop-local",
+    "jeu co-op": "jeu-coop-local",
+    "jeu video coop": "jeu-coop-local",
+    "split fiction": "jeu-coop-local",
+    "it takes two": "jeu-coop-local",
+    "overcooked": "jeu-coop-local",
+    "jeu ps5": "jeu-coop-local",
+    "camera securite": "camera-securite",
+    "camera surveillance": "camera-securite",
+    "camera exterieur": "camera-securite",
+    "camera interieur": "camera-securite",
+    "camera wifi": "camera-securite",
+    "caméra": "camera-securite",
+    "camera": "camera-securite",
+    "thermostat connecte": "thermostat-connecte",
+    "thermostat intelligent": "thermostat-connecte",
+    "thermostat": "thermostat-connecte",
+    "netatmo": "thermostat-connecte",
+    "tado": "thermostat-connecte",
+    "voiture electrique": "voiture-electrique",
+    "voiture électrique": "voiture-electrique",
+    "vehicule electrique": "voiture-electrique",
+    "tesla": "voiture-electrique",
+    "renault": "voiture-electrique",
+    "trottinette electrique": "trottinette",
+    "trottinette électrique": "trottinette",
+    "velo electrique": "velo-electrique",
+    "vélo électrique": "velo-electrique",
+    "velo": "velo-electrique",
     # Clés courtes en dernier
     "aspirateur": "aspirateur-robot",
+    "poils": "aspirateur-robot",
+    "poil": "aspirateur-robot",
+    "animal": "aspirateur-robot",
+    "animaux": "aspirateur-robot",
+    "chien": "aspirateur-robot",
+    "chat": "aspirateur-robot",
     "roomba": "aspirateur-robot",
     "roborock": "aspirateur-robot",
     "dreame": "aspirateur-robot",
@@ -104,9 +184,6 @@ CATEGORY_MAP = {
     "airpod": "casque-audio",
     "airpods": "casque-audio",
     "headphone": "casque-audio",
-    "lave linge": "lave-linge",
-    "lavelinge": "lave-linge",
-    "lavevaisselle": "lave-vaisselle",
     "frigo": "refrigerateur",
     "réfrigérateur": "refrigerateur",
     "refrigerateur": "refrigerateur",
@@ -145,21 +222,13 @@ CATEGORY_MAP = {
     "purificateur": "purificateur-air",
     "purif": "purificateur-air",
     "qualité air": "purificateur-air",
-    "robot cuisine": "robot-cuisine",
-    "robot-cuisine": "robot-cuisine",
-    "robot pâtissier": "robot-cuisine",
     "mixeur": "robot-cuisine",
     "trottinette": "trottinette",
     "scooter": "trottinette",
-    "vélo électrique": "velo-electrique",
-    "velo electrique": "velo-electrique",
-    "velo": "velo-electrique",
     "vae": "velo-electrique",
     "ebike": "velo-electrique",
     "e bike": "velo-electrique",
     "bike": "velo-electrique",
-    "cave à vin": "cave-a-vin",
-    "cave a vin": "cave-a-vin",
 }
 
 # Catégories existantes en DB (slug → nom)
@@ -176,7 +245,7 @@ async def detect_category_from_history(history: list[dict]) -> str:
         KEYWORDS_BY_SLUG[slug].append(keyword)
 
     # D'abord essayer le CATEGORY_MAP sur tous les messages utilisateur (tri par clé la plus longue d'abord)
-    all_user_text = " ".join(m["content"].lower() for m in history if m.get("role") == "user")
+    all_user_text = " ".join(unidecode(m["content"].lower()) for m in history if m.get("role") == "user")
     logger.info(f"🔍 [detect_category] user_text={all_user_text[:120]}")
     sorted_keys = sorted(CATEGORY_MAP.keys(), key=len, reverse=True)
     for keyword in sorted_keys:
@@ -722,8 +791,13 @@ class ChatResponse(BaseModel):
 async def chat_with_deepseek(history: list[dict], exchange_count: int = 1, system_override: str | None = None) -> str:
     """Appelle DeepSeek avec l'historique complet (stateless : history = tout)."""
     # Injecter le numéro de tour dans le system prompt
-    base_prompt = system_override or SYSTEM_PROMPT
-    tour_note = f"\n\n[C'EST LE TOUR {exchange_count}. Tu DOIS proposer '🚀 Lancer la recherche' comme 4e option (après 3 questions d'affinage) À PARTIR du tour 5. Avant le tour 5, tes 3 options sont UNIQUEMENT des questions d'affinage, sans option de lancement.]"
+    base_prompt = SYSTEM_PROMPT
+    if system_override and not system_override.startswith("#"):
+        # C'est un contexte catégorie, pas un remplacement complet
+        cat_context = system_override
+    else:
+        cat_context = ""
+    tour_note = f"\n\n[C'EST LE TOUR {exchange_count}. Tu DOIS proposer '🚀 Lancer la recherche' comme 4e option (après 3 questions d'affinage) À PARTIR du tour 5. Avant le tour 5, tes 3 options sont UNIQUEMENT des questions d'affinage, sans option de lancement.]{cat_context}"
     messages = [{"role": "system", "content": base_prompt + tour_note}]
     messages.extend(history)
 
@@ -802,6 +876,15 @@ async def chat(req: ChatRequest, request: Request):
         pass  # Redis down — pas de blocage
 
     history = req.history or []
+
+    # Détecter la catégorie DÈS LE PREMIER message pour l'injecter dans le system prompt
+    detected_cat = req.category or ""
+    if not detected_cat and len(history) == 0:
+        # Premier message utilisateur — on extrait la catégorie immédiatement
+        detected_cat = await detect_category_from_history([
+            {"role": "user", "content": req.message}
+        ])
+        logger.info(f"🔍 [chat] Catégorie détectée au premier message: '{detected_cat}'")
 
     # Compter les échanges utilisateur (messages déjà envoyés + celui-ci)
     exchange_count = sum(1 for m in history if m["role"] == "user") + 1
@@ -945,7 +1028,50 @@ async def chat(req: ChatRequest, request: Request):
             )
 
     # Sinon, continuer la conversation normale
-    reply = await chat_with_deepseek(history, exchange_count=exchange_count)
+    # Injecter la catégorie détectée dans le system prompt pour des questions plus pertinentes
+    cat_context = ""
+    if detected_cat:
+        cat_names = {
+            "aspirateur-robot": "aspirateur robot",
+            "aspirateur-balai": "aspirateur balai",
+            "lave-linge": "lave-linge",
+            "lave-vaisselle": "lave-vaisselle",
+            "refrigerateur": "réfrigérateur",
+            "four-micro-ondes": "four/micro-ondes",
+            "machine-a-cafe": "machine à café",
+            "robot-cuisine": "robot cuisine",
+            "cave-a-vin": "cave à vin",
+            "friteuse-air": "friteuse à air",
+            "purificateur-air": "purificateur d'air",
+            "climatiseur-portable": "climatiseur portable",
+            "ventilateur-colonne": "ventilateur colonne",
+            "tv": "TV",
+            "casque-audio": "casque audio",
+            "enceinte-bt": "enceinte Bluetooth",
+            "smartphone": "smartphone",
+            "tablette": "tablette",
+            "laptop-gamer": "laptop gamer",
+            "ordinateur-portable": "ordinateur portable",
+            "imprimante": "imprimante",
+            "barre-de-son": "barre de son",
+            "camera-securite": "caméra de sécurité",
+            "thermostat-connecte": "thermostat connecté",
+            "station-charge-usb-c": "station de charge USB-C",
+            "onduleur-ups": "onduleur UPS",
+            "velo-electrique": "vélo électrique",
+            "trottinette": "trottinette",
+            "voiture-electrique": "voiture électrique",
+            "montre-connectee": "montre connectée",
+            "poussette": "poussette",
+            "matelas": "matelas",
+            "manette-switch": "manette Switch",
+            "jeu-coop-local": "jeu coopératif local",
+            "aspirateur-laveur": "aspirateur laveur",
+        }
+        cat_label = cat_names.get(detected_cat, detected_cat)
+        cat_context = f"\n\n[CONTEXTE CATÉGORIE DÉTECTÉE : {cat_label}. Le client cherche un(e) {cat_label}. Utilise cette info pour poser des questions ultra-pertinentes dès le départ.]"
+    
+    reply = await chat_with_deepseek(history, exchange_count=exchange_count, system_override=cat_context if cat_context else None)
     return ChatResponse(reply=reply, done=False)
 
 

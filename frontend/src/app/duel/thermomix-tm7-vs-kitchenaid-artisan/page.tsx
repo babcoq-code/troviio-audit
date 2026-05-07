@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Thermomix TM7 vs KitchenAid Artisan : le duel des robot-cuisine 2026 | Troviio",
     description: "Qui est le meilleur en robot-cuisine ? Le Thermomix TM7 affronte le KitchenAid Artisan 5KSM175 dans un duel sans merci.",
-  alternates: { canonical: "https://www.troviio.com/duel/thermomix-tm7-vs-kitchenaid-artisan" },
+  alternates: { canonical: "https://troviio.com/duel/thermomix-tm7-vs-kitchenaid-artisan" },
 };
 
 export default function DuelPage() {

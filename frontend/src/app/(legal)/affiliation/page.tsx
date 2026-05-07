@@ -1,7 +1,7 @@
 import { siteConfig } from "@/lib/site";
 import { LegalPage } from "@/components/legal/LegalPage";
 
-const pageUrl = `https://www.troviio.com/affiliation`;
+const pageUrl = `https://troviio.com/affiliation`;
 
 export const metadata = {
   title: `Affiliation — ${siteConfig.name}`,

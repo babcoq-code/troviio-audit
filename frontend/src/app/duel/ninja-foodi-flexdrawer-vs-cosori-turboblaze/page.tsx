@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Ninja Foodi FlexDrawer vs Cosori TurboBlaze : le duel des friteuse-air 2026 | Troviio",
     description: "Qui est le meilleur en friteuse-air ? Le Ninja Foodi FlexDrawer AF500EU affronte le Cosori Air Fryer MAX AF160EU dans un duel sans merci.",
-  alternates: { canonical: "https://www.troviio.com/duel/ninja-foodi-flexdrawer-vs-cosori-turboblaze" },
+  alternates: { canonical: "https://troviio.com/duel/ninja-foodi-flexdrawer-vs-cosori-turboblaze" },
 };
 
 export default function DuelPage() {

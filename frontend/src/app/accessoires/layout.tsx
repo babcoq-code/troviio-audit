@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Tu as un appareil et tu cherches l'accessoire parfait ? Notre IA te recommande les meilleurs accessoires compatibles.",
     siteName: "Troviio",
     locale: "fr_FR",
-    url: "https://www.troviio.com/accessoires/chat",
+    url: "https://troviio.com/accessoires/chat",
     type: "website",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Notre IA te recommande les meilleurs accessoires compatibles avec ton appareil.",
   },
   alternates: {
-    canonical: "https://www.troviio.com/accessoires/chat",
+    canonical: "https://troviio.com/accessoires/chat",
   },
 };
 

@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Dyson Gen5 Detect vs Samsung Bespoke Jet : le duel des aspirateur-balai 2026 | Troviio",
     description: "Qui est le meilleur en aspirateur-balai ? Le Dyson Gen5 Detect Absolute affronte le Samsung Bespoke AI Jet Ultra VS90F4 dans un duel sans merci.",
-  alternates: { canonical: "https://www.troviio.com/duel/dyson-gen5-detect-vs-samsung-bespoke-jet" },
+  alternates: { canonical: "https://troviio.com/duel/dyson-gen5-detect-vs-samsung-bespoke-jet" },
 };
 
 export default function DuelPage() {

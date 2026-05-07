@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Dyson Gen5 Detect vs Samsung Bespoke Jet | Troviio",
   description: "Dyson ou Samsung ? Le duel des aspirateurs balais haut de gamme en 2026.",
-  alternates: { canonical: "https://www.troviio.com/duel/dyson-gen5-vs-samsung-bespoke-jet" },
+  alternates: { canonical: "https://troviio.com/duel/dyson-gen5-vs-samsung-bespoke-jet" },
 };
 
 export default function DuelPage() {

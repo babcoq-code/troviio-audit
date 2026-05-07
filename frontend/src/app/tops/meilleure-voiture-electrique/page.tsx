@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Meilleure voiture électrique 2026 : le top 3 definitif | Troviio",
   description: "Le classement des 3 meilleures voitures électriques de 2026 testées et approuvées par Troviio.",
-  alternates: { canonical: "https://www.troviio.com/tops/meilleure-voiture-electrique" },
+  alternates: { canonical: "https://troviio.com/tops/meilleure-voiture-electrique" },
 };
 
 export default function TopsPage() {

@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Tesla Model Y Juniper vs Tesla Model 3 Highland : le duel des électriques 2026 | Troviio",
     description: "Le duel fratricide Tesla : le SUV le plus vendu d'Europe contre la berline record d'autonomie. Juniper ou Highland ? La famille ou la performance ?",
-  alternates: { canonical: "https://www.troviio.com/duel/tesla-model-y-juniper-vs-tesla-model-3-highland" },
+  alternates: { canonical: "https://troviio.com/duel/tesla-model-y-juniper-vs-tesla-model-3-highland" },
 };
 
 export default function DuelPage() {

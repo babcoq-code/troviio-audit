@@ -51,11 +51,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${meta.title} — Troviio`,
     description: meta.description,
-    alternates: { canonical: `https://www.troviio.com/c/${slug}` },
+    alternates: { canonical: `https://troviio.com/c/${slug}` },
     openGraph: {
       title: `${meta.title} — Troviio`,
       description: meta.description,
-      url: `https://www.troviio.com/c/${slug}`,
+      url: `https://troviio.com/c/${slug}`,
       siteName: "Troviio",
       locale: "fr_FR",
       type: "website",
@@ -224,8 +224,8 @@ export default async function CategoryPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.troviio.com" },
-      { "@type": "ListItem", position: 2, name: meta.name, item: `https://www.troviio.com/c/${slug}` },
+      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
+      { "@type": "ListItem", position: 2, name: meta.name, item: `https://troviio.com/c/${slug}` },
     ],
   };
 
@@ -234,7 +234,7 @@ export default async function CategoryPage({ params }: Props) {
     "@type": "ItemList",
     name: meta.title,
     description: meta.description,
-    url: `https://www.troviio.com/c/${slug}`,
+    url: `https://troviio.com/c/${slug}`,
     numberOfItems: top3.length,
     itemListElement: top3.map((p, i) => ({
       "@type": "ListItem",
@@ -242,7 +242,7 @@ export default async function CategoryPage({ params }: Props) {
       item: {
         "@type": "Product",
         name: `${p.brand} ${p.name}`,
-        url: `https://www.troviio.com/produit/${p.slug}`,
+        url: `https://troviio.com/produit/${p.slug}`,
         offers: p.price_eur ? {
           "@type": "Offer",
           price: p.price_eur,

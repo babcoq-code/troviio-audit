@@ -23,7 +23,7 @@ export const BRAND = {
     "Troviio est un comparateur IA de produits maison et tech. L'IA pose des questions de vie pour recommander le produit exact correspondant à tes besoins réels.",
 
   domain: 'troviio.com',
-  url: 'https://www.troviio.com',
+  url: 'https://troviio.com',
   domains: {
     primary: 'troviio.com',
     fr: 'troviio.fr',

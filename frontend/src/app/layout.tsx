@@ -21,10 +21,13 @@ const defaultOgImage = {
 
 export async function generateMetadata() {
   return {
-    metadataBase: new URL("https://www.troviio.com"),
+    metadataBase: new URL("https://troviio.com"),
     title: {
       default: "Troviio | Pas le meilleur. Le tien.",
       template: "%s — Troviio",
+    },
+    alternates: {
+      canonical: "/",
     },
     description:
       "Troviio ne compare pas les produits. Il comprend ta vie, tes contraintes et ton budget pour te recommander LE produit qui te correspond. Zéro biais, zéro commission.",
@@ -35,7 +38,7 @@ export async function generateMetadata() {
         "Décris ta vie, tes contraintes, ton budget. L'IA qui trouve le produit parfait pour toi.",
       siteName: "Troviio",
       locale: "fr_FR",
-      url: "https://www.troviio.com",
+      url: "https://troviio.com",
       type: "website",
       images: [{
         url: "https://troviio.com/og-image.png",

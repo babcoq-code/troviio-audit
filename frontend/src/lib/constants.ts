@@ -1,5 +1,5 @@
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.troviio.com'
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://troviio.com'
 ).replace(/\/$/, '');
 
 export const AMAZON_TAG = 'troviio-21';

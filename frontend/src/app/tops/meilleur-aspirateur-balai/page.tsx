@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Meilleur aspirateur balai 2026 : le top 3 qui aspire tout sur son passage | Troviio",
   description: "Aspirateur balai sans fil : notre top 3 des meilleurs pour un sol impeccable en 2026.",
-  alternates: { canonical: "https://www.troviio.com/tops/meilleur-aspirateur-balai" },
+  alternates: { canonical: "https://troviio.com/tops/meilleur-aspirateur-balai" },
 };
 
 export default function TopsPage() {

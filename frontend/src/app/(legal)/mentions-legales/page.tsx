@@ -1,7 +1,7 @@
 import { siteConfig } from "@/lib/site";
 import { LegalPage } from "@/components/legal/LegalPage";
 
-const pageUrl = "https://www.troviio.com/mentions-legales";
+const pageUrl = "https://troviio.com/mentions-legales";
 
 export const metadata = {
   title: `Mentions légales — ${siteConfig.name}`,

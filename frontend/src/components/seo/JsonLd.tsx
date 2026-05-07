@@ -40,13 +40,13 @@ export function buildFAQJsonLd(questions: Array<{ question: string; answer: stri
 export function buildOrganizationJsonLd() {
   return {
     "@type": "Organization",
-    "@id": "https://www.troviio.com/#organization",
+    "@id": "https://troviio.com/#organization",
     name: "Troviio",
-    url: "https://www.troviio.com",
+    url: "https://troviio.com",
     logo: {
       "@type": "ImageObject",
-      "@id": "https://www.troviio.com/#logo",
-      url: "https://www.troviio.com/logo.png",
+      "@id": "https://troviio.com/#logo",
+      url: "https://troviio.com/logo.png",
       width: 512,
       height: 512,
       caption: "Troviio",
@@ -70,17 +70,17 @@ export function buildOrganizationJsonLd() {
 export function buildWebSiteJsonLd() {
   return {
     "@type": "WebSite",
-    "@id": "https://www.troviio.com/#website",
+    "@id": "https://troviio.com/#website",
     name: "Troviio",
-    url: "https://www.troviio.com",
-    publisher: { "@id": "https://www.troviio.com/#organization" },
+    url: "https://troviio.com",
+    publisher: { "@id": "https://troviio.com/#organization" },
     inLanguage: "fr-FR",
     description: "Pas le meilleur. Le tien. Recommandations produits personnalisées par IA.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://www.troviio.com/recherche?q={search_term_string}",
+        urlTemplate: "https://troviio.com/recherche?q={search_term_string}",
       },
       "query-input": "required name=search_term_string",
     },

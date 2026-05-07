@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 
 const API_BASE = process.env.API_BASE_URL || "http://backend:8000";
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.troviio.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://troviio.com";
 
 async function fetchProduct(slug: string) {
   try {

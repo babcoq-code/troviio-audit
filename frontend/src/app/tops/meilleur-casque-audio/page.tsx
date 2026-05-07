@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Meilleur casque audio 2026 : le top 3 qui va changer vos oreilles | Troviio",
   description: "Casque sans fil, annulation de bruit, confort : notre top 3 des meilleurs casques audio de 2026.",
-  alternates: { canonical: "https://www.troviio.com/tops/meilleur-casque-audio" },
+  alternates: { canonical: "https://troviio.com/tops/meilleur-casque-audio" },
 };
 
 export default function TopsPage() {

@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Sony WH-1000XM6 vs Bose QuietComfort Ultra | Troviio",
   description: "Sony ou Bose ? Le combat des titans du casque audio sans fil reprend en 2026.",
-  alternates: { canonical: "https://www.troviio.com/duel/sony-wh-1000xm6-vs-bose-qc-ultra" },
+  alternates: { canonical: "https://troviio.com/duel/sony-wh-1000xm6-vs-bose-qc-ultra" },
 };
 
 export default function DuelPage() {

@@ -4,11 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Guides d'achat 2026 — Troviio",
   description: "Les guides d'achat Troviio : conseils experts et recommandations personnalisées pour choisir les meilleurs produits.",
-  alternates: { canonical: "https://www.troviio.com/guide" },
+  alternates: { canonical: "https://troviio.com/guide" },
   openGraph: {
     title: "Guides d'achat 2026 — Troviio",
     description: "Les guides d'achat Troviio : conseils experts et recommandations personnalisées pour choisir les meilleurs produits.",
-    url: "https://www.troviio.com/guide",
+    url: "https://troviio.com/guide",
     siteName: "Troviio",
     locale: "fr_FR",
     type: "website",

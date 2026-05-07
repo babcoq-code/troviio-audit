@@ -4,11 +4,11 @@ import HomePageClient from "./page.client";
 export const metadata: Metadata = {
   title: "Troviio | Pas le meilleur. Le tien.",
   description: "Décris ta vie, tes contraintes, ton budget. Troviio croise tout pour te donner UNE réponse claire.",
-  alternates: { canonical: "https://www.troviio.com/" },
+  alternates: { canonical: "https://troviio.com/" },
   openGraph: {
     title: "Troviio | Pas le meilleur. Le tien.",
     description: "Décris ta vie, tes contraintes, ton budget. L'IA qui trouve le produit parfait pour toi.",
-    url: "https://www.troviio.com/",
+    url: "https://troviio.com/",
     siteName: "Troviio",
     locale: "fr_FR",
     type: "website",

@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "iPad Pro M5 11 vs Samsung Galaxy Tab S11 Ultra : le duel des tablettes 2026 | Troviio",
   description: "iPad Pro M5 11 pouces ou Galaxy Tab S11 Ultra ? On tranche le duel des meilleures tablettes de 2026. Scores Troviio, specs et verdict.",
-  alternates: { canonical: "https://www.troviio.com/duel/ipad-pro-m5-11-vs-samsung-galaxy-tab-s11-ultra" },
+  alternates: { canonical: "https://troviio.com/duel/ipad-pro-m5-11-vs-samsung-galaxy-tab-s11-ultra" },
 };
 
 export default function DuelPage() {

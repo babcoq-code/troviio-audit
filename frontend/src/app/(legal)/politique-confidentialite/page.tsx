@@ -1,7 +1,7 @@
 import { siteConfig } from "@/lib/site";
 import { LegalPage } from "@/components/legal/LegalPage";
 
-const pageUrl = `https://www.troviio.com/politique-confidentialite`;
+const pageUrl = `https://troviio.com/politique-confidentialite`;
 
 export const metadata = {
   title: `Politique de confidentialité — ${siteConfig.name}`,

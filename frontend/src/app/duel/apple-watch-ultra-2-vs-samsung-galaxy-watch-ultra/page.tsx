@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Apple Watch Ultra 2 vs Samsung Galaxy Watch Ultra : le duel des montres outdoor 2026 | Troviio",
     description: "Le choc des titans des montres outdoor. D'un côté l'Apple Watch Ultra 2, le couteau suisse des alpinistes en open space. De l'autre la Samsung Galaxy Watch Ultra, l'anti-héros Android qui veut sa part du gâteau. Titane contre titane, sirène contre MIL-STD — qui mérite votre poignet ?",
-  alternates: { canonical: "https://www.troviio.com/duel/apple-watch-ultra-2-vs-samsung-galaxy-watch-ultra" },
+  alternates: { canonical: "https://troviio.com/duel/apple-watch-ultra-2-vs-samsung-galaxy-watch-ultra" },
 };
 
 export default function DuelPage() {

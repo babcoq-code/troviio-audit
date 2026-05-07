@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Tous les duels Troviio — Comparatifs produits 2026 | Troviio",
   description: "Retrouve tous nos duels de produits : smartphone vs smartphone, robot cuisine vs robot cuisine, matelas vs matelas. On tranche, toi tu choisis.",
-  alternates: { canonical: "https://www.troviio.com/duels" },
+  alternates: { canonical: "https://troviio.com/duels" },
 };
 
 const DUELS = [

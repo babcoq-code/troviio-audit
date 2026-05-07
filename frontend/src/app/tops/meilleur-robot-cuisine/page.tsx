@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Meilleur robot cuiseur 2026 : le top 3 qui cuisine a votre place | Troviio",
   description: "Thermomix ou pas ? Notre top 3 des robots cuiseurs multifonction les plus performants.",
-  alternates: { canonical: "https://www.troviio.com/tops/meilleur-robot-cuisine" },
+  alternates: { canonical: "https://troviio.com/tops/meilleur-robot-cuisine" },
 };
 
 export default function TopsPage() {

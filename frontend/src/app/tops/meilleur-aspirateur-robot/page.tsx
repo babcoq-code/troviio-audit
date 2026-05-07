@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Meilleur aspirateur robot 2026 : le top 3 definitif | Troviio",
   description: "Le classement des 3 meilleurs aspirateurs robots de 2026 teste et approuve par Troviio.",
-  alternates: { canonical: "https://www.troviio.com/tops/meilleur-aspirateur-robot" },
+  alternates: { canonical: "https://troviio.com/tops/meilleur-aspirateur-robot" },
 };
 
 export default function TopsPage() {

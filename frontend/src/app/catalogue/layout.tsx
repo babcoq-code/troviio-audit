@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Parcours le catalogue complet Troviio : smartphones, TV, aspirateurs, cafetières... Tous notés /100 par notre IA indépendante.",
     siteName: "Troviio",
     locale: "fr_FR",
-    url: "https://www.troviio.com/catalogue",
+    url: "https://troviio.com/catalogue",
     type: "website",
   },
   twitter: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Parcours le catalogue complet Troviio, tous notés /100 par notre IA.",
   },
   alternates: {
-    canonical: "https://www.troviio.com/catalogue",
+    canonical: "https://troviio.com/catalogue",
   },
 };
 

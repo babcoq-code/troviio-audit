@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Jura E8 vs Sage Barista Express | Troviio",
   description: "Machine automatique ou manuelle ? Jura E8 ou Sage Barista Express ? Quel type de buveur de cafe es-tu ?",
-  alternates: { canonical: "https://www.troviio.com/duel/jura-e8-vs-sage-barista-express" },
+  alternates: { canonical: "https://troviio.com/duel/jura-e8-vs-sage-barista-express" },
 };
 
 export default function DuelPage() {

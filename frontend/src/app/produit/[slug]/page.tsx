@@ -9,7 +9,7 @@ const AccessoriesWidgetLoader = nextDynamic(
 
 export const dynamic = "force-dynamic";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.troviio.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://troviio.com";
 
 async function fetchProduct(slug: string) {
   try {

@@ -1,7 +1,7 @@
 import { siteConfig } from "@/lib/site";
 import { LegalPage } from "@/components/legal/LegalPage";
 
-const pageUrl = `https://www.troviio.com/cookies`;
+const pageUrl = `https://troviio.com/cookies`;
 
 export const metadata = {
   title: `Politique de cookies — ${siteConfig.name}`,

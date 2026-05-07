@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "LG G6 OLED vs Samsung S95H QD-OLED | Troviio",
   description: "La TV OLED 2026 la plus chere et la plus impressionnante. LG G6 ou Samsung S95H ? Verdict.",
-  alternates: { canonical: "https://www.troviio.com/duel/lg-g6-oled-vs-samsung-s95h-qd-oled" },
+  alternates: { canonical: "https://troviio.com/duel/lg-g6-oled-vs-samsung-s95h-qd-oled" },
 };
 
 export default function DuelPage() {

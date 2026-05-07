@@ -42,7 +42,7 @@ export function Breadcrumbs({
       "@type": "ListItem",
       position: i + 1,
       name: crumb.label,
-      ...(crumb.href ? { item: `https://www.troviio.com${crumb.href}` } : {}),
+      ...(crumb.href ? { item: `https://troviio.com${crumb.href}` } : {}),
     })),
   };
 

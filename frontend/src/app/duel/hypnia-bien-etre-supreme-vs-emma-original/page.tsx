@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Hypnia Bien-Etre Supreme vs Emma Original : le duel des matelas 2026 | Troviio",
     description: "Qui est le meilleur en matelas ? Le Hypnia Bien-Etre Supreme affronte le Emma Original Hybrid II dans un duel sans merci.",
-  alternates: { canonical: "https://www.troviio.com/duel/hypnia-bien-etre-supreme-vs-emma-original" },
+  alternates: { canonical: "https://troviio.com/duel/hypnia-bien-etre-supreme-vs-emma-original" },
 };
 
 export default function DuelPage() {

@@ -1,6 +1,6 @@
 import { siteConfig } from "@/lib/site";
 
-const pageUrl = "https://www.troviio.com/a-propos";
+const pageUrl = "https://troviio.com/a-propos";
 
 export const metadata = {
   title: `À propos — ${siteConfig.name}`,

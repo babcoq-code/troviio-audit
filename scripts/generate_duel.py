@@ -343,7 +343,7 @@ import type {{ Metadata }} from "next";
 '''
     else:
         # Compute a component name
-        comp_name = f"Duel{''.join(w.capitalize() for w in p1['name'].replace('/',' ').split()[:2])}Vs{''.join(w.capitalize() for w in p2['name'].replace('/',' ').split()[:2])}"
+        comp_name = f"Duel{''.join(w.capitalize() for w in p1['name'].replace('/',' ').replace('-',' ').split()[:2])}Vs{''.join(w.capitalize() for w in p2['name'].replace('/',' ').replace('-',' ').split()[:2])}"
         page_content = f'''import Link from "next/link";
 import {{ Breadcrumbs }} from "@/components/Breadcrumbs";
 import type {{ Metadata }} from "next";

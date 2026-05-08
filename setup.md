@@ -30,7 +30,7 @@
 
 ### 4. Awin — Affiliation (5 min)
 1. Va sur [awin.com](https://www.awin.com) → "Publisher signup"
-2. Crée un compte → Rejoins les programmes Amazon, Darty, Fnac, Boulanger
+2. Crée un compte → Rejoins les programmes Amazon, Boulanger
 3. Copie dans `.env` : `AWIN_API_KEY`
 
 ---

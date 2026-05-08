@@ -15,7 +15,7 @@ from app.core.config import get_settings
 
 logger = logging.getLogger(__name__)
 
-PLATFORMS = ["amazon", "fnac", "darty", "cdiscount", "boulanger", "leclerc"]
+PLATFORMS = ["amazon", "cdiscount", "boulanger", "leclerc"]
 REDIS_PRICES_TTL = 43200  # 12 heures
 
 

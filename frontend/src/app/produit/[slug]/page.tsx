@@ -124,8 +124,7 @@ export default async function ProductPage({ params }: PageProps) {
   const merchantLogo = (m: string) => {
     const s = m.toLowerCase();
     if (s.includes("amazon")) return { logo: "a.", color: "#FF9900" };
-    if (s.includes("fnac")) return { logo: "F", color: "#E2001A" };
-    if (s.includes("darty")) return { logo: "D", color: "#008B8E" };
+    // Fnac/Darty removed
     return { logo: m[0], color: "#8B8FA3" };
   };
 

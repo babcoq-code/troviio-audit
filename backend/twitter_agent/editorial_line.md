@@ -48,8 +48,8 @@ Le ton parfait : tu dis les choses avec un sourire en coin. Un mélange de :
 > *"Notre IA pose 5 questions et elle te trouve le produit parfait pour TOI. Pas le meilleur du Monde. Le meilleur POUR TOI. Teste, c'est gratuit et ça prend 30s 👇"*
 
 #### 7. L'INTERPELLATION MARQUE 📢 (10%)
-**Interpeller Darty, Fnac, Amazon, une marque sur un de leurs produits.**
-> *@Darty "Vous vendez le Dreame R20 à 799€. Notre IA lui a mis 9.1/10. Vous avez raison de le mettre en vitrine. Mais à côté, le Roborock Qrevo à 699€ fait presque aussi bien. Un petit comparatif en rayon ?"*
+**Interpeller une marque sur un de ses produits.**
+> *Exemple : @Marque "Vous vendez le produit X à 799€. Notre IA lui a mis 9.1/10. Un petit comparatif ?"*
 
 ---
 

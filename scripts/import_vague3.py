@@ -99,7 +99,7 @@ def slugify(name):
     return s
 
 # Products data structured from the SQL files
-# Format: (category_slug, rank, name, brand, model_ref, price_eur, score, amazon_asin, amazon_url, fnac_avail, fnac_price, darty_avail, darty_price, pros_ARRAY, cons_ARRAY, verdict, specs_jsonb, badge, available_france, created_at, updated_at)
+# Format: (category_slug, rank, name, brand, model_ref, price_eur, score, amazon_asin, amazon_url, pros_ARRAY, cons_ARRAY, verdict, specs_jsonb, badge, available_france, created_at, updated_at)
 
 # I'll parse the raw SQL lines
 with open("/root/.hermes/cache/documents/doc_0226d3704533_TROVIIO_Vague3_Hermes_PART1_2026-05-05.txt") as f:

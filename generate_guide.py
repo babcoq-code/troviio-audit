@@ -38,7 +38,7 @@ PRODUCTS = [
      "for": "Foyers avec poils animaux et tapis épais"},
     {"name": "Roborock Saros 10R", "score": 93, "brand": "Roborock", "asin": "B0DJ3284BS", "slug": "roborock-saros-10r",
      "pros": ["#1 mondial RTINGS 8,3/10", "FlexiArm Riser exclusif", "StarSight 2.0 meilleur évitement"],
-     "cons": ["Stock très limité sur Amazon", "Non vendu sur Fnac/Darty", "Prix marketplace excessif"],
+     "cons": ["Stock très limité sur Amazon", "Prix marketplace excessif"],
      "desc": "Le champion des performances brutes selon RTINGS.",
      "for": "Les technophiles qui veulent le meilleur score labo"},
     {"name": "Roborock S8 MaxV Ultra", "score": 93, "brand": "Roborock", "asin": "B0CP7K1R65", "slug": "roborock-s8-maxv-ultra",

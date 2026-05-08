@@ -153,7 +153,7 @@ export default function MethodologiePage() {
                 <span className="rounded-full bg-[#3ED6A3]/15 px-3 py-1 text-xs font-bold text-[#3ED6A3]">Pondération variable</span>
               </div>
               <p className="mt-2 text-sm leading-6" style={{ color: "var(--text-muted)" }}>
-                On agrège les avis de plusieurs sources (Amazon, Darty, Boulanger, 
+                On agrège les avis de plusieurs sources (Amazon, Boulanger, 
                 forums). Mais on <strong>ne se fie pas à la note brute</strong>. Un produit 
                 avec 4,5/10 mais 2000 avis est plus fiable qu'un avec 5/10 mais 12 avis 
                 (peut-être les potes du fabricant). On regarde aussi les tendances : 
@@ -310,7 +310,7 @@ export default function MethodologiePage() {
               </p>
               <p>
                 <strong>Sources des données :</strong> Fiches techniques officielles des 
-                fabricants, avis vérifiés et agrégés de sources multiples (Amazon, Darty, 
+                fabricants, avis vérifiés et agrégés de sources multiples (Amazon, 
                 Boulanger, forums), prix actualisés en temps réel via les flux des marchands 
                 partenaires.
               </p>

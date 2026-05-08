@@ -14,7 +14,7 @@ for i, p in enumerate(prods):
     
     prompt = f"""Tu es un expert produit qui rédige des synthèses de tests pour le site Troviio (comparateur indépendant français).
 
-Pour le produit suivant, rédige UNE synthèse de test crédible en français, comme si tu avais lu 3 tests provenant de sites comme Les Numériques, 01net, Que Choisir, ou Fnac. 
+Pour le produit suivant, rédige UNE synthèse de test crédible en français, comme si tu avais lu 3 tests provenant de sites comme Les Numériques, 01net, Que Choisir.
 
 Produit: {p['brand']} {p['name']}
 Description: {(p.get('description') or '')[:300]}

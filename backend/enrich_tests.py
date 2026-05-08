@@ -29,7 +29,7 @@ Catégorie: {category}
 Prix: {price}€
 
 La synthèse doit:
-- Citer des sources réelles (Les Numériques, 01net, Que Choisir, Fnac, Darty, UFC)
+- Citer des sources réelles (Les Numériques, 01net, Que Choisir, UFC)
 - Faire 3-4 phrases max
 - Être naturelle et informative, pas de jargon marketing
 - Donner des notes ou appréciations chiffrées quand possible

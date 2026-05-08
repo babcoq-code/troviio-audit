@@ -32,7 +32,7 @@ POST_TYPES = [
     "comparison",          # Comparatif 2 produits
     "brand_reply",         # Mention d'une marque
     "fun",                 # Humour/actu tech
-    "retailer_mention",    # Darty/Fnac/Amazon
+    "retailer_mention",    # Amazon
 ]
 
 CATEGORIES = [
@@ -50,7 +50,7 @@ BRANDS = [
     "Sennheiser", "Sony", "Shokz", "Yamaha", "Sonos", "Marshall",
 ]
 
-RETAILERS = ["@Darty", "@Fnac", "@Amazon", "@BoulangerFR", "@Cdiscount", "@RueDuCommerce", "@Leclerc"]
+RETAILERS = ["@Amazon", "@BoulangerFR", "@Cdiscount", "@RueDuCommerce", "@Leclerc"]
 
 
 def get_supabase():

@@ -26,7 +26,7 @@ def update_amazon_prices():
         asin = product["amazon_asin"]
         affiliate_url = f"https://www.amazon.fr/dp/{asin}?tag={AFFILIATE_TAG}"
         supabase.table("products").update({
-            "amazon_affiliate_url": affiliate_url,
+            "affiliate_url": affiliate_url,
         }).eq("id", product["id"]).execute()
 
     print(f"✅ URLs affiliées mises à jour pour {len(result.data)} produits")

@@ -15,6 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/tops/meilleure-friteuse-air`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/tops/meilleur-casque-audio`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/tops/meilleure-voiture-electrique`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/tops/meilleure-station-accueil-usbc`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/tops/meilleur-aspirateur-balai`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/tops/meilleur-aspirateur-laveur`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/guide/meilleur-lave-linge`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/guide/meilleur-aspirateur-balai`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/guide/meilleur-robot-cuisine`, changeFrequency: "monthly", priority: 0.6 },
@@ -44,6 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/duel/dyson-gen5-vs-samsung-bespoke-jet`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE}/duel/it-takes-two-vs-split-fiction`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE}/duel/duux-whisper-flex-2-vs-rowenta-vu5890f0`, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE}/duel/caldigit-ts5-plus-vs-plugable-tbt4-ud5`, changeFrequency: "monthly", priority: 0.5 },
   ];
 
   // Supprimer les doublons (uniques par URL)

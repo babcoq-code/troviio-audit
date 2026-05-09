@@ -45,7 +45,7 @@ def _get_top_products_by_category(limit: int = 3) -> list[dict]:
         # Top N products for this category by score
         products_resp = (
             supabase.table("products")
-            .select("id, name, brand, slug, estimated_score, image_url, amazon_affiliate_url, price_eur")
+            .select("id, name, brand, slug, estimated_score, image_url, affiliate_url, price_eur")
             .eq("status", "published")
             .eq("category_id", cat_id)
             .is_("estimated_score", "not", None)
@@ -85,7 +85,7 @@ def _build_newsletter_html(
             name = p.get("brand", "") + " " + p.get("name", "")
             score = p.get("estimated_score")
             score_str = f"{score:.1f}/10" if score else "N/A"
-            url = p.get("amazon_affiliate_url", f"https://{DOMAIN}/produit/{p.get('slug', '')}")
+            url = p.get("affiliate_url", f"https://{DOMAIN}/produit/{p.get('slug', '')}")
             img = p.get("image_url", "")
             price = p.get("price_eur")
             price_str = f"{price:.0f} €" if price else "Voir le prix"
@@ -115,7 +115,7 @@ def _build_newsletter_html(
         </div>
         """
 
-    unsub_link = f\"https://{DOMAIN}/api/newsletter/unsubscribe?token={unsub_token}\" if unsub_token else f\"https://{DOMAIN}/api/newsletter/unsubscribe\"
+    unsub_link = f"https://{DOMAIN}/api/newsletter/unsubscribe?token={unsub_token}" if unsub_token else f"https://{DOMAIN}/api/newsletter/unsubscribe"
 
     html = f"""<!DOCTYPE html>
 <html>

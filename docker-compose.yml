@@ -31,7 +31,7 @@ services:
       args:
         NEXT_PUBLIC_SUPABASE_URL: "https://uukshxztoztkwxuuvqzc.supabase.co"
         NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable__kPeUNFUMtISs7u6gxuEKg_zXUH6yOA"
-        NEXT_PUBLIC_API_URL: ""
+        NEXT_PUBLIC_API_URL: "https://www.troviio.com/api"
         NEXT_PUBLIC_APP_URL: "https://www.troviio.com"
         NEXT_PUBLIC_AMAZON_TAG: "troviio-21"
         NEXT_PUBLIC_CLARITY_ID: "${NEXT_PUBLIC_CLARITY_ID}"

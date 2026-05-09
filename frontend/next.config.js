@@ -11,6 +11,16 @@ const nextConfig = {
         destination: '/',
         permanent: false,
       },
+      {
+        source: '/categorie/:slug*',
+        destination: '/c/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/categories/:slug*',
+        destination: '/c/:slug*',
+        permanent: true,
+      },
     ]
   },
 }

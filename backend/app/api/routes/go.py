@@ -14,6 +14,7 @@ supabase = get_supabase_admin()
 
 router = APIRouter(tags=["Affiliate Redirects"])
 
+
 @router.get("/go/{product_id}")
 async def affiliate_redirect(
     product_id: str,
@@ -23,35 +24,54 @@ async def affiliate_redirect(
 ):
     """Redirige vers l'URL affiliée Amazon et tracke le clic."""
     try:
-        # Récupérer l'URL affiliée
+        # Récupérer l'URL affiliée + ASIN + slug
         result = (
             supabase.table("products")
-            .select("affiliate_url, price_eur, name, brand")
+            .select("id, slug, affiliate_url, amazon_asin, price_eur, name")
             .eq("id", product_id)
             .limit(1)
             .execute()
         )
 
         if not result.data:
+            # Fallback: chercher par slug
+            result = (
+                supabase.table("products")
+                .select("id, slug, affiliate_url, amazon_asin, price_eur, name")
+                .eq("slug", product_id)
+                .limit(1)
+                .execute()
+            )
+
+        if not result.data:
             return RedirectResponse("https://www.amazon.fr", status_code=302)
 
         product = result.data[0]
-        affiliate_url = product.get("affiliate_url") or "https://www.amazon.fr"
+        affiliate_url = product.get("affiliate_url") or ""
+        if not affiliate_url and product.get("amazon_asin"):
+            asin = product["amazon_asin"]
+            tag = "troviio-21"
+            affiliate_url = f"https://www.amazon.fr/dp/{asin}?tag={tag}&linkCode=as2"
+
+        if not affiliate_url:
+            return RedirectResponse("https://www.amazon.fr", status_code=302)
 
         # Session cookie anonyme
         session_id = request.cookies.get("tv_sid", str(uuid.uuid4()))
 
-        # Log le clic (fire and forget)
+        # Log le clic (fire and forget) — utilise les colonnes réelles de la table
         try:
-            supabase.table("affiliate_clicks").insert({
+            click_data = {
                 "product_id": product_id,
-                "retailer_code": "amazon",
-                "source_page": request.headers.get("referer", ""),
-                "source_type": src if src in ("chat", "tops", "category", "product_page", "homepage") else "unknown",
                 "session_id": session_id,
-            }).execute()
-        except Exception:
-            pass  # Table peut ne pas exister — ne pas bloquer
+                "merchant": "amazon",
+                "surface": src if src in ("chat", "tops", "category", "product_page", "homepage", "result_card") else "unknown",
+                "category_slug": product.get("category_slug", ""),
+                "sub_id": str(pos) if pos else None,
+            }
+            supabase.table("affiliate_clicks").insert(click_data).execute()
+        except Exception as e:
+            logger.warning(f"[go.py] Tracking error (non-fatal): {e}")
 
         response = RedirectResponse(affiliate_url, status_code=302)
         response.set_cookie(

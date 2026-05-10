@@ -24,11 +24,13 @@ const CAT_META: Record<string, CatMeta> = {
   "machine-a-cafe": { name: "Machine à café", emoji: "☕", title: "Meilleure machine à café 2026", description: "Grains, capsules, silence, entretien : Troviio choisit la machine à café faite pour ta vie.", guide_title: "Quelle machine à café choisir ?", guide_desc: "Grain ou capsule, pression, entretien : le guide ultime pour votre café quotidien." },
   tv: { name: "TV", emoji: "📺", title: "Meilleure TV 2026", description: "Salon lumineux, gaming, cinéma : Troviio sélectionne la TV pour ton usage réel.", guide_title: "Quelle TV acheter en 2026 ?", guide_desc: "OLED, QLED, taille, taux de rafraîchissement : tous les critères pour bien choisir votre téléviseur." },
   "casque-audio": { name: "Casque audio", emoji: "🎧", title: "Meilleur casque audio 2026", description: "Nomade, réduction de bruit, qualité son : Troviio choisit le casque adapté à toi.", guide_title: "Quel casque audio choisir ?", guide_desc: "Réduction de bruit, confort, qualité sonore : le guide pour trouver le casque parfait." },
+  "tv-oled": { name: "TV OLED", emoji: "📺", title: "Meilleure TV OLED 2026", description: "OLED, cinéma, gaming, Dolby Vision : Troviio choisit la TV OLED pour ton salon.", guide_title: "Quelle TV OLED choisir ?", guide_desc: "OLED, Dolby Vision, HDMI 2.1 : le guide pour une qualité d'image exceptionnelle." },
+  "laptop-etudiant": { name: "Laptop étudiant", emoji: "💻", title: "Meilleur laptop étudiant 2026", description: "Légèreté, autonomie, budget : Troviio choisit le PC portable pour tes études.", guide_title: "Quel PC portable étudiant choisir ?", guide_desc: "Autonomie, poids, budget : le guide du laptop pour les étudiants." },
   "ordinateur-portable": { name: "Ordinateur portable", emoji: "💻", title: "Meilleur ordinateur portable 2026", description: "Légèreté, autonomie, perfs : Troviio choisit le laptop idéal pour tes études ou ton travail.", guide_title: "Quel PC portable choisir ?", guide_desc: "Processeur, RAM, autonomie, poids : le guide complet de l'ordinateur portable." },
   "barre-de-son": { name: "Barre de son", emoji: "🔊", title: "Meilleure barre de son 2026", description: "TV, gaming, Dolby Atmos : Troviio choisit la barre de son pour ton salon.", guide_title: "Comment choisir une barre de son ?", guide_desc: "Canaux, caisson, connectique : le guide pour transformer votre salon en home cinéma." },
   "enceinte-bt": { name: "Enceinte Bluetooth", emoji: "🔈", title: "Meilleure enceinte Bluetooth 2026", description: "Nomade, puissante, étanche : Troviio trouve l'enceinte pour ta vie.", guide_title: "Quelle enceinte Bluetooth choisir ?", guide_desc: "Portabilité, puissance, autonomie : le guide de l'enceinte sans fil qui vous accompagne." },
   poussette: { name: "Poussette", emoji: "👶", title: "Meilleure poussette 2026", description: "Légère, pliable, tout terrain, nouveau-né : Troviio trouve la poussette parfaite pour toi.", guide_title: "Quelle poussette choisir ?", guide_desc: "Poids, pliage, confort : le guide pour choisir la poussette de votre bébé." },
-  "four-micro-ondes": { name: "Four / Micro-ondes", emoji: "🔥", title: "Meilleur four micro-ondes 2026", description: "Seul, combiné, compact : Troviio choisit le four adapté à ta cuisine.", guide_title: "Quel micro-ondes choisir ?", guide_desc: "Puissance, capacité, fonctions : le guide pour un micro-ondes adapté à vos besoins." },
+  "four-micro-ondes": { name: "Micro-ondes", emoji: "🔥", title: "Meilleur micro-ondes 2026", description: "Seul, combiné, compact : Troviio choisit le micro-ondes adapté à ta cuisine.", guide_title: "Quel micro-ondes choisir ?", guide_desc: "Puissance, capacité, fonctions : le guide pour un micro-ondes adapté à vos besoins." },
   "cave-a-vin": { name: "Cave à vin", emoji: "🍷", title: "Meilleure cave à vin 2026", description: "Température, capacité, silence : Troviio sélectionne la cave à vin pour ta collection.", guide_title: "Bien choisir sa cave à vin", guide_desc: "Capacité, température, encastrable : le guide de la cave à vin idéale." },
   "robot-cuisine": { name: "Robot cuisine", emoji: "🍳", title: "Meilleur robot cuisine 2026", description: "Polyvalence, puissance, accessoires : Troviio trouve le robot cuisine qui transforme ta cuisine.", guide_title: "Quel robot cuisine choisir ?", guide_desc: "Puissance, fonctions, accessoires : le guide pour cuisiner sans effort." },
   trottinette: { name: "Trottinette électrique", emoji: "🛴", title: "Meilleure trottinette électrique 2026", description: "Autonomie, puissance, poids : Troviio trouve la trottinette pour tes trajets.", guide_title: "Quelle trottinette électrique choisir ?", guide_desc: "Autonomie, vitesse, poids : le guide de la trottinette pour vos déplacements urbains." },
@@ -115,7 +117,28 @@ type Product = {
   specs?: Record<string, unknown>;
   amazon_asin?: string;
   affiliate_url?: string;
+  merchant_links?: Array<{ merchant: string; url: string; affiliate_url?: string; price_eur?: number }>;
 };
+
+function getMerchantName(url: string): string {
+  if (!url) return "Amazon";
+  try {
+    const hostname = new URL(url).hostname.toLowerCase();
+    if (hostname.includes("amazon")) return "Amazon";
+    if (hostname.includes("fnac")) return "Fnac";
+    if (hostname.includes("darty")) return "Darty";
+    if (hostname.includes("cdiscount")) return "Cdiscount";
+    if (hostname.includes("ldlc")) return "LDLC";
+    if (hostname.includes("boulanger")) return "Boulanger";
+    if (hostname.includes("leboncoin")) return "Leboncoin";
+    if (hostname.includes("ebay")) return "eBay";
+    if (hostname.includes("materiel")) return "Materiel.net";
+    if (hostname.includes("aliexpress")) return "AliExpress";
+    return "Amazon"; // fallback
+  } catch {
+    return "Amazon";
+  }
+}
 
 async function fetchProducts(slug: string): Promise<Product[]> {
   try {
@@ -180,7 +203,7 @@ function Top3Card({ product, rank }: { product: Product; rank: number }) {
       {/* Score */}
       {score > 0 && (
         <div className="text-lg font-bold" style={{ color: "var(--coral, #FF6B5F)" }}>
-          {score.toFixed(1)}/10
+          {Math.round(score)}/100
         </div>
       )}
       {/* Price removed — replaced by affiliate button below */}
@@ -193,7 +216,7 @@ function Top3Card({ product, rank }: { product: Product; rank: number }) {
         <a href={affiliateUrl} target="_blank" rel="noopener noreferrer sponsored"
            className="flex-1 text-center text-xs py-2 rounded-xl font-bold text-white transition-all hover:brightness-110"
            style={{ background: "linear-gradient(135deg, #FF6B5F 0%, #3ED6A3 100%)" }}>
-          Voir le prix sur Amazon
+          Voir le prix sur {getMerchantName(affiliateUrl)}
         </a>
       </div>
     </div>
@@ -316,7 +339,7 @@ export default async function CategoryPage({ params }: Props) {
                         <span className="text-xs">{p.brand} {p.name}</span>
                         {p.estimated_score && (
                           <div className="text-[10px] font-bold" style={{ color: "var(--coral, #FF6B5F)" }}>
-                            {p.estimated_score.toFixed(1)}/10
+                            {Math.round(p.estimated_score)}/100
                           </div>
                         )}
                       </th>
@@ -378,7 +401,7 @@ export default async function CategoryPage({ params }: Props) {
                     </div>
                     {score > 0 && (
                       <div className="text-xs font-bold mb-1" style={{ color: "var(--coral, #FF6B5F)" }}>
-                        {score.toFixed(1)}/10
+                        {Math.round(score)}/100
                       </div>
                     )}
                     <span className="text-[10px] font-bold px-2 py-1 rounded-full text-white"

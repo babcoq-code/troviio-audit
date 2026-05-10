@@ -59,7 +59,7 @@ export default async function CataloguePage() {
 
   try {
     // 1. Fetch products from backend (includes category_id, category_slug, category_name)
-    const productUrl = `${INTERNAL_API}/api/products/?limit=300`;
+    const productUrl = `${INTERNAL_API}/api/products/?limit=500`;
     const productRes = await fetch(productUrl, {
       cache: "no-store",
       signal: AbortSignal.timeout(15000),

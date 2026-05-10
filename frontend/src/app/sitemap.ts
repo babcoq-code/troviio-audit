@@ -6,7 +6,7 @@ const BASE = "https://www.troviio.com";
 const CATEGORIES = [
   "airfryer","aspirateur-balai","aspirateur-robot","bureau-electrique",
   "casque-audio","cave-a-vin","clavier-gaming","climatiseur-mobile",
-  "decongelateur","enceinte-bt","epilateur-lumiere-pulsee","four-micro-ondes",
+  "decongelateur","enceinte-bt","epilateur-lumiere-pulsee","four-micro-ondes","four-encastrable",
   "imprimante-3d","laptop-gamer","machine-a-cafe","machine-a-pain",
   "machine-a-coudre","moniteur","montre-connectee","nettoyeur-vapeur",
   "ordinateur-portable","purificateur-air","rasoir-electrique",

@@ -3,7 +3,7 @@
 import os, subprocess, sys, tempfile, shutil
 from datetime import datetime
 
-REPO_DIR = "/opt/picksy"
+REPO_DIR = "/root/troviio-ciceron"
 REMOTE_NAME = "audit"
 REMOTE_URL = "https://github.com/babcoq-code/troviio-audit.git"
 BRANCH = "main"
@@ -33,8 +33,7 @@ def is_text_file(path):
 def has_secrets(content):
     """Check for secret patterns"""
     patterns = [
-        'SUPABASE_SERVICE_KEY_REMOVED', 'GITHUB_PAT_REMOVED', 'cfut_', 'CF_TUNNEL_TOKEN',
-        'SUPABASE_SERVICE_KEY=', 'sk-', 'DEEPSEEK_API_KEY=',
+        'SUPABASE_SERVICE_KEY=', 'DEEPSEEK_API_KEY=',
         'OPENAI_API_KEY=', 'AMAZON_PAAPI_',
     ]
     for p in patterns:
@@ -45,11 +44,7 @@ def has_secrets(content):
 def scrub_text(content):
     """Replace secrets with placeholders"""
     import re
-    content = re.sub(r'SUPABASE_SERVICE_KEY_REMOVED[A-Za-z0-9_-]+', 'SECRET_REMOVED', content)
-    content = re.sub(r'GITHUB_PAT_REMOVED[A-Za-z0-9]+', 'GH_TOKEN_REMOVED', content)
-    content = re.sub(r'cfut_[A-Za-z0-9_-]+', 'CF_TUNNEL_REMOVED', content)
     content = re.sub(r'SUPABASE_SERVICE_KEY=[^\n]+', 'SUPABASE_SERVICE_KEY=REMOVED', content)
-    content = re.sub(r'sk-[A-Za-z0-9]+', 'SK_OPENAI_REMOVED', content)
     content = re.sub(r'DEEPSEEK_API_KEY=[^\n]+', 'DEEPSEEK_API_KEY=REMOVED', content)
     content = re.sub(r'OPENAI_API_KEY=[^\n]+', 'OPENAI_API_KEY=REMOVED', content)
     content = re.sub(r'AMAZON_PAAPI_[A-Za-z0-9]+', 'PAAPI_REMOVED', content)
@@ -157,7 +152,7 @@ def push_to_github(snapshot_dir, timestamp):
         return True
     
     # Push force (on remplace tout)
-    remote_url = f"https://babcoq-code:GITHUB_PAT_REMOVEDGX67VouWtoQysEY1nIDvH14Wqggn3yHx1c@github.com/babcoq-code/troviio-audit.git"
+    remote_url = "https://github.com/babcoq-code/troviio-audit.git"
     subprocess.run(["git", "remote", "add", "origin", remote_url], capture_output=True)
     result = subprocess.run(["git", "push", "--force", "origin", "main"], capture_output=True, text=True)
     print(result.stdout)

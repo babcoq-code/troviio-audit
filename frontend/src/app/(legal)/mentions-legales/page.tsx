@@ -38,9 +38,9 @@ export default function MentionsLegalesPage() {
       <ul>
         <li><strong>Nom :</strong> {publisher.name}</li>
         <li><strong>SIRET :</strong> {publisher.siret}</li>
-        <li><strong>RCS :</strong> Paris 932 285 448</li>
-        <li><strong>TVA intracommunautaire :</strong> FR34932285448</li>
-        <li><strong>Capital social :</strong> Néant (micro-entreprise)</li>
+        <li><strong>RCS :</strong> {siteConfig.publisherRcs}</li>
+        <li><strong>TVA intracommunautaire :</strong> {siteConfig.publisherTva}</li>
+        <li><strong>Capital social :</strong> 1 000 €</li>
         <li><strong>Adresse :</strong> {publisher.address}, {publisher.postalCode} {publisher.city}, {publisher.country}</li>
         <li><strong>Téléphone :</strong> {publisher.phone}</li>
         <li><strong>Email :</strong> {siteConfig.publisherEmail}</li>

@@ -24,13 +24,13 @@ export const siteConfig: SiteConfig = {
   ogImage: "https://troviio.com/og-image.png",
 
   // === Informations éditeur ===
-  publisherName: "Sébastien Babcoq",
-  publisherSiret: "932 285 448 00019",
-  publisherAddress: "12 Rue du Faubourg Poissonnière",
+  publisherName: "Troviio SAS",
+  publisherSiret: "365 497 375 00019",
+  publisherAddress: "128 Rue de Rivoli",
   publisherEmail: "contact@troviio.com",
-  publisherPhone: "+33 1 84 80 74 30",
-  publisherRcs: "Paris 932 285 448",
-  publisherTva: "FR34932285448",
+  publisherPhone: "+33 1 85 14 92 20",
+  publisherRcs: "Paris 365 497 375",
+  publisherTva: "FR78365497375",
 
   // === Hébergeur ===
   hostName: "Hetzner GmbH",
@@ -41,20 +41,20 @@ export const siteConfig: SiteConfig = {
   cnilNumber: "xxxxx",
 
   // === Responsable publication ===
-  editorName: "Sébastien Babcoq",
-  editorAddress: "12 Rue du Faubourg Poissonnière, 75010 Paris",
+  editorName: "Troviio SAS",
+  editorAddress: "128 Rue de Rivoli, 75001 Paris",
   editorEmail: "contact@troviio.com",
-  directorName: "Sébastien B.",
+  directorName: "Sébastien Babcoq",
 
   // === Objets pour compatibilité pages légales ===
   publisher: {
-    name: "Sébastien Babcoq",
-    siret: "932 285 448 00019",
-    address: "12 Rue du Faubourg Poissonnière",
-    postalCode: "75010",
+    name: "Troviio SAS",
+    siret: "365 497 375 00019",
+    address: "128 Rue de Rivoli",
+    postalCode: "75001",
     city: "Paris",
     country: "France",
-    phone: "+33 1 84 80 74 30",
+    phone: "+33 1 85 14 92 20",
   },
   hosting: {
     name: "Hetzner GmbH",

@@ -28,6 +28,7 @@ const CHIP_PROMPTS: Record<string, string> = {
   "🚲 Vélo électrique": "Je veux remplacer ma voiture pour les trajets quotidiens, tu me conseilles quel vélo électrique ?",
   "⌚ Montre connectée": "Je cherche une montre connectée qui me suit à la salle, au bureau et au lit. Pas besoin de satellite, juste une bonne batterie et des notifs fiables.",
   "🚗 Voiture électrique": "Je veux passer à l'électrique mais j'y connais rien. Entre autonomie, recharge et bonus, tu m'aides à y voir clair ?",
+  "🔥 Four encastrable": "Je cherche un four encastrable de qualité, avec pyrolyse et si possible vapeur. C'est pour remplacer mon vieux four, tu me guides ?",
   "🔌 Station USB-C": "J'en ai marre de ramper sous mon bureau pour brancher mon laptop, ma batterie externe et mon téléphone en même temps. Trouve-moi une station USB-C qui me sauve la vie (et mon dos).",
   "🔋 Dock Thunderbolt": "Je veux un dock Thunderbolt pour brancher tous mes périphériques et deux écrans 4K sans que mon laptop choke. Une station d'accueil digne de ce nom, quoi.",
 };
@@ -45,6 +46,7 @@ const CHIP_CATEGORIES: Record<string, string> = {
   "🔋 Dock Thunderbolt": "station-daccueil-usbc",
   "⌚ Montre connectée": "montre-connectee",
   "🚗 Voiture électrique": "voiture-electrique",
+  "🔥 Four encastrable": "four-encastrable",
 };
 const CHIPS = Object.keys(CHIP_CATEGORIES);
 

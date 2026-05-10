@@ -20,7 +20,7 @@ const CATEGORIES: HeaderCategory[] = [
   { slug: "lave-linge",          label: "Lave-linge",          emoji: "🌀", group: "Maison" },
   { slug: "lave-vaisselle",      label: "Lave-vaisselle",      emoji: "🍽️", group: "Maison" },
   { slug: "refrigerateur",       label: "Réfrigérateur",       emoji: "🧊", group: "Maison" },
-  { slug: "four-micro-ondes",    label: "Four / Micro-ondes",  emoji: "🔥", group: "Maison" },
+  { slug: "four-micro-ondes",    label: "Micro-ondes",  emoji: "🔥", group: "Maison" },
   { slug: "purificateur-air",    label: "Purificateur d'air",   emoji: "💨", group: "Maison" },
   { slug: "friteuse-air",        label: "Friteuse à air",      emoji: "🍟", group: "Maison" },
   { slug: "machine-a-cafe",      label: "Machine à café",      emoji: "☕", group: "Maison" },

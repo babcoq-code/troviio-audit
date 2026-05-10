@@ -110,7 +110,7 @@ export default function CatalogueClient({ initialData, initialCategories }: Cata
     async function load() {
       try {
         const API_BASE = process.env.NEXT_PUBLIC_API_URL || "/api";
-        const res = await fetch(`${API_BASE}/products/?limit=300`, { cache: "no-store" });
+        const res = await fetch(`${API_BASE}/products/?limit=500`, { cache: "no-store" });
         const products: any[] = res.ok ? await res.json() : [];
 
         console.log("FETCHED", products.length, "products");

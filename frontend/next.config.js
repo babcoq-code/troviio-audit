@@ -2,8 +2,10 @@
 const nextConfig = {
   output: 'standalone',
   images: {
-    domains: ['images.icecat.biz', 'm.media-amazon.com'],
+    unoptimized: true,
   },
+  trailingSlash: false,
+  skipTrailingSlashRedirect: true,
   async redirects() {
     return [
       {
@@ -19,6 +21,30 @@ const nextConfig = {
       {
         source: '/categories/:slug*',
         destination: '/c/:slug*',
+        permanent: true,
+      },
+      // Redirection: /c/tv-oled → /c/tv
+      {
+        source: '/c/tv-oled',
+        destination: '/c/tv',
+        permanent: true,
+      },
+      // Redirection: /tops/meilleur-smartphone → /c/smartphone (top page smartphone doesn't exist)
+      {
+        source: '/tops/meilleur-smartphone',
+        destination: '/c/smartphone',
+        permanent: true,
+      },
+      // Redirection: duel thermomix non généré en standalone
+      {
+        source: '/duel/thermomix-tm7-vs-kitchenaid-artisan',
+        destination: '/duels',
+        permanent: true,
+      },
+      // Redirection: duel samsung vs iphone non généré en standalone
+      {
+        source: '/duel/samsung-galaxy-s26-ultra-vs-iphone-17-pro-max',
+        destination: '/duels',
         permanent: true,
       },
     ]

@@ -381,10 +381,9 @@ export default function {comp_name}() {{
   return (
 {duel_jsx}
   );
-  );
-}}'''
-
-    page_path = os.path.join(duel_dir, "page.tsx")
+   384|}}'''
+   385|
+   386|    page_path = os.path.join(duel_dir, "page.tsx")
     with open(page_path, "w") as f:
         f.write(page_content)
     print(f"  💾 Écrit: {page_path}", flush=True)

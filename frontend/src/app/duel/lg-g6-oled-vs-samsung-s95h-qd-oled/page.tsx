@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "LG G6 OLED vs Samsung S95H QD-OLED | Troviio",
@@ -10,6 +11,17 @@ export const metadata: Metadata = {
 
 export default function DuelPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "Article",
+          headline: "LG G6 OLED vs Samsung S95H QD-OLED",
+          description: "La TV OLED 2026 la plus chere et la plus impressionnante. LG G6 ou Samsung S95H ? Verdict.",
+          url: "https://troviio.com/duel/lg-g6-oled-vs-samsung-s95h-qd-oled",
+          author: { "@type": "Organization", name: "Troviio" },
+          datePublished: "2026-01-01",
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -93,5 +105,6 @@ export default function DuelPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

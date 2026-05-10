@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Meilleure machine a cafe 2026 : le top 3 pour bien commencer la journee | Troviio",
@@ -9,6 +10,31 @@ export const metadata: Metadata = {
 
 export default function TopsPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "ItemList",
+          url: "https://troviio.com/tops/meilleure-machine-a-cafe",
+          name: "Meilleure machine à café 2026",
+          description: "Le classement des 3 meilleures machines à café de 2026.",
+          numberOfItems: 3,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Jura E8 Piano Black" },
+            { "@type": "ListItem", position: 2, name: "Technivorm Moccamaster KBG Select" },
+            { "@type": "ListItem", position: 3, name: "Sage Barista Express Impress BES876" },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
+            { "@type": "ListItem", position: 2, name: "Top 3", item: "https://troviio.com/tops" },
+            { "@type": "ListItem", position: 3, name: "Meilleure machine à café" },
+          ],
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -35,16 +61,64 @@ export default function TopsPage() {
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Jura E8 Piano Black** - 1499€ - Note : 92/100  
 Pourquoi lui ? Parce que c’est le Lexus des machines à café. Tu la regardes, et elle te juge silencieusement avec son design noir mat digne d’un film de Christopher Nolan. Pas besoin de sortir un diplôme d’ingénieur pour la faire fonctionner : elle broie, mousse, et même te fait un latte art si tu la supplies assez fort. Le seul défaut ? Le prix. À 1500 balles, tu pourrais t’acheter un billet d’avion pour l’Italie et boire du vrai espresso chez un mafieux. Mais si tu veux impressionner tes potes sans quitter ton salon, c’est elle.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/jura-e8-piano-black?src=tops&pos=1"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Technivorm Moccamaster KBG Select** - 190€ - Note : 91/100  
 Pourquoi lui ? Parce que c’est le couteau suisse des filtres, mais avec un design qui crie "je suis un hippie suédois qui a lu un bouquin sur la slow life". Pas de broyeur, pas de mousseur, pas de écran tactile - juste un réservoir, un filtre, et une promesse : un café américain digne d’un brunch à Brooklyn. Le souci ? Si tu veux un espresso, va falloir t’acheter une deuxième machine. Mais pour ceux qui pensent que la vie est trop courte pour un café dégueulasse, c’est le Graal.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/technivorm-moccamaster-kbg-select?src=tops&pos=2"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Sage Barista Express Impress BES876** - 799€ - Note : 90/100  
 Pour qui il est fait ? Pour le wannabe barista qui a regardé deux vidéos YouTube et pense que "tamperer" est un verbe. Elle fait tout : broyer, mousser, et même un bruit de vaisseau spatial qui te donne l’impression de piloter le Millenium Falcon. Le piège ? Faut la nettoyer comme un enfant capricieux, et si tu rates le dosage, ton café a le goût de la défaite. Mais si t’es prêt à galérer pour un shot parfait un dimanche matin, elle te rendra fier.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/sage-barista-express-impress-bes876?src=tops&pos=3"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -70,5 +144,6 @@ Ah, Philips. La marque qui te vend un aspirateur et un café avec le même souri
         </div>
       </section>
     </main>
+    </>
   );
 }

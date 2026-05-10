@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Meilleure friteuse a air 2026 : le top 3 pour manger sain sans se prendre la tete | Troviio",
@@ -9,6 +10,31 @@ export const metadata: Metadata = {
 
 export default function TopsPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "ItemList",
+          url: "https://troviio.com/tops/meilleure-friteuse-air",
+          name: "Meilleure friteuse à air 2026",
+          description: "Le classement des 3 meilleures friteuses à air de 2026.",
+          numberOfItems: 3,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Ninja Foodi FlexDrawer AF500EU" },
+            { "@type": "ListItem", position: 2, name: "Ninja Air Fryer Max AF160EU" },
+            { "@type": "ListItem", position: 3, name: "Cosori TurboBlaze 6L" },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
+            { "@type": "ListItem", position: 2, name: "Top 3", item: "https://troviio.com/tops" },
+            { "@type": "ListItem", position: 3, name: "Meilleure friteuse à air" },
+          ],
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -37,6 +63,22 @@ export default function TopsPage() {
 94/100 - 249€ - La championne  
 
 **Pourquoi lui ?** Parce que c’est le clavier gaming des friteuses. Deux tiroirs, des options de cuisson simultanée (poulet frit à gauche, légumes à droite, paix dans le monde au milieu), et une connectivité qui vous permet de la programmer depuis les toilettes. Elle est chère, oui, mais elle fait tout : friture, déshydratation, réchauffage, et même cuisson lente si vous voulez transformer vos nuggets en pot-au-feu. Le seul vrai défaut ? Vous risquez de vous prendre pour un chef étoilé alors que vous venez de réchauffer des restes de pizza.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/ninja-foodi-flexdrawer-af500eu?src=tops&pos=1"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
@@ -44,6 +86,22 @@ export default function TopsPage() {
 91/100 - 173€ - La classique  
 
 **Pourquoi lui ?** C’est la Taylor Swift des friteuses : fiable, populaire, et elle sort un modèle à succès tous les deux ans. Elle est simple : un tiroir, des boutons, et une puissance qui fait croustiller vos frites surgelées comme si elles sortaient de la friterie du coin. Le petit hic ? Elle est un peu jalouse du FlexDrawer : pas de double zone, pas de ballet de cuisson synchronisée. Mais pour 173€, elle fait le job sans vous vendre un abonnement à son appli.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/ninja-air-fryer-max-af160eu?src=tops&pos=2"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
@@ -51,6 +109,22 @@ export default function TopsPage() {
 89/100 - 166€ - Le meilleur rapport qualité-prix  
 
 **Pourquoi lui ?** Parce qu’il a compris que la vie est trop courte pour payer 250 balles une friteuse. 6 litres, une puissance de 1700W, et une interface tactile qui claque (oui, ça fait pro, même si vous cuisinez en jogging). Il est parfait pour les familles, les colocations, ou les solos qui veulent faire des portions à congeler pour les jours de flemme. Le seul reproche ? Il fait un bruit de mini-avion au décollage. Mais bon, qui n’aime pas un peu de bruit en cuisinant des frites ?</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/cosori-turboblaze-6l?src=tops&pos=3"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -78,5 +152,6 @@ On l’attendait, celui-là. Le champion des prix cassés, le sauveur des étudi
         </div>
       </section>
     </main>
+    </>
   );
 }

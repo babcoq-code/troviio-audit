@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomePageClient from "./page.client";
+import { JsonLd, buildWebSiteJsonLd, buildOrganizationJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Troviio | Pas le meilleur. Le tien.",
@@ -21,5 +22,11 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <HomePageClient />;
+  return (
+    <>
+      <JsonLd data={buildWebSiteJsonLd()} />
+      <JsonLd data={buildOrganizationJsonLd()} />
+      <HomePageClient />
+    </>
+  );
 }

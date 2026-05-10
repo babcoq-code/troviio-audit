@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
@@ -8,13 +9,13 @@ export default function GuidePage() {
 
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-          <nav className="flex items-center gap-2 text-sm text-[#8B8FA3] mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
-            <Link href="/c/montre-connectee" className="hover:text-white transition-colors">Montre connectée</Link>
-            <span>/</span>
-            <span className="text-white font-medium">Montre connectée pas chère : le meilleur rapport qualité/prix</span>
-          </nav>
+          <Breadcrumbs
+            crumbs={[
+              { label: "Accueil", href: "/" },
+              { label: "Montre connectée", href: "/c/montre-connectee" },
+              { label: "Montre connectée pas chère : le meilleur rapport qualité/prix" },
+            ]}
+          />
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Montre connectée pas chère : le meilleur rapport qualité/prix</h1>
@@ -55,13 +56,13 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Amazfit Balance 2</strong> — La reine de l'entrée de gamme qui se prend pour une reine. Avec son superbe écran AMOLED, son autonomie de 14 jours (oui, quatorze, pas quatorze heures), et son suivi santé complet (cardio, SpO2, sommeil, stress), elle fait de l'ombre à des montres qui coûtent le double. Seul bémol : l'écosystème Zepp est un peu limité niveau apps tierces, mais pour le sport et les notifications, c'est du solide. À ~299€ sur Amazon via <a href="https://www.amazon.fr/dp/B0F8HNKK6Z?tag=troviio-21" target="_blank" rel="noopener noreferrer" className="underline text-[#3ED6A3]">ce lien</a>. Pour qui ? Les budget-conscients qui refusent de sacrifier le style. À éviter si ? Tu veux installer Telegram et jouer à Candy Crush sur ta montre.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Amazfit Balance 2</strong> — La reine de l'entrée de gamme qui se prend pour une reine. Avec son superbe écran AMOLED, son autonomie de 14 jours (oui, quatorze, pas quatorze heures), et son suivi santé complet (cardio, SpO2, sommeil, stress), elle fait de l'ombre à des montres qui coûtent le double. Seul bémol : l'écosystème Zepp est un peu limité niveau apps tierces, mais pour le sport et les notifications, c'est du solide. À ~299€ sur Amazon via <a href="https://www.amazon.fr/dp/B0F8HNKK6Z?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="underline text-[#3ED6A3]">ce lien</a>. Pour qui ? Les budget-conscients qui refusent de sacrifier le style. À éviter si ? Tu veux installer Telegram et jouer à Candy Crush sur ta montre.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Samsung Galaxy Watch 8</strong> — Le choix du juste milieu. Design élégant, écran Super AMOLED lumineux, Wear OS bien intégré avec Google Assistant et Play Store, et des capteurs santé qui rivalisent avec les grands. Son autonomie de 3-4 jours est correcte sans être extraordinaire, mais la recharge rapide sauve la mise. Le petit plus : la personnalisation hautement poussée des cadrans et la compatibilité quasi universelle avec Android. À ~369€ sur Amazon <a href="https://www.amazon.fr/dp/B0FC31K3NF?tag=troviio-21" target="_blank" rel="noopener noreferrer" className="underline text-[#3ED6A3]">par ici</a>. Pour qui ? Les utilisateurs Android qui veulent la Rolls sans le tarif Rolls. À éviter si ? Tu es sous iOS — elle te snobe royalement.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Samsung Galaxy Watch 8</strong> — Le choix du juste milieu. Design élégant, écran Super AMOLED lumineux, Wear OS bien intégré avec Google Assistant et Play Store, et des capteurs santé qui rivalisent avec les grands. Son autonomie de 3-4 jours est correcte sans être extraordinaire, mais la recharge rapide sauve la mise. Le petit plus : la personnalisation hautement poussée des cadrans et la compatibilité quasi universelle avec Android. À ~369€ sur Amazon <a href="https://www.amazon.fr/dp/B0FC31K3NF?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="underline text-[#3ED6A3]">par ici</a>. Pour qui ? Les utilisateurs Android qui veulent la Rolls sans le tarif Rolls. À éviter si ? Tu es sous iOS — elle te snobe royalement.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Google Pixel Watch 4</strong> — La petite dernière de Google qui veut grignoter des parts de marché. Design élégant et épuré, intégration parfaite avec l'écosystème Google (Fitbit, Maps, Assistant), écran OLED de qualité. Son point faible ? L'autonomie d'à peine 24h, ce qui signifie une recharge quotidienne — un retour en arrière gênant quand Amazfit fait 14 jours. À ~379€ sur Amazon <a href="https://www.amazon.fr/dp/B0FJFWMVSG?tag=troviio-21" target="_blank" rel="noopener noreferrer" className="underline text-[#3ED6A3]">par là</a>. Pour qui ? Les fans de Google et les anciens utilisateurs Fitbit qui veulent la continuité. À éviter si ? Tu veux une montre qui tient le week-end sans fil à la patte.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Google Pixel Watch 4</strong> — La petite dernière de Google qui veut grignoter des parts de marché. Design élégant et épuré, intégration parfaite avec l'écosystème Google (Fitbit, Maps, Assistant), écran OLED de qualité. Son point faible ? L'autonomie d'à peine 24h, ce qui signifie une recharge quotidienne — un retour en arrière gênant quand Amazfit fait 14 jours. À ~379€ sur Amazon <a href="https://www.amazon.fr/dp/B0FJFWMVSG?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="underline text-[#3ED6A3]">par là</a>. Pour qui ? Les fans de Google et les anciens utilisateurs Fitbit qui veulent la continuité. À éviter si ? Tu veux une montre qui tient le week-end sans fil à la patte.</p>
           </div>
         </div>
 

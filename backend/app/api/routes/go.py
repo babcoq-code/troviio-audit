@@ -12,10 +12,10 @@ from app.core.supabase import get_supabase_admin
 logger = logging.getLogger("troviio.go")
 supabase = get_supabase_admin()
 
-router = APIRouter(tags=["Affiliate Redirects"])
+router = APIRouter(prefix="/api/go", tags=["Affiliate Redirects"])
 
 
-@router.get("/go/{product_id}")
+@router.get("/{product_id}")
 async def affiliate_redirect(
     product_id: str,
     request: Request,

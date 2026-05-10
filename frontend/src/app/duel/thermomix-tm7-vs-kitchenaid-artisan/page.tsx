@@ -1,6 +1,9 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Thermomix TM7 vs KitchenAid Artisan : le duel des robot-cuisine 2026 | Troviio",
@@ -10,6 +13,17 @@ export const metadata: Metadata = {
 
 export default function DuelPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "Article",
+          headline: "Thermomix TM7 vs KitchenAid Artisan : le duel des robot-cuisine 2026",
+          description: "Qui est le meilleur en robot-cuisine ? Le Thermomix TM7 affronte le KitchenAid Artisan 5KSM175 dans un duel sans merci.",
+          url: "https://troviio.com/duel/thermomix-tm7-vs-kitchenaid-artisan",
+          author: { "@type": "Organization", name: "Troviio" },
+          datePublished: "2026-01-01",
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -96,5 +110,6 @@ export default function DuelPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

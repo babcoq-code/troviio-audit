@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Meilleur aspirateur robot 2026 : le top 3 definitif | Troviio",
@@ -9,6 +10,31 @@ export const metadata: Metadata = {
 
 export default function TopsPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "ItemList",
+          url: "https://troviio.com/tops/meilleur-aspirateur-robot",
+          name: "Meilleur aspirateur robot 2026",
+          description: "Le classement des 3 meilleurs aspirateurs robots de 2026.",
+          numberOfItems: 3,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Dreame X50 Ultra Complete" },
+            { "@type": "ListItem", position: 2, name: "Roborock Qrevo Curv 2 Pro" },
+            { "@type": "ListItem", position: 3, name: "Roborock S8 MaxV Ultra" },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
+            { "@type": "ListItem", position: 2, name: "Top 3", item: "https://troviio.com/tops" },
+            { "@type": "ListItem", position: 3, name: "Meilleur aspirateur robot" },
+          ],
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -35,16 +61,64 @@ export default function TopsPage() {
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dreame X50 Ultra Complete** - 96/100 - 426€  
 Le roi. Pas le petit prince : le roi des batailles de miettes. Pourquoi lui ? Parce qu’à ce prix, il nettoie mieux que votre colocataire qui "respire la poussière". Il aspire, lave, et se vide tout seul comme un grand. La seule chose qu’il ne fait pas, c’est vous servir un café, mais on y viendra (bientôt, chez Dreame, j’espère). En gros, c’est le Thanos du ménage : inévitable, et il claque des doigts pour que la poussière disparaisse.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/dreame-x50-ultra-complete?src=tops&pos=1"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Roborock Qrevo Curv 2 Pro** - 94/100 - 499€  
 Le rapport qualité-prix qui vous fait doucement pleurer d’avoir payé le double pour votre précédent robot. Il a le design d’une Tesla et le sérieux d’un employé qui veut une augmentation. Ses forces : il ne se coince pas sous le canapé, il cartographie mieux que votre GPS et il ne vous envoie pas de notification pour vous dire qu’il aime vos cheveux. Ses faiblesses : il est un poil moins puissant que le Dreame, mais à ce tarif, c’est comme se plaindre que le champagne soit à 20€ au lieu de 15€.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/roborock-qrevo-curv-2-pro?src=tops&pos=2"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Roborock S8 MaxV Ultra** - 93/100 - 1299€  
 Le premium qui a regardé Trop de séries : il veut tout, tout de suite, et il est prêt à vous vendre un rein pour y arriver. Pour qui ? Pour ceux qui ont des chiens, des tapis persans, et un compte en banque qui dit "oui oui, je suis solide, je peux encaisser". Il détecte les obstacles, il fait du bruit de lave-linge de luxe, il vous regarde presque droit dans les yeux pendant qu’il nettoie. Mais soyons honnêtes : à 1300 balles, vous pourriez aussi embaucher un humain à temps partiel. Mais bon, l’humain ne rentre pas sous le canapé sans râler.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/roborock-s8-maxv-ultra?src=tops&pos=3"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -69,5 +143,6 @@ Le premium qui a regardé Trop de séries : il veut tout, tout de suite, et il e
         </div>
       </section>
     </main>
+    </>
   );
 }

@@ -48,6 +48,19 @@ const CHIP_CATEGORIES: Record<string, string> = {
 };
 const CHIPS = Object.keys(CHIP_CATEGORIES);
 
+const LOADING_MESSAGES = [
+  "On interroge les fiches techniques...",
+  "On sépare le vrai du marketing...",
+  "Sur 240 offres, on garde 3 candidats...",
+  "Analyse croisée en cours...",
+  "On élimine les 'numéro 1'...",
+  "L'IA cherche pour de vrai...",
+  "On lit les avis à votre place...",
+  "On compare les specs qui comptent...",
+  "Nos robots fouillent Amazon...",
+  "On prépare le verdict...",
+];
+
 // ── Lancer recherche trigger ───────────────────────────────────────────────────
 // Détecte si le dernier message assistant contient "Lancer la recherche"
 function hasLaunchOption(text: string): boolean {
@@ -58,6 +71,7 @@ function hasLaunchOption(text: string): boolean {
 export default function ChatHero({ category }: { category?: string }) {
   const [input, setInput] = useState("");
   const [pidx, setPidx] = useState(0);
+  const [loadingMsgIdx, setLoadingMsgIdx] = useState(0);
   const taRef = useRef<HTMLTextAreaElement>(null);
   const respRef = useRef<HTMLDivElement>(null);
   const { state, messages, streamedResponse, error, sendMessage, reset, setMessages } = useChatStream();
@@ -70,6 +84,13 @@ export default function ChatHero({ category }: { category?: string }) {
     const id = window.setInterval(() => setPidx((i) => (i + 1) % PLACEHOLDERS.length), 2600);
     return () => window.clearInterval(id);
   }, []);
+
+  // Faire tourner les loading messages
+  useEffect(() => {
+    if (state !== "loading") return;
+    const id = window.setInterval(() => setLoadingMsgIdx((i) => (i + 1) % LOADING_MESSAGES.length), 1800);
+    return () => window.clearInterval(id);
+  }, [state]);
 
   useEffect(() => {
     try {
@@ -107,25 +128,43 @@ export default function ChatHero({ category }: { category?: string }) {
   const activeCategory = persistedCategory || category || categoryFromEvent;
 
   useEffect(() => {
-    const fn = (e: Event) => {
-      const ev = e as CustomEvent<{ prompt?: string; category?: string }>;
+    const fn = async (e: Event) => {
+      const ev = e as CustomEvent<{ prompt?: string; category?: string; autoSend?: boolean }>;
       const p = ev.detail?.prompt?.trim();
       const cat = ev.detail?.category?.trim();
       if (p) {
+        // Toujours préremplir l'input (fallback si sendMessage échoue)
         setInput(p);
         if (cat) setCategoryFromEvent(cat);
-        window.setTimeout(() => taRef.current?.focus(), 50);
+
+        // Si autoSend est présent, soumettre directement le message
+        if (ev.detail?.autoSend) {
+          await sendMessage(p, { category: cat || activeCategory, history: messages });
+        } else {
+          window.setTimeout(() => taRef.current?.focus(), 50);
+        }
       }
     };
     window.addEventListener("troviio:open-chat-category", fn);
     return () => window.removeEventListener("troviio:open-chat-category", fn);
-  }, []);
+  }, [sendMessage, messages, activeCategory]);
 
   const submit = async (e?: FormEvent) => {
     e?.preventDefault();
     const t = input.trim();
     if (!t || busy) return;
     setInput("");
+
+    // Tracking événement
+    try {
+      const { trackEvent } = await import("@/lib/analytics");
+      trackEvent("chat_message_sent", {
+        category: activeCategory || "unknown",
+        message_length: t.length,
+        turn_number: exchangeCount,
+      });
+    } catch {}
+
     await sendMessage(t, { category: activeCategory, history: messages });
   };
 
@@ -196,16 +235,35 @@ export default function ChatHero({ category }: { category?: string }) {
         <div className="max-w-3xl text-center">
           <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
               style={{ color: "var(--text)" }}>
-            Pas le meilleur.
+            Arrêtez de regretter
             <span className="block" style={{ color: "var(--coral)" }}>
-              Le tien.
+              vos achats Amazon.
             </span>
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-base sm:text-lg leading-7"
              style={{ color: "var(--text-muted)" }}>
-            Décris ta vie, tes contraintes, ton budget. L'IA trouve le produit qui s'y adapte —
-            pas celui qui a gagné un test en labo en 2023.
+            73% des acheteurs se trompent de produit. Troviio vous pose les bonnes questions,
+            analyse 1000+ avis vérifiés et vous évite les mauvaises surprises. En 90 secondes.
           </p>
+        </div>
+
+        {/* Proof Points — 4 colonnes sous le hero */}
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
+          {[
+            ["🎯", "Reco personnalisée", "Pas un Top 10 générique"],
+            ["📊", "1000+ avis analysés", "Sources vérifiées"],
+            ["⏱️", "Résultat en 90s", "Pas de scroll infini"],
+            ["💰", "100% gratuit", "On vit grâce aux marchands"],
+          ].map(([emoji, title, sub]) => (
+            <div
+              key={title}
+              className="flex flex-col items-center text-center p-3 rounded-xl border border-white/5 bg-white/[0.02]"
+            >
+              <span className="text-xl mb-1">{emoji}</span>
+              <span className="text-xs font-semibold text-white/80">{title}</span>
+              <span className="text-[10px] text-white/40 mt-0.5">{sub}</span>
+            </div>
+          ))}
         </div>
 
         {/* Historique des messages */}
@@ -252,7 +310,7 @@ export default function ChatHero({ category }: { category?: string }) {
             {state === "loading" && !streamedResponse ? (
               <div className="flex items-center gap-3 text-sm" style={{ color: "var(--text-muted)" }}>
                 <span className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-700 border-t-orange-500" />
-                {["On interroge les fiches techniques...","On sépare le vrai du marketing...","Sur 240 offres, on garde 3 candidats...","Analyse croisée en cours...","On élimine les 'numéro 1'...","L'IA cherche pour de vrai..."][Math.floor(Math.random()*6)]}
+              {LOADING_MESSAGES[loadingMsgIdx]}
               </div>
             ) : streamedResponse ? (
               <ChatBubble
@@ -360,7 +418,7 @@ export default function ChatHero({ category }: { category?: string }) {
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm" style={{ color: "var(--text-muted)" }}>
           <span>✅ Gratuit · Sans inscription</span>
-          <span>🔍 32 catégories</span>
+          <span>🔍 41 catégories</span>
           <span>⭐ 94% de précision</span>
           <span>🔒 Données privées</span>
         </div>

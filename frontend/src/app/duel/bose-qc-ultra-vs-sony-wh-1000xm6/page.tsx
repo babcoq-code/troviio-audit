@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Sony WH-1000XM6 vs Bose QuietComfort Ultra | Troviio",
@@ -10,6 +11,52 @@ export const metadata: Metadata = {
 
 export default function DuelPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Sony WH-1000XM6 vs Bose QuietComfort Ultra : le duel des casques audio 2026",
+          description: "Sony ou Bose ? Le combat des titans du casque audio sans fil reprend en 2026. Verdict : le Sony WH-1000XM6 l'emporte grâce à son meilleur ANC, son autonomie de 40h et son rapport qualité-prix.",
+          url: "https://troviio.com/duel/sony-wh-1000xm6-vs-bose-qc-ultra",
+          author: { "@type": "Organization", name: "Troviio" },
+          datePublished: "2026-01-15",
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: "Sony WH-1000XM6",
+          description: "Casque audio sans fil avec réduction de bruit active, 40h d'autonomie, basses profondes.",
+          sku: "sony-wh-1000xm6",
+          brand: { "@type": "Brand", name: "Sony" },
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "EUR",
+            price: "420",
+            availability: "https://schema.org/InStock",
+            url: "https://www.amazon.fr/dp/SONY-WH1000XM6?tag=troviio-21",
+          },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: "Bose QuietComfort Ultra Headphones",
+          description: "Casque audio sans fil avec réduction de bruit active, 24h d'autonomie, confort absolu.",
+          sku: "bose-qc-ultra",
+          brand: { "@type": "Brand", name: "Bose" },
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "EUR",
+            price: "430",
+            availability: "https://schema.org/InStock",
+            url: "https://www.amazon.fr/dp/BOSE-QC-ULTRA?tag=troviio-21",
+          },
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -93,5 +140,6 @@ export default function DuelPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

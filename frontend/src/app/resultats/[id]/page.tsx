@@ -4,6 +4,7 @@ import type { RecommendationResult, RecommendationItem } from "@/types/recommend
 import { ResultClientComponents } from "./result-client";
 import TroviioScore from "@/components/TroviioScore";
 import { ResultAccessories } from "@/components/result-accessories";
+import { AffiliateDirectLink } from "@/components/product/AffiliateButton";
 
 // ─── Fetch ────────────────────────────────────────────────────────────────────
 
@@ -251,10 +252,9 @@ export default async function ResultPage({
 
                     <div className="mt-4">
                       {affiliateUrl ? (
-                        <a
+                        <AffiliateDirectLink
                           href={affiliateUrl}
-                          target="_blank"
-                          rel="nofollow sponsored noopener noreferrer"
+                          label="Voir le prix sur Amazon"
                           className={[
                             "inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5 focus:outline-none focus:ring-4",
                             isFirst
@@ -262,9 +262,7 @@ export default async function ResultPage({
                               : "bg-[#FF6B5F] shadow-[#FF6B5F]/30 hover:bg-[#e55a4d] focus:ring-[#FF6B5F]/25",
                           ].join(" ")}
                           aria-label={`Voir le prix de ${reco.brand} ${reco.name} sur Amazon`}
-                        >
-                          Voir le prix sur Amazon
-                        </a>
+                        />
                       ) : (
                         <button
                           disabled
@@ -455,15 +453,12 @@ export default async function ResultPage({
 
                   <div className="mt-auto pt-5">
                     {affiliateUrl ? (
-                      <a
+                      <AffiliateDirectLink
                         href={affiliateUrl}
-                        target="_blank"
-                        rel="nofollow sponsored noopener noreferrer"
+                        label="Voir le prix sur Amazon"
                         className="inline-flex w-full items-center justify-center rounded-full bg-[#FF6B5F] px-5 py-3 text-sm font-bold text-white shadow-[0_10px_28px_rgba(255,107,95,0.28)] transition hover:-translate-y-0.5 hover:bg-[#e55a4d] focus:outline-none focus:ring-4 focus:ring-[#FF6B5F]/25"
                         aria-label={`Voir le prix de ${reco.brand} ${reco.name} sur Amazon`}
-                      >
-                        Voir le prix sur Amazon
-                      </a>
+                      />
                     ) : (
                       <button
                         disabled

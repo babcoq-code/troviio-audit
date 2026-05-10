@@ -190,7 +190,7 @@ function Top3Card({ product, rank }: { product: Product; rank: number }) {
            style={{ backgroundColor: "var(--surface-light, #242840)", color: "var(--text, #FAFAFA)" }}>
           Voir la fiche
         </a>
-        <a href={affiliateUrl} target="_blank" rel="noopener noreferrer"
+        <a href={affiliateUrl} target="_blank" rel="noopener noreferrer sponsored"
            className="flex-1 text-center text-xs py-2 rounded-xl font-bold text-white transition-all hover:brightness-110"
            style={{ background: "linear-gradient(135deg, #FF6B5F 0%, #3ED6A3 100%)" }}>
           Voir le prix sur Amazon
@@ -329,7 +329,7 @@ export default async function CategoryPage({ params }: Props) {
                     <td className="p-3 font-medium" style={{ color: "#8B8B9A" }}>Prix</td>
                     {top3.map((p) => (
                       <td key={p.id} className="p-3 text-center font-semibold" style={{ color: "var(--mint, #3ED6A3)" }}>
-                        <a href={getAffiliateUrl(p)} target="_blank" rel="noopener noreferrer"
+                        <a href={getAffiliateUrl(p)} target="_blank" rel="noopener noreferrer sponsored"
                            className="text-xs underline decoration-dotted">
                           Voir →
                         </a>

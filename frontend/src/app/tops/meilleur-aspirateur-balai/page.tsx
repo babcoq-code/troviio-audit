@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Meilleur aspirateur balai 2026 : le top 3 qui aspire tout sur son passage | Troviio",
@@ -9,6 +10,31 @@ export const metadata: Metadata = {
 
 export default function TopsPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "ItemList",
+          url: "https://troviio.com/tops/meilleur-aspirateur-balai",
+          name: "Meilleur aspirateur balai 2026",
+          description: "Le classement des 3 meilleurs aspirateurs balais de 2026.",
+          numberOfItems: 3,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Dyson Gen5 Detect Absolute" },
+            { "@type": "ListItem", position: 2, name: "Samsung Bespoke AI Jet Ultra" },
+            { "@type": "ListItem", position: 3, name: "Dyson V15 Detect Absolute" },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
+            { "@type": "ListItem", position: 2, name: "Top 3", item: "https://troviio.com/tops" },
+            { "@type": "ListItem", position: 3, name: "Meilleur aspirateur balai" },
+          ],
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -36,18 +62,66 @@ export default function TopsPage() {
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson Gen5 Detect Absolute** - 96/100 - 166€
 
 Pourquoi lui ? Parce que c’est le Terminator des aspirateurs : il vient du futur, il ne s’arrête jamais, et il te traque jusqu’à ce que le dernier grain de poussière soit éliminé. Le laser vert détecte la saleté mieux que ton ex ne détectait tes mensonges. Et à 166€, c’est presque une arnaque tellement c’est donné pour ce niveau de technologie. Si tu veux impressionner ta belle-mère en faisant croire que tu nettoies chez toi, c’est l’arme absolue.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/dyson-gen5-detect-absolute?src=tops&pos=1"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Samsung Bespoke AI Jet Ultra** - 93/100 - 196€
 
 L’innovation coréenne. Il a plus d’IA qu’un film de science-fiction des années 80 : il adapte la puissance, te dit quand vider le bac, et te regarde probablement en cachette pour juger tes choix de vie. À 196€, c’est le choix du geek qui veut un aspirateur plus intelligent que son frigo. Petit bémol : le design modulable, c’est joli, mais au bout d’un moment tu te demandes si tu nettoies ou si tu fais un puzzle IKEA.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/samsung-bespoke-ai-jet-ultra?src=tops&pos=2"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson V15 Detect Absolute** - 91/100 - 792€
 
 L’ancien roi. Il a régné, il a dominé, il a écrasé la poussière comme Thanos écrase les Avengers. Mais à 792€, c’est le prix d’un week-end à Barcelone ou d’une console next-gen. Pour qui il est fait ? Pour ceux qui veulent le meilleur de 2022 en 2025, sans se soucier de la hype du nouveau modèle. Et franchement, si t’as 800 balles à claquer dans un aspirateur, t’as probablement une maison trop propre pour en avoir besoin.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/dyson-v15-detect-absolute?src=tops&pos=3"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -74,5 +148,6 @@ On l’attendait, le soldat allemand, le solide, le robuste. Mais il est arrivé
         </div>
       </section>
     </main>
+    </>
   );
 }

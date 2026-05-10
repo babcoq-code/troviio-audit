@@ -44,13 +44,6 @@ const DUELS = [
     catLabel: "Friteuse à air",
   },
   {
-    slug: "dyson-gen5-vs-samsung-bespoke-jet",
-    title: "Dyson Gen5 Detect vs Samsung Bespoke Jet",
-    hook: "Le duel des aspirateurs balais. Harry Potter aurait choisi Dyson, Ron la Samsung.",
-    cat: "aspirateur-balai",
-    catLabel: "Aspirateur balai",
-  },
-  {
     slug: "ipad-pro-m5-11-vs-samsung-galaxy-tab-s11-ultra",
     title: "iPad Pro M5 11 vs Samsung Galaxy Tab S11 Ultra",
     hook: "Apple ou Samsung ? Le duel des tablettes qui va décider si tu dessines ou tu streames.",

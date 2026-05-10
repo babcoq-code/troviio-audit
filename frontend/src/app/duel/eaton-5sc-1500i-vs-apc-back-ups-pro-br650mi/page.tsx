@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Eaton Eaton 5SC 1500i vs APC (Schneider) APC Back-UPS Pro BR650MI — Duel Troviio",
@@ -9,7 +10,18 @@ export const metadata: Metadata = {
 
 export default function DuelEaton5scVsApcBackups() {
   return (
-<main className="min-h-screen bg-[#0E1020] text-white">
+    <>
+      <JsonLd
+        data={{
+          "@type": "Article",
+          headline: "Eaton Eaton 5SC 1500i vs APC (Schneider) APC Back-UPS Pro BR650MI",
+          description: "Qui est le meilleur ? Eaton Eaton 5SC 1500i affronte APC (Schneider) APC Back-UPS Pro BR650MI dans un duel sans merci.",
+          url: "https://troviio.com/duel/eaton-5sc-1500i-vs-apc-back-ups-pro-br650mi",
+          author: { "@type": "Organization", name: "Troviio" },
+          datePublished: "2026-01-01",
+        }}
+      />
+    <main className="min-h-screen bg-[#0E1020] text-white">
   <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <Breadcrumbs crumbs={[
@@ -97,5 +109,6 @@ export default function DuelEaton5scVsApcBackups() {
     </div>
   </section>
 </main>
+    </>
   );
 }

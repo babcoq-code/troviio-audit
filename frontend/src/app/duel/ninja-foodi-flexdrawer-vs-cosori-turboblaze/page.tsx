@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Ninja Foodi FlexDrawer vs Cosori TurboBlaze : le duel des friteuse-air 2026 | Troviio",
@@ -10,6 +11,17 @@ export const metadata: Metadata = {
 
 export default function DuelPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "Article",
+          headline: "Ninja Foodi FlexDrawer vs Cosori TurboBlaze : le duel des friteuse-air 2026",
+          description: "Qui est le meilleur en friteuse-air ? Le Ninja Foodi FlexDrawer AF500EU affronte le Cosori Air Fryer MAX AF160EU dans un duel sans merci.",
+          url: "https://troviio.com/duel/ninja-foodi-flexdrawer-vs-cosori-turboblaze",
+          author: { "@type": "Organization", name: "Troviio" },
+          datePublished: "2026-01-01",
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -96,5 +108,6 @@ export default function DuelPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

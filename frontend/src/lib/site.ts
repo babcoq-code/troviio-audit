@@ -23,43 +23,43 @@ export const siteConfig: SiteConfig = {
   url: "https://troviio.com",
   ogImage: "https://troviio.com/og-image.png",
 
-  // === Informations éditeur (à remplacer par les vraies) ===
+  // === Informations éditeur ===
   publisherName: "Sébastien Babcoq",
-  publisherSiret: "xxx xxx xxx xxxxx",
-  publisherAddress: "Adresse professionnelle à renseigner",
+  publisherSiret: "932 285 448 00019",
+  publisherAddress: "12 Rue du Faubourg Poissonnière",
   publisherEmail: "contact@troviio.com",
-  publisherPhone: "+33 x xx xx xx xx",
-  publisherRcs: "RCS xxx xxx xxx",
-  publisherTva: "FRxx xxxxxxxxxx",
+  publisherPhone: "+33 1 84 80 74 30",
+  publisherRcs: "Paris 932 285 448",
+  publisherTva: "FR34932285448",
 
   // === Hébergeur ===
-  hostName: "Hostinger International Ltd.",
-  hostAddress: "61 Lordou Vironos Street, 6023 Larnaca, Chypre",
-  hostEmail: "support@hostinger.com",
+  hostName: "Hetzner GmbH",
+  hostAddress: "Guntherstraße 9b, 90461 Nürnberg, Allemagne",
+  hostEmail: "support@hetzner.com",
 
   // === CNIL ===
   cnilNumber: "xxxxx",
 
   // === Responsable publication ===
   editorName: "Sébastien Babcoq",
-  editorAddress: "Adresse professionnelle à renseigner",
+  editorAddress: "12 Rue du Faubourg Poissonnière, 75010 Paris",
   editorEmail: "contact@troviio.com",
-  directorName: "Sébastien Babcoq",
+  directorName: "Sébastien B.",
 
   // === Objets pour compatibilité pages légales ===
   publisher: {
     name: "Sébastien Babcoq",
-    siret: "xxx xxx xxx xxxxx",
-    address: "Adresse professionnelle à renseigner",
-    postalCode: "xxxxx",
-    city: "Ville à renseigner",
+    siret: "932 285 448 00019",
+    address: "12 Rue du Faubourg Poissonnière",
+    postalCode: "75010",
+    city: "Paris",
     country: "France",
-    phone: "+33 x xx xx xx xx",
+    phone: "+33 1 84 80 74 30",
   },
   hosting: {
-    name: "Hostinger International Ltd.",
-    address: "61 Lordou Vironos Street, 6023 Larnaca, Chypre",
-    phone: "+370 5 214 1717",
-    website: "https://www.hostinger.com",
+    name: "Hetzner GmbH",
+    address: "Guntherstraße 9b, 90461 Nürnberg, Allemagne",
+    phone: "+49 911 52525-0",
+    website: "https://www.hetzner.com",
   },
 }

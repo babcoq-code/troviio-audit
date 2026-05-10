@@ -24,7 +24,7 @@ export const metadata = {
 };
 
 export default function MentionsLegalesPage() {
-  const { publisher, hosting, name, url } = siteConfig;
+  const { publisher, hosting, name, url, directorName } = siteConfig;
   return (
     <LegalPage
       title="Mentions légales"
@@ -38,13 +38,16 @@ export default function MentionsLegalesPage() {
       <ul>
         <li><strong>Nom :</strong> {publisher.name}</li>
         <li><strong>SIRET :</strong> {publisher.siret}</li>
+        <li><strong>RCS :</strong> Paris 932 285 448</li>
+        <li><strong>TVA intracommunautaire :</strong> FR34932285448</li>
+        <li><strong>Capital social :</strong> Néant (micro-entreprise)</li>
         <li><strong>Adresse :</strong> {publisher.address}, {publisher.postalCode} {publisher.city}, {publisher.country}</li>
         <li><strong>Téléphone :</strong> {publisher.phone}</li>
         <li><strong>Email :</strong> {siteConfig.publisherEmail}</li>
       </ul>
 
       <h2>2. Directeur de la publication</h2>
-      <p>Le directeur de la publication est <strong>{publisher.name}</strong>, en qualité de fondateur du Service.</p>
+      <p>Le directeur de la publication est <strong>{directorName}</strong>, en qualité de fondateur du Service.</p>
 
       <h2>3. Hébergeur</h2>
       <p>Le Service est hébergé par :</p>

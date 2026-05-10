@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Meilleure montre connectée 2026 : le top 3 definitif | Troviio",
@@ -9,6 +10,31 @@ export const metadata: Metadata = {
 
 export default function TopsPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "ItemList",
+          url: "https://troviio.com/tops/meilleure-montre-connectee",
+          name: "Meilleure montre connectée 2026",
+          description: "Le classement des 3 meilleures montres connectées de 2026.",
+          numberOfItems: 3,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Garmin Fenix 8" },
+            { "@type": "ListItem", position: 2, name: "Apple Watch Ultra 2" },
+            { "@type": "ListItem", position: 3, name: "Samsung Galaxy Watch Ultra" },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
+            { "@type": "ListItem", position: 2, name: "Top 3", item: "https://troviio.com/tops" },
+            { "@type": "ListItem", position: 3, name: "Meilleure montre connectée" },
+          ],
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -36,27 +62,72 @@ export default function TopsPage() {
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Garmin Fenix 8</strong> - 85/100 - ~1099€  \n
 La Garmin Fenix 8, c'est la montre pour les gens sérieux. Avec 40 jours d'autonomie en mode solaire, c'est la seule montre qui survivra à votre chargeur. Lampe LED, profondimètre, ECG, cartographie topo — cette montre en sait plus sur votre santé que votre médecin. À 1099€, elle coûte aussi cher qu'un iPhone mais tient 6 semaines sans recharge.</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <a href="https://www.amazon.fr/dp/B0DFLYMF79?tag=troviio-21" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[#3ED6A3]/20 px-4 py-2 text-xs font-medium text-[#3ED6A3] hover:bg-[#3ED6A3]/30 transition-colors">🇫🇷 Voir sur Amazon</a>
+              <a href="https://www.amazon.fr/dp/B0DFLYMF79?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="inline-flex items-center gap-1.5 rounded-lg bg-[#3ED6A3]/20 px-4 py-2 text-xs font-medium text-[#3ED6A3] hover:bg-[#3ED6A3]/30 transition-colors">🇫🇷 Voir sur Amazon</a>
               <Link href="/produit/garmin-fenix-8" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">📄 Lire le test complet</Link>
             </div>
+            <div className="mt-4">
+              <a
+                href="/api/go/garmin-fenix-8?src=tops&pos=1"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Apple Watch Ultra 2</strong> - 81/100 - ~899€  \n
 L'Apple Watch Ultra 2 en titane avec sa sirène d'urgence et son GPS ultra-précis. L'écran à 2000 nits lit le soleil en face. La détection d'apnée du sommeil bluffante. Parfaite pour les aventuriers urbains qui veulent le plus badass des objets connectés.</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <a href="https://www.amazon.fr/dp/B0DGJDZL6D?tag=troviio-21" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[#4257FF]/20 px-4 py-2 text-xs font-medium text-[#4257FF] hover:bg-[#4257FF]/30 transition-colors">🇫🇷 Voir sur Amazon</a>
+              <a href="https://www.amazon.fr/dp/B0DGJDZL6D?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="inline-flex items-center gap-1.5 rounded-lg bg-[#4257FF]/20 px-4 py-2 text-xs font-medium text-[#4257FF] hover:bg-[#4257FF]/30 transition-colors">🇫🇷 Voir sur Amazon</a>
               <Link href="/produit/apple-watch-ultra-2" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">📄 Lire le test complet</Link>
             </div>
+            <div className="mt-4">
+              <a
+                href="/api/go/apple-watch-ultra-2?src=tops&pos=2"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Samsung Galaxy Watch Ultra</strong> - 71/100 - ~699€  \n
 L'anti Apple Watch Ultra pour Android. Exynos W1000 3nm ultra-rapide, boîtier titane MIL-STD-810H, 3000 nits. L'autonomie dépasse 2 jours. Pour les accros Android qui veulent briller en randonnée sans passer chez Apple.</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <a href="https://www.amazon.fr/dp/B0F2GK1FGM?tag=troviio-21" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">🇫🇷 Voir sur Amazon</a>
+              <a href="https://www.amazon.fr/dp/B0F2GK1FGM?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">🇫🇷 Voir sur Amazon</a>
               <Link href="/produit/samsung-galaxy-watch-ultra" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">📄 Lire le test complet</Link>
             </div>
+            <div className="mt-4">
+              <a
+                href="/api/go/samsung-galaxy-watch-ultra?src=tops&pos=3"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -81,5 +152,6 @@ L'anti Apple Watch Ultra pour Android. Exynos W1000 3nm ultra-rapide, boîtier t
         </div>
       </section>
     </main>
+    </>
   );
 }

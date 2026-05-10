@@ -1,15 +1,27 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Dyson Gen5 Detect vs Samsung Bespoke Jet | Troviio",
   description: "Dyson ou Samsung ? Le duel des aspirateurs balais haut de gamme en 2026.",
-  alternates: { canonical: "https://troviio.com/duel/dyson-gen5-vs-samsung-bespoke-jet" },
+  alternates: { canonical: "https://troviio.com/duel/dyson-gen5-detect-vs-samsung-bespoke-jet" },
 };
 
 export default function DuelPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "Article",
+          headline: "Dyson Gen5 Detect vs Samsung Bespoke Jet",
+          description: "Dyson ou Samsung ? Le duel des aspirateurs balais haut de gamme en 2026.",
+          url: "https://troviio.com/duel/dyson-gen5-detect-vs-samsung-bespoke-jet",
+          author: { "@type": "Organization", name: "Troviio" },
+          datePublished: "2026-01-01",
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -93,5 +105,6 @@ export default function DuelPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

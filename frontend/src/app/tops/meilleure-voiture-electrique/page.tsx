@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Meilleure voiture électrique 2026 : le top 3 definitif | Troviio",
@@ -9,6 +10,31 @@ export const metadata: Metadata = {
 
 export default function TopsPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "ItemList",
+          url: "https://troviio.com/tops/meilleure-voiture-electrique",
+          name: "Meilleure voiture électrique 2026",
+          description: "Le classement des 3 meilleures voitures électriques de 2026.",
+          numberOfItems: 3,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Tesla Model Y Juniper" },
+            { "@type": "ListItem", position: 2, name: "Tesla Model 3 Highland" },
+            { "@type": "ListItem", position: 3, name: "BMW iX3 Neue Klasse" },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
+            { "@type": "ListItem", position: 2, name: "Top 3", item: "https://troviio.com/tops" },
+            { "@type": "ListItem", position: 3, name: "Meilleure voiture électrique" },
+          ],
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -39,6 +65,21 @@ Le SUV électrique le plus vendu d'Europe. Restylé Juniper 2025 avec intérieur
               <a href="https://www.tesla.com/fr_fr/model-y" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[#3ED6A3]/20 px-4 py-2 text-xs font-medium text-[#3ED6A3] hover:bg-[#3ED6A3]/30 transition-colors">🚗 Configurer sur Tesla</a>
               <Link href="/produit/tesla-model-y-juniper" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">📄 Lire le test complet</Link>
             </div>
+            <div className="mt-4">
+              <a
+                href="/api/go/tesla-model-y-juniper?src=tops&pos=1"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
@@ -48,6 +89,21 @@ La berline électrique record avec 702 km WLTP. Double vitrage, suspension amél
               <a href="https://www.tesla.com/fr_fr/model3" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[#4257FF]/20 px-4 py-2 text-xs font-medium text-[#4257FF] hover:bg-[#4257FF]/30 transition-colors">🚗 Configurer sur Tesla</a>
               <Link href="/produit/tesla-model-3-highland" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">📄 Lire le test complet</Link>
             </div>
+            <div className="mt-4">
+              <a
+                href="/api/go/tesla-model-3-highland?src=tops&pos=2"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
@@ -57,6 +113,21 @@ Le meilleur SUV électrique premium de 2026. 805 km WLTP, 400 kW de charge, arch
               <a href="https://www.bmw.fr/fr/configurateur.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">🚗 Configurer sur BMW</a>
               <Link href="/produit/bmw-ix3-neue-klasse" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">📄 Lire le test complet</Link>
             </div>
+            <div className="mt-4">
+              <a
+                href="/api/go/bmw-ix3-neue-klasse?src=tops&pos=3"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -81,5 +152,6 @@ Le meilleur SUV électrique premium de 2026. 805 km WLTP, 400 kW de charge, arch
         </div>
       </section>
     </main>
+    </>
   );
 }

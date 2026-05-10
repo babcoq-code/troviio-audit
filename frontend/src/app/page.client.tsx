@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import { useHistory } from "@/hooks/useHistory";
 import HistorySidebar from "@/components/HistorySidebar";
+import StarterPrompts from "@/components/StarterPrompts";
 import ChatHero from "@/components/ChatHero";
 import CategoryGrid from "@/components/CategoryGrid";
 import Top3Home from "@/components/Top3Home";
@@ -25,6 +26,9 @@ export default function HomePageClient() {
       <section className="pt-20 sm:pt-28">
         <SearchOmnibox />
       </section>
+
+      {/* Starter Prompts — levier CRO #1 */}
+      <StarterPrompts />
       <ChatHero />
       <Top3Home />
       <RecentTests />

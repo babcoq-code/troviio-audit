@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ScoreRing from "@/components/ScoreRing";
+import ScoreBadge from "@/components/ScoreBadge";
 import WhyThisProduct from "@/components/product/WhyThisProduct";
 import PriceComparisonTable, { PriceSkeleton } from "@/components/product/PriceComparisonTable";
 import PriceHistoryChart from "@/components/product/PriceHistoryChart";
@@ -81,8 +82,9 @@ export default function ProductClient({ product }: ProductClientProps) {
               {/* Score + Prix - Amazon */}
               <div className="flex flex-wrap items-center gap-6">
                 {product.estimated_score != null && (
-                  <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
+                  <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4 flex items-center gap-4">
                     <ScoreRing score={product.estimated_score} />
+                    <ScoreBadge score={product.estimated_score} size="sm" />
                   </div>
                 )}
                 {product.affiliate_url || product.amazon_asin ? (

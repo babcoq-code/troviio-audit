@@ -68,7 +68,7 @@ export default function AffiliationPage() {
       </p>
       <ul>
         <li>Amazon PartnerNet (Programme Partenaires Amazon).</li>
-        <li>Réseaux d'affiliation spécialisés dans l'électronique et le家居.</li>
+        <li>Réseaux d'affiliation spécialisés dans l'électronique et la maison.</li>
       </ul>
 
       <h2>5. Transparence totale</h2>

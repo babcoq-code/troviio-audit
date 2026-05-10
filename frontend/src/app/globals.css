@@ -82,3 +82,146 @@ body {
 .troviio-placeholder-anim {
   animation: fadeSlide 2600ms ease-in-out;
 }
+
+/* ── Stock indicator pulse animation ──────────────────────────── */
+/* ── Shimmer skeleton animation ──────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes stockPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+}
+
+.stock-pulse-dot {
+  animation: stockPulse 2s ease-in-out infinite;
+}
+
+.stock-pulse-warning {
+  animation: stockPulse 1.2s ease-in-out infinite;
+}
+
+/* ── Stock indicator fade-in ──────────────────────────────────── */
+@keyframes stockFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stock-indicator {
+  animation: stockFadeIn 0.5s ease-out forwards;
+}
+
+/* ── Update badge indicator ──────────────────────────────────── */
+@keyframes updatePulse {
+  0%, 100% {
+    box-shadow: 0 0 6px #3ED6A3;
+  }
+  50% {
+    box-shadow: 0 0 14px #3ED6A3;
+  }
+}
+
+.update-badge .stock-pulse-dot {
+  animation: updatePulse 3s ease-in-out infinite, stockPulse 2s ease-in-out infinite;
+}
+
+/* ── Sticky CTA Mobile ──────────────────────────── */
+.sticky-cta-mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  padding: 12px 16px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.sticky-cta-mobile--visible {
+  transform: translateY(0);
+}
+
+.sticky-cta-mobile__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.sticky-cta-mobile__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.sticky-cta-mobile__name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticky-cta-mobile__price {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.sticky-cta-mobile__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: #FF6B5F;
+  color: #fff;
+  text-decoration: none;
+  transition: brightness 0.2s;
+  flex-shrink: 0;
+}
+
+.sticky-cta-mobile__button:hover {
+  filter: brightness(1.1);
+}
+
+@media (min-width: 768px) {
+  .sticky-cta-mobile {
+    display: none !important;
+  }
+}

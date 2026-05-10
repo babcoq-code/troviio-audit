@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { SITE_URL } from "@/lib/constants";
+import StickyCtaMobile from "@/components/StickyCtaMobile";
 
 export const revalidate = 86400;
 
@@ -38,6 +40,8 @@ type Product = {
   rank_in_category: number | null;
   ranking_score: number | null;
   image_url?: string;
+  price_eur?: number | null;
+  affiliate_url?: string | null;
 };
 
 function parseFaq(value: unknown): FaqItem[] {
@@ -74,7 +78,7 @@ async function getTopProducts(category: Category, seoPage: SeoPage): Promise<Pro
   // We remove the .not("amazon_asin","is",null) filter to also show products without ASIN
   const { data, error } = await supabase
     .from("products")
-    .select("id,name,brand,slug,category_id,amazon_asin,score,description,pros,cons,tags,rank_in_category,image_url")
+    .select("id,name,brand,slug,category_id,amazon_asin,score,description,pros,cons,tags,rank_in_category,image_url,price_eur,affiliate_url")
     .eq("category_id", category.id)
     .order("score", { ascending: false, nullsFirst: false })
     .limit(30);
@@ -165,13 +169,13 @@ export default async function SeoLongTailPage({ params }: PageProps) {
       {/* Hero */}
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-          <nav className="flex items-center gap-2 text-sm text-[#8B8FA3] mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
-            <Link href={`/c/${category.slug}`} className="hover:text-white transition-colors">{category.name}</Link>
-            <span>/</span>
-            <span className="text-white font-medium">{seoPage.h1}</span>
-          </nav>
+          <Breadcrumbs
+            crumbs={[
+              { label: "Accueil", href: "/" },
+              { label: category.name, href: `/c/${category.slug}` },
+              { label: seoPage.h1 },
+            ]}
+          />
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">{seoPage.h1}</h1>
@@ -194,7 +198,7 @@ export default async function SeoLongTailPage({ params }: PageProps) {
                       <div className="mb-3 flex flex-wrap items-center gap-2">
                         <span className="rounded-full bg-gradient-to-r from-[#FF6B5F] to-[#E5554A] px-3 py-1 text-xs font-bold text-white">#{index + 1}</span>
                         {product.score !== null && (
-                          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-[#8B8FA3]">Score {product.score.toFixed(1)}/10</span>
+                          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-[#8B8FA3]">Score {Math.round(product.score)}/100</span>
                         )}
                       </div>
                       <h3 className="text-xl font-bold">{product.brand} {product.name}</h3>
@@ -308,6 +312,15 @@ export default async function SeoLongTailPage({ params }: PageProps) {
           </p>
         </div>
       </section>
+
+      {/* Sticky CTA mobile — only if products */}
+      {products.length > 0 && (
+        <StickyCtaMobile
+          productName={`${products[0].brand} ${products[0].name}`}
+          price={products[0].price_eur ?? 0}
+          affiliateUrl={products[0].affiliate_url || ""}
+        />
+      )}
     </main>
   );
 }

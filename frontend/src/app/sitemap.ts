@@ -2,61 +2,83 @@ import type { MetadataRoute } from "next";
 
 const BASE = "https://www.troviio.com";
 
+// ── Catégories ──────────────────────────────────────────────────────────────────
+const CATEGORIES = [
+  "airfryer","aspirateur-balai","aspirateur-robot","bureau-electrique",
+  "casque-audio","cave-a-vin","clavier-gaming","climatiseur-mobile",
+  "decongelateur","enceinte-bt","epilateur-lumiere-pulsee","four-micro-ondes",
+  "imprimante-3d","laptop-gamer","machine-a-cafe","machine-a-pain",
+  "machine-a-coudre","moniteur","montre-connectee","nettoyeur-vapeur",
+  "ordinateur-portable","purificateur-air","rasoir-electrique",
+  "refrigerateur","robot-cuisine","robot-piscine","robot-tondeuse",
+  "serrure-connectee","smartphone","souffleur-feuilles",
+  "station-charge-usb-c","station-daccueil-usbc","table-de-cuisson",
+  "tapis-de-course","tracteur-tondeuse","trottinette-electrique",
+  "tv","velo-electrique","velo-electrique-pliant","voiture-electrique",
+];
+
+// ── Duels ───────────────────────────────────────────────────────────────────────
+const DUEL_SLUGS = [
+  "thermomix-vs-magimix-cook-expert","caldigit-ts5-vs-plugable-tbt4-ud5",
+  "dyson-gen5-detect-vs-samsung-bespoke-jet","lg-c6-vs-samsung-s95h",
+  "ninja-foodi-vs-cosori-turboblaze","sony-wh-1000xm6-vs-bose-qc-ultra",
+  "flexispot-e7-pro-vs-secretlab-magnus-pro","garmin-fenix-8-vs-apple-watch-ultra-2",
+  "jura-e8-vs-sage-barista-express","tesla-model-y-vs-bmw-ix3",
+  "wooting-80he-vs-keychron-q5-max","dyson-v15-vs-jet-ultra",
+  "vorwerk-vs-kitchenaid","moccamaster-vs-sage",
+  "ninja-max-vs-philips-airfryer","lg-g6-vs-samsung-s95h",
+  "caldigit-vs-startech","fenix-8-vs-galaxy-watch-ultra",
+  "tesla-model-3-vs-bmw-ix3","keychron-vs-lemokey",
+  "magimix-xl-vs-thermomix","bose-vs-sennheiser","desktronic-vs-flexispot",
+];
+
+// ── Guides longtail ──────────────────────────────────────────────────────────────
+const GUIDES = [
+  "tv/coupe-du-monde-2026",
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages: MetadataRoute.Sitemap = [
-    { url: BASE, changeFrequency: "weekly", priority: 1.0 },
-    { url: `${BASE}/tops`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE}/tops/meilleur-clavier-gaming`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleur-bureau-electrique`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleure-machine-a-cafe`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleur-robot-cuisine`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleure-tv`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleur-aspirateur-robot`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleure-friteuse-air`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleur-casque-audio`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleure-voiture-electrique`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleure-station-accueil-usbc`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleur-aspirateur-balai`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/tops/meilleur-aspirateur-laveur`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE}/guide/meilleur-lave-linge`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE}/guide/meilleur-aspirateur-balai`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE}/guide/meilleur-robot-cuisine`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE}/guide/meilleur-casque-audio`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE}/guide/meilleur-ordinateur-portable`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE}/guide/meilleur-velo-electrique`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE}/guide/meilleur-aspirateur-robot`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE}/guide/meilleur-clavier`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE}/guide/meilleur-bureau-electrique`, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE}/duel/wooting-80he-vs-lemokey-p1-he`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/flexispot-e7-pro-vs-secretlab-magnus-pro`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/dyson-gen5-detect-vs-samsung-bespoke-jet`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/thermomix-tm7-vs-kitchenaid-artisan`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/miele-wcr870-vs-bosch-wgb244a2fr`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/samsung-galaxy-s26-ultra-vs-iphone-17-pro-max`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/apple-watch-ultra-2-vs-samsung-galaxy-watch-ultra`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/hypnia-bien-etre-supreme-vs-emma-original`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/lg-g6-oled-vs-samsung-s95h-qd-oled`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/giant-explore-eplus1-vs-riese-muller-charger4`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/ninja-foodi-flexdrawer-vs-cosori-turboblaze`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/dreame-x50-ultra-vs-roborock-qrevo-curv-2-pro`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/jura-e8-vs-sage-barista-express`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/bugaboo-fox5-vs-uppababy-vista-v3`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/tesla-model-y-juniper-vs-tesla-model-3-highland`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/sony-wh-1000xm6-vs-bose-qc-ultra`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/ipad-pro-m5-11-vs-samsung-galaxy-tab-s11-ultra`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/dyson-gen5-vs-samsung-bespoke-jet`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/it-takes-two-vs-split-fiction`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/duux-whisper-flex-2-vs-rowenta-vu5890f0`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${BASE}/duel/caldigit-ts5-plus-vs-plugable-tbt4-ud5`, changeFrequency: "monthly", priority: 0.5 },
+  const urls: MetadataRoute.Sitemap = [];
+
+  // Home
+  urls.push({ url: `${BASE}/`, changeFrequency: "weekly", priority: 1.0 });
+
+  // Pages statiques
+  const staticPages = [
+    "/methode","/a-propos","/score","/accessoires",
+    "/mentions-legales","/confidentialite","/cookies","/cgv","/contact",
+    "/catalogue",
+    "/duels",
   ];
+  for (const p of staticPages) {
+    urls.push({ url: `${BASE}${p}`, changeFrequency: "monthly", priority: 0.3 });
+  }
 
-  // Supprimer les doublons (uniques par URL)
-  const seen = new Set<string>();
-  const unique = staticPages.filter((item) => {
-    if (seen.has(item.url)) return false;
-    seen.add(item.url);
-    return true;
-  });
+  // Tops
+  const tops = [
+    "aspirateur-robot","aspirateur-balai","robot-cuisine","casque-audio",
+    "bureau-electrique","clavier-gaming","friteuse-air","machine-a-cafe",
+    "montre-connectee","station-accueil-usbc","tv","voiture-electrique",
+  ];
+  for (const t of tops) {
+    urls.push({ url: `${BASE}/tops/${t}`, changeFrequency: "weekly", priority: 0.8 });
+  }
+  urls.push({ url: `${BASE}/tops`, changeFrequency: "weekly", priority: 0.7 });
 
-  return unique;
+  // Catégories
+  for (const slug of CATEGORIES) {
+    urls.push({ url: `${BASE}/c/${slug}`, changeFrequency: "weekly", priority: 0.7 });
+  }
+
+  // Duels
+  for (const slug of DUEL_SLUGS) {
+    urls.push({ url: `${BASE}/duel/${slug}`, changeFrequency: "monthly", priority: 0.5 });
+  }
+
+  // Guides longtail
+  for (const g of GUIDES) {
+    urls.push({ url: `${BASE}/guide-longtail/${g}`, changeFrequency: "monthly", priority: 0.4 });
+  }
+
+  return urls;
 }

@@ -327,6 +327,20 @@ else:
     duel_jsx = re.sub(r'(?<!/)\*(?!\*)(.+?)(?<!/)\*(?!\*)', r'<em>\1</em>', duel_jsx)
     print(f"  ✅ Markdown nettoyé (0 ** restants: {duel_jsx.count('**')})", flush=True)
 
+    # 🚨 Safety: strip stray "jsx" word that DeepSeek sometimes prepends
+    if duel_jsx.startswith('jsx\n') or duel_jsx.startswith('jsx '):
+        duel_jsx = duel_jsx[3:].strip()
+        print(f"  ✅ Stray 'jsx' prefix stripped", flush=True)
+    # Also strip if it starts on its own line after code fence removal
+    duel_jsx = re.sub(r'^\s*jsx\s*\n', '', duel_jsx)
+    # Ensure JSX starts with <
+    if not duel_jsx.startswith('<'):
+        # Find the first < and take everything from there
+        first_tag = duel_jsx.find('<')
+        if first_tag > 0:
+            print(f"  ⚠️ JSX didn't start with <, stripped {first_tag} chars of preamble", flush=True)
+            duel_jsx = duel_jsx[first_tag:]
+
 # ── Step 3: Write the duel page ─────────────────────────────────────────────────
 if not DRY_RUN and duel_jsx:
     os.makedirs(duel_dir, exist_ok=True)
@@ -344,18 +358,30 @@ import type {{ Metadata }} from "next";
     else:
         # Compute a component name
         comp_name = f"Duel{''.join(w.capitalize() for w in p1['name'].replace('/',' ').replace('-',' ').split()[:2])}Vs{''.join(w.capitalize() for w in p2['name'].replace('/',' ').replace('-',' ').split()[:2])}"
+
+        # Smart title: avoid brand repetition (e.g., "HP HP ENVY" when brand="HP" and name starts with "HP ")
+        def smart_name(name, brand):
+            if name.lower().startswith(brand.lower()):
+                return name
+            return f"{brand} {name}"
+        p1_label = smart_name(p1['name'], p1.get('brand',''))
+        p2_label = smart_name(p2['name'], p2.get('brand',''))
+        smart_duel_title = f"{p1_label} vs {p2_label}"
+
         page_content = f'''import Link from "next/link";
 import {{ Breadcrumbs }} from "@/components/Breadcrumbs";
 import type {{ Metadata }} from "next";
 
 export const metadata: Metadata = {{
-  title: "{duel_title} — Duel Troviio",
-  description: "Qui est le meilleur ? {p1.get('brand','')} {p1['name']} affronte {p2.get('brand','')} {p2['name']} dans un duel sans merci.",
+  title: "{smart_duel_title} — Duel Troviio",
+  description: "Qui est le meilleur ? {p1_label} affronte {p2_label} dans un duel sans merci.",
 }};
 
 export default function {comp_name}() {{
+  return (
 {duel_jsx}
-}}
+  );
+}}'''
 '''
     
     page_path = os.path.join(duel_dir, "page.tsx")

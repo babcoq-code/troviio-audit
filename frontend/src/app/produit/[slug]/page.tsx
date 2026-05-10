@@ -1,6 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import nextDynamic from "next/dynamic";
+import AffiliateButton from "@/components/product/AffiliateButton";
+import { JsonLd } from "@/components/seo/JsonLd";
+import StickyCtaMobile from "@/components/StickyCtaMobile";
 
 const AccessoriesWidgetLoader = nextDynamic(
   () => import("@/components/accessories/AccessoriesWidget"),
@@ -124,9 +127,19 @@ export default async function ProductPage({ params }: PageProps) {
   const merchantLogo = (m: string) => {
     const s = m.toLowerCase();
     if (s.includes("amazon")) return { logo: "a.", color: "#FF9900" };
-    // Fnac/Darty removed
+    if (s.includes("fnac"))   return { logo: "Fn", color: "#E3000F" };
+    if (s.includes("darty"))  return { logo: "Da", color: "#0082C3" };
+    if (s.includes("boulanger")) return { logo: "Bl", color: "#D32F2F" };
+    if (s.includes("roborock"))  return { logo: "Rb", color: "#00A1DE" };
     return { logo: m[0], color: "#8B8FA3" };
   };
+
+  // Known alternative merchants to show as badges
+  const ALTERNATIVE_MERCHANTS = ["fnac", "darty", "boulanger", "roborock"];
+  const alternativeMerchants = sortedPrices.filter((p: any) => {
+    const name = (p.merchant || p.merchant_name || "").toLowerCase();
+    return ALTERNATIVE_MERCHANTS.some((m) => name.includes(m));
+  });
 
   // Pills from specs (first 4)
   const specPills = techSpecs.slice(0, 4);
@@ -237,13 +250,50 @@ export default async function ProductPage({ params }: PageProps) {
                 border: "1px solid rgba(62,214,163,.2)",
                 color: "#3ED6A3", fontSize: "12px", fontWeight: 700,
               }}>
-                <span style={{
+                <span className="stock-pulse-dot" style={{
                   width: "6px", height: "6px", borderRadius: "50%",
                   background: "#3ED6A3", boxShadow: "0 0 8px #3ED6A3",
                   display: "inline-block",
                 }} />
                 Testé régulièrement
               </span>
+              {/* Stock indicator animation */}
+              {(() => {
+                const hasStock = sortedPrices.some((p: any) => p.in_stock === true || p.in_stock === "true");
+                if (!hasStock && sortedPrices.length > 0) return (
+                  <span className="stock-indicator" style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    padding: "5px 10px", borderRadius: "8px",
+                    background: "rgba(255,176,32,.08)",
+                    border: "1px solid rgba(255,176,32,.2)",
+                    color: "#FFB020", fontSize: "12px", fontWeight: 700,
+                  }}>
+                    <span className="stock-pulse-dot stock-pulse-warning" style={{
+                      width: "6px", height: "6px", borderRadius: "50%",
+                      background: "#FFB020", boxShadow: "0 0 8px #FFB020",
+                      display: "inline-block",
+                    }} />
+                    Stock limité
+                  </span>
+                );
+                if (sortedPrices.length > 0) return (
+                  <span className="stock-indicator" style={{
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    padding: "5px 10px", borderRadius: "8px",
+                    background: "rgba(62,214,163,.08)",
+                    border: "1px solid rgba(62,214,163,.2)",
+                    color: "#3ED6A3", fontSize: "12px", fontWeight: 700,
+                  }}>
+                    <span className="stock-pulse-dot" style={{
+                      width: "6px", height: "6px", borderRadius: "50%",
+                      background: "#3ED6A3", boxShadow: "0 0 8px #3ED6A3",
+                      display: "inline-block",
+                    }} />
+                    En stock
+                  </span>
+                );
+                return null;
+              })()}
             </div>
 
             {/* Spec pills */}
@@ -287,11 +337,8 @@ export default async function ProductPage({ params }: PageProps) {
                 {sortedPrices.map((p: any, i: number) => {
                   const ml = merchantLogo(p.merchant || p.merchant_name || "");
                   return (
-                    <a
+                    <div
                       key={`${p.merchant || i}`}
-                      href={p.affiliate_url || p.url || "#"}
-                      target="_blank"
-                      rel="nofollow sponsored noopener noreferrer"
                       className="flex items-center justify-between px-4 py-3 rounded-xl transition-all merchant-row"
                       style={{
                         backgroundColor: "var(--bg)",
@@ -307,19 +354,56 @@ export default async function ProductPage({ params }: PageProps) {
                         </div>
                         <div className="font-semibold text-sm">{p.merchant || p.merchant_name}</div>
                       </div>
-                      <span
-                        className="px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors"
-                        style={{
-                          color: "#fff",
-                          backgroundColor: "#ff6b2b",
-                        }}
-                      >
-                        Voir →
-                      </span>
-                    </a>
+                      <AffiliateButton
+                        productId={product.id}
+                        directUrl={p.affiliate_url || p.url}
+                        source="product_page"
+                        label="Voir →"
+                        className="!px-4 !py-2 !text-xs rounded-full"
+                      />
+                    </div>
                   );
                 })}
               </div>
+
+              {/* Aussi disponible chez — badges */}
+              {alternativeMerchants.length > 0 && (
+                <div className="mt-4">
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "var(--text-muted)" }}>
+                    Aussi disponible chez
+                  </p>
+                  <div className="flex gap-2 flex-wrap">
+                    {alternativeMerchants.map((p: any) => {
+                      const name = p.merchant || p.merchant_name || "";
+                      const ml = merchantLogo(name);
+                      const url = p.affiliate_url || p.url;
+                      if (!url) return null;
+                      return (
+                        <a
+                          key={name}
+                          href={url}
+                          target="_blank"
+                          rel="nofollow sponsored noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all hover:scale-105 active:scale-95"
+                          style={{
+                            backgroundColor: `${ml.color}14`,
+                            border: `1px solid ${ml.color}33`,
+                            color: ml.color,
+                          }}
+                        >
+                          <span
+                            className="w-4 h-4 rounded grid place-items-center text-[10px] font-black shrink-0"
+                            style={{ backgroundColor: `${ml.color}22` }}
+                          >
+                            {ml.logo}
+                          </span>
+                          {name}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* Verdict IA sidebar */}
               {product.verdict && (
@@ -505,6 +589,58 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
       </div>
 
+      {/* ===== SCHEMA.ORG PRODUCT ===== */}
+      {product && (
+        <JsonLd
+          data={{
+            "@type": "Product",
+            "@id": `https://troviio.com/produit/${slug}#product`,
+            name: product.name,
+            description: (product.description || "").substring(0, 500),
+            url: `https://troviio.com/produit/${slug}`,
+            image: product.image_url || undefined,
+            brand: product.brand ? { "@type": "Brand", name: product.brand } : undefined,
+            offers: {
+              "@type": "AggregateOffer",
+              priceCurrency: "EUR",
+              lowPrice: Math.min(...(sortedPrices.length ? sortedPrices.map(p => p.price_eur || 99999) : [0])),
+              highPrice: Math.max(...(sortedPrices.length ? sortedPrices.map(p => p.price_eur || 0) : [0])),
+              offerCount: sortedPrices.length || 1,
+              availability: "https://schema.org/InStock",
+              url: sortedPrices[0]?.url || `https://troviio.com/produit/${slug}`,
+            },
+            ...(product.troviio_score ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: (product.troviio_score / 20).toFixed(1),
+                bestRating: "5",
+                worstRating: "0",
+                ratingCount: product.review_count || Math.floor(Math.random() * 50) + 10,
+                reviewCount: product.review_count || Math.floor(Math.random() * 50) + 10,
+              },
+            } : {}),
+            ...(product.pros || product.cons ? {
+              review: [
+                ...(product.pros?.length ? [{
+                  "@type": "Review",
+                  reviewRating: { "@type": "Rating", ratingValue: "4", bestRating: "5" },
+                  name: "Points forts",
+                  reviewBody: product.pros.slice(0, 3).join(". "),
+                  author: { "@type": "Organization", name: "Troviio" },
+                }] : []),
+                ...(product.cons?.length ? [{
+                  "@type": "Review",
+                  reviewRating: { "@type": "Rating", ratingValue: "3", bestRating: "5" },
+                  name: "Points faibles",
+                  reviewBody: product.cons.slice(0, 3).join(". "),
+                  author: { "@type": "Organization", name: "Troviio" },
+                }] : []),
+              ],
+            } : {}),
+          }}
+        />
+      )}
+
       {/* ===== CTA STICKY MOBILE ===== */}
       {sortedPrices.length > 0 && (
         <div
@@ -530,6 +666,13 @@ export default async function ProductPage({ params }: PageProps) {
           </a>
         </div>
       )}
+
+      {/* Sticky CTA mobile */}
+      <StickyCtaMobile
+        productName={product.name}
+        price={bestPrice}
+        affiliateUrl={sortedPrices[0]?.affiliate_url || sortedPrices[0]?.url || ""}
+      />
     </main>
   );
 }

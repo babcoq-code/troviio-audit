@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
@@ -8,13 +9,13 @@ export default function GuidePage() {
 
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-          <nav className="flex items-center gap-2 text-sm text-[#8B8FA3] mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
-            <Link href="/c/montre-connectee" className="hover:text-white transition-colors">Montre connectée</Link>
-            <span>/</span>
-            <span className="text-white font-medium">Quelle montre connectée pour le sport en 2026 ?</span>
-          </nav>
+          <Breadcrumbs
+            crumbs={[
+              { label: "Accueil", href: "/" },
+              { label: "Montre connectée", href: "/c/montre-connectee" },
+              { label: "Quelle montre connectée pour le sport en 2026 ?" },
+            ]}
+          />
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Quelle montre connectée pour le sport en 2026 ?</h1>
@@ -55,10 +56,10 @@ export default function GuidePage() {
         <h2 className="text-2xl font-bold tracking-tight font-display mb-6">Notre selection</h2>
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Garmin Fenix 8</strong> — La championne du monde de l'endurance. Avec 40 jours d'autonomie en mode solaire, elle te suit au bout du monde sans te demander de passer à la pompe. Son cardio est aussi fiable qu'un métronome suisse, son GPS multibande te repère même dans le métro. Côté prix, ça pique un peu (~1099€ sur Amazon via <a href="https://www.amazon.fr/dp/B0DFLYMF79?tag=troviio-21" target="_blank" rel="noopener noreferrer" className="underline text-[#3ED6A3]">ce lien</a>), mais t'achètes une montre pour 10 ans, pas pour un été. Pour qui ? Les triathlètes, les marathoniens, les fous du trail qui veulent des stats plus précises que leur médecin du sport. À éviter si ? Tu fais du sport en regardant Netflix sur le canapé.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Garmin Fenix 8</strong> — La championne du monde de l'endurance. Avec 40 jours d'autonomie en mode solaire, elle te suit au bout du monde sans te demander de passer à la pompe. Son cardio est aussi fiable qu'un métronome suisse, son GPS multibande te repère même dans le métro. Côté prix, ça pique un peu (~1099€ sur Amazon via <a href="https://www.amazon.fr/dp/B0DFLYMF79?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="underline text-[#3ED6A3]">ce lien</a>), mais t'achètes une montre pour 10 ans, pas pour un été. Pour qui ? Les triathlètes, les marathoniens, les fous du trail qui veulent des stats plus précises que leur médecin du sport. À éviter si ? Tu fais du sport en regardant Netflix sur le canapé.</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Apple Watch Ultra 2</strong> — Le couteau suisse de la salle de sport. Écran solaire (3000 nits, de quoi lire tes stats en plein désert), sirène de détresse pour les urgences (ou pour faire fuir le gros bras qui monopolise la machine à squat), et un suivi sportif ultra complet. Elle est parfaite pour l'écosystème Apple, mais son autonomie de 36h est son talon d'Achille : si tu fais un ultra-trail de 2 jours, prévois un chargeur portable ou une bonne paire de jambes. À ~899€ sur Amazon <a href="https://www.amazon.fr/dp/B0DGJDZL6D?tag=troviio-21" target="_blank" rel="noopener noreferrer" className="underline text-[#3ED6A3]">par ici</a>. Pour qui ? Les sportifs Apple addicts qui veulent du style ET de la performance. À éviter si ? Tu es sur Android (elle te regardera de travers).</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Apple Watch Ultra 2</strong> — Le couteau suisse de la salle de sport. Écran solaire (3000 nits, de quoi lire tes stats en plein désert), sirène de détresse pour les urgences (ou pour faire fuir le gros bras qui monopolise la machine à squat), et un suivi sportif ultra complet. Elle est parfaite pour l'écosystème Apple, mais son autonomie de 36h est son talon d'Achille : si tu fais un ultra-trail de 2 jours, prévois un chargeur portable ou une bonne paire de jambes. À ~899€ sur Amazon <a href="https://www.amazon.fr/dp/B0DGJDZL6D?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="underline text-[#3ED6A3]">par ici</a>. Pour qui ? Les sportifs Apple addicts qui veulent du style ET de la performance. À éviter si ? Tu es sur Android (elle te regardera de travers).</p>
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Garmin Venu 4</strong> — Le petit frère malin de la Fenix. Moins chère (~549€), elle fait le job pour 90% des sportifs : cardio précis, GPS fiable, écran AMOLED magnifique. Elle te coache directement au poignet avec des programmes d'entraînement adaptés à ton niveau — idéal si tu confonds encore une série de burpees avec une danse de la pluie. Pour qui ? Les runners du dimanche, les cyclistes du week-end et les amateurs de fitness qui veulent du sérieux sans vendre un rein. À éviter si ? Tu es un athlète qui cumule les ultra-trails et les expéditions en haute montagne.</p>

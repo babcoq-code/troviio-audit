@@ -21,10 +21,9 @@ const SIZE_CONFIG = {
 };
 
 function getScoreColor(score: number): string {
-  if (score < 40) return "#FF6B5F";
-  if (score < 60) return "#FFB347";
-  if (score < 80) return "#4257FF";
-  return "#3ED6A3";
+  if (score >= 85) return "#3ED6A3";
+  if (score >= 70) return "#FF6B5F";
+  return "#9CA3AF";
 }
 
 export function ScoreRing({ score, size = "md", className }: ScoreRingProps): React.JSX.Element {

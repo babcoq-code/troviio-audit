@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Meilleure TV 2026 : le top 3 des televisions qui changent tout | Troviio",
@@ -9,6 +10,31 @@ export const metadata: Metadata = {
 
 export default function TopsPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "ItemList",
+          url: "https://troviio.com/tops/meilleure-tv",
+          name: "Meilleure TV 2026",
+          description: "Le classement des 3 meilleures TVs de 2026.",
+          numberOfItems: 3,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "LG G6 OLED 65\"" },
+            { "@type": "ListItem", position: 2, name: "Samsung S95H QD-OLED 65\"" },
+            { "@type": "ListItem", position: 3, name: "LG C6 OLED 65\"" },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
+            { "@type": "ListItem", position: 2, name: "Top 3", item: "https://troviio.com/tops" },
+            { "@type": "ListItem", position: 3, name: "Meilleure TV" },
+          ],
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -35,16 +61,64 @@ export default function TopsPage() {
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Le LG G6 OLED 65" - 95/100 - 3599€**  
 Pourquoi lui ? Parce que c’est le Brad Pitt des télés : beau, cher, et il vous fait oublier tous vos problèmes d’exposition. Le G6, c’est le roi de l’image, le genre qui rend les noirs plus profonds que votre dépression un lundi matin. Il a un processeur qui rend les HDR plus vifs qu’une dispute de couple sur le ménage. Et en plus, il est si fin qu’on pourrait le confondre avec un tableau moderne - idéal pour cacher le fait que vous regardez encore *Koh-Lanta* en boucle. Seul défaut : son prix vous fera pleurer plus fort que la fin de *Your Name*, et il nécessite un mur digne d’un musée. Mais si vous voulez la perfection, vous payez, point.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/lg-g6-oled-65?src=tops&pos=1"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Le Samsung S95H QD-OLED 65" - 94/100 - 3599€**  
 Pourquoi lui ? Parce que c’est le Flash Gordon des télés : il explose tout en luminosité. Le S95H, c’est le genre qui rend les scènes ensoleillées de *Dune* plus aveuglantes qu’un phare de voiture dans la nuit noire. Il a des couleurs qui claquent comme une claque de Thanos, et son QD-OLED fait saliver les puristes qui veulent du peps sans brûler leur salon. Mais attention : son interface Tizen est aussi agréable qu’un cambriolage en direct, et son prix est identique au G6, ce qui vous force à choisir entre la luminosité et la pureté. Un peu comme choisir entre un tatouage de *Star Wars* ou de *Marvel* : les deux sont cools, mais un seul ne vous donnera pas honte en soirée.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/samsung-s95h-qd-oled-65?src=tops&pos=2"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Le LG C6 OLED 65" - 93/100 - 2699€**  
 Pourquoi lui ? Parce que c’est le héros silencieux, le genre qui sauve le monde sans faire de bruit - un peu comme le Samwise Gamgee des télés. Le C6, c’est le meilleur rapport qualité-prix du marché : il offre 95% des performances du G6, mais pour le prix d’un week-end à Disneyland (sans les queues de 3 heures). Il est parfait pour ceux qui veulent mater *The Witcher* en Dolby Vision sans avoir à revendre leur voiture. Ses faiblesses ? Il est un poil moins lumineux que le Samsung, et son pied est aussi moche qu’un cosplay de Jar Jar Binks. Mais pour 2699€, c’est le genre de deal qui vous fait dire « merci papa » à votre banquier. À prendre les yeux fermés (mais pas trop, pour voir les détails).</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/lg-c6-oled-65?src=tops&pos=3"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -70,5 +144,6 @@ Ah, Sony. La marque qui vous vend le « traitement d’image » comme si c’ét
         </div>
       </section>
     </main>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
@@ -8,13 +9,13 @@ export default function GuidePage() {
 
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-          <nav className="flex items-center gap-2 text-sm text-[#8B8FA3] mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
-            <Link href="/c/tv" className="hover:text-white transition-colors">Tv</Link>
-            <span>/</span>
-            <span className="text-white font-medium">TV OLED 65 pouces pour recul de 3 metres : le guide 2026</span>
-          </nav>
+          <Breadcrumbs
+            crumbs={[
+              { label: "Accueil", href: "/" },
+              { label: "Tv", href: "/c/tv" },
+              { label: "TV OLED 65 pouces pour recul de 3 metres : le guide 2026" },
+            ]}
+          />
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3ED6A3]">Guide d'achat Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">TV OLED 65 pouces pour recul de 3 metres : le guide 2026</h1>

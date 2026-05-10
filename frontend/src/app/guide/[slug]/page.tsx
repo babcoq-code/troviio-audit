@@ -108,7 +108,7 @@ const GUIDES_META: Record<string, GuideMeta> = {
   "meilleur-velo-electrique": {
     title: "Meilleur vélo électrique 2026 : le guide complet pour choisir son VAE",
     slug: "meilleur-velo-electrique",
-    category: "velos-electriques",
+    category: "velo-electrique",
     emoji: "🚲",
     date: "2026-05-01",
     description: "Vélo électrique : autonomie, moteur, batterie, budget. Le guide d'achat complet Troviio pour trouver le meilleur VAE en 2026, du city bike au VTT électrique.",

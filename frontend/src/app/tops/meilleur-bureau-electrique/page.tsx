@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Meilleur bureau électrique 2026 : le top 3 assis-debout | Troviio",
@@ -9,6 +10,31 @@ export const metadata: Metadata = {
 
 export default function TopsPage() {
   return (
+    <>
+      <JsonLd
+        data={{
+          "@type": "ItemList",
+          url: "https://troviio.com/tops/meilleur-bureau-electrique",
+          name: "Meilleur bureau électrique 2026",
+          description: "Le classement des 3 meilleurs bureaux électriques de 2026.",
+          numberOfItems: 3,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Flexispot E7 Pro" },
+            { "@type": "ListItem", position: 2, name: "Secretlab MAGNUS Pro" },
+            { "@type": "ListItem", position: 3, name: "Desktronic HomePro" },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
+            { "@type": "ListItem", position: 2, name: "Top 3", item: "https://troviio.com/tops" },
+            { "@type": "ListItem", position: 3, name: "Meilleur bureau électrique" },
+          ],
+        }}
+      />
     <main className="min-h-screen bg-[#0E1020] text-white">
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -35,16 +61,64 @@ export default function TopsPage() {
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Flexispot E7 Pro** - ~399€ - Note : 91/100  
 Pourquoi lui ? Parce que c&apos;est le candidat parfait qui arrive à l&apos;oral avec un costard bien repassé ET les fiches de révision. Double moteur, mémoire de position, pieds en acier — bref, tout ce qu&apos;il faut pour que vous arrêtiez de vous baisser comme un mammouth pour attraper votre chargeur. Le Flexispot E7 Pro monte, descend, et stabilise même votre setup gaming sans trembler comme une feuille. Le seul vrai danger ? Passer tellement de temps debout dessus que vos collègues vous prennent pour un mutant du télétravail. À 399€, c&apos;est le meilleur rapport qualité-prix de la planète bureau — votre dos vous enverra des fleurs.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/flexispot-e7-pro?src=tops&pos=1"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Secretlab MAGNUS Pro** - ~849€ - Note : 89/100  
 Pourquoi lui ? Parce que c&apos;est le bureau qui en veut à votre porte-monnaie, mais qui le fait avec une élégance digne d&apos;un agent secret. Fabriqué en acier massif, avec un système de gestion des câbles tellement bien pensé que vos fils disparaissent comme par magie — fini le temps où vous ressembliez à un technicien France Telecom sous acide. Le plateau magnétique, lui, attire vos accessoires comme une ex un peu collante. Le souci ? Le prix pique, et à 849€, faut vraiment que votre setup gaming mérite un ruban rouge. Mais si vous voulez un bureau qui fait plus classe que votre appartement, foncez.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/secretlab-magnus-pro?src=tops&pos=2"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Desktronic HomePro** - ~419€ - Note : 88/100  
 Pour qui il est fait ? Pour le télétravailleur européen qui en a marre de payer des frais de douane et d&apos;attendre trois semaines pour un colis qui sent le carton humide. Fabriqué en Europe, le Desktronic HomePro est le bon élève discret : moteur silencieux, montée ultra-fluide, et une stabilité qui frôle la perfection. Pas de fioritures, pas de lumières RGB, pas de promesses marketing à deux balles — juste un bureau qui fait son boulot sans se faire remarquer. Le petit plus ? Sa garantie de 10 ans, histoire que vos petits-enfants héritent d&apos;un bureau plutôt que d&apos;une dette. À 419€, c&apos;est le sage du trio — et franchement, la sagesse, ça n&apos;a jamais tué personne.</p>
+          
+            <div className="mt-4">
+              <a
+                href="/api/go/desktronic-homepro?src=tops&pos=3"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg, #FF6B5F, #E5554A)",
+                  boxShadow: "0 4px 16px rgba(255,107,95,0.3)",
+                }}
+              >
+                Voir le prix sur Amazon →
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -62,5 +136,6 @@ Pour qui il est fait ? Pour le télétravailleur européen qui en a marre de pay
         </div>
       </section>
     </main>
+    </>
   );
 }

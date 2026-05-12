@@ -41,6 +41,18 @@ const CAT_META: Record<string, CatMeta> = {
   "camera-securite": { name: "Caméra sécurité", emoji: "📹", title: "Meilleure caméra sécurité 2026", description: "Intérieur, extérieur, vision nocturne : Troviio choisit la caméra qui protège ton chez-toi.", guide_title: "Quelle caméra de sécurité choisir ?", guide_desc: "Résolution, vision nocturne, stockage : le guide pour sécuriser votre domicile." },
   imprimante: { name: "Imprimante", emoji: "🖨️", title: "Meilleure imprimante 2026", description: "Laser, jet d'encre, multifonction : Troviio choisit l'imprimante pour ton usage.", guide_title: "Quelle imprimante choisir ?", guide_desc: "Laser ou jet d'encre, vitesse, coût à la page : le guide de l'imprimante idéale." },
   matelas: { name: "Matelas", emoji: "🛏️", title: "Meilleur matelas 2026", description: "Ferme, mémoire de forme, naturel : Troviio trouve le matelas pour tes nuits.", guide_title: "Quel matelas choisir ?", guide_desc: "Fermeté, matière, soutien : le guide pour des nuits réparatrices." },
+  // ── Catégories sans guide avant (ajoutées le 12/05/2026) ──
+  "accessoire-velo": { name: "Accessoires vélo", emoji: "🚴", title: "Meilleurs accessoires vélo 2026", description: "Casques, antivols, éclairage, sonnettes : Troviio choisit les accessoires vélo pour ta pratique.", guide_title: "Quels accessoires vélo choisir ?", guide_desc: "Sécurité, confort, réglementation : le guide des accessoires indispensables pour votre vélo." },
+  "bureau-electrique": { name: "Bureau électrique", emoji: "🪑", title: "Meilleur bureau électrique 2026", description: "Assis-debout, stable, silencieux : Troviio choisit le bureau électrique pour ton télétravail.", guide_title: "Quel bureau électrique choisir ?", guide_desc: "Stabilité, silence, hauteur : le guide du bureau assis-debout pour votre santé." },
+  clavier: { name: "Clavier", emoji: "⌨️", title: "Meilleur clavier 2026", description: "Mécanique, gaming, bureautique : Troviio trouve le clavier adapté à ta frappe.", guide_title: "Quel clavier choisir ?", guide_desc: "Mécanique ou membrane, layout, switches : le guide du clavier parfait." },
+  "four-encastrable": { name: "Four encastrable", emoji: "🔥", title: "Meilleur four encastrable 2026", description: "Chaleur tournante, pyrolyse, catalyse : Troviio choisit le four encastrable pour ta cuisine.", guide_title: "Quel four encastrable choisir ?", guide_desc: "Chaleur tournante, pyrolyse, catalyse : le guide du four encastrable pour une cuisine équipée." },
+  "jeu-coop-local": { name: "Jeux coop locaux", emoji: "🎮", title: "Meilleurs jeux coop locaux 2026", description: "Split-screen, couch co-op, famille : Troviio sélectionne les jeux à partager sur ton canapé.", guide_title: "Quels jeux coop locaux choisir ?", guide_desc: "Split-screen, co-op, famille : le guide des jeux à deux sur le même canapé." },
+  "manette-switch": { name: "Manette Switch", emoji: "🎮", title: "Meilleure manette Switch 2026", description: "Pro, 8BitDo, Hall Effect : Troviio choisit la manette Nintendo Switch pour ton gaming.", guide_title: "Quelle manette Switch choisir ?", guide_desc: "Confort, précision, autonomie : le guide de la manette Nintendo Switch idéale." },
+  "montre-connectee": { name: "Montre connectée", emoji: "⌚", title: "Meilleure montre connectée 2026", description: "Sport, santé, autonomie : Troviio trouve la montre connectée pour ton poignet.", guide_title: "Quelle montre connectée choisir ?", guide_desc: "Sport, santé, autonomie, OS : le guide de la montre connectée qui vous suit partout." },
+  "station-daccueil-usbc": { name: "Station d'accueil USB-C", emoji: "🔌", title: "Meilleure station d'accueil USB-C 2026", description: "Power delivery, écrans multiples, connectique : Troviio choisit la station USB-C pour ton setup.", guide_title: "Quelle station d'accueil USB-C choisir ?", guide_desc: "Power delivery, multi-écran, connectique : le guide de la station d'accueil pour laptop." },
+  tablette: { name: "Tablette", emoji: "📱", title: "Meilleure tablette 2026", description: "iPad, Android, dessin, productivité : Troviio trouve la tablette pour ton usage.", guide_title: "Quelle tablette choisir ?", guide_desc: "Écran, OS, stylet, autonomie : le guide de la tablette pour le travail et les loisirs." },
+  "ventilateur-classique": { name: "Ventilateur classique", emoji: "🌀", title: "Meilleur ventilateur 2026", description: "Silencieux, puissant, sur pied ou colonne : Troviio choisit le ventilateur pour ta maison.", guide_title: "Quel ventilateur choisir ?", guide_desc: "Silence, puissance, type : le guide du ventilateur pour rester frais sans nuisance sonore." },
+  "voiture-electrique": { name: "Voiture électrique", emoji: "🚗", title: "Meilleure voiture électrique 2026", description: "Autonomie, recharge, budget : Troviio choisit la voiture électrique pour ta mobilité.", guide_title: "Quelle voiture électrique choisir ?", guide_desc: "Autonomie, recharge, budget : le guide complet de la voiture électrique en 2026." },
 };
 
 export async function generateStaticParams() {
@@ -104,6 +116,18 @@ const GUIDES_BY_CATEGORY: Record<string, string> = {
   "tv": "salon-lumineux",
   "velo-electrique": "guide-achat",
   "ventilateur-colonne": "guide-achat",
+  // ── Nouveaux guides (ajoutés le 12/05/2026) ──
+  "accessoire-velo": "guide-achat",
+  "bureau-electrique": "guide-achat",
+  "clavier": "guide-achat",
+  "four-encastrable": "guide-achat",
+  "jeu-coop-local": "guide-achat",
+  "manette-switch": "guide-achat",
+  "montre-connectee": "guide-achat",
+  "station-daccueil-usbc": "guide-achat",
+  "tablette": "guide-achat",
+  "ventilateur-classique": "guide-achat",
+  "voiture-electrique": "guide-achat",
 };
 type Product = {
   id: string;

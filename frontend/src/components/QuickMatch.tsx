@@ -54,16 +54,29 @@ export default function QuickMatch() {
       setWinner(null);
       setFading(false);
       setLoading(true);
-      const res = await fetch(`${API_BASE}/products?limit=80`);
+      const res = await fetch(`${API_BASE}/products?limit=200`);
       if (!res.ok) throw new Error("API failed");
       const all: QuickProduct[] = await res.json();
 
-      // Filter to products with scores
-      const scored = all.filter((p) => p.estimated_score > 0 && p.image_url);
-      if (scored.length < 2) throw new Error("Not enough products");
+      // Filter to products with scores and images
+      const valid = all.filter((p) => p.estimated_score > 0 && p.image_url);
 
-      // Pick 2 random distinct products
-      const shuffled = [...scored].sort(() => Math.random() - 0.5);
+      // Group by category_name (products in the same category)
+      const grouped: Record<string, QuickProduct[]> = {};
+      for (const p of valid) {
+        // Normalize "" to "unknown" — some products may lack category_name
+        const key = p.category_name || "unknown";
+        if (!grouped[key]) grouped[key] = [];
+        grouped[key].push(p);
+      }
+
+      // Find categories with at least 2 products
+      const viable = Object.entries(grouped).filter(([, prods]) => prods.length >= 2);
+      if (viable.length === 0) throw new Error("No category with 2+ products");
+
+      // Pick a random viable category, then 2 random products from it
+      const [, catProducts] = viable[Math.floor(Math.random() * viable.length)];
+      const shuffled = [...catProducts].sort(() => Math.random() - 0.5);
       setPair(shuffled.slice(0, 2));
     } catch {
       // Fallback: use fixtures — fetch by slug

@@ -6,7 +6,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { SITE_URL } from "@/lib/constants";
 import StickyCtaMobile from "@/components/StickyCtaMobile";
 
-export const revalidate = 86400;
+export const dynamic = "force-dynamic";
 
 type RouteParams = { category: string; page: string };
 type PageProps = { params: Promise<RouteParams> };
@@ -107,13 +107,6 @@ async function getTopProducts(category: Category, seoPage: SeoPage): Promise<Pro
     })
     .sort((a, b) => b.relevance - a.relevance)
     .slice(0, 3).map((x) => x.p);
-}
-
-export async function generateStaticParams() {
-  const supabase = createSupabaseServerClient();
-  const { data, error } = await supabase.from("seo_pages").select("category_slug, page_slug");
-  if (error || !data) return [];
-  return data.map((row) => ({ category: row.category_slug, page: row.page_slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

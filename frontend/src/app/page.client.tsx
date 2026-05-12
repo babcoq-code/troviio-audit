@@ -11,6 +11,7 @@ import QuickMatch from "@/components/QuickMatch";
 import RecentTests from "@/components/RecentTests";
 import SearchOmnibox from "@/components/SearchOmnibox";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import TrustCounter from "@/components/TrustCounter";
 
 export default function HomePageClient() {
   const { history, loaded, remove, clear } = useHistory();
@@ -35,6 +36,7 @@ export default function HomePageClient() {
       <QuickMatch />
       <RecentTests />
       <CategoryGrid />
+      <TrustCounter />
 
       {/* Historique des recherches */}
       {loaded && history.results.length > 0 && (

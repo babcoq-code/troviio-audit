@@ -2,39 +2,88 @@ import type { MetadataRoute } from "next";
 
 const BASE = "https://www.troviio.com";
 
-// ── Catégories ──────────────────────────────────────────────────────────────────
+// ── Catégories (43 — synchronisé avec DB le 12/05/2026) ─────────────
 const CATEGORIES = [
-  "airfryer","aspirateur-balai","aspirateur-robot","bureau-electrique",
-  "casque-audio","cave-a-vin","clavier-gaming","climatiseur-mobile",
-  "decongelateur","enceinte-bt","epilateur-lumiere-pulsee","four-micro-ondes","four-encastrable",
-  "imprimante-3d","laptop-gamer","machine-a-cafe","machine-a-pain",
-  "machine-a-coudre","moniteur","montre-connectee","nettoyeur-vapeur",
-  "ordinateur-portable","purificateur-air","rasoir-electrique",
-  "refrigerateur","robot-cuisine","robot-piscine","robot-tondeuse",
-  "serrure-connectee","smartphone","souffleur-feuilles",
-  "station-charge-usb-c","station-daccueil-usbc","table-de-cuisson",
-  "tapis-de-course","tracteur-tondeuse","trottinette-electrique",
-  "tv","velo-electrique","velo-electrique-pliant","voiture-electrique",
+  "accessoire-velo","aspirateur-balai","aspirateur-laveur","aspirateur-robot",
+  "barre-de-son","bureau-electrique","camera-securite","casque-audio",
+  "cave-a-vin","clavier","climatiseur-portable","enceinte-bt",
+  "four-encastrable","four-micro-ondes","friteuse-air","imprimante",
+  "jeu-coop-local","laptop-etudiant","laptop-gamer","lave-linge",
+  "lave-vaisselle","machine-a-cafe","manette-switch","matelas",
+  "montre-connectee","onduleur-ups","ordinateur-portable","poussette",
+  "purificateur-air","refrigerateur","robot-cuisine","smartphone",
+  "station-charge-usb-c","station-daccueil-usbc","tablette",
+  "thermostat-connecte","trottinette","tv","tv-oled","velo-electrique",
+  "ventilateur-classique","ventilateur-colonne","voiture-electrique",
 ];
 
-// ── Duels ───────────────────────────────────────────────────────────────────────
+// ── Duels (27 pages statiques) ──────────────────────────────────────
 const DUEL_SLUGS = [
-  "thermomix-vs-magimix-cook-expert","caldigit-ts5-vs-plugable-tbt4-ud5",
-  "dyson-gen5-detect-vs-samsung-bespoke-jet","lg-c6-vs-samsung-s95h",
-  "ninja-foodi-vs-cosori-turboblaze","sony-wh-1000xm6-vs-bose-qc-ultra",
-  "flexispot-e7-pro-vs-secretlab-magnus-pro","garmin-fenix-8-vs-apple-watch-ultra-2",
-  "jura-e8-vs-sage-barista-express","tesla-model-y-vs-bmw-ix3",
-  "wooting-80he-vs-keychron-q5-max","dyson-v15-vs-jet-ultra",
-  "vorwerk-vs-kitchenaid","moccamaster-vs-sage",
-  "ninja-max-vs-philips-airfryer","lg-g6-vs-samsung-s95h",
-  "caldigit-vs-startech","fenix-8-vs-galaxy-watch-ultra",
-  "tesla-model-3-vs-bmw-ix3","keychron-vs-lemokey",
-  "magimix-xl-vs-thermomix","bose-vs-sennheiser","desktronic-vs-flexispot",
+  "apple-watch-ultra-2-vs-samsung-galaxy-watch-ultra",
+  "bose-qc-ultra-vs-sony-wh-1000xm6",
+  "bugaboo-fox5-vs-uppababy-vista-v3",
+  "caldigit-ts5-plus-vs-plugable-tbt4-ud5",
+  "dreame-x50-ultra-vs-roborock-qrevo-curv-2-pro",
+  "duux-whisper-flex-2-vs-rowenta-vu5890f0",
+  "dyson-gen5-detect-vs-samsung-bespoke-jet",
+  "dyson-gen5-vs-samsung-bespoke-jet",
+  "eaton-5sc-1500i-vs-apc-back-ups-pro-br650mi",
+  "flexispot-e7-pro-vs-secretlab-magnus-pro",
+  "giant-explore-eplus1-vs-riese-muller-charger4",
+  "hp-envy-inspire-7924e-vs-hp-officejet-pro-9135e",
+  "hypnia-bien-etre-supreme-vs-emma-original",
+  "ipad-pro-m5-11-vs-samsung-galaxy-tab-s11-ultra",
+  "it-takes-two-vs-split-fiction",
+  "jura-e8-vs-sage-barista-express",
+  "lg-g6-oled-vs-samsung-s95h-qd-oled",
+  "miele-wcr870-vs-bosch-wgb244a2fr",
+  "ninja-foodi-flexdrawer-vs-cosori-turboblaze",
+  "samsung-galaxy-s26-ultra-vs-iphone-17-pro-max",
+  "sennheiser-ambeo-soundbar-mini-vs-sony-ht-sf150",
+  "silvercrest-monsieur-cuisine-smart-vs-magimix-cook-expert-premium-xl",
+  "sony-ht-sf150-vs-sennheiser-ambeo-soundbar-mini",
+  "switch-2-pro-controller-vs-8bitdo-pro2-halleffect",
+  "tesla-model-y-juniper-vs-tesla-model-3-highland",
+  "thermomix-tm7-vs-kitchenaid-artisan",
+  "wooting-80he-vs-lemokey-p1-he",
 ];
 
-// ── Guides longtail ──────────────────────────────────────────────────────────────
+// ── Tops statiques (12 pages) ───────────────────────────────────────
+const TOP_SLUGS = [
+  "aspirateur-balai","aspirateur-robot","bureau-electrique",
+  "casque-audio","clavier-gaming","friteuse-air",
+  "machine-a-cafe","montre-connectee","robot-cuisine",
+  "station-accueil-usbc","tv","voiture-electrique",
+];
+
+// ── Guides longtail ─────────────────────────────────────────────────
 const GUIDES = [
   "tv/coupe-du-monde-2026",
+  // 24 nouveaux guides d'achat (12 catégories × 2, ajoutés le 12/05/2026)
+  "accessoire-velo/guide-achat",
+  "accessoire-velo/casque-velo",
+  "bureau-electrique/guide-achat",
+  "bureau-electrique/grande-taille",
+  "clavier/guide-achat",
+  "clavier/mecanique-gaming",
+  "four-encastrable/guide-achat",
+  "four-encastrable/pyrolyse-encastrable",
+  "jeu-coop-local/guide-achat",
+  "jeu-coop-local/ecran-partage",
+  "manette-switch/guide-achat",
+  "manette-switch/hall-effect",
+  "montre-connectee/guide-achat",
+  "montre-connectee/sport-running",
+  "station-daccueil-usbc/guide-achat",
+  "station-daccueil-usbc/triple-ecran",
+  "tablette/guide-achat",
+  "tablette/dessin-note",
+  "tv-oled/guide-achat",
+  "tv-oled/lg-vs-samsung",
+  "ventilateur-classique/guide-achat",
+  "ventilateur-classique/silencieux-chambre",
+  "voiture-electrique/guide-achat",
+  "voiture-electrique/moins-40000",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -45,7 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Pages statiques
   const staticPages = [
-    "/methode","/a-propos","/score","/accessoires",
+    "/methode","/accessoires",
     "/mentions-legales","/confidentialite","/cookies","/cgv","/contact",
     "/catalogue",
     "/duels",
@@ -55,12 +104,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   // Tops
-  const tops = [
-    "aspirateur-robot","aspirateur-balai","robot-cuisine","casque-audio",
-    "bureau-electrique","clavier-gaming","friteuse-air","machine-a-cafe",
-    "montre-connectee","station-accueil-usbc","tv","voiture-electrique",
-  ];
-  for (const t of tops) {
+  for (const t of TOP_SLUGS) {
     urls.push({ url: `${BASE}/tops/${t}`, changeFrequency: "weekly", priority: 0.8 });
   }
   urls.push({ url: `${BASE}/tops`, changeFrequency: "weekly", priority: 0.7 });

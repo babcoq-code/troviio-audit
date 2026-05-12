@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import nextDynamic from "next/dynamic";
 import AffiliateButton from "@/components/product/AffiliateButton";
-import { JsonLd } from "@/components/seo/JsonLd";
 import StickyCtaMobile from "@/components/StickyCtaMobile";
 
 const AccessoriesWidgetLoader = nextDynamic(
@@ -148,49 +147,43 @@ export default async function ProductPage({ params }: PageProps) {
     <main className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
 
-        {/* Schema.org JSON-LD */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org", "@type": "Product",
-            name: product.name,
-            brand: { "@type": "Brand", name: product.brand || "" },
-            description: (product.description || "").substring(0, 500),
-            image: product.image_url || undefined,
-            sku: product.slug || undefined,
-            mpn: product.amazon_asin || undefined,
-            offers: {
-              "@type": "AggregateOffer", priceCurrency: "EUR",
-              lowPrice: bestPrice, highPrice: sortedPrices.length > 0 ? sortedPrices[sortedPrices.length - 1]?.price_eur || bestPrice : bestPrice,
-              offerCount: sortedPrices.length || 1,
-            },
-            ...(product.estimated_score ? {
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: (product.estimated_score / 20).toFixed(1),
-                bestRating: 5, worstRating: 0,
-                ratingCount: Math.max(1, Math.round(product.estimated_score * 3)),
+        {/* Schema.org Product JSON-LD pour rich snippets Google */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              name: product.name,
+              description: (product.description || "").substring(0, 500),
+              brand: {
+                "@type": "Brand",
+                name: product.brand || "",
               },
-            } : {}),
-            ...((product.pros ?? []).length > 0 || (product.cons ?? []).length > 0 ? {
-              review: [
-                ...(product.pros ?? []).slice(0, 3).map((pro: string) => ({
-                  "@type": "Review",
-                  reviewRating: { "@type": "Rating", ratingValue: 4.5, bestRating: 5 },
-                  author: { "@type": "Organization", name: "Troviio" },
-                  reviewBody: typeof pro === "string" ? pro.substring(0, 500) : "",
-                  datePublished: product.created_at ? product.created_at.substring(0, 10) : "2026-01-01",
-                })),
-                ...(product.cons ?? []).slice(0, 3).map((con: string) => ({
-                  "@type": "Review",
-                  reviewRating: { "@type": "Rating", ratingValue: 2.5, bestRating: 5 },
-                  author: { "@type": "Organization", name: "Troviio" },
-                  reviewBody: typeof con === "string" ? con.substring(0, 500) : "",
-                  datePublished: product.created_at ? product.created_at.substring(0, 10) : "2026-01-01",
-                })),
-              ],
-            } : {}),
-          }),
-        }} />
+              ...(product.estimated_score != null
+                ? {
+                    aggregateRating: {
+                      "@type": "AggregateRating",
+                      ratingValue: product.estimated_score,
+                      bestRating: "100",
+                      worstRating: "0",
+                      ratingCount: 1,
+                    },
+                  }
+                : {}),
+              ...(bestPrice != null
+                ? {
+                    offers: {
+                      "@type": "Offer",
+                      priceCurrency: "EUR",
+                      price: bestPrice,
+                      availability: "https://schema.org/InStock",
+                    },
+                  }
+                : {}),
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm mb-6" style={{ color: "var(--text-muted)" }}>
@@ -606,58 +599,6 @@ export default async function ProductPage({ params }: PageProps) {
           <AccessoriesWidgetLoader productId={product.id} productName={product.name} />
         </div>
       </div>
-
-      {/* ===== SCHEMA.ORG PRODUCT ===== */}
-      {product && (
-        <JsonLd
-          data={{
-            "@type": "Product",
-            "@id": `https://troviio.com/produit/${slug}#product`,
-            name: product.name,
-            description: (product.description || "").substring(0, 500),
-            url: `https://troviio.com/produit/${slug}`,
-            image: product.image_url || undefined,
-            brand: product.brand ? { "@type": "Brand", name: product.brand } : undefined,
-            offers: {
-              "@type": "AggregateOffer",
-              priceCurrency: "EUR",
-              lowPrice: Math.min(...(sortedPrices.length ? sortedPrices.map(p => p.price_eur || 99999) : [0])),
-              highPrice: Math.max(...(sortedPrices.length ? sortedPrices.map(p => p.price_eur || 0) : [0])),
-              offerCount: sortedPrices.length || 1,
-              availability: "https://schema.org/InStock",
-              url: sortedPrices[0]?.url || `https://troviio.com/produit/${slug}`,
-            },
-            ...((product.troviio_score || product.estimated_score) ? {
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: ((product.troviio_score || product.estimated_score) / 20).toFixed(1),
-                bestRating: "5",
-                worstRating: "0",
-                ratingCount: product.review_count || Math.floor(Math.random() * 50) + 10,
-                reviewCount: product.review_count || Math.floor(Math.random() * 50) + 10,
-              },
-            } : {}),
-            ...(product.pros || product.cons ? {
-              review: [
-                ...(product.pros?.length ? [{
-                  "@type": "Review",
-                  reviewRating: { "@type": "Rating", ratingValue: "4", bestRating: "5" },
-                  name: "Points forts",
-                  reviewBody: product.pros.slice(0, 3).join(". "),
-                  author: { "@type": "Organization", name: "Troviio" },
-                }] : []),
-                ...(product.cons?.length ? [{
-                  "@type": "Review",
-                  reviewRating: { "@type": "Rating", ratingValue: "3", bestRating: "5" },
-                  name: "Points faibles",
-                  reviewBody: product.cons.slice(0, 3).join(". "),
-                  author: { "@type": "Organization", name: "Troviio" },
-                }] : []),
-              ],
-            } : {}),
-          }}
-        />
-      )}
 
       {/* ===== CTA STICKY MOBILE ===== */}
       {sortedPrices.length > 0 && (

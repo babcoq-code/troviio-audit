@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleure TV 2026 : le top 3 des televisions qui changent tout | Troviio",
   description: "OLED, QD-OLED, Mini-LED : notre selection des 3 meilleures TVs pour le salon en 2026.",

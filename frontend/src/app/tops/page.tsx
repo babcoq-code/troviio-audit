@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import TopsClient from "./TopsClient";
 import { JsonLd, buildBreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Top 3 Troviio — Les meilleurs produits par catégorie",
   description:

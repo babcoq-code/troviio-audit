@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleur aspirateur balai 2026 : le top 3 qui aspire tout sur son passage | Troviio",
   description: "Aspirateur balai sans fil : notre top 3 des meilleurs pour un sol impeccable en 2026.",

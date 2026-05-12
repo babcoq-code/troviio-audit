@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleure voiture électrique 2026 : le top 3 definitif | Troviio",
   description: "Le classement des 3 meilleures voitures électriques de 2026 testées et approuvées par Troviio.",

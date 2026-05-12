@@ -11,6 +11,9 @@ export const legalPages: LegalPage[] = [
   { title: "Politique de confidentialité", href: "/politique-confidentialite", emoji: "🔒" },
   { title: "Cookies", href: "/cookies", emoji: "🍪" },
   { title: "Affiliation", href: "/affiliation", emoji: "🤝" },
+  { title: "CGV", href: "/cgv", emoji: "📋" },
+  { title: "Contact", href: "/contact", emoji: "✉️" },
+  { title: "Blog", href: "/blog", emoji: "📝" },
   { title: "Méthodologie", href: "/methodologie", emoji: "📊" },
   { title: "À propos", href: "/a-propos", emoji: "ℹ️" },
 ];

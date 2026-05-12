@@ -7,6 +7,7 @@ import StarterPrompts from "@/components/StarterPrompts";
 import ChatHero from "@/components/ChatHero";
 import CategoryGrid from "@/components/CategoryGrid";
 import Top3Home from "@/components/Top3Home";
+import QuickMatch from "@/components/QuickMatch";
 import RecentTests from "@/components/RecentTests";
 import SearchOmnibox from "@/components/SearchOmnibox";
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -31,6 +32,7 @@ export default function HomePageClient() {
       <StarterPrompts />
       <ChatHero />
       <Top3Home />
+      <QuickMatch />
       <RecentTests />
       <CategoryGrid />
 

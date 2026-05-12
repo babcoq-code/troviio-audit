@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleur aspirateur robot 2026 : le top 3 definitif | Troviio",
   description: "Le classement des 3 meilleurs aspirateurs robots de 2026 teste et approuve par Troviio.",

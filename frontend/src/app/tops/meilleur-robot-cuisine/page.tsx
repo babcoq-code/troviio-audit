@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleur robot cuiseur 2026 : le top 3 qui cuisine a votre place | Troviio",
   description: "Thermomix ou pas ? Notre top 3 des robots cuiseurs multifonction les plus performants.",

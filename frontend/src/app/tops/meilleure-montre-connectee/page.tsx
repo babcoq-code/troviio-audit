@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleure montre connectée 2026 : le top 3 definitif | Troviio",
   description: "Le classement des 3 meilleures montres connectées de 2026 testées et approuvées par Troviio.",

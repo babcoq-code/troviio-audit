@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleure machine a cafe 2026 : le top 3 pour bien commencer la journee | Troviio",
   description: "Grain, dosettes, filtre : notre selection des meilleures machines a cafe pour 2026.",

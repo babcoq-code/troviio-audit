@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleur casque audio 2026 : le top 3 qui va changer vos oreilles | Troviio",
   description: "Casque sans fil, annulation de bruit, confort : notre top 3 des meilleurs casques audio de 2026.",

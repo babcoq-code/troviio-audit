@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleur clavier gaming 2026 : le top 3 pour dominer vos parties | Troviio",
   description: "Gaming, bureautique, Hall Effect : notre sélection des meilleurs claviers 2026.",

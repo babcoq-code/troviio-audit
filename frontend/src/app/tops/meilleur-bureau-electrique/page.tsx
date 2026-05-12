@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleur bureau électrique 2026 : le top 3 assis-debout | Troviio",
   description: "Assis-debout, gaming, télétravail : notre sélection des meilleurs bureaux électriques 2026.",

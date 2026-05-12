@@ -177,6 +177,10 @@ def slugify(s):
 
 p1_slug = p1["slug"]
 p2_slug = p2["slug"]
+# Order slugs alphabetically for canonical duel URL (middleware redirects B-vs-A to A-vs-B)
+if p1_slug.lower() > p2_slug.lower():
+    p1_slug, p2_slug = p2_slug, p1_slug
+    p1, p2 = p2, p1
 duel_slug = f"{p1_slug}-vs-{p2_slug}"
 duel_title = f"{p1.get('brand','')} {p1['name']} vs {p2.get('brand','')} {p2['name']}"
 duel_url = f"https://www.troviio.com/duel/{duel_slug}"
@@ -380,7 +384,6 @@ export const metadata: Metadata = {{
 export default function {comp_name}() {{
   return (
 {duel_jsx}
-  );
   );
 }}'''
 

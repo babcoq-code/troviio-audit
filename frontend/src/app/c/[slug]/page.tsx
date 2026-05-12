@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ChatHero from "@/components/ChatHero";
+import { SEO_INTRO } from "@/lib/seo-intro";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -449,6 +450,17 @@ export default async function CategoryPage({ params }: Props) {
           })()}
         </div>
       </section>
+
+      {/* SEO text — intro longue */}
+      {SEO_INTRO[slug] && (
+        <section className="px-4 py-10 sm:px-6 lg:px-8" style={{ backgroundColor: "var(--bg-subtle, #0C0C0E)" }}>
+          <div className="max-w-3xl mx-auto">
+            <p className="text-sm leading-7" style={{ color: "#8B8B9A" }}>
+              {SEO_INTRO[slug]}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* SEO text */}
       <section className="px-4 pb-16 sm:px-6 lg:px-8" style={{ backgroundColor: "var(--bg)" }}>

@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleure friteuse a air 2026 : le top 3 pour manger sain sans se prendre la tete | Troviio",
   description: "Friteuse a air : notre selection des 3 meilleures pour une cuisine saine et croustillante.",

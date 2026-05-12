@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Meilleure station d'accueil USB-C / Thunderbolt 2026 : le top 3 | Troviio",
   description: "Le classement des 3 meilleures stations d'accueil USB-C et Thunderbolt de 2026 testées par Troviio : du hub à 35€ au dock Thunderbolt 5 à 519€.",

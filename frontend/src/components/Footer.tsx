@@ -93,6 +93,9 @@ export default function Footer() {
                 { label: "Mentions légales", href: "/mentions-legales" },
                 { label: "Confidentialité", href: "/politique-confidentialite" },
                 { label: "Cookies", href: "/cookies" },
+                { label: "CGV", href: "/cgv" },
+                { label: "Contact", href: "/contact" },
+                { label: "Blog", href: "/blog" },
                 { label: "Affiliation", href: "/affiliation" },
                 { label: "À propos", href: "/a-propos" },
               ].map((l) => (

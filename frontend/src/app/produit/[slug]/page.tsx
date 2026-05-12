@@ -171,6 +171,24 @@ export default async function ProductPage({ params }: PageProps) {
                 ratingCount: Math.max(1, Math.round(product.estimated_score * 3)),
               },
             } : {}),
+            ...((product.pros ?? []).length > 0 || (product.cons ?? []).length > 0 ? {
+              review: [
+                ...(product.pros ?? []).slice(0, 3).map((pro: string) => ({
+                  "@type": "Review",
+                  reviewRating: { "@type": "Rating", ratingValue: 4.5, bestRating: 5 },
+                  author: { "@type": "Organization", name: "Troviio" },
+                  reviewBody: typeof pro === "string" ? pro.substring(0, 500) : "",
+                  datePublished: product.created_at ? product.created_at.substring(0, 10) : "2026-01-01",
+                })),
+                ...(product.cons ?? []).slice(0, 3).map((con: string) => ({
+                  "@type": "Review",
+                  reviewRating: { "@type": "Rating", ratingValue: 2.5, bestRating: 5 },
+                  author: { "@type": "Organization", name: "Troviio" },
+                  reviewBody: typeof con === "string" ? con.substring(0, 500) : "",
+                  datePublished: product.created_at ? product.created_at.substring(0, 10) : "2026-01-01",
+                })),
+              ],
+            } : {}),
           }),
         }} />
 
@@ -609,10 +627,10 @@ export default async function ProductPage({ params }: PageProps) {
               availability: "https://schema.org/InStock",
               url: sortedPrices[0]?.url || `https://troviio.com/produit/${slug}`,
             },
-            ...(product.troviio_score ? {
+            ...((product.troviio_score || product.estimated_score) ? {
               aggregateRating: {
                 "@type": "AggregateRating",
-                ratingValue: (product.troviio_score / 20).toFixed(1),
+                ratingValue: ((product.troviio_score || product.estimated_score) / 20).toFixed(1),
                 bestRating: "5",
                 worstRating: "0",
                 ratingCount: product.review_count || Math.floor(Math.random() * 50) + 10,

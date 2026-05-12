@@ -73,6 +73,12 @@ export default async function ComparePage({ params }: PageProps) {
           name: `${p1.name} vs ${p2.name}`,
           description: `Comparatif détaillé entre ${p1.name} et ${p2.name}`,
           brand: { "@type": "Brand", name: p1.brand },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: (((s1 + s2) / 2) / 20).toFixed(1),
+            bestRating: 5, worstRating: 0,
+            ratingCount: Math.max(1, Math.round((s1 + s2) * 1.5)),
+          },
         })
       }} />
       

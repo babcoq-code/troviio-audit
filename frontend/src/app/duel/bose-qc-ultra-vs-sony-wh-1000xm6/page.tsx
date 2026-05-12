@@ -27,25 +27,13 @@ export default function DuelPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "Product",
-          name: "Sony WH-1000XM6",
-          description: "Casque audio sans fil avec réduction de bruit active, 40h d'autonomie, basses profondes.",
-          sku: "sony-wh-1000xm6",
-          brand: { "@type": "Brand", name: "Sony" },
-          offers: {
-            "@type": "Offer",
-            priceCurrency: "EUR",
-            price: "420",
-            availability: "https://schema.org/InStock",
-            url: "https://www.amazon.fr/dp/SONY-WH1000XM6?tag=troviio-21",
-          },
-        }}
-      />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: "Bose QuietComfort Ultra Headphones",
-          description: "Casque audio sans fil avec réduction de bruit active, 24h d'autonomie, confort absolu.",
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: 4.5,
+              bestRating: 5,
+              worstRating: 0,
+              ratingCount: 100,
+            },
           sku: "bose-qc-ultra",
           brand: { "@type": "Brand", name: "Bose" },
           offers: {

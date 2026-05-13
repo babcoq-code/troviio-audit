@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const metadata: Metadata = {
   title: "SILVERCREST MONSIEUR CUISINE SMART vs MAGIMIX COOK EXPERT PREMIUM XL",
@@ -20,7 +22,7 @@ export default function DuelSilvercrestMonsieurVsMagimixCook() {
       <div className="max-w-3xl">
         <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#FF6B5F]">⚔️ Duel Troviio</p>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Le duel des robots cuiseurs : le geek connecté contre le vétéran increvable</h1>
-        <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Monsieur Cuisine Smart vs Cook Expert Premium XL : deux robots qui ont le même score (77/100) mais des philosophies radicalement opposées. L'un parle avec Google, l'autre a une garantie de 30 ans. Comme si Tony Stark affrontait un Terminator T-800 version cuisine.</p>
+        <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Monsieur Cuisine Smart vs Cook Expert Premium XL : deux robots qui ont le même score <DynamicScore slug="silvercrest-monsieur-cuisine-smart" fallback={77}/> mais des philosophies radicalement opposées. L'un parle avec Google, l'autre a une garantie de 30 ans. Comme si Tony Stark affrontait un Terminator T-800 version cuisine.</p>
       </div>
     </div>
   </section>
@@ -29,7 +31,7 @@ export default function DuelSilvercrestMonsieurVsMagimixCook() {
     {/* Intro pop culture */}
     <div className="rounded-2xl border border-white/5 bg-[#161827] p-6 mb-10">
       <p className="text-base leading-7 text-[#8B8FA3]">
-        Imaginez un combat entre <strong>John Wick</strong> et <strong>HAL 9000</strong> dans une cuisine. D'un côté, le Silvercrest Monsieur Cuisine Smart, version 2022, avec son écran tactile 8 pouces plus réactif qu'un <strong>Iron Man</strong> en plein vol, sa reconnaissance vocale Google Assistant et ses 600+ recettes guidées. De l'autre, le Magimix Cook Expert Premium XL, le <strong>Terminator</strong> des robots cuiseurs : 10,2 kg de muscle, 30 ans de garantie moteur (oui, vous avez bien lu, comme si <strong>Sarah Connor</strong> avait signé un contrat avec Magimix), et un bol de 4,8 litres capable de préparer un festin pour toute la <strong>Maison Stark</strong>. Le verdict ? Les deux ont exactement 77/100 chez Troviio, mais pour des raisons complètement différentes. C'est comme comparer un <strong>Lightsaber</strong> à un <strong>Marteau de Thor</strong> : les deux sont puissants, mais l'un est connecté et l'autre est indestructible.
+        Imaginez un combat entre <strong>John Wick</strong> et <strong>HAL 9000</strong> dans une cuisine. D'un côté, le Silvercrest Monsieur Cuisine Smart, version 2022, avec son écran tactile 8 pouces plus réactif qu'un <strong>Iron Man</strong> en plein vol, sa reconnaissance vocale Google Assistant et ses 600+ recettes guidées. De l'autre, le Magimix Cook Expert Premium XL, le <strong>Terminator</strong> des robots cuiseurs : 10,2 kg de muscle, 30 ans de garantie moteur (oui, vous avez bien lu, comme si <strong>Sarah Connor</strong> avait signé un contrat avec Magimix), et un bol de 4,8 litres capable de préparer un festin pour toute la <strong>Maison Stark</strong>. Le verdict ? Les deux ont exactement <DynamicScore slug="magimix-cook-expert-premium-xl" fallback={77}/> chez Troviio, mais pour des raisons complètement différentes. C'est comme comparer un <strong>Lightsaber</strong> à un <strong>Marteau de Thor</strong> : les deux sont puissants, mais l'un est connecté et l'autre est indestructible.
       </p>
     </div>
 
@@ -76,7 +78,7 @@ export default function DuelSilvercrestMonsieurVsMagimixCook() {
     <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6 mb-12">
       <p className="text-xs font-bold uppercase tracking-widest text-[#3ED6A3] mb-2">🏆 Verdict Troviio</p>
       <p className="text-base leading-7 text-[#8B8FA3]">
-        Alors, qui gagne ce duel ? C'est comme demander qui est le meilleur entre <strong>Gandalf</strong> et <strong>Dumbledore</strong> : les deux sont légendaires, mais pour des raisons différentes. Si vous êtes un <strong>geek</strong> qui veut un robot qui parle, avec un écran tactile et une connectivité digne de <strong>Tony Stark</strong>, le <strong>Silvercrest Monsieur Cuisine Smart</strong> est fait pour vous. Si vous êtes plutôt un <strong>survivant</strong> qui veut un robot increvable, qui résistera à une <strong>guerre des clans</strong> et que vous pourrez léguer à vos enfants, le <strong>Magimix Cook Expert Premium XL</strong> est votre meilleur allié. Le score ? 77/100 pour les deux. Le vrai gagnant, c'est vous, selon vos besoins. Mais si on devait choisir un seul robot pour une <strong>apocalypse zombie</strong>, on prendrait le Magimix : il pourrait servir de <strong>massue</strong> en cas d'urgence.
+        Alors, qui gagne ce duel ? C'est comme demander qui est le meilleur entre <strong>Gandalf</strong> et <strong>Dumbledore</strong> : les deux sont légendaires, mais pour des raisons différentes. Si vous êtes un <strong>geek</strong> qui veut un robot qui parle, avec un écran tactile et une connectivité digne de <strong>Tony Stark</strong>, le <strong>Silvercrest Monsieur Cuisine Smart</strong> est fait pour vous. Si vous êtes plutôt un <strong>survivant</strong> qui veut un robot increvable, qui résistera à une <strong>guerre des clans</strong> et que vous pourrez léguer à vos enfants, le <strong>Magimix Cook Expert Premium XL</strong> est votre meilleur allié. Le score ? <DynamicScore slug="silvercrest-monsieur-cuisine-smart" fallback={77}/> pour les deux. Le vrai gagnant, c'est vous, selon vos besoins. Mais si on devait choisir un seul robot pour une <strong>apocalypse zombie</strong>, on prendrait le Magimix : il pourrait servir de <strong>massue</strong> en cas d'urgence.
       </p>
     </div>
 

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const metadata: Metadata = {
   title: "Miele WCR870 vs Bosch WGB244A2FR : le duel des lave-linge 2026",
@@ -62,7 +64,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥇 Produit #1</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/miele-wcr870-wps">Miele WCR870 WPS</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">La **Miele WCR870 WPS** est la machine à laver que Dwight Schrute (The Office) choisirait : robuste, fiable, et avec un cycle " Linge de betterave " qui ne laisse aucune trace. Avec son score de 94/100, c'est le chef-d'œuvre de l'ingénierie allemande - imaginez Walter White qui quitte la chimie pour construire des machines à laver indestructibles. Son tambour de 9 kg peut gérer la garde-robe entière de Michael Scott (y compris les costumes trop serrés), et son niveau sonore est si bas que même Jim Halpert ne pourrait pas faire une blague dessus. Si vous voulez une machine qui survivra à la fin du monde (et à vos gosses), prenez-la.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">La **Miele WCR870 WPS** est la machine à laver que Dwight Schrute (The Office) choisirait : robuste, fiable, et avec un cycle " Linge de betterave " qui ne laisse aucune trace. Avec son score de <DynamicScore slug="miele-wcr870-wps" fallback={94}/>, c'est le chef-d'œuvre de l'ingénierie allemande - imaginez Walter White qui quitte la chimie pour construire des machines à laver indestructibles. Son tambour de 9 kg peut gérer la garde-robe entière de Michael Scott (y compris les costumes trop serrés), et son niveau sonore est si bas que même Jim Halpert ne pourrait pas faire une blague dessus. Si vous voulez une machine qui survivra à la fin du monde (et à vos gosses), prenez-la.</p>
           
             <div className="mt-4">
               <Link href="/produit/miele-wcr870-wps" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>
@@ -71,7 +73,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">🥈 Produit #2</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/bosch-wax32e40ff">Bosch WGB244A2FR</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">La **Bosch WGB244A2FR** est la machine à laver de Jesse Pinkman (Breaking Bad) : créative, efficace, et avec un programme " Vapeur Anti-Odeurs " qui fait disparaître les traces de... euh, disons, de " cuisine expérimentale ". Avec son score de 91/100, c'est la chimiste discrète qui utilise la vapeur comme un réactif secret pour déloger les taches les plus tenaces. Son moteur est aussi silencieux que Gus Fring dans le labo, et son cycle " Anti-tache " est un véritable laboratoire de blanchisserie. Parfait pour ceux qui veulent du high-tech sans le prix d'un empire de la meth.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">La **Bosch WGB244A2FR** est la machine à laver de Jesse Pinkman (Breaking Bad) : créative, efficace, et avec un programme " Vapeur Anti-Odeurs " qui fait disparaître les traces de... euh, disons, de " cuisine expérimentale ". Avec son score de <DynamicScore slug="bosch-wgb244a2fr" fallback={91}/>, c'est la chimiste discrète qui utilise la vapeur comme un réactif secret pour déloger les taches les plus tenaces. Son moteur est aussi silencieux que Gus Fring dans le labo, et son cycle " Anti-tache " est un véritable laboratoire de blanchisserie. Parfait pour ceux qui veulent du high-tech sans le prix d'un empire de la meth.</p>
           
             <div className="mt-4">
               <Link href="/produit/bosch-wax32e40ff" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>
@@ -81,7 +83,7 @@ export default function DuelPage() {
 
         <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6 mb-12">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3ED6A3] mb-2">🏆 Verdict Troviio</p>
-          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Le vainqueur est la **Miele WCR870 WPS** (94/100) - elle surpasse la Bosch WGB244A2FR (91/100) sur presque tous les critères, sauf la créativité des programmes. Si vous voulez une machine qui durera plus longtemps que la série The Office, c'est elle. Pour les amateurs de chimie lessive, la Bosch reste une excellente élève.</p>
+          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Le vainqueur est la **Miele WCR870 WPS** <DynamicScore slug="miele-wcr870-wps" fallback={94}/> - elle surpasse la Bosch WGB244A2FR <DynamicScore slug="bosch-wgb244a2fr" fallback={91}/> sur presque tous les critères, sauf la créativité des programmes. Si vous voulez une machine qui durera plus longtemps que la série The Office, c'est elle. Pour les amateurs de chimie lessive, la Bosch reste une excellente élève.</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 mb-12">

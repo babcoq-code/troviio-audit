@@ -215,8 +215,8 @@ export default function Header() {
             {[
               { label: "Duels", href: "/duels" },
               { label: "Top 3", href: "/tops" },
+              { label: "💜 Liste", href: "/ma-liste" },
               { label: "Méthode", href: "/methode" },
-              { label: "Accessoires", href: "/accessoires" },
             ].map((l) => (
               <Link
                 key={l.href}
@@ -368,6 +368,7 @@ export default function Header() {
           {[
             { label: "⚔️ Duels", href: "/duels" },
             { label: "📦 Catalogue", href: "/catalogue" },
+            { label: "💜 Ma liste", href: "/ma-liste" },
             { label: "🧪 Méthodologie", href: "/methodologie" },
             { label: "🏆 Top 3", href: "/tops" },
             { label: "📝 Guides", href: "/guide" },

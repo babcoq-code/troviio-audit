@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const dynamic = "force-dynamic";
 
@@ -61,7 +63,7 @@ export default function TopsPage() {
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dreame X50 Ultra Complete** - 96/100 - 426€  
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dreame X50 Ultra Complete** - <DynamicScore slug="dreame-x50-ultra-complete" fallback={96}/> - 426€  
 Le roi. Pas le petit prince : le roi des batailles de miettes. Pourquoi lui ? Parce qu’à ce prix, il nettoie mieux que votre colocataire qui "respire la poussière". Il aspire, lave, et se vide tout seul comme un grand. La seule chose qu’il ne fait pas, c’est vous servir un café, mais on y viendra (bientôt, chez Dreame, j’espère). En gros, c’est le Thanos du ménage : inévitable, et il claque des doigts pour que la poussière disparaisse.</p>
           
             <div className="mt-4">
@@ -82,7 +84,7 @@ Le roi. Pas le petit prince : le roi des batailles de miettes. Pourquoi lui ? Pa
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Roborock Qrevo Curv 2 Pro** - 94/100 - 499€  
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Roborock Qrevo Curv 2 Pro** - <DynamicScore slug="roborock-qrevo-curv-2-pro" fallback={94}/> - 499€  
 Le rapport qualité-prix qui vous fait doucement pleurer d’avoir payé le double pour votre précédent robot. Il a le design d’une Tesla et le sérieux d’un employé qui veut une augmentation. Ses forces : il ne se coince pas sous le canapé, il cartographie mieux que votre GPS et il ne vous envoie pas de notification pour vous dire qu’il aime vos cheveux. Ses faiblesses : il est un poil moins puissant que le Dreame, mais à ce tarif, c’est comme se plaindre que le champagne soit à 20€ au lieu de 15€.</p>
           
             <div className="mt-4">
@@ -103,7 +105,7 @@ Le rapport qualité-prix qui vous fait doucement pleurer d’avoir payé le doub
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Roborock S8 MaxV Ultra** - 93/100 - 1299€  
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Roborock S8 MaxV Ultra** - <DynamicScore slug="roborock-s8-maxv-ultra" fallback={93}/> - 1299€  
 Le premium qui a regardé Trop de séries : il veut tout, tout de suite, et il est prêt à vous vendre un rein pour y arriver. Pour qui ? Pour ceux qui ont des chiens, des tapis persans, et un compte en banque qui dit "oui oui, je suis solide, je peux encaisser". Il détecte les obstacles, il fait du bruit de lave-linge de luxe, il vous regarde presque droit dans les yeux pendant qu’il nettoie. Mais soyons honnêtes : à 1300 balles, vous pourriez aussi embaucher un humain à temps partiel. Mais bon, l’humain ne rentre pas sous le canapé sans râler.</p>
           
             <div className="mt-4">
@@ -127,7 +129,7 @@ Le premium qui a regardé Trop de séries : il veut tout, tout de suite, et il e
         
         <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#2E1A1A] p-6 mb-12">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">💀 Le grand perdant</p>
-          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le **Dreame L40 Ultra** (90/100 - 346€). Ah, le petit budget qui se prend pour un champion. On l’attendait avec espoir, il arrive avec un bruit de tracteur et une cartographie qui le fait parfois camper dans un coin pendant 10 minutes à contempler son existence. C’est le mec sympa en soirée, mais qui finit par vomir sur les chaussures de tout le monde. Il fait le taf, certes, mais à 346€, vous avez l’impression d’avoir acheté un ticket de loterie : parfois, il gagne, parfois il décide que le tapis est un ennemi.</p>
+          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le **Dreame L40 Ultra** (<DynamicScore slug="dreame-x50-ultra-complete" fallback={90}/> - 346€). Ah, le petit budget qui se prend pour un champion. On l’attendait avec espoir, il arrive avec un bruit de tracteur et une cartographie qui le fait parfois camper dans un coin pendant 10 minutes à contempler son existence. C’est le mec sympa en soirée, mais qui finit par vomir sur les chaussures de tout le monde. Il fait le taf, certes, mais à 346€, vous avez l’impression d’avoir acheté un ticket de loterie : parfois, il gagne, parfois il décide que le tapis est un ennemi.</p>
         </div>
         
 

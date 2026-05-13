@@ -119,6 +119,16 @@ const nextConfig = {
         destination: "/politique-confidentialite",
         permanent: true,
       },
+      {
+        source: "/accessoires",
+        destination: "/catalogue",
+        permanent: true,
+      },
+      {
+        source: "/accessoires/:slug*",
+        destination: "/catalogue",
+        permanent: true,
+      },
     ];
   },
 };

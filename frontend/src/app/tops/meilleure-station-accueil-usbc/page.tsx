@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const dynamic = "force-dynamic";
 
@@ -54,7 +56,7 @@ export default function TopsPage() {
         <div className="space-y-6 mb-12 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**CalDigit TS5 Plus Thunderbolt 5 Dock** - 95/100 - 519€  
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**CalDigit TS5 Plus Thunderbolt 5 Dock** - <DynamicScore slug="caldigit-ts5-plus" fallback={95}/> - 519€  
 Imaginez si Le Seigneur des Anneaux avait un dock : c'est l'Anneau Unique, mais en Thunderbolt 5. 20 ports, 140W de charge, 10 GbE — une connectique que même les ingénieurs d'Intel utilisent pour humilier leurs collègues en réunion. Triple 4K@144Hz sur PC, dual 8K sur Mac TB5. Le seul défaut : il pèse plus lourd qu'un Balrog et coûte le prix d'un PC portable d'entrée de gamme. Mais bon, qui a besoin d'un PC quand on a 20 ports ?</p>
           
             <div className="mt-4">
@@ -75,7 +77,7 @@ Imaginez si Le Seigneur des Anneaux avait un dock : c'est l'Anneau Unique, mais 
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Plugable Thunderbolt 4 Dock TBT4-UD5** - 87/100 - 265€  
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Plugable Thunderbolt 4 Dock TBT4-UD5** - <DynamicScore slug="plugable-tbt4-ud5" fallback={87}/> - 265€  
 Comme Michael Scott dans The Office, ce dock fait le job sans faire de vagues. Deux HDMI natifs, Thunderbolt 4, 96W de charge — pas besoin d'acheter un adaptateur supplémentaire dès la réception du colis. Wirecutter le recommande sans hésiter. C'est pas le héros qu'on mérite, c'est celui qu'on a : stable, fiable, et il vous regarde pas bizarrement quand vous branchez une clé USB toute poussiéreuse.</p>
           
             <div className="mt-4">
@@ -96,7 +98,7 @@ Comme Michael Scott dans The Office, ce dock fait le job sans faire de vagues. D
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**StarTech Thunderbolt 4 Quad Display Dock** - 85/100 - 320€  
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**StarTech Thunderbolt 4 Quad Display Dock** - <DynamicScore slug="startech-thunderbolt-4" fallback={85}/> - 320€  
 Dans John Wick, il tue 4 mecs en 10 secondes. Ici, le StarTech gère 4 écrans en 4K sans transpirer. Quatre sorties vidéo natives HDMI et DisplayPort, zéro adaptateur. Pour qui ? Pour le trader qui a 4 moniteurs et un besoin urgent de surveiller ses actions en meme temps que Netflix. Par contre sur Mac, c'est moins flamboyant (merci macOS et ses limitations MST). Un continental du dock pour ceux qui ont 4 yeux et un PC solide.</p>
           
             <div className="mt-4">
@@ -119,7 +121,7 @@ Dans John Wick, il tue 4 mecs en 10 secondes. Ici, le StarTech gère 4 écrans e
 
         <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#2E1A1A] p-6 mb-12 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">💀 Le grand perdant</p>
-          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le **Kensington SD4842P EQ** (82/100 - 127€). Eh oui, le petit budget qui déchire tout se fait voler la vedette par ses grands frères. Pourtant à 127€, c'est une tuerie : USB4, driverless, triple affichage, garantie 3 ans, 70% recyclé. Mais dans un top 3, il y a toujours un mec sympa qui finit sur le banc de touche. Dispo Fnac et Darty, c'est le choix du sage qui veut pas vendre un rein pour brancher ses périphériques.</p>
+          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le **Kensington SD4842P EQ** (<DynamicScore slug="kensington-sd4842p-eq" fallback={82}/> - 127€). Eh oui, le petit budget qui déchire tout se fait voler la vedette par ses grands frères. Pourtant à 127€, c'est une tuerie : USB4, driverless, triple affichage, garantie 3 ans, 70% recyclé. Mais dans un top 3, il y a toujours un mec sympa qui finit sur le banc de touche. Dispo Fnac et Darty, c'est le choix du sage qui veut pas vendre un rein pour brancher ses périphériques.</p>
         </div>
 
         <div className="rounded-2xl border border-white/5 bg-[#1A1D2E] p-6 mb-12 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

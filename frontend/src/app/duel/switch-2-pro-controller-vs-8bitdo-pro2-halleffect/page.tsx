@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const metadata: Metadata = {
   title: "Nintendo Switch 2 Pro Controller vs 8BitDo Pro 2 : le duel des manettes Switch 2026",
@@ -36,7 +38,7 @@ export default function DuelPage() {
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#FF6B5F]">⚔️ Duel Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Nintendo Switch 2 Pro Controller vs 8BitDo Pro 2 Hall Effect</h1>
-            <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Officiel Nintendo ou alternative tierce anti-drift ? Le Pro Controller (94/100) affronte le 8BitDo Pro 2 Hall Effect (86/100) dans un duel de manettes Switch. Budget, confort, polyvalence : on tranche.</p>
+            <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Officiel Nintendo ou alternative tierce anti-drift ? Le Pro Controller <DynamicScore slug="switch-2-pro-controller" fallback={94}/> affronte le 8BitDo Pro 2 Hall Effect <DynamicScore slug="8bitdo-pro2-halleffect" fallback={86}/> dans un duel de manettes Switch. Budget, confort, polyvalence : on tranche.</p>
           </div>
         </div>
       </section>
@@ -52,7 +54,7 @@ export default function DuelPage() {
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">| Caracteristique | Switch 2 Pro Controller | 8BitDo Pro 2 Hall Effect |
 | --- | --- | --- |
 | **Prix** | 109.99 EUR | 59.99 EUR |
-| **Score Troviio** | 94/100 | 86/100 |
+| **Score Troviio** | <DynamicScore slug="switch-2-pro-controller" fallback={94}/> | <DynamicScore slug="8bitdo-pro2-halleffect" fallback={86}/> |
 | **Autonomie** | 40h | 20h |
 | **Poids** | 297g | 228g |
 | **Boutons** | 16 | 18 |
@@ -62,7 +64,7 @@ export default function DuelPage() {
 | **HD Rumble** | HD Rumble 2 (haptique avancee) | Rumble standard |
 
 - **Meilleur rapport qualite-prix : 8BitDo Pro 2 Hall Effect** (59.99 EUR, anti-drift, multi-plateforme)
-- **Meilleure experience premium : Switch 2 Pro Controller** (94/100, HD Rumble 2, 40h autonomie)</p>
+- **Meilleure experience premium : Switch 2 Pro Controller** (<DynamicScore slug="switch-2-pro-controller" fallback={94}/>, HD Rumble 2, 40h autonomie)</p>
           </div>
         </div>
 
@@ -70,7 +72,7 @@ export default function DuelPage() {
         <div className="grid gap-6 md:grid-cols-2 mb-12">
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥇 #1 Pro Controller</p>
-            <h3 className="text-xl font-bold mb-4"><Link href="/produit/manette-nintendo-switch2-procontroller">Nintendo Switch 2 Pro Controller - 94/100</Link></h3>
+            <h3 className="text-xl font-bold mb-4"><Link href="/produit/manette-nintendo-switch2-procontroller">Nintendo Switch 2 Pro Controller - <DynamicScore slug="8bitdo-pro2-halleffect" fallback={94}/></Link></h3>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Nintendo Switch 2 Pro Controller** - C'est le Link de ce duel : tout le monde l'attend, il brille avec son HD Rumble 2 (qui fait trembler les fesses de vos Pokemons preferes) et ses 40h d'autonomie qui vous evitent de chercher un chargeur en pleine bataille contre Ganon. A 109.99 EUR, il vous offre le NFC pour scanner vos Amiibo comme un chef, et son poids de 297g le rend solide, presque comme un bouclier Hylian. Mais attention : il ne parle qu'a la Switch. Pas de PC, pas de Steam Deck. Un peu comme si Mario refusait de quitter le Royaume Champignon.
 
 → **Vainqueur pour l'experience Nintendo premium : Pro Controller**</p>
@@ -81,7 +83,7 @@ export default function DuelPage() {
           </div>
           <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">🥈 #2 8BitDo Pro 2</p>
-            <h3 className="text-xl font-bold mb-4"><Link href="/produit/manette-8bitdo-pro2-halleffect">8BitDo Pro 2 Hall Effect - 86/100</Link></h3>
+            <h3 className="text-xl font-bold mb-4"><Link href="/produit/manette-8bitdo-pro2-halleffect">8BitDo Pro 2 Hall Effect - <DynamicScore slug="switch-2-pro-controller" fallback={86}/></Link></h3>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**8BitDo Pro 2 Hall Effect** - C'est le Pikachu des manettes : mignon, efficace, et surtout increvable. Avec ses joysticks Hall Effect anti-drift, vous pouvez dire adieu aux derives dignes d'un Yoshi alcoolise. Il pese 228g, soit le poids plume parfait pour des sessions marathon, et propose 18 boutons pour les combos les plus fous. A 59.99 EUR, il est multi-plateforme : Switch, PC, Mac, Android, Steam Deck... bref, il s'invite partout, comme un Toad hyperactif. Seul hic : pas de NFC. Si vous voulez scanner vos Amiibo, faudra sortir la console, desole.
 
 → **Vainqueur pour le rapport qualite-prix et la polyvalence : 8BitDo Pro 2**</p>
@@ -99,7 +101,7 @@ export default function DuelPage() {
 → **VERDICT : Le Nintendo Switch 2 Pro Controller est →  pour les puristes Nintendo qui veulent le top du confort officiel. Mais le 8BitDo Pro 2 Hall Effect gagne en rapport qualite-prix et en flexibilite.** Si vous etes pret a sacrifier un peu d'autonomie pour economiser des roupies, foncez. Et si vous voulez le grand frisson officiel, le Pro Controller reste le roi. (Oui, on dirait un choix entre Mario et Luigi - les deux sont geniaux, mais l'un est plus costaud.)
 
 → **Le meilleur rapport qualite-prix : 8BitDo Pro 2 Hall Effect (59.99 EUR)**
-→ **La reference absolue : Switch 2 Pro Controller (94/100)**</p>
+→ **La reference absolue : Switch 2 Pro Controller <DynamicScore slug="8bitdo-pro2-halleffect" fallback={94}/>**</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 mb-12">

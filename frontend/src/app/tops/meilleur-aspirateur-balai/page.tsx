@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const dynamic = "force-dynamic";
 
@@ -61,7 +63,7 @@ export default function TopsPage() {
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson Gen5 Detect Absolute** - 96/100 - 166€
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson Gen5 Detect Absolute** - <DynamicScore slug="dyson-gen5-detect-absolute" fallback={96}/> - 166€
 
 Pourquoi lui ? Parce que c’est le Terminator des aspirateurs : il vient du futur, il ne s’arrête jamais, et il te traque jusqu’à ce que le dernier grain de poussière soit éliminé. Le laser vert détecte la saleté mieux que ton ex ne détectait tes mensonges. Et à 166€, c’est presque une arnaque tellement c’est donné pour ce niveau de technologie. Si tu veux impressionner ta belle-mère en faisant croire que tu nettoies chez toi, c’est l’arme absolue.</p>
           
@@ -83,7 +85,7 @@ Pourquoi lui ? Parce que c’est le Terminator des aspirateurs : il vient du fut
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Samsung Bespoke AI Jet Ultra** - 93/100 - 196€
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Samsung Bespoke AI Jet Ultra** - <DynamicScore slug="samsung-bespoke-ai-jet-ultra" fallback={93}/> - 196€
 
 L’innovation coréenne. Il a plus d’IA qu’un film de science-fiction des années 80 : il adapte la puissance, te dit quand vider le bac, et te regarde probablement en cachette pour juger tes choix de vie. À 196€, c’est le choix du geek qui veut un aspirateur plus intelligent que son frigo. Petit bémol : le design modulable, c’est joli, mais au bout d’un moment tu te demandes si tu nettoies ou si tu fais un puzzle IKEA.</p>
           
@@ -105,7 +107,7 @@ L’innovation coréenne. Il a plus d’IA qu’un film de science-fiction des a
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson V15 Detect Absolute** - 91/100 - 792€
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson V15 Detect Absolute** - <DynamicScore slug="dyson-v15-detect-absolute" fallback={91}/> - 792€
 
 L’ancien roi. Il a régné, il a dominé, il a écrasé la poussière comme Thanos écrase les Avengers. Mais à 792€, c’est le prix d’un week-end à Barcelone ou d’une console next-gen. Pour qui il est fait ? Pour ceux qui veulent le meilleur de 2022 en 2026, sans se soucier de la hype du nouveau modèle. Et franchement, si t’as 800 balles à claquer dans un aspirateur, t’as probablement une maison trop propre pour en avoir besoin.</p>
           
@@ -130,7 +132,7 @@ L’ancien roi. Il a régné, il a dominé, il a écrasé la poussière comme Th
         
         <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#2E1A1A] p-6 mb-12">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">💀 Le grand perdant</p>
-          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Bosch Unlimited 7** - 85/100 - 249€
+          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Bosch Unlimited 7** - <DynamicScore slug="dyson-gen5-detect-absolute" fallback={85}/> - 249€
 
 On l’attendait, le soldat allemand, le solide, le robuste. Mais il est arrivé avec l’enthousiasme d’un employé de bureau le lundi matin : il fait le job, mais sans panache. Pas de laser, pas d’IA, juste un aspirateur qui aspire. À 249€, tu pourrais t’acheter un Dyson d’occasion qui a plus de charisme. Bref, c’est le Karl Lagerfeld des aspirateurs : classe, mais un peu dépassé.</p>
         </div>

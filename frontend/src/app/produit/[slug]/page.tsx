@@ -2,13 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import nextDynamic from "next/dynamic";
 import AffiliateButton from "@/components/product/AffiliateButton";
+import { WishlistButton } from "@/components/product/WishlistButton";
 import StickyCtaMobile from "@/components/StickyCtaMobile";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-
-const WishlistButton = nextDynamic(
-  () => import("@/components/product/WishlistButton"),
-  { loading: () => <div className="w-10 h-10 rounded-full bg-white/5 animate-pulse" /> }
-);
 
 const AccessoriesWidgetLoader = nextDynamic(
   () => import("@/components/accessories/AccessoriesWidget"),
@@ -261,10 +257,12 @@ export default async function ProductPage({ params }: PageProps) {
             <div className="flex items-center gap-2 mt-2">
               <WishlistButton
                 productId={product.id}
+                productSlug={slug}
                 productName={product.name}
-                troviioScore={product.estimated_score != null ? Math.round(product.estimated_score) : undefined}
-                categoryId={product.category_id || product.category_slug}
-                slug={slug}
+                productBrand={product.brand}
+                productImage={product.image_url}
+                troviioScore={product.estimated_score != null ? Math.round(product.estimated_score * 10) : 0}
+                categorySlug={product.category_slug || product.category_id}
                 priceAtSave={bestPrice ?? undefined}
               />
               {product.brand && (

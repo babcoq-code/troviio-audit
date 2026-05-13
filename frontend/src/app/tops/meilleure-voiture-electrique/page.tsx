@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const dynamic = "force-dynamic";
 
@@ -61,7 +63,7 @@ export default function TopsPage() {
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Tesla Model Y Juniper</strong> - 85/100 - ~39 990€  \n
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Tesla Model Y Juniper</strong> - <DynamicScore slug="tesla-model-y-juniper" fallback={85}/> - ~39 990€  \n
 Le SUV électrique le plus vendu d'Europe. Restylé Juniper 2026 avec intérieur enfin abouti, bandeau lumineux avant et silence amélioré. Le réseau Superchargeur imbattable. Produit à Berlin, éligible bonus. Le seul vrai défaut : pas d'Apple CarPlay.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a href="https://www.tesla.com/fr_fr/model-y" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[#3ED6A3]/20 px-4 py-2 text-xs font-medium text-[#3ED6A3] hover:bg-[#3ED6A3]/30 transition-colors">🚗 Configurer sur Tesla</a>
@@ -85,7 +87,7 @@ Le SUV électrique le plus vendu d'Europe. Restylé Juniper 2026 avec intérieur
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Tesla Model 3 Highland</strong> - 80/100 - ~36 990€  \n
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Tesla Model 3 Highland</strong> - <DynamicScore slug="tesla-model-3-highland" fallback={80}/> - ~36 990€  \n
 La berline électrique record avec 702 km WLTP. Double vitrage, suspension améliorée, performances de folie (3,3s en Perf.). Fabriquée à Shanghai donc pas de bonus. L'absence d'Apple CarPlay reste le scandale.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a href="https://www.tesla.com/fr_fr/model3" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[#4257FF]/20 px-4 py-2 text-xs font-medium text-[#4257FF] hover:bg-[#4257FF]/30 transition-colors">🚗 Configurer sur Tesla</a>
@@ -109,7 +111,7 @@ La berline électrique record avec 702 km WLTP. Double vitrage, suspension amél
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>BMW iX3 Neue Klasse</strong> - 78/100 - ~71 950€  \n
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>BMW iX3 Neue Klasse</strong> - <DynamicScore slug="bmw-ix3-neue-klasse" fallback={78}/> - ~71 950€  \n
 Le meilleur SUV électrique premium de 2026. 805 km WLTP, 400 kW de charge, architecture révolutionnaire Neue Klasse. Un intérieur si futuriste que vous vous croirez dans un film de SF. Acheté par ceux qui peuvent, envié par tous les autres.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a href="https://www.bmw.fr/fr/configurateur.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">🚗 Configurer sur BMW</a>
@@ -136,7 +138,7 @@ Le meilleur SUV électrique premium de 2026. 805 km WLTP, 400 kW de charge, arch
         
         <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#2E1A1A] p-6 mb-12">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">💀 Le grand perdant</p>
-          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">La <strong>Volkswagen ID.7</strong> (65/100 - ~56 990€). La grande berline électrique de Volkswagen devait être la rivale de la Tesla Model 3, mais elle arrive avec un logiciel qui rame, une autonomie décevante pour son gabarit, et un prix qui fait tousser. C'est le suppositoire de la gamme électrique : nécessaire, mais personne n'est content de l'avoir. Dommage, parce que côté confort, elle a du potentiel. Mais à ce prix-là, on n'achète pas du potentiel, on achète du résultat.</p>
+          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">La <strong>Volkswagen ID.7</strong> (<DynamicScore slug="volkswagen-id7" fallback={65}/> - ~56 990€). La grande berline électrique de Volkswagen devait être la rivale de la Tesla Model 3, mais elle arrive avec un logiciel qui rame, une autonomie décevante pour son gabarit, et un prix qui fait tousser. C'est le suppositoire de la gamme électrique : nécessaire, mais personne n'est content de l'avoir. Dommage, parce que côté confort, elle a du potentiel. Mais à ce prix-là, on n'achète pas du potentiel, on achète du résultat.</p>
         </div>
         
 

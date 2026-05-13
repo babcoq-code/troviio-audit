@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const metadata: Metadata = {
   title: "Wooting 80HE vs Lemokey P1 HE : le duel des claviers Hall Effect 2026",
@@ -62,7 +64,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥇 Produit #1</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/wooting-80he">Wooting 80HE</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Wooting 80HE</strong> - le Neo du gaming : pur, rapide, sans compromis. Avec son taux de polling de 8 000 Hz, il twitch plus vite que votre adversaire ne peut cligner des yeux. Son Rapid Trigger natif vous fait passer de la marche au sprint sans transition, comme si vous aviez avalé la pilule rouge. C'est l'arme absolue du compétiteur, le katana du e-sportif. Seul hic : pas de sans-fil, pas d'aluminium, pas de fioritures. C'est un outil de guerre, pas un meuble de salon. Avec 93/100, c'est le champion toutes catégories du gaming pur et dur. À 186€, c'est une arme de destruction massive vestimentairement modeste.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Wooting 80HE</strong> - le Neo du gaming : pur, rapide, sans compromis. Avec son taux de polling de 8 000 Hz, il twitch plus vite que votre adversaire ne peut cligner des yeux. Son Rapid Trigger natif vous fait passer de la marche au sprint sans transition, comme si vous aviez avalé la pilule rouge. C'est l'arme absolue du compétiteur, le katana du e-sportif. Seul hic : pas de sans-fil, pas d'aluminium, pas de fioritures. C'est un outil de guerre, pas un meuble de salon. Avec <DynamicScore slug="wooting-80he" fallback={93}/>, c'est le champion toutes catégories du gaming pur et dur. À 186€, c'est une arme de destruction massive vestimentairement modeste.</p>
           
             <div className="mt-4">
               <Link href="/produit/wooting-80he" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>
@@ -71,7 +73,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">🥈 Produit #2</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/lemokey-p1-he">Lemokey P1 HE</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Lemokey P1 HE</strong> - le Morpheus des claviers : costaud, polyvalent, avec une carrosserie en aluminium qui encaisse les chocs comme une limousine blindée dans un film d'action. Il est aussi à l'aise en réunion Teams qu'en pleine session Counter-Strike. Son Wireless 2,4 GHz et Bluetooth vous libère des chaînes du câble, et son Rapid Trigger embarqué (via firmware) lui permet de suivre le rythme des meilleurs. C'est le couteau suisse du clavier : il travaille le matin, il game le soir, et il a encore de la batterie pour le lendemain. Seul bémol : son prix de 289€ (on paie l'aluminium comptant) et son taux de polling à 1 000 Hz qui le rend une nanoseconde moins réactif que son rival. Avec 90/100, c'est le polyvalent de luxe.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Lemokey P1 HE</strong> - le Morpheus des claviers : costaud, polyvalent, avec une carrosserie en aluminium qui encaisse les chocs comme une limousine blindée dans un film d'action. Il est aussi à l'aise en réunion Teams qu'en pleine session Counter-Strike. Son Wireless 2,4 GHz et Bluetooth vous libère des chaînes du câble, et son Rapid Trigger embarqué (via firmware) lui permet de suivre le rythme des meilleurs. C'est le couteau suisse du clavier : il travaille le matin, il game le soir, et il a encore de la batterie pour le lendemain. Seul bémol : son prix de 289€ (on paie l'aluminium comptant) et son taux de polling à 1 000 Hz qui le rend une nanoseconde moins réactif que son rival. Avec <DynamicScore slug="lemokey-p1-he" fallback={90}/>, c'est le polyvalent de luxe.</p>
           
             <div className="mt-4">
               <Link href="/produit/lemokey-p1-he" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const metadata: Metadata = {
   title: "Ninja Foodi FlexDrawer vs Cosori TurboBlaze : le duel des friteuse-air 2026",
@@ -43,7 +45,7 @@ export default function DuelPage() {
 
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="rounded-2xl border border-white/5 bg-[#161827] p-6 mb-10">
-          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Tu pensais que la guerre des friteuses à air, c'était comme choisir entre Pam et Angela dans *The Office* ? Détrompe-toi, mon ami. Aujourd'hui, on met les coudes sur la table pour un duel digne d'un épisode de *Breaking Bad* : le Ninja Foodi FlexDrawer AF500EU (94/100) affronte le Cosori Air Fryer MAX AF160EU (91/100). Accroche-toi à tes frites, parce que Walter White lui-même serait jaloux de la cuisson ici - et pas de méthamphétamine en vue, promis. Qui sortira le gros lot ? C'est parti pour un face-à-face croustillant.</p>
+          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Tu pensais que la guerre des friteuses à air, c'était comme choisir entre Pam et Angela dans *The Office* ? Détrompe-toi, mon ami. Aujourd'hui, on met les coudes sur la table pour un duel digne d'un épisode de *Breaking Bad* : le Ninja Foodi FlexDrawer AF500EU <DynamicScore slug="ninja-foodi-flexdrawer-af500eu" fallback={94}/> affronte le Cosori Air Fryer MAX AF160EU <DynamicScore slug="cosori-turboblaze-6l" fallback={91}/>. Accroche-toi à tes frites, parce que Walter White lui-même serait jaloux de la cuisson ici - et pas de méthamphétamine en vue, promis. Qui sortira le gros lot ? C'est parti pour un face-à-face croustillant.</p>
         </div>
 
         <div className="mb-12">
@@ -81,7 +83,7 @@ export default function DuelPage() {
 
         <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6 mb-12">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3ED6A3] mb-2">🏆 Verdict Troviio</p>
-          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">**Le gagnant est... le Ninja Foodi FlexDrawer AF500EU** (94/100) ! Oui, il coûte plus cher, mais sa capacité double, sa puissance XXL et son nettoyage facile en font le Heisenberg des friteuses. Le Cosori est un excellent second - comme Jim face à Michael - mais pour les gros repas et les cuissons rapides, le Ninja prend le contrôle du labo. Prépare-toi à dire " Yeah, science ! " à chaque bouchée.</p>
+          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">**Le gagnant est... le Ninja Foodi FlexDrawer AF500EU** <DynamicScore slug="ninja-foodi-flexdrawer-af500eu" fallback={94}/> ! Oui, il coûte plus cher, mais sa capacité double, sa puissance XXL et son nettoyage facile en font le Heisenberg des friteuses. Le Cosori est un excellent second - comme Jim face à Michael - mais pour les gros repas et les cuissons rapides, le Ninja prend le contrôle du labo. Prépare-toi à dire " Yeah, science ! " à chaque bouchée.</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 mb-12">

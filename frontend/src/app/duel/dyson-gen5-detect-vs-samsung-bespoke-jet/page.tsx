@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const metadata: Metadata = {
   title: "Dyson Gen5 Detect vs Samsung Bespoke Jet : le duel des aspirateur-balai 2026",
@@ -62,7 +64,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥇 Produit #1</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/dyson-gen5-detect-absolute">Dyson Gen5 Detect Absolute</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson Gen5 Detect Absolute** - l'aspirateur qui se prend pour un centaure de Poudlard, avec un laser vert qui traque la poussière comme un Détraqueur affamé. C'est l'outil d'Hermione : précis, puissant, et avec une interface LCD qui affiche même la taille des particules (oui, il juge votre capacité à nettoyer). Son moteur tourne à 135 000 tours/minute - plus vite que le Nimbus 2000 de Harry. Seul hic : son autonomie de 40 minutes vous laisse parfois en plan comme un sort de Réduction mal maîtrisé. Mais bon, avec 96/100, il est clairement le préfet de la bande.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson Gen5 Detect Absolute** - l'aspirateur qui se prend pour un centaure de Poudlard, avec un laser vert qui traque la poussière comme un Détraqueur affamé. C'est l'outil d'Hermione : précis, puissant, et avec une interface LCD qui affiche même la taille des particules (oui, il juge votre capacité à nettoyer). Son moteur tourne à 135 000 tours/minute - plus vite que le Nimbus 2000 de Harry. Seul hic : son autonomie de 40 minutes vous laisse parfois en plan comme un sort de Réduction mal maîtrisé. Mais bon, avec <DynamicScore slug="dyson-gen5-detect-absolute" fallback={96}/>, il est clairement le préfet de la bande.</p>
           
             <div className="mt-4">
               <Link href="/produit/dyson-gen5-detect-absolute" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>
@@ -71,7 +73,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">🥈 Produit #2</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/samsung-bespoke-ai-jet-ultra-vs90f40eek">Samsung Bespoke AI Jet Ultra VS90F4</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Samsung Bespoke AI Jet Ultra VS90F4** - le Ron Weasley des aspirateurs : un peu plus lourd, un peu moins clinquant, mais avec une autonomie digne d'un marathon (60 minutes) et un réservoir qui pourrait stocker les chaussettes de Dobby. Son intelligence artificielle ajuste la puissance comme un sort de Confusion bien placé, et son système de vidage automatique est aussi pratique que la cape d'invisibilité de Harry. Il a même un socle de recharge qui fait office de vidage - un peu comme la cabane de Hagrid, mais en plus propre. À 699€, il est clairement le bon plan du trio, même si ses 93/100 le placent un cran en dessous d'Hermione.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Samsung Bespoke AI Jet Ultra VS90F4** - le Ron Weasley des aspirateurs : un peu plus lourd, un peu moins clinquant, mais avec une autonomie digne d'un marathon (60 minutes) et un réservoir qui pourrait stocker les chaussettes de Dobby. Son intelligence artificielle ajuste la puissance comme un sort de Confusion bien placé, et son système de vidage automatique est aussi pratique que la cape d'invisibilité de Harry. Il a même un socle de recharge qui fait office de vidage - un peu comme la cabane de Hagrid, mais en plus propre. À 699€, il est clairement le bon plan du trio, même si ses <DynamicScore slug="samsung-bespoke-ai-jet-ultra" fallback={93}/> le placent un cran en dessous d'Hermione.</p>
           
             <div className="mt-4">
               <Link href="/produit/samsung-bespoke-ai-jet-ultra-vs90f40eek" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>

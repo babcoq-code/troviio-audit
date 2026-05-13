@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const dynamic = "force-dynamic";
 
@@ -61,7 +63,7 @@ export default function TopsPage() {
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Flexispot E7 Pro** - ~399€ - Note : 91/100  
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Flexispot E7 Pro** - ~399€ - Note : <DynamicScore slug="flexispot-e7-pro" fallback={91}/>  
 Pourquoi lui ? Parce que c&apos;est le candidat parfait qui arrive à l&apos;oral avec un costard bien repassé ET les fiches de révision. Double moteur, mémoire de position, pieds en acier — bref, tout ce qu&apos;il faut pour que vous arrêtiez de vous baisser comme un mammouth pour attraper votre chargeur. Le Flexispot E7 Pro monte, descend, et stabilise même votre setup gaming sans trembler comme une feuille. Le seul vrai danger ? Passer tellement de temps debout dessus que vos collègues vous prennent pour un mutant du télétravail. À 399€, c&apos;est le meilleur rapport qualité-prix de la planète bureau — votre dos vous enverra des fleurs.</p>
           
             <div className="mt-4">
@@ -82,7 +84,7 @@ Pourquoi lui ? Parce que c&apos;est le candidat parfait qui arrive à l&apos;ora
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Secretlab MAGNUS Pro** - ~849€ - Note : 89/100  
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Secretlab MAGNUS Pro** - ~849€ - Note : <DynamicScore slug="secretlab-magnus-pro" fallback={89}/>  
 Pourquoi lui ? Parce que c&apos;est le bureau qui en veut à votre porte-monnaie, mais qui le fait avec une élégance digne d&apos;un agent secret. Fabriqué en acier massif, avec un système de gestion des câbles tellement bien pensé que vos fils disparaissent comme par magie — fini le temps où vous ressembliez à un technicien France Telecom sous acide. Le plateau magnétique, lui, attire vos accessoires comme une ex un peu collante. Le souci ? Le prix pique, et à 849€, faut vraiment que votre setup gaming mérite un ruban rouge. Mais si vous voulez un bureau qui fait plus classe que votre appartement, foncez.</p>
           
             <div className="mt-4">
@@ -103,7 +105,7 @@ Pourquoi lui ? Parce que c&apos;est le bureau qui en veut à votre porte-monnaie
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Desktronic HomePro** - ~419€ - Note : 88/100  
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Desktronic HomePro** - ~419€ - Note : <DynamicScore slug="desktronic-homepro" fallback={88}/>  
 Pour qui il est fait ? Pour le télétravailleur européen qui en a marre de payer des frais de douane et d&apos;attendre trois semaines pour un colis qui sent le carton humide. Fabriqué en Europe, le Desktronic HomePro est le bon élève discret : moteur silencieux, montée ultra-fluide, et une stabilité qui frôle la perfection. Pas de fioritures, pas de lumières RGB, pas de promesses marketing à deux balles — juste un bureau qui fait son boulot sans se faire remarquer. Le petit plus ? Sa garantie de 10 ans, histoire que vos petits-enfants héritent d&apos;un bureau plutôt que d&apos;une dette. À 419€, c&apos;est le sage du trio — et franchement, la sagesse, ça n&apos;a jamais tué personne.</p>
           
             <div className="mt-4">

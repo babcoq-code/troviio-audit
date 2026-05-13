@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const dynamic = "force-dynamic";
 
@@ -61,7 +63,7 @@ export default function TopsPage() {
         <div className="space-y-6 mb-12">
           <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Garmin Fenix 8</strong> - 85/100 - ~1099€  \n
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Garmin Fenix 8</strong> - <DynamicScore slug="garmin-fenix-8" fallback={85}/> - ~1099€  \n
 La Garmin Fenix 8, c'est la montre pour les gens sérieux. Avec 40 jours d'autonomie en mode solaire, c'est la seule montre qui survivra à votre chargeur. Lampe LED, profondimètre, ECG, cartographie topo — cette montre en sait plus sur votre santé que votre médecin. À 1099€, elle coûte aussi cher qu'un iPhone mais tient 6 semaines sans recharge.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a href="https://www.amazon.fr/dp/B0DFLYMF79?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="inline-flex items-center gap-1.5 rounded-lg bg-[#3ED6A3]/20 px-4 py-2 text-xs font-medium text-[#3ED6A3] hover:bg-[#3ED6A3]/30 transition-colors">🇫🇷 Voir sur Amazon</a>
@@ -85,7 +87,7 @@ La Garmin Fenix 8, c'est la montre pour les gens sérieux. Avec 40 jours d'auton
           </div>
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Apple Watch Ultra 2</strong> - 81/100 - ~899€  \n
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Apple Watch Ultra 2</strong> - <DynamicScore slug="apple-watch-ultra-2-49mm-mww63zp-a" fallback={81}/> - ~899€  \n
 L'Apple Watch Ultra 2 en titane avec sa sirène d'urgence et son GPS ultra-précis. L'écran à 2000 nits lit le soleil en face. La détection d'apnée du sommeil bluffante. Parfaite pour les aventuriers urbains qui veulent le plus badass des objets connectés.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a href="https://www.amazon.fr/dp/B0DGJDZL6D?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="inline-flex items-center gap-1.5 rounded-lg bg-[#4257FF]/20 px-4 py-2 text-xs font-medium text-[#4257FF] hover:bg-[#4257FF]/30 transition-colors">🇫🇷 Voir sur Amazon</a>
@@ -109,7 +111,7 @@ L'Apple Watch Ultra 2 en titane avec sa sirène d'urgence et son GPS ultra-préc
           </div>
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Samsung Galaxy Watch Ultra</strong> - 71/100 - ~699€  \n
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Samsung Galaxy Watch Ultra</strong> - <DynamicScore slug="samsung-galaxy-watch-ultra-l708" fallback={71}/> - ~699€  \n
 L'anti Apple Watch Ultra pour Android. Exynos W1000 3nm ultra-rapide, boîtier titane MIL-STD-810H, 3000 nits. L'autonomie dépasse 2 jours. Pour les accros Android qui veulent briller en randonnée sans passer chez Apple.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a href="https://www.amazon.fr/dp/B0F2GK1FGM?tag=troviio-21" target="_blank" rel="noopener noreferrer sponsored" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">🇫🇷 Voir sur Amazon</a>
@@ -136,7 +138,7 @@ L'anti Apple Watch Ultra pour Android. Exynos W1000 3nm ultra-rapide, boîtier t
         
         <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#2E1A1A] p-6 mb-12">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">💀 Le grand perdant</p>
-          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le <strong>Google Pixel Watch 3</strong> (65/100 - ~399€). Ah, la promesse de Google : un produit élégant, bien intégré, et… paf, l'autonomie dure à peine une journée. C'est la montre qu'on oublie de recharger et qu'on retrouve morte le lendemain matin, comme un téléphone oublié au fond du sac. Fitbit dedans, frustration dehors. À 399€, on aurait aimé un peu plus de sérieux de la part du géant de Mountain View.</p>
+          <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le <strong>Google Pixel Watch 3</strong> (<DynamicScore slug="google-pixel-watch-4" fallback={65}/> - ~399€). Ah, la promesse de Google : un produit élégant, bien intégré, et… paf, l'autonomie dure à peine une journée. C'est la montre qu'on oublie de recharger et qu'on retrouve morte le lendemain matin, comme un téléphone oublié au fond du sac. Fitbit dedans, frustration dehors. À 399€, on aurait aimé un peu plus de sérieux de la part du géant de Mountain View.</p>
         </div>
         
 

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const metadata: Metadata = {
   title: "iPad Pro M5 11 vs Samsung Galaxy Tab S11 Ultra : le duel des tablettes 2026",
@@ -36,7 +38,7 @@ export default function DuelPage() {
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#FF6B5F]">⚔️ Duel Troviio</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">iPad Pro M5 11 vs Samsung Galaxy Tab S11 Ultra</h1>
-            <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Qui est le roi des tablettes en 2026 ? L'iPad Pro M5 11 pouces (96/100) affronte la Galaxy Tab S11 Ultra (91/100) dans un duel sans merci. Apple vs Samsung, OLED vs AMOLED, prix vs polyvalence.</p>
+            <p className="mt-6 text-lg leading-8 text-[#8B8FA3]">Qui est le roi des tablettes en 2026 ? L'iPad Pro M5 11 pouces <DynamicScore slug="ipad-pro-m5-11" fallback={96}/> affronte la Galaxy Tab S11 Ultra <DynamicScore slug="samsung-galaxy-tab-s11-ultra" fallback={91}/> dans un duel sans merci. Apple vs Samsung, OLED vs AMOLED, prix vs polyvalence.</p>
           </div>
         </div>
       </section>
@@ -52,7 +54,7 @@ export default function DuelPage() {
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">| Caracteristique | iPad Pro M5 11" | Galaxy Tab S11 Ultra |
 | --- | --- | --- |
 | **Prix** | 1219 EUR | 1139 EUR |
-| **Score Troviio** | 96/100 | 91/100 |
+| **Score Troviio** | <DynamicScore slug="ipad-pro-m5-11" fallback={96}/> | <DynamicScore slug="samsung-galaxy-tab-s11-ultra" fallback={91}/> |
 | **Ecran** | OLED Tandem 11", 120Hz | Dynamic AMOLED 2X 14.6", 120Hz |
 | **Processeur** | Puce M5 (Apple Silicon) | Dimensity 9400+ (MediaTek) |
 | **RAM** | 12/16 Go | 12/16 Go |
@@ -69,8 +71,8 @@ export default function DuelPage() {
         <div className="grid gap-6 md:grid-cols-2 mb-12">
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥇 #1 iPad Pro M5 11</p>
-            <h3 className="text-xl font-bold mb-4"><Link href="/produit/tablette-apple-ipadpro-m5-11-b0fwd6">Apple iPad Pro M5 11" (2026) - 96/100</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**iPad Pro M5 11"** - Le choix de Trinity (ou de Neo, selon ton humeur). Avec sa puce M5, c'est un mini-AIM-120 AMRAAM : ca part tout seul, ca touche toujours sa cible, et ca te laisse sur le cul. L'ecran OLED Tandem 11" est un regal pour les yeux, un vrai mur d'images facon "Matrix decode les lignes de code". Probleme : le prix de 1219 EUR, c'est plus que le budget d'un episode de The Office ou Michael Scott organise une fete surprise. Le score Troviio de 96/100 montre que c'est un monstre de puissance, mais a ce tarif, tu pourrais t'offrir un abonnement Netflix a vie (non, pas vraiment). L'Apple Pencil est genial, mais a 149 EUR en sus, tu finis par te sentir comme Dwight Schrute : tu as le meilleur outil, mais tu l'as paye cher. L'ecosysteme Apple est une prison doree, mais quand t'es dedans, t'es comme Neo dans la Matrice : tout est fluide, tout est synchronise. Et niveau applications pro (montage video, 3D, DAW), c'est le roi du monde. Mais attention : pas de IP68, donc si tu le fais tomber dans l'evier en lavant la vaisselle, prepare-toi a un "Oh, mon Dieu, c'est fini" facon Pam Beesly.
+            <h3 className="text-xl font-bold mb-4"><Link href="/produit/tablette-apple-ipadpro-m5-11-b0fwd6">Apple iPad Pro M5 11" (2026) - <DynamicScore slug="ipad-pro-m5-11" fallback={96}/></Link></h3>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**iPad Pro M5 11"** - Le choix de Trinity (ou de Neo, selon ton humeur). Avec sa puce M5, c'est un mini-AIM-120 AMRAAM : ca part tout seul, ca touche toujours sa cible, et ca te laisse sur le cul. L'ecran OLED Tandem 11" est un regal pour les yeux, un vrai mur d'images facon "Matrix decode les lignes de code". Probleme : le prix de 1219 EUR, c'est plus que le budget d'un episode de The Office ou Michael Scott organise une fete surprise. Le score Troviio de <DynamicScore slug="samsung-galaxy-tab-s11-ultra" fallback={96}/> montre que c'est un monstre de puissance, mais a ce tarif, tu pourrais t'offrir un abonnement Netflix a vie (non, pas vraiment). L'Apple Pencil est genial, mais a 149 EUR en sus, tu finis par te sentir comme Dwight Schrute : tu as le meilleur outil, mais tu l'as paye cher. L'ecosysteme Apple est une prison doree, mais quand t'es dedans, t'es comme Neo dans la Matrice : tout est fluide, tout est synchronise. Et niveau applications pro (montage video, 3D, DAW), c'est le roi du monde. Mais attention : pas de IP68, donc si tu le fais tomber dans l'evier en lavant la vaisselle, prepare-toi a un "Oh, mon Dieu, c'est fini" facon Pam Beesly.
 
 → **Vainqueur pour la puissance brute et l'ecosysteme : iPad Pro M5 11"**</p>
           </div>
@@ -79,8 +81,8 @@ export default function DuelPage() {
             </div>
           <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">🥈 #2 Galaxy Tab S11 Ultra</p>
-            <h3 className="text-xl font-bold mb-4"><Link href="/produit/tablette-samsung-tabs11ultra">Samsung Galaxy Tab S11 Ultra (2026) - 91/100</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Galaxy Tab S11 Ultra** - Le choix de Hank Schrader : costaud, massif, pret a encaisser les coups. Avec son ecran de 14.6 pouces, c'est plus grand que le bureau de Michael Scott dans The Office. Le Dynamic AMOLED 2X est un delice pour le streaming : tu regardes Breaking Bad, et tu distingues chaque grain de sel sur la table de Walter White. Le Dimensity 9400+ est solide, meme s'il n'a pas la puissance de feu du M5. Mais le vrai coup de genie : le S Pen inclus. Oui, inclus. Pas de supplement a 149 EUR, c'est comme si tu achetais un sabre laser et qu'on te filait le manche et la lame pour le meme prix. Le score Troviio de 91/100 est honorable, et le prix de 1139 EUR est 80 EUR moins cher que l'iPad. Et surtout, il est IP68 : tu peux le prendre sous la douche, le laisser dans la piscine (pour de vrai, pas comme un film de James Bond). L'OS Android 16 avec Samsung DeX, c'est le mode "bureau" qui transforme ta tablette en PC. Moins d'applications pro que iPadOS, mais pour la productivite et la creativite legere (design, dessin, notes), c'est un couteau suisse. Seul bemol : le poids de 720 g, c'est comme porter un dictionnaire en cours d'histoire. Mais franchement, pour le prix, la taille et le S Pen inclus, c'est le bon plan du duel.
+            <h3 className="text-xl font-bold mb-4"><Link href="/produit/tablette-samsung-tabs11ultra">Samsung Galaxy Tab S11 Ultra (2026) - <DynamicScore slug="ipad-pro-m5-11" fallback={91}/></Link></h3>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Galaxy Tab S11 Ultra** - Le choix de Hank Schrader : costaud, massif, pret a encaisser les coups. Avec son ecran de 14.6 pouces, c'est plus grand que le bureau de Michael Scott dans The Office. Le Dynamic AMOLED 2X est un delice pour le streaming : tu regardes Breaking Bad, et tu distingues chaque grain de sel sur la table de Walter White. Le Dimensity 9400+ est solide, meme s'il n'a pas la puissance de feu du M5. Mais le vrai coup de genie : le S Pen inclus. Oui, inclus. Pas de supplement a 149 EUR, c'est comme si tu achetais un sabre laser et qu'on te filait le manche et la lame pour le meme prix. Le score Troviio de <DynamicScore slug="samsung-galaxy-tab-s11-ultra" fallback={91}/> est honorable, et le prix de 1139 EUR est 80 EUR moins cher que l'iPad. Et surtout, il est IP68 : tu peux le prendre sous la douche, le laisser dans la piscine (pour de vrai, pas comme un film de James Bond). L'OS Android 16 avec Samsung DeX, c'est le mode "bureau" qui transforme ta tablette en PC. Moins d'applications pro que iPadOS, mais pour la productivite et la creativite legere (design, dessin, notes), c'est un couteau suisse. Seul bemol : le poids de 720 g, c'est comme porter un dictionnaire en cours d'histoire. Mais franchement, pour le prix, la taille et le S Pen inclus, c'est le bon plan du duel.
 
 → **Vainqueur pour le rapport qualite-prix et la polyvalence : Galaxy Tab S11 Ultra**</p>
           
@@ -92,11 +94,11 @@ export default function DuelPage() {
 
         <div className="rounded-2xl border border-[#FFB020]/30 bg-[#161827] p-8 mb-12 text-center">
           <h2 className="text-2xl font-bold tracking-tight font-display mb-4">🏆 Verdict Troviio</h2>
-          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Bon, on sort le grand jeu : **iPad Pro M5 11"** gagne haut la main. Pourquoi ? Parce que le score Troviio de 96/100 contre 91/100, c'est pas juste une difference de chiffres : c'est la difference entre un coup de sabre laser maitrise par Luke et un coup de gourdin balance par un Ewok. Le M5 est un monstre de puissance, l'ecran OLED Tandem est un regal, et l'ecosysteme Apple est le plus fluide pour les pros. Mais attention, la Galaxy Tab S11 Ultra n'a pas dit son dernier mot : si tu veux economiser 80 EUR, un ecran geant de 14.6 pouces, un S Pen inclus et une resistance IP68, c'est le choix du sage (ou de Dwight, selon ton camp).
+          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Bon, on sort le grand jeu : **iPad Pro M5 11"** gagne haut la main. Pourquoi ? Parce que le score Troviio de <DynamicScore slug="ipad-pro-m5-11" fallback={96}/> contre <DynamicScore slug="samsung-galaxy-tab-s11-ultra" fallback={91}/>, c'est pas juste une difference de chiffres : c'est la difference entre un coup de sabre laser maitrise par Luke et un coup de gourdin balance par un Ewok. Le M5 est un monstre de puissance, l'ecran OLED Tandem est un regal, et l'ecosysteme Apple est le plus fluide pour les pros. Mais attention, la Galaxy Tab S11 Ultra n'a pas dit son dernier mot : si tu veux economiser 80 EUR, un ecran geant de 14.6 pouces, un S Pen inclus et une resistance IP68, c'est le choix du sage (ou de Dwight, selon ton camp).
 
 Le verdict final : **→ iPad Pro M5 11"** est le meilleur, mais la Galaxy Tab S11 Ultra est le meilleur rapport qualite-prix. Si t'es un pro qui bosse en montage video ou en design, prends l'iPad. Si t'es un etudiant ou un streamer, prends la Galaxy. C'est comme choisir entre un steak de boeuf Wagyu et un bon burger : les deux sont delicieux, mais l'un coute plus cher.
 
-→ **Le vainqueur absolu : iPad Pro M5 11" (score Troviio 96/100)**</p>
+→ **Le vainqueur absolu : iPad Pro M5 11" (score Troviio <DynamicScore slug="ipad-pro-m5-11" fallback={96}/>)**</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 mb-12">

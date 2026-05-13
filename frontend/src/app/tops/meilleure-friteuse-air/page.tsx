@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const dynamic = "force-dynamic";
 
@@ -62,7 +64,7 @@ export default function TopsPage() {
           <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ninja Foodi FlexDrawer AF500EU**  
-94/100 - 249€ - La championne  
+<DynamicScore slug="ninja-foodi-flexdrawer-af500eu" fallback={94}/> - 249€ - La championne  
 
 **Pourquoi lui ?** Parce que c’est le clavier gaming des friteuses. Deux tiroirs, des options de cuisson simultanée (poulet frit à gauche, légumes à droite, paix dans le monde au milieu), et une connectivité qui vous permet de la programmer depuis les toilettes. Elle est chère, oui, mais elle fait tout : friture, déshydratation, réchauffage, et même cuisson lente si vous voulez transformer vos nuggets en pot-au-feu. Le seul vrai défaut ? Vous risquez de vous prendre pour un chef étoilé alors que vous venez de réchauffer des restes de pizza.</p>
           
@@ -85,7 +87,7 @@ export default function TopsPage() {
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥈 Numéro 2</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Ninja Air Fryer Max AF160EU**  
-91/100 - 173€ - La classique  
+<DynamicScore slug="cosori-turboblaze-6l" fallback={91}/> - 173€ - La classique  
 
 **Pourquoi lui ?** C’est la Taylor Swift des friteuses : fiable, populaire, et elle sort un modèle à succès tous les deux ans. Elle est simple : un tiroir, des boutons, et une puissance qui fait croustiller vos frites surgelées comme si elles sortaient de la friterie du coin. Le petit hic ? Elle est un peu jalouse du FlexDrawer : pas de double zone, pas de ballet de cuisson synchronisée. Mais pour 173€, elle fait le job sans vous vendre un abonnement à son appli.</p>
           
@@ -108,7 +110,7 @@ export default function TopsPage() {
           <div className="rounded-2xl border border-white/5 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Cosori TurboBlaze 6L**  
-89/100 - 166€ - Le meilleur rapport qualité-prix  
+<DynamicScore slug="ninja-foodi-flexdrawer-af500eu" fallback={89}/> - 166€ - Le meilleur rapport qualité-prix  
 
 **Pourquoi lui ?** Parce qu’il a compris que la vie est trop courte pour payer 250 balles une friteuse. 6 litres, une puissance de 1700W, et une interface tactile qui claque (oui, ça fait pro, même si vous cuisinez en jogging). Il est parfait pour les familles, les colocations, ou les solos qui veulent faire des portions à congeler pour les jours de flemme. Le seul reproche ? Il fait un bruit de mini-avion au décollage. Mais bon, qui n’aime pas un peu de bruit en cuisinant des frites ?</p>
           
@@ -134,7 +136,7 @@ export default function TopsPage() {
         <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#2E1A1A] p-6 mb-12">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">💀 Le grand perdant</p>
           <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Philips Essential Airfryer XL**  
-87/100 - 99€ - L’entrée de gamme fiable  
+<DynamicScore slug="cosori-turboblaze-6l" fallback={87}/> - 99€ - L’entrée de gamme fiable  
 
 On l’attendait, celui-là. Le champion des prix cassés, le sauveur des étudiants qui mangent des pâtes à l’eau. Mais en vrai ? Il cuit comme une grand-mère fatiguée : les frites sont molles, les nuggets sont tièdes, et le panier est si petit que vous passez plus de temps à faire des fournées qu’à manger. À 99€, c’est tentant, mais c’est un peu comme acheter une voiture à 500€ : ça roule, mais vous priez à chaque virage. Bref, il mérite sa place en bas du classement, et vous méritez mieux que des frites déprimantes.</p>
         </div>

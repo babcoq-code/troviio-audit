@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const metadata: Metadata = {
   title: "Samsung Galaxy S26 Ultra vs iPhone 17 Pro Max : le duel des smartphone 2026",
@@ -81,7 +83,7 @@ export default function DuelPage() {
 
         <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6 mb-12">
           <p className="text-xs font-bold uppercase tracking-widest text-[#3ED6A3] mb-2">🏆 Verdict Troviio</p>
-          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">**Gagnant : Galaxy S26 Ultra** (de justesse, comme une victoire de la Rébellion sur l'Étoile de la Mort). Si l'iPhone 17 Pro Max est plus fluide et mieux intégré, le Samsung offre un écran plus grand, une batterie plus costaude, une polyvalence photo monstrueuse et une liberté totale. Pour 94/100 contre 93/100, le Samsung est le choix du rebelle qui veut tout, tout de suite.</p>
+          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">**Gagnant : Galaxy S26 Ultra** (de justesse, comme une victoire de la Rébellion sur l'Étoile de la Mort). Si l'iPhone 17 Pro Max est plus fluide et mieux intégré, le Samsung offre un écran plus grand, une batterie plus costaude, une polyvalence photo monstrueuse et une liberté totale. Pour <DynamicScore slug="samsung-galaxy-s26-ultra" fallback={94}/> contre <DynamicScore slug="iphone-17-pro-max" fallback={93}/>, le Samsung est le choix du rebelle qui veut tout, tout de suite.</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 mb-12">

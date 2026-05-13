@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DynamicScore } from "@/components/product/DynamicScore";
+
 
 export const metadata: Metadata = {
   title: "Flexispot E7 Pro vs Secretlab MAGNUS Pro : le duel des bureaux électriques 2026",
@@ -62,7 +64,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥇 Produit #1</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/flexispot-e7-pro">Flexispot E7 Pro</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Flexispot E7 Pro** - l'Optimus Prime des bureaux électriques : costaud, généreux et increvable. Avec ses 180 kg de charge maximale, il pourrait supporter un écran 49 pouces, un PC full tour et votre collection de figurines sans sourciller. Sa garantie de 10 ans, c'est la promesse d'Autobot : "Je ne te lâcherai jamais". Son moteur double est aussi silencieux qu'un Bumblebee en mode furtif. Le seul vrai sacrifice, c'est la gestion des câbles, un peu basique, et l'absence d'écosystème d'accessoires. Mais à 399€, c'est le héros du peuple, celui qui démocratise le bureau assis-debout sans faire flamber le budget. Avec 91/100, c'est le meilleur rapport qualité/prix de la catégorie.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Flexispot E7 Pro** - l'Optimus Prime des bureaux électriques : costaud, généreux et increvable. Avec ses 180 kg de charge maximale, il pourrait supporter un écran 49 pouces, un PC full tour et votre collection de figurines sans sourciller. Sa garantie de 10 ans, c'est la promesse d'Autobot : "Je ne te lâcherai jamais". Son moteur double est aussi silencieux qu'un Bumblebee en mode furtif. Le seul vrai sacrifice, c'est la gestion des câbles, un peu basique, et l'absence d'écosystème d'accessoires. Mais à 399€, c'est le héros du peuple, celui qui démocratise le bureau assis-debout sans faire flamber le budget. Avec <DynamicScore slug="flexispot-e7-pro" fallback={91}/>, c'est le meilleur rapport qualité/prix de la catégorie.</p>
           
             <div className="mt-4">
               <Link href="/produit/flexispot-e7-pro" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>
@@ -71,7 +73,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#FF6B5F]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#FF6B5F]">🥈 Produit #2</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/secretlab-magnus-pro">Secretlab MAGNUS Pro</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Secretlab MAGNUS Pro** - le Megatron premium : élégant, sophistiqué et terriblement bien organisé. Son rail de gestion des câbles intégré est un chef-d'œuvre d'ingénierie qui ferait pâlir un architecte de vaisseau Decepticon. L'écosystème MAGCONNECT vous permet d'aimanter vos accessoires comme si vous équipiez un robot de combat. Son moto-dual lift est fluide et silencieux, et le plateau magnétique transforme votre bureau en vaisseau amiral. Le prix, en revanche, est celui d'un leader : 849€, presque le double du Flexispot. Sa charge de 120 kg reste large pour 99% des utilisateurs, mais inférieure à son rival. Avec 89/100, c'est le choix des esthètes et des perfectionnistes qui veulent un bureau aussi propre qu'un vaisseau Cybertronien.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Secretlab MAGNUS Pro** - le Megatron premium : élégant, sophistiqué et terriblement bien organisé. Son rail de gestion des câbles intégré est un chef-d'œuvre d'ingénierie qui ferait pâlir un architecte de vaisseau Decepticon. L'écosystème MAGCONNECT vous permet d'aimanter vos accessoires comme si vous équipiez un robot de combat. Son moto-dual lift est fluide et silencieux, et le plateau magnétique transforme votre bureau en vaisseau amiral. Le prix, en revanche, est celui d'un leader : 849€, presque le double du Flexispot. Sa charge de 120 kg reste large pour 99% des utilisateurs, mais inférieure à son rival. Avec <DynamicScore slug="secretlab-magnus-pro" fallback={89}/>, c'est le choix des esthètes et des perfectionnistes qui veulent un bureau aussi propre qu'un vaisseau Cybertronien.</p>
           
             <div className="mt-4">
               <Link href="/produit/secretlab-magnus-pro" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Guides d'achat 2026 — Troviio",
+  title: "Guides d'achat 2026",
   description: "Les guides d'achat Troviio : conseils experts et recommandations personnalisées pour choisir les meilleurs produits.",
   alternates: { canonical: "https://troviio.com/guide" },
   openGraph: {
-    title: "Guides d'achat 2026 — Troviio",
+    title: "Guides d'achat 2026",
     description: "Les guides d'achat Troviio : conseils experts et recommandations personnalisées pour choisir les meilleurs produits.",
     url: "https://troviio.com/guide",
     siteName: "Troviio",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Guides d'achat 2026 — Troviio",
+    title: "Guides d'achat 2026",
     description: "Les guides d'achat Troviio : conseils experts et recommandations personnalisées pour choisir les meilleurs produits.",
   },
 };

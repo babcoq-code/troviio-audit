@@ -20,8 +20,9 @@ const CATEGORIES: HeaderCategory[] = [
   { slug: "lave-linge",          label: "Lave-linge",          emoji: "🌀", group: "Maison" },
   { slug: "lave-vaisselle",      label: "Lave-vaisselle",      emoji: "🍽️", group: "Maison" },
   { slug: "refrigerateur",       label: "Réfrigérateur",       emoji: "🧊", group: "Maison" },
-  { slug: "four-micro-ondes",    label: "Micro-ondes",  emoji: "🔥", group: "Maison" },
-  { slug: "purificateur-air",    label: "Purificateur d'air",   emoji: "💨", group: "Maison" },
+  { slug: "four-micro-ondes",    label: "Micro-ondes",         emoji: "🔥", group: "Maison" },
+  { slug: "four-encastrable",    label: "Four encastrable",    emoji: "🔥", group: "Maison" },
+  { slug: "purificateur-air",    label: "Purificateur d'air",  emoji: "💨", group: "Maison" },
   { slug: "friteuse-air",        label: "Friteuse à air",      emoji: "🍟", group: "Maison" },
   { slug: "machine-a-cafe",      label: "Machine à café",      emoji: "☕", group: "Maison" },
   { slug: "robot-cuisine",       label: "Robot cuisine",       emoji: "🍳", group: "Maison" },
@@ -39,25 +40,27 @@ const CATEGORIES: HeaderCategory[] = [
   { slug: "enceinte-bt",         label: "Enceinte Bluetooth",  emoji: "🔊", group: "Tech" },
   { slug: "camera-securite",     label: "Caméra sécurité",     emoji: "📷", group: "Tech" },
   { slug: "thermostat-connecte", label: "Thermostat connecté", emoji: "🌡️", group: "Tech" },
-  { slug: "station-charge-usb-c",label: "Station charge USB-C",emoji: "🔌", group: "Tech" },
+  { slug: "station-daccueil-usbc",label: "Station USB-C / Dock",emoji: "🔌", group: "Tech" },
   { slug: "onduleur-ups",        label: "Onduleur UPS",        emoji: "⚡", group: "Tech" },
-  { slug: "clavier",             label: "Clavier",             emoji: "⌨️", group: "Tech" },
-  { slug: "bureau-electrique",   label: "Bureau électrique",   emoji: "🪑", group: "Confort" },
-  { slug: "matelas",             label: "Matelas",             emoji: "🛏️", group: "Confort" },
-  { slug: "poussette",           label: "Poussette",           emoji: "👶", group: "Confort" },
-  { slug: "trottinette",         label: "Trottinette élec.",   emoji: "🛴", group: "Mobilité" },
-  { slug: "velo-electrique",     label: "Vélo électrique",     emoji: "🚲", group: "Mobilité" },
-  { slug: "accessoire-velo",     label: "Accessoire vélo",     emoji: "🔧", group: "Mobilité" },
+  { slug: "clavier",             label: "Clavier gaming/méc.", emoji: "⌨️", group: "Tech" },
   { slug: "manette-switch",      label: "Manette Switch",      emoji: "🎮", group: "Tech" },
-  { slug: "brosse-dent-electrique", label: "Brosse à dents élec.", emoji: "🪥", group: "Confort" },
-  { slug: "tondeuse-cheveux",    label: "Tondeuse cheveux",    emoji: "✂️", group: "Confort" },
-  { slug: "rasoir-electrique",   label: "Rasoir électrique",   emoji: "🪒", group: "Confort" },
-  { slug: "epilateur-lumiere-pulsee", label: "Épilateur LPL",  emoji: "✨", group: "Confort" },
-  { slug: "moniteur-cardiaque",  label: "Montre / Cardio",     emoji: "⌚", group: "Tech" },
-  { slug: "enceinte-connectee",  label: "Enceinte connectée",  emoji: "📻", group: "Tech" },
+  { slug: "trottinette",         label: "Trottinette élec.",   emoji: "🛴", group: "Mobilité & Outdoor" },
+  { slug: "velo-electrique",     label: "Vélo électrique",     emoji: "🚲", group: "Mobilité & Outdoor" },
+  { slug: "accessoire-velo",     label: "Accessoires vélo",    emoji: "🔧", group: "Mobilité & Outdoor" },
+  { slug: "bureau-electrique",   label: "Bureau électrique",   emoji: "🪑", group: "Bien-être & Setup" },
+  { slug: "matelas",             label: "Matelas",             emoji: "🛏️", group: "Bien-être & Setup" },
+  { slug: "poussette",           label: "Poussette",           emoji: "👶", group: "Bien-être & Setup" },
+  { slug: "montre-connectee",    label: "Montre connectée",    emoji: "⌚", group: "Bien-être & Setup" },
 ];
 
-const GROUPS = ["Maison", "Tech", "Confort", "Mobilité"];
+const GROUPS = ["Maison", "Tech", "Mobilité & Outdoor", "Bien-être & Setup"];
+
+const GROUP_EMOJIS: Record<string, string> = {
+  "Maison": "🏠",
+  "Tech": "💻",
+  "Mobilité & Outdoor": "🚀",
+  "Bien-être & Setup": "🛋️",
+};
 
 /* ── Header ───────────────────────────────────────────── */
 
@@ -176,20 +179,31 @@ export default function Header() {
                       >
                         Voir tout →</Link>
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1">
-                      {CATEGORIES.map((cat) => (
-                        <Link
-                          key={cat.slug}
-                          href={`/categorie/${cat.slug}`}
-                          onClick={() => setCatOpen(false)}
-                          className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm transition-colors hover:bg-white/5"
-                          style={{ color: "var(--text-muted)" }}
-                          onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text)"; }}
-                          onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-muted)"; }}
-                        >
-                          <span className="text-base shrink-0">{cat.emoji}</span>
-                          <span className="truncate">{cat.label}</span>
-                        </Link>
+                    <div className="grid grid-cols-4 gap-4">
+                      {GROUPS.map((groupName) => (
+                        <div key={groupName}>
+                          <p className="text-xs font-bold mb-2 flex items-center gap-1.5"
+                            style={{ color: "var(--text)" }}>
+                            <span>{GROUP_EMOJIS[groupName] || "•"}</span>
+                            <span>{groupName}</span>
+                          </p>
+                          <div className="space-y-0.5">
+                            {CATEGORIES.filter((c) => c.group === groupName).map((cat) => (
+                              <Link
+                                key={cat.slug}
+                                href={`/c/${cat.slug}`}
+                                onClick={() => setCatOpen(false)}
+                                className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs transition-colors hover:bg-white/5"
+                                style={{ color: "var(--text-muted)" }}
+                                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text)"; }}
+                                onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-muted)"; }}
+                              >
+                                <span className="text-sm shrink-0">{cat.emoji}</span>
+                                <span className="truncate">{cat.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -200,8 +214,9 @@ export default function Header() {
             {/* Navigation links */}
             {[
               { label: "Duels", href: "/duels" },
-              { label: "Catalogue", href: "/catalogue" },
-              { label: "Méthodologie", href: "/methodologie" },
+              { label: "Top 3", href: "/tops" },
+              { label: "Méthode", href: "/methode" },
+              { label: "Accessoires", href: "/accessoires" },
             ].map((l) => (
               <Link
                 key={l.href}
@@ -329,7 +344,7 @@ export default function Header() {
             {CATEGORIES.slice(0, 12).map((cat) => (
               <Link
                 key={cat.slug}
-                href={`/categorie/${cat.slug}`}
+                href={`/c/${cat.slug}`}
                 onClick={() => setMenuOpen(false)}
                 className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"
                 style={{ color: "var(--text-muted)" }}

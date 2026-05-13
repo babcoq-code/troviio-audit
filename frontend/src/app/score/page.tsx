@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Le Troviio Score — L'histoire d'amour entre toi et ton prochain achat | Troviio",
+  title: "Le Troviio Score — L'histoire d'amour entre toi et ton prochain achat",
   description:
     "Oublie les notes sur 10 à la con. Le Troviio Score, c'est l'alchimie computationnelle qui mesure si un produit est fait pour toi. Et c'est plus fiable qu'un test de compatibilité Tinder.",
   alternates: { canonical: "https://troviio.com/score" },
@@ -18,6 +19,12 @@ export const metadata: Metadata = {
 export default function ScorePage() {
   return (
     <main className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}>
+      <Breadcrumbs
+        crumbs={[
+          { label: "Accueil", href: "/" },
+          { label: "Score" },
+        ]}
+      />
       <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
 
         {/* ── HERO ── */}

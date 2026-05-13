@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Wooting 80HE vs Lemokey P1 HE : le duel des claviers Hall Effect 2026 | Troviio",
+  title: "Wooting 80HE vs Lemokey P1 HE : le duel des claviers Hall Effect 2026",
     description: "Qui est le meilleur en clavier gaming Hall Effect ? Le Wooting 80HE affronte le Lemokey P1 HE dans un duel sans merci.",
   alternates: { canonical: "https://troviio.com/duel/wooting-80he-vs-lemokey-p1-he" },
 };

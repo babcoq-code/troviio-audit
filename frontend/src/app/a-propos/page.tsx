@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const pageUrl = "https://troviio.com/a-propos";
 
@@ -25,6 +26,12 @@ export const metadata = {
 export default function AProposPage() {
   return (
     <main className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}>
+      <Breadcrumbs
+        crumbs={[
+          { label: "Accueil", href: "/" },
+          { label: "À propos" },
+        ]}
+      />
       <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <article>
           <header className="pb-8" style={{ borderBottom: "1px solid var(--border)" }}>

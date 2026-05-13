@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Meilleure TV 2026 : le top 3 des televisions qui changent tout | Troviio",
+  title: "Meilleure TV 2026 : le top 3 des televisions qui changent tout",
   description: "OLED, QD-OLED, Mini-LED : notre selection des 3 meilleures TVs pour le salon en 2026.",
   alternates: { canonical: "https://troviio.com/tops/meilleure-tv" },
 };

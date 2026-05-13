@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Dyson Gen5 Detect vs Samsung Bespoke Jet | Troviio",
+  title: "Dyson Gen5 Detect vs Samsung Bespoke Jet",
   description: "Dyson ou Samsung ? Le duel des aspirateurs balais haut de gamme en 2026.",
   alternates: { canonical: "https://troviio.com/duel/dyson-gen5-detect-vs-samsung-bespoke-jet" },
 };
@@ -61,7 +61,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">ð¥ Produit #1</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/dyson-gen5-detect-absolute">Dyson Gen5 Detect Absolute</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson V15 Detect** - Le Jedi du nettoyage, mais un Jedi qui a un ego surdimensionné. Il te montre en temps réel la taille des particules aspirées, comme si tu avais besoin de savoir que ton tapis est un cimetière de peaux mortes. C'est puissant, c'est sexy, ça ressemble Ã  un accessoire de Starfleet, mais tu te demandes pourquoi tu dois payer 900 balles pour un tube en plastique qui fait " vroom ". En mode turbo, l'autonomie fond plus vite que la promesse de te mettre au sport en janvier. Et le bouton gâchette ? Sérieusement, on est en 2024, pas en train de jouer Ã  Doom sur un clavier. Bref, Dyson, c'est le gars qui te sort une blague de ouf mais qui te la répète trois fois parce que tu n'as pas ri assez fort.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson V15 Detect** - Le Jedi du nettoyage, mais un Jedi qui a un ego surdimensionné. Il te montre en temps réel la taille des particules aspirées, comme si tu avais besoin de savoir que ton tapis est un cimetière de peaux mortes. C'est puissant, c'est sexy, ça ressemble Ã  un accessoire de Starfleet, mais tu te demandes pourquoi tu dois payer 900 balles pour un tube en plastique qui fait " vroom ". En mode turbo, l'autonomie fond plus vite que la promesse de te mettre au sport en janvier. Et le bouton gâchette ? Sérieusement, on est en 2026, pas en train de jouer Ã  Doom sur un clavier. Bref, Dyson, c'est le gars qui te sort une blague de ouf mais qui te la répète trois fois parce que tu n'as pas ri assez fort.</p>
           
             <div className="mt-4">
               <Link href="/produit/dyson-gen5-detect-absolute" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Voir la fiche →</Link>

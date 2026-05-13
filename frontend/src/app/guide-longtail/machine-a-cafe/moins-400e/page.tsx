@@ -123,7 +123,7 @@ export default function GuidePage() {
     <span>Faut-il un broyeur séparé pour les grains ?</span>
     <span className="text-[#8B8FA3] group-open:rotate-180 transition-transform">▼</span>
   </summary>
-  <p className="mt-3 text-sm leading-6 text-[#8B8FA3]">R: Non, toutes ces machines intègrent un broyeur. Tu es en 2024, pas en 1984.</p>
+  <p className="mt-3 text-sm leading-6 text-[#8B8FA3]">R: Non, toutes ces machines intègrent un broyeur. Tu es en 2026, pas en 1984.</p>
 </details>
 
           </div>

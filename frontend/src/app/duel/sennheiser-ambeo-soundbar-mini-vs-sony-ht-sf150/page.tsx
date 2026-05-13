@@ -3,7 +3,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sony HT-SF150 vs Sennheiser AMBEO Soundbar Mini — Duel Troviio",
+  title: "Sony HT-SF150 vs Sennheiser AMBEO Soundbar Mini",
   description: "Qui est le meilleur ? Sony HT-SF150 affronte Sennheiser AMBEO Soundbar Mini dans un duel sans merci.",
 };
 

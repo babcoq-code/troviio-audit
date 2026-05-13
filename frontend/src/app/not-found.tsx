@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Page introuvable (404) — Troviio",
+  title: "Page introuvable (404)",
   robots: { index: false, follow: true },
 };
 

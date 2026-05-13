@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Meilleure montre connectée 2026 : le top 3 definitif | Troviio",
+  title: "Meilleure montre connectée 2026 : le top 3 definitif",
   description: "Le classement des 3 meilleures montres connectées de 2026 testées et approuvées par Troviio.",
   alternates: { canonical: "https://troviio.com/tops/meilleure-montre-connectee" },
 };

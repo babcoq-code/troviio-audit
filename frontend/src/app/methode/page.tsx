@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Comment Troviio calcule ses scores — La méthode derrière la magie | Troviio",
+  title: "Comment Troviio calcule ses scores — La méthode derrière la magie",
   description:
     "Le Troviio Score n'est pas une note comme les autres. Découvre comment on mesure l'affinité entre toi et un produit — avec du cœur, du code, et zéro bullshit marketing.",
   alternates: { canonical: "https://troviio.com/methode" },
@@ -18,6 +19,12 @@ export const metadata: Metadata = {
 export default function MethodePage() {
   return (
     <main className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}>
+      <Breadcrumbs
+        crumbs={[
+          { label: "Accueil", href: "/" },
+          { label: "Méthode" },
+        ]}
+      />
       <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         {/* ── HERO ── */}
         <section className="text-center">

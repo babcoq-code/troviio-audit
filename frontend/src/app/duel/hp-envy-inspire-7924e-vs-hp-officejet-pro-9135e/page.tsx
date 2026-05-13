@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "HP ENVY INSPIRE 7924e vs OfficeJet Pro 9135e — Duel Troviio",
+  title: "HP ENVY INSPIRE 7924e vs OfficeJet Pro 9135e",
   description: "Qui est le meilleur ? HP HP ENVY INSPIRE 7924e affronte HP HP OFFICEJET PRO 9135e dans un duel sans merci.",
 };
 

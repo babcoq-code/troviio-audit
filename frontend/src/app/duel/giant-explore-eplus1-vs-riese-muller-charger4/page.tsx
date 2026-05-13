@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Giant Explore E+ 1 vs Riese & Muller Charger4 : le duel des velo-electrique 2026 | Troviio",
+  title: "Giant Explore E+ 1 vs Riese & Muller Charger4 : le duel des velo-electrique 2026",
     description: "Qui est le meilleur en velo-electrique ? Le Giant Explore E+ 1 affronte le Riese & Muller Charger4 GT touring dans un duel sans merci.",
   alternates: { canonical: "https://troviio.com/duel/giant-explore-eplus1-vs-riese-muller-charger4" },
 };

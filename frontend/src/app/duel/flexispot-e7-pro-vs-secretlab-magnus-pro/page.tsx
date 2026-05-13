@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Flexispot E7 Pro vs Secretlab MAGNUS Pro : le duel des bureaux électriques 2026 | Troviio",
+  title: "Flexispot E7 Pro vs Secretlab MAGNUS Pro : le duel des bureaux électriques 2026",
     description: "Qui est le meilleur en bureau électrique assis-debout ? Le Flexispot E7 Pro affronte le Secretlab MAGNUS Pro dans un duel sans merci.",
   alternates: { canonical: "https://troviio.com/duel/flexispot-e7-pro-vs-secretlab-magnus-pro" },
 };

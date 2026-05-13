@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Samsung Galaxy S26 Ultra vs iPhone 17 Pro Max : le duel des smartphone 2026 | Troviio",
+  title: "Samsung Galaxy S26 Ultra vs iPhone 17 Pro Max : le duel des smartphone 2026",
     description: "Qui est le meilleur en smartphone ? Le Samsung Galaxy S26 Ultra 6.9' 256 Go affronte le iPhone 17 Pro Max 256 Go dans un duel sans merci.",
   alternates: { canonical: "https://troviio.com/duel/samsung-galaxy-s26-ultra-vs-iphone-17-pro-max" },
 };

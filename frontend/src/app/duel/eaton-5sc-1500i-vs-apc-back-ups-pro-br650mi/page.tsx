@@ -3,7 +3,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Eaton 5SC 1500i vs APC (Schneider) APC Back-UPS Pro BR650MI — Duel Troviio",
+  title: "Eaton 5SC 1500i vs APC (Schneider) APC Back-UPS Pro BR650MI",
   description: "Qui est le meilleur ? Eaton 5SC 1500i affronte APC (Schneider) APC Back-UPS Pro BR650MI dans un duel sans merci.",
 };
 

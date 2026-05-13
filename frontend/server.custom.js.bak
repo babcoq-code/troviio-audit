@@ -1,4 +1,3 @@
-// 1778616657
 // Custom server for Troviio — disables Next.js built-in HTTPS redirect
 const { createServer } = require('http');
 const { parse } = require('url');

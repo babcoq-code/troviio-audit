@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Miele WCR870 vs Bosch WGB244A2FR : le duel des lave-linge 2026 | Troviio",
+  title: "Miele WCR870 vs Bosch WGB244A2FR : le duel des lave-linge 2026",
     description: "Qui est le meilleur en lave-linge ? Le Miele WCR870 WPS affronte le Bosch WGB244A2FR dans un duel sans merci.",
   alternates: { canonical: "https://troviio.com/duel/miele-wcr870-vs-bosch-wgb244a2fr" },
 };

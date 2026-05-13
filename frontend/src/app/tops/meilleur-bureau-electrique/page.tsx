@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Meilleur bureau électrique 2026 : le top 3 assis-debout | Troviio",
+  title: "Meilleur bureau électrique 2026 : le top 3 assis-debout",
   description: "Assis-debout, gaming, télétravail : notre sélection des meilleurs bureaux électriques 2026.",
   alternates: { canonical: "https://troviio.com/tops/meilleur-bureau-electrique" },
 };

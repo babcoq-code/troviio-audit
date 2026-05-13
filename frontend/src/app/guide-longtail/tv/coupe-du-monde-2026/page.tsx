@@ -37,7 +37,7 @@ Budget : 1 000 à 3 500€ selon tes moyens. L'OLED abordable existe, mais ne de
 
 - 68% des acheteurs de TV en mai-juin 2026 citent le Mondial comme raison principale
 - Le budget moyen explose : les Français sont prêts à mettre 1 370€ pour une TV dédiée au foot
-- Les ventes de TV OLED ont bondi de 42% en mai 2026 par rapport à mai 2025
+- Les ventes de TV OLED ont bondi de 42% en mai 2026 par rapport à mai 2026
 
 C'est pas juste un achat. C'est un investissement émotionnel. Et ça se respecte.`,
   },

@@ -1,38 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 type Crumb = {
   label: string;
   href?: string;
 };
 
-/**
- * Breadcrumbs — Fil d'Ariane
- *
- * Props:
- * - `crumbs`: tableau de { label, href? } — le dernier sans href est le courant
- * - `schema` (optionnel): encode en JSON-LD BreadcrumbList
- *
- * Exemple :
- * ```tsx
- * <Breadcrumbs
- *   crumbs={[
- *     { label: "Accueil", href: "/" },
- *     { label: "Aspirateur robot", href: "/categorie/robot-aspirateur" },
- *     { label: "Dreame X50 Ultra" },
- *   ]}
- * />
- * ```
- */
-export function Breadcrumbs({
-  crumbs,
-}: {
-  crumbs: Crumb[];
-}) {
-  const pathname = usePathname();
-
+export function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
   if (!crumbs || crumbs.length === 0) return null;
 
   const schemaJson = {
@@ -42,7 +17,7 @@ export function Breadcrumbs({
       "@type": "ListItem",
       position: i + 1,
       name: crumb.label,
-      ...(crumb.href ? { item: `https://troviio.com${crumb.href}` } : {}),
+      ...(crumb.href ? { item: `https://www.troviio.com${crumb.href}` } : {}),
     })),
   };
 
@@ -61,7 +36,10 @@ export function Breadcrumbs({
           {crumbs.map((crumb, i) => {
             const isLast = i === crumbs.length - 1;
             return (
-              <li key={`${crumb.label}-${i}`} className="flex items-center gap-1.5 min-w-0">
+              <li
+                key={`${crumb.label}-${i}`}
+                className="flex items-center gap-1.5 min-w-0"
+              >
                 {i > 0 && <span className="shrink-0">/</span>}
                 {crumb.href && !isLast ? (
                   <Link

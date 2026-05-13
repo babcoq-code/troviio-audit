@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Nintendo Switch 2 Pro Controller vs 8BitDo Pro 2 : le duel des manettes Switch 2026 | Troviio",
+  title: "Nintendo Switch 2 Pro Controller vs 8BitDo Pro 2 : le duel des manettes Switch 2026",
   description: "Nintendo Switch 2 Pro Controller ou 8BitDo Pro 2 Hall Effect ? On tranche le duel des meilleures manettes pour Switch. Scores Troviio, specs et verdict.",
   alternates: { canonical: "https://troviio.com/duel/switch-2-pro-controller-vs-8bitdo-pro2-halleffect" },
 };

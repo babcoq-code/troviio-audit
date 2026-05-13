@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import TopsClient from "./TopsClient";
 import { JsonLd, buildBreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
@@ -61,6 +62,12 @@ export default async function TopsPage() {
         { name: "Accueil", url: "https://troviio.com" },
         { name: "Top 3 Troviio" },
       ])} />
+      <Breadcrumbs
+        crumbs={[
+          { label: "Accueil", href: "/" },
+          { label: "Top 3" },
+        ]}
+      />
       <TopsClient />
     </>
   );

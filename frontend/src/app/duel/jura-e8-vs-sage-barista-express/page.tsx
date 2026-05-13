@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Jura E8 vs Sage Barista Express | Troviio",
+  title: "Jura E8 vs Sage Barista Express",
   description: "Machine automatique ou manuelle ? Jura E8 ou Sage Barista Express ? Quel type de buveur de cafe es-tu ?",
   alternates: { canonical: "https://troviio.com/duel/jura-e8-vs-sage-barista-express" },
 };

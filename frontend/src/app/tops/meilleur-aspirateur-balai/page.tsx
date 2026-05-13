@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Meilleur aspirateur balai 2026 : le top 3 qui aspire tout sur son passage | Troviio",
+  title: "Meilleur aspirateur balai 2026 : le top 3 qui aspire tout sur son passage",
   description: "Aspirateur balai sans fil : notre top 3 des meilleurs pour un sol impeccable en 2026.",
   alternates: { canonical: "https://troviio.com/tops/meilleur-aspirateur-balai" },
 };
@@ -107,7 +107,7 @@ L’innovation coréenne. Il a plus d’IA qu’un film de science-fiction des a
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#8B8FA3]">🥉 Numéro 3</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**Dyson V15 Detect Absolute** - 91/100 - 792€
 
-L’ancien roi. Il a régné, il a dominé, il a écrasé la poussière comme Thanos écrase les Avengers. Mais à 792€, c’est le prix d’un week-end à Barcelone ou d’une console next-gen. Pour qui il est fait ? Pour ceux qui veulent le meilleur de 2022 en 2025, sans se soucier de la hype du nouveau modèle. Et franchement, si t’as 800 balles à claquer dans un aspirateur, t’as probablement une maison trop propre pour en avoir besoin.</p>
+L’ancien roi. Il a régné, il a dominé, il a écrasé la poussière comme Thanos écrase les Avengers. Mais à 792€, c’est le prix d’un week-end à Barcelone ou d’une console next-gen. Pour qui il est fait ? Pour ceux qui veulent le meilleur de 2022 en 2026, sans se soucier de la hype du nouveau modèle. Et franchement, si t’as 800 balles à claquer dans un aspirateur, t’as probablement une maison trop propre pour en avoir besoin.</p>
           
             <div className="mt-4">
               <a

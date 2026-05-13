@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ChatHero from "@/components/ChatHero";
 import { SEO_INTRO } from "@/lib/seo-intro";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -41,7 +42,6 @@ const CAT_META: Record<string, CatMeta> = {
   "camera-securite": { name: "Caméra sécurité", emoji: "📹", title: "Meilleure caméra sécurité 2026", description: "Intérieur, extérieur, vision nocturne : Troviio choisit la caméra qui protège ton chez-toi.", guide_title: "Quelle caméra de sécurité choisir ?", guide_desc: "Résolution, vision nocturne, stockage : le guide pour sécuriser votre domicile." },
   imprimante: { name: "Imprimante", emoji: "🖨️", title: "Meilleure imprimante 2026", description: "Laser, jet d'encre, multifonction : Troviio choisit l'imprimante pour ton usage.", guide_title: "Quelle imprimante choisir ?", guide_desc: "Laser ou jet d'encre, vitesse, coût à la page : le guide de l'imprimante idéale." },
   matelas: { name: "Matelas", emoji: "🛏️", title: "Meilleur matelas 2026", description: "Ferme, mémoire de forme, naturel : Troviio trouve le matelas pour tes nuits.", guide_title: "Quel matelas choisir ?", guide_desc: "Fermeté, matière, soutien : le guide pour des nuits réparatrices." },
-  // ── Catégories sans guide avant (ajoutées le 12/05/2026) ──
   "accessoire-velo": { name: "Accessoires vélo", emoji: "🚴", title: "Meilleurs accessoires vélo 2026", description: "Casques, antivols, éclairage, sonnettes : Troviio choisit les accessoires vélo pour ta pratique.", guide_title: "Quels accessoires vélo choisir ?", guide_desc: "Sécurité, confort, réglementation : le guide des accessoires indispensables pour votre vélo." },
   "bureau-electrique": { name: "Bureau électrique", emoji: "🪑", title: "Meilleur bureau électrique 2026", description: "Assis-debout, stable, silencieux : Troviio choisit le bureau électrique pour ton télétravail.", guide_title: "Quel bureau électrique choisir ?", guide_desc: "Stabilité, silence, hauteur : le guide du bureau assis-debout pour votre santé." },
   clavier: { name: "Clavier", emoji: "⌨️", title: "Meilleur clavier 2026", description: "Mécanique, gaming, bureautique : Troviio trouve le clavier adapté à ta frappe.", guide_title: "Quel clavier choisir ?", guide_desc: "Mécanique ou membrane, layout, switches : le guide du clavier parfait." },
@@ -64,11 +64,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const meta = CAT_META[slug];
   if (!meta) return {};
   return {
-    title: `${meta.title} — Troviio`,
+    title: `${meta.title}`,
     description: meta.description,
     alternates: { canonical: `https://troviio.com/c/${slug}` },
     openGraph: {
-      title: `${meta.title} — Troviio`,
+      title: `${meta.title}`,
       description: meta.description,
       url: `https://troviio.com/c/${slug}`,
       siteName: "Troviio",
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${meta.title} — Troviio`,
+      title: `${meta.title}`,
       description: meta.description,
     },
   };
@@ -116,7 +116,6 @@ const GUIDES_BY_CATEGORY: Record<string, string> = {
   "tv": "salon-lumineux",
   "velo-electrique": "guide-achat",
   "ventilateur-colonne": "guide-achat",
-  // ── Nouveaux guides (ajoutés le 12/05/2026) ──
   "accessoire-velo": "guide-achat",
   "bureau-electrique": "guide-achat",
   "clavier": "guide-achat",
@@ -267,16 +266,6 @@ export default async function CategoryPage({ params }: Props) {
       }
     }
   }
-
-  const breadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://troviio.com" },
-      { "@type": "ListItem", position: 2, name: meta.name, item: `https://troviio.com/c/${slug}` },
-    ],
-  };
-
   const itemListSchema = top3.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -302,18 +291,18 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       {itemListSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       )}
 
       {/* Breadcrumb */}
-      <div className="pt-24 px-4 max-w-7xl mx-auto" style={{ color: "#8B8B9A" }}>
-        <nav className="text-sm flex items-center gap-2 flex-wrap">
-          <a href="/" style={{ color: "#8B8B9A" }} className="hover:underline">Accueil</a>
-          <span>›</span>
-          <span style={{ color: "var(--text)" }}>{meta.emoji} {meta.name}</span>
-        </nav>
+      <div className="pt-24 px-4 max-w-7xl mx-auto">
+        <Breadcrumbs
+          crumbs={[
+            { label: "Accueil", href: "/" },
+            { label: `${meta.emoji} ${meta.name}` },
+          ]}
+        />
       </div>
 
       {/* Hero */}

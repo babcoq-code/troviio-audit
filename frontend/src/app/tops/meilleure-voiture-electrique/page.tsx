@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Meilleure voiture électrique 2026 : le top 3 definitif | Troviio",
+  title: "Meilleure voiture électrique 2026 : le top 3 definitif",
   description: "Le classement des 3 meilleures voitures électriques de 2026 testées et approuvées par Troviio.",
   alternates: { canonical: "https://troviio.com/tops/meilleure-voiture-electrique" },
 };
@@ -62,7 +62,7 @@ export default function TopsPage() {
           <div className="rounded-2xl border border-[#3ED6A3]/30 bg-[#1A2E22] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#3ED6A3]">🥇 Numéro 1</p>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line"><strong>Tesla Model Y Juniper</strong> - 85/100 - ~39 990€  \n
-Le SUV électrique le plus vendu d'Europe. Restylé Juniper 2025 avec intérieur enfin abouti, bandeau lumineux avant et silence amélioré. Le réseau Superchargeur imbattable. Produit à Berlin, éligible bonus. Le seul vrai défaut : pas d'Apple CarPlay.</p>
+Le SUV électrique le plus vendu d'Europe. Restylé Juniper 2026 avec intérieur enfin abouti, bandeau lumineux avant et silence amélioré. Le réseau Superchargeur imbattable. Produit à Berlin, éligible bonus. Le seul vrai défaut : pas d'Apple CarPlay.</p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a href="https://www.tesla.com/fr_fr/model-y" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg bg-[#3ED6A3]/20 px-4 py-2 text-xs font-medium text-[#3ED6A3] hover:bg-[#3ED6A3]/30 transition-colors">🚗 Configurer sur Tesla</a>
               <Link href="/produit/tesla-model-y-juniper" className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-medium text-[#8B8FA3] hover:text-white transition-colors">📄 Lire le test complet</Link>

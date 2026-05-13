@@ -1,8 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Tous les duels Troviio — Comparatifs produits 2026 | Troviio",
+  title: "Tous les duels Troviio — Comparatifs produits 2026",
   description: "Retrouve tous nos duels de produits : smartphone vs smartphone, robot cuisine vs robot cuisine, matelas vs matelas. On tranche, toi tu choisis.",
   alternates: { canonical: "https://troviio.com/duels" },
 };
@@ -111,14 +112,16 @@ const DUELS = [
 export default function DuelsPage() {
   return (
     <main className="min-h-screen bg-[#0E1020] text-white">
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        crumbs={[
+          { label: "Accueil", href: "/" },
+          { label: "Duels" },
+        ]}
+      />
       {/* Hero */}
       <section className="border-b border-white/5 bg-gradient-to-b from-[#1A1D2E] to-[#0E1020]">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-          <nav className="flex items-center gap-2 text-sm text-[#8B8FA3] mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
-            <span>/</span>
-            <span className="text-white font-medium">Duels</span>
-          </nav>
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#FF6B5F]">⚔️ LES DUELS TROVIIO</p>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight font-display">Tous nos duels produits</h1>

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "It Takes Two vs Split Fiction : le duel des jeux co-op ultimes | Troviio",
+  title: "It Takes Two vs Split Fiction : le duel des jeux co-op ultimes",
   description: "It Takes Two (98/100) ou Split Fiction (97/100) ? Le choc des titans Hazelight. Quel est le meilleur jeu co-op local ? On tranche.",
   alternates: { canonical: "https://troviio.com/duel/it-takes-two-vs-split-fiction" },
 };

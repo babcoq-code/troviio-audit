@@ -5,12 +5,12 @@ import LogoTroviio from "@/components/LogoTroviio";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
 const POPULAR_CATEGORIES = [
-  { label: "Robot aspirateur", href: "/categorie/aspirateur-robot" },
-  { label: "Machine à café", href: "/categorie/machine-a-cafe" },
-  { label: "Smartphone", href: "/categorie/smartphone" },
-  { label: "Casque audio", href: "/categorie/casque-audio" },
-  { label: "TV OLED", href: "/categorie/tv" },
-  { label: "Matelas", href: "/categorie/matelas" },
+  { label: "Robot aspirateur", href: "/c/aspirateur-robot" },
+  { label: "Machine à café", href: "/c/machine-a-cafe" },
+  { label: "Smartphone", href: "/c/smartphone" },
+  { label: "Casque audio", href: "/c/casque-audio" },
+  { label: "TV OLED", href: "/c/tv" },
+  { label: "Matelas", href: "/c/matelas" },
 ];
 
 export default function Footer() {

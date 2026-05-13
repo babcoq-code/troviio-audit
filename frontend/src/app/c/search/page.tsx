@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import ChatHero from "@/components/ChatHero";
 
 export const metadata: Metadata = {
-  title: "Recherche de produits — Troviio",
+  title: "Recherche de produits",
   description: "Recherchez parmi des centaines de produits comparés par l'IA Troviio.",
   robots: { index: false, follow: true },
   alternates: { canonical: "https://www.troviio.com/c/search" },
   openGraph: {
-    title: "Recherche de produits — Troviio",
+    title: "Recherche de produits",
     description: "Recherchez parmi des centaines de produits comparés par l'IA Troviio.",
     url: "https://www.troviio.com/c/search",
     siteName: "Troviio",

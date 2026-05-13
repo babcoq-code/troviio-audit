@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Tesla Model Y Juniper vs Tesla Model 3 Highland : le duel des électriques 2026 | Troviio",
+  title: "Tesla Model Y Juniper vs Tesla Model 3 Highland : le duel des électriques 2026",
     description: "Le duel fratricide Tesla : le SUV le plus vendu d'Europe contre la berline record d'autonomie. Juniper ou Highland ? La famille ou la performance ?",
   alternates: { canonical: "https://troviio.com/duel/tesla-model-y-juniper-vs-tesla-model-3-highland" },
 };
@@ -62,7 +62,7 @@ export default function DuelPage() {
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥇 Produit #1</p>
             <h3 className="text-xl font-bold mb-4"><Link href="/produit/tesla-model-y-juniper">Tesla Model Y Juniper</Link></h3>
-            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le <strong>Tesla Model Y Juniper</strong>, c'est le SUV de l'équipe des Avengers version transport de troupes. Tu siffles, et toute la famille monte à bord avec 854 litres de coffre (de quoi planquer l'équipement de Spider-Man ET le labo mobile de Bruce Banner). C'est le véhicule le plus vendu d'Europe en 2024 pour une bonne raison : il est aussi spacieux qu'un QG Stark Industries et aussi silencieux qu'une infiltration de Black Widow. Avec son restylage Juniper 2025, il se dote d'une finition raffermie et d'un écran arrière — de quoi occuper les gamins pendant que tu négocies le trafic comme Jason Statham dans *Le Transporteur*. Seul hic : son autonomie de 455 km est un peu juste pour les road trips à travers l'Europe sans t'arrêter à chaque Superchargeur. Mais pour le daily et les départs en vacances, c'est le choix du guerrier familial.</p>
+            <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">Le <strong>Tesla Model Y Juniper</strong>, c'est le SUV de l'équipe des Avengers version transport de troupes. Tu siffles, et toute la famille monte à bord avec 854 litres de coffre (de quoi planquer l'équipement de Spider-Man ET le labo mobile de Bruce Banner). C'est le véhicule le plus vendu d'Europe en 2026 pour une bonne raison : il est aussi spacieux qu'un QG Stark Industries et aussi silencieux qu'une infiltration de Black Widow. Avec son restylage Juniper 2026, il se dote d'une finition raffermie et d'un écran arrière — de quoi occuper les gamins pendant que tu négocies le trafic comme Jason Statham dans *Le Transporteur*. Seul hic : son autonomie de 455 km est un peu juste pour les road trips à travers l'Europe sans t'arrêter à chaque Superchargeur. Mais pour le daily et les départs en vacances, c'est le choix du guerrier familial.</p>
           
             <div className="mt-4">
               <a href="https://www.tesla.com/fr_FR/modely/design" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-[#4257FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#3451E0] transition-colors">Configurer sur Tesla →</a>

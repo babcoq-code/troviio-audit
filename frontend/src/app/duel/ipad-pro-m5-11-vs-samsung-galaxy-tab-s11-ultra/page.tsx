@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "iPad Pro M5 11 vs Samsung Galaxy Tab S11 Ultra : le duel des tablettes 2026 | Troviio",
+  title: "iPad Pro M5 11 vs Samsung Galaxy Tab S11 Ultra : le duel des tablettes 2026",
   description: "iPad Pro M5 11 pouces ou Galaxy Tab S11 Ultra ? On tranche le duel des meilleures tablettes de 2026. Scores Troviio, specs et verdict.",
   alternates: { canonical: "https://troviio.com/duel/ipad-pro-m5-11-vs-samsung-galaxy-tab-s11-ultra" },
 };
@@ -69,7 +69,7 @@ export default function DuelPage() {
         <div className="grid gap-6 md:grid-cols-2 mb-12">
           <div className="rounded-2xl border border-[#4257FF]/30 bg-[#161827] p-6">
             <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#4257FF]">🥇 #1 iPad Pro M5 11</p>
-            <h3 className="text-xl font-bold mb-4"><Link href="/produit/tablette-apple-ipadpro-m5-11-b0fwd6">Apple iPad Pro M5 11" (2025) - 96/100</Link></h3>
+            <h3 className="text-xl font-bold mb-4"><Link href="/produit/tablette-apple-ipadpro-m5-11-b0fwd6">Apple iPad Pro M5 11" (2026) - 96/100</Link></h3>
             <p className="text-sm leading-7 text-[#8B8FA3] whitespace-pre-line">**iPad Pro M5 11"** - Le choix de Trinity (ou de Neo, selon ton humeur). Avec sa puce M5, c'est un mini-AIM-120 AMRAAM : ca part tout seul, ca touche toujours sa cible, et ca te laisse sur le cul. L'ecran OLED Tandem 11" est un regal pour les yeux, un vrai mur d'images facon "Matrix decode les lignes de code". Probleme : le prix de 1219 EUR, c'est plus que le budget d'un episode de The Office ou Michael Scott organise une fete surprise. Le score Troviio de 96/100 montre que c'est un monstre de puissance, mais a ce tarif, tu pourrais t'offrir un abonnement Netflix a vie (non, pas vraiment). L'Apple Pencil est genial, mais a 149 EUR en sus, tu finis par te sentir comme Dwight Schrute : tu as le meilleur outil, mais tu l'as paye cher. L'ecosysteme Apple est une prison doree, mais quand t'es dedans, t'es comme Neo dans la Matrice : tout est fluide, tout est synchronise. Et niveau applications pro (montage video, 3D, DAW), c'est le roi du monde. Mais attention : pas de IP68, donc si tu le fais tomber dans l'evier en lavant la vaisselle, prepare-toi a un "Oh, mon Dieu, c'est fini" facon Pam Beesly.
 
 → **Vainqueur pour la puissance brute et l'ecosysteme : iPad Pro M5 11"**</p>

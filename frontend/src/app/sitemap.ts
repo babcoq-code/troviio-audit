@@ -41,7 +41,6 @@ const DUEL_SLUGS = [
   "samsung-galaxy-s26-ultra-vs-iphone-17-pro-max",
   "sennheiser-ambeo-soundbar-mini-vs-sony-ht-sf150",
   "silvercrest-monsieur-cuisine-smart-vs-magimix-cook-expert-premium-xl",
-  "sony-ht-sf150-vs-sennheiser-ambeo-soundbar-mini",
   "switch-2-pro-controller-vs-8bitdo-pro2-halleffect",
   "tesla-model-y-juniper-vs-tesla-model-3-highland",
   "thermomix-tm7-vs-kitchenaid-artisan",
@@ -59,7 +58,6 @@ const TOP_SLUGS = [
 // ── Guides longtail ─────────────────────────────────────────────────
 const GUIDES = [
   "tv/coupe-du-monde-2026",
-  // 24 nouveaux guides d'achat (12 catégories × 2, ajoutés le 12/05/2026)
   "accessoire-velo/guide-achat",
   "accessoire-velo/casque-velo",
   "bureau-electrique/guide-achat",
@@ -95,9 +93,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Pages statiques
   const staticPages = [
     "/methode","/accessoires",
-    "/mentions-legales","/confidentialite","/cookies","/cgv","/contact",
+    "/mentions-legales","/politique-confidentialite","/cookies","/cgv","/contact",
     "/catalogue",
     "/duels",
+    "/a-propos",
   ];
   for (const p of staticPages) {
     urls.push({ url: `${BASE}${p}`, changeFrequency: "monthly", priority: 0.3 });

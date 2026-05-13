@@ -3,7 +3,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "SILVERCREST MONSIEUR CUISINE SMART vs MAGIMIX COOK EXPERT PREMIUM XL — Duel Troviio",
+  title: "SILVERCREST MONSIEUR CUISINE SMART vs MAGIMIX COOK EXPERT PREMIUM XL",
   description: "Qui est le meilleur ? SILVERCREST MONSIEUR CUISINE SMART affronte MAGIMIX COOK EXPERT PREMIUM XL dans un duel sans merci.",
 };
 

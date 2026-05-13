@@ -1,5 +1,6 @@
 import type { Product } from "@/types";
 import CatalogueClient from "./CatalogueClient";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 // ─── Types ─────────────────────────────────────────────────
 interface CategoryFilter {
@@ -115,9 +116,17 @@ export default async function CataloguePage() {
 
   // If SSR fetch succeeded, pass initial data; otherwise the client will fetch on its own
   return (
-    <CatalogueClient
-      initialData={hasData ? initialData : undefined}
-      initialCategories={hasData ? categories : undefined}
-    />
+    <>
+      <Breadcrumbs
+        crumbs={[
+          { label: "Accueil", href: "/" },
+          { label: "Catalogue" },
+        ]}
+      />
+      <CatalogueClient
+        initialData={hasData ? initialData : undefined}
+        initialCategories={hasData ? categories : undefined}
+      />
+    </>
   );
 }

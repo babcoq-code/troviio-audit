@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "CalDigit TS5 Plus vs Plugable TBT4-UD5 | Troviio",
+  title: "CalDigit TS5 Plus vs Plugable TBT4-UD5",
   description: "Le dock ultime à 519€ ou le meilleur rapport qualité/prix à 265€ ? CalDigit TS5 Plus Thunderbolt 5 vs Plugable TBT4-UD5, le duel des stations d'accueil.",
   alternates: { canonical: "https://troviio.com/duel/caldigit-ts5-plus-vs-plugable-tbt4-ud5" },
 };

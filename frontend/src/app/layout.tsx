@@ -24,10 +24,14 @@ export async function generateMetadata() {
     metadataBase: new URL("https://www.troviio.com"),
     title: {
       default: "Troviio | Pas le meilleur. Le tien.",
-      template: "%s — Troviio",
+      template: "%s",
     },
     alternates: {
       canonical: "/",
+      languages: {
+        "fr": "https://troviio.com",
+        "x-default": "https://troviio.com",
+      },
     },
     description:
       "Troviio ne compare pas les produits. Il comprend ta vie, tes contraintes et ton budget pour te recommander LE produit qui te correspond. Zéro biais, zéro commission.",

@@ -546,11 +546,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!meta) return {};
 
   return {
-    title: `${meta.title} — Troviio`,
+    title: `${meta.title}`,
     description: meta.description,
     alternates: { canonical: meta.canonical },
     openGraph: {
-      title: `${meta.title} — Troviio`,
+      title: `${meta.title}`,
       description: meta.description,
       url: meta.canonical,
       type: "article",

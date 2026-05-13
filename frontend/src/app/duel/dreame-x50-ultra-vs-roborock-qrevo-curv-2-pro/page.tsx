@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Dreame X50 Ultra vs Roborock Qrevo Curv 2 Pro : le duel des aspirateurs robots 2026 | Troviio",
+  title: "Dreame X50 Ultra vs Roborock Qrevo Curv 2 Pro : le duel des aspirateurs robots 2026",
   description: "Qui est le boss des aspirateurs robots en 2026 ? Le Dreame X50 Ultra affronte le Roborock Qrevo Curv 2 Pro dans un duel sans merci.",
   alternates: { canonical: "https://troviio.com/duel/dreame-x50-ultra-vs-roborock-qrevo-curv-2-pro" },
 };

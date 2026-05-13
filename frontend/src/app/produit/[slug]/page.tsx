@@ -3,6 +3,12 @@ import type { Metadata } from "next";
 import nextDynamic from "next/dynamic";
 import AffiliateButton from "@/components/product/AffiliateButton";
 import StickyCtaMobile from "@/components/StickyCtaMobile";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+
+const WishlistButton = nextDynamic(
+  () => import("@/components/product/WishlistButton"),
+  { loading: () => <div className="w-10 h-10 rounded-full bg-white/5 animate-pulse" /> }
+);
 
 const AccessoriesWidgetLoader = nextDynamic(
   () => import("@/components/accessories/AccessoriesWidget"),
@@ -30,7 +36,7 @@ async function fetchProduct(slug: string) {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const product = await fetchProduct(slug);
-  if (!product) return { title: "Produit introuvable — Troviio" };
+  if (!product) return { title: "Produit introuvable" };
   const name = product.name || "";
   const title = `${name} — Avis, Test & Prix 2026`;
   const description = product.description
@@ -80,8 +86,10 @@ function Badge({ label, color }: { label: string; color: string }) {
 function ScoreBadge({ score, size = 60, fontSize = 20 }: { score: number; size?: number; fontSize?: number }) {
   const c = score >= 80 ? "#3ED6A3" : score >= 60 ? "#FFB020" : "#FF6B5F";
   return (
-    <div
-      className="inline-grid place-items-center rounded-full shrink-0 cursor-default hover:scale-105 transition-transform"
+    <Link
+      href="/methode"
+      className="inline-grid place-items-center rounded-full shrink-0 hover:scale-105 transition-transform"
+      title="Comment le Troviio Score est calculé"
       style={{
         width: size, height: size,
         fontFamily: "'Nunito', sans-serif", fontWeight: 900,
@@ -90,7 +98,7 @@ function ScoreBadge({ score, size = 60, fontSize = 20 }: { score: number; size?:
       }}
     >
       {score}
-    </div>
+    </Link>
   );
 }
 
@@ -146,6 +154,16 @@ export default async function ProductPage({ params }: PageProps) {
   return (
     <main className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+
+        <Breadcrumbs
+          crumbs={[
+            { label: "Accueil", href: "/" },
+            ...(product.category_slug
+              ? [{ label: product.category_name || product.category_slug, href: `/c/${product.category_slug}` }]
+              : []),
+            { label: product.name },
+          ]}
+        />
 
         {/* Schema.org Product JSON-LD pour rich snippets Google */}
         <script
@@ -240,11 +258,21 @@ export default async function ProductPage({ params }: PageProps) {
             >
               {product.name}
             </h1>
-            {product.brand && (
+            <div className="flex items-center gap-2 mt-2">
+              <WishlistButton
+                productId={product.id}
+                productName={product.name}
+                troviioScore={product.estimated_score != null ? Math.round(product.estimated_score) : undefined}
+                categoryId={product.category_id || product.category_slug}
+                slug={slug}
+                priceAtSave={bestPrice ?? undefined}
+              />
+              {product.brand && (
               <p className="mt-1 text-base" style={{ color: "var(--text-muted)" }}>
                 {product.brand}
               </p>
             )}
+            </div>
 
             {/* Meta row */}
             <div className="flex items-center gap-4 flex-wrap mt-4">

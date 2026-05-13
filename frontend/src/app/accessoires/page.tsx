@@ -2,6 +2,7 @@ import { AccessoryCard } from '@/components/accessories/AccessoryCard';
 import { AccessoryFilters } from '@/components/accessories/AccessoryFilters';
 import { apiFetch } from '@/lib/api';
 import { Accessory, AccessoryCategory } from '@/lib/types/accessories';
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const revalidate = 3600;
 
@@ -17,6 +18,12 @@ export default async function AccessoriesPage({
 
   return (
     <main className="min-h-screen bg-stone-50">
+      <Breadcrumbs
+        crumbs={[
+          { label: "Accueil", href: "/" },
+          { label: "Accessoires" },
+        ]}
+      />
       <section className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-14">
         <div className="mb-10">
           <p className="text-sm font-black uppercase tracking-wide text-stone-500">Guides accessoires</p>

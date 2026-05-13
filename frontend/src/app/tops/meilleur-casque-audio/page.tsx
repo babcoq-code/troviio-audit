@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Meilleur casque audio 2026 : le top 3 qui va changer vos oreilles | Troviio",
+  title: "Meilleur casque audio 2026 : le top 3 qui va changer vos oreilles",
   description: "Casque sans fil, annulation de bruit, confort : notre top 3 des meilleurs casques audio de 2026.",
   alternates: { canonical: "https://troviio.com/tops/meilleur-casque-audio" },
 };
@@ -55,7 +55,7 @@ export default function TopsPage() {
 
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         <div className="rounded-2xl border border-white/5 bg-[#161827] p-6 mb-10">
-          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Le casque audio, c’est un peu comme choisir entre ses enfants : tu sais que tu vas en préférer un, mais les autres vont te faire payer la différence en séances de psy. Entre ceux qui promettent une annulation de bruit digne d’un bunker antinucléaire et ceux qui te font payer le double pour un logo qui claque, le marché est plus saturé que ton feed Instagram après les soldes. Alors, on a trié pour toi, parce que franchement, personne n’a le temps de tester 50 paires d’écouteurs en écoutant du Lo-Fi pour “travailler”. Attache ton câble (ou pas, on est en 2024), c’est parti.</p>
+          <p className="text-base leading-7 text-[#8B8FA3] whitespace-pre-line">Le casque audio, c’est un peu comme choisir entre ses enfants : tu sais que tu vas en préférer un, mais les autres vont te faire payer la différence en séances de psy. Entre ceux qui promettent une annulation de bruit digne d’un bunker antinucléaire et ceux qui te font payer le double pour un logo qui claque, le marché est plus saturé que ton feed Instagram après les soldes. Alors, on a trié pour toi, parce que franchement, personne n’a le temps de tester 50 paires d’écouteurs en écoutant du Lo-Fi pour “travailler”. Attache ton câble (ou pas, on est en 2026), c'est parti.</p>
         </div>
 
         <div className="space-y-6 mb-12">

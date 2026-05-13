@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Duux Whisper Flex 2 vs Rowenta Turbo Silence Extreme+ : le duel des ventilateurs silencieux | Troviio",
+  title: "Duux Whisper Flex 2 vs Rowenta Turbo Silence Extreme+ : le duel des ventilateurs silencieux",
   description: "Duux Whisper Flex 2 (92/100) ou Rowenta VU5890F0 (90/100) ? Le combat des ventilateurs sur pied premium en 2026.",
   alternates: { canonical: "https://troviio.com/duel/duux-whisper-flex-2-vs-rowenta-vu5890f0" },
 };

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Méthodologie Troviio — comment on compare vraiment les produits (avec zéro bullshit) | Troviio",
+  title: "Méthodologie Troviio — comment on compare vraiment les produits (avec zéro bullshit)",
   description:
     "Transparence des algorithmes, critères de notation, classement — on te dit tout sur comment fonctionne Troviio. Promis, c'est pas chiant comme un document administratif.",
   alternates: { canonical: "https://troviio.com/methodologie" },

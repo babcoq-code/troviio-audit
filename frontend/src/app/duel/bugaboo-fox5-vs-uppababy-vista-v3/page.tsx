@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Bugaboo Fox 5 vs Uppababy Vista V3 : le duel des poussette 2026 | Troviio",
+  title: "Bugaboo Fox 5 vs Uppababy Vista V3 : le duel des poussette 2026",
     description: "Qui est le meilleur en poussette ? Le Bugaboo Fox 5 Renew affronte le Uppababy Vista V3 + nacelle dans un duel sans merci.",
   alternates: { canonical: "https://troviio.com/duel/bugaboo-fox5-vs-uppababy-vista-v3" },
 };

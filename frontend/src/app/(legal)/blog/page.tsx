@@ -2,12 +2,12 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog — Troviio",
+  title: "Blog",
   description:
     "Le blog Troviio arrive bientôt — astuces, guides d'achat et actualités produits pour vous aider à choisir malin.",
   alternates: { canonical: "https://troviio.com/blog" },
   openGraph: {
-    title: "Blog — Troviio",
+    title: "Blog",
     description:
       "Le blog Troviio arrive bientôt — astuces, guides d'achat et actualités produits.",
     url: "https://troviio.com/blog",

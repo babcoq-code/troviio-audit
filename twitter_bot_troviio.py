@@ -17,7 +17,7 @@ with open('/tmp/deepseek_key.txt') as f:
     DEEPSEEK_KEY = f.read().strip()
 DEEPSEEK_MODEL = "deepseek-chat"
 
-TWITTER_AUTH = "a514248e78fd1d655174e257257506dd1596b024"
+TWITTER_AUTH="a51424...b024"
 TWITTER_CT0 = "ce6c9ee705134112dd651540473e2b8d6cb79e713c8d430a51dc37ee9e7f8424abfc0c5a735cbe4959a9dce4c689c0f14be2e22708646c6860b70ec0dead0c278f4b83c5e7e83101fa1afd05205b9401"
 
 # ── Twitter GraphQL constants ──────────────────────────────
@@ -363,11 +363,12 @@ Spécifications :
 {spec_lines}
 
 Écris UN tweet humoristique avec une ref pop culture. Mentionne le score {score}/100 quelque part.
+EXIGENCE ABSOLUE : Le tweet NE DOIT PAS dépasser 240 caractères. Vise 200-220 caractères pour être sûr.
 """
     
-    user_prompt = f"Génère un tweet FUN TECH pour {brand} {name} basé sur ses specs."
+    user_prompt = f"Génère un tweet FUN TECH pour {brand} {name} basé sur ses specs. MAX 240 CARACTÈRES STRICT."
     
-    tweet = call_deepseek(sys_prompt, user_prompt)
+    tweet = call_deepseek(sys_prompt, user_prompt, max_tokens=200)
     if tweet:
         # Nettoyage
         tweet = tweet.strip('"').strip("'").strip()
@@ -400,11 +401,12 @@ Spécifications P1 : {json.dumps(specs1, ensure_ascii=False)[:300]}
 Spécifications P2 : {json.dumps(specs2, ensure_ascii=False)[:300]}
 
 Trouve UNE spec clé qui les départage (poids, autonomie, puissance, etc.) et écris un tweet duel avec ref pop culture. Inclus les deux scores.
+EXIGENCE ABSOLUE : Le tweet NE DOIT PAS dépasser 240 caractères. Vise 200-220 caractères pour être sûr.
 """
     
-    user_prompt = f"Génère un tweet COMPARATIF entre {product1['brand']} {product1['name']} et {product2['brand']} {product2['name']}."
+    user_prompt = f"Génère un tweet COMPARATIF entre {product1['brand']} {product1['name']} et {product2['brand']} {product2['name']}. MAX 240 CARACTÈRES STRICT."
     
-    return call_deepseek(sys_prompt, user_prompt)
+    return call_deepseek(sys_prompt, user_prompt, max_tokens=200)
 
 def generate_news_tweet(news_items):
     if not news_items:
@@ -423,12 +425,12 @@ Détail : {news['description'][:200]}
 
 Transforme cette actu en tweet humoristique avec ref pop culture. Ne cite pas la source. 
 Sois drôle et pertinent. L'actu doit être reconnaissable mais pas citée littéralement.
-Max 200 caractères. Structure en 2 blocs.
+EXIGENCE ABSOLUE : Le tweet NE DOIT PAS dépasser 240 caractères. Vise 180-200 caractères pour être sûr.
 """
     
-    user_prompt = f"Génère un tweet FUN TECH basé sur cette actu : {news['title']}"
+    user_prompt = f"Génère un tweet FUN TECH basé sur cette actu : {news['title']}. MAX 240 CARACTÈRES STRICT."
     
-    return call_deepseek(sys_prompt, user_prompt)
+    return call_deepseek(sys_prompt, user_prompt, max_tokens=200)
 
 # ── Main ────────────────────────────────────────────────────
 
@@ -476,14 +478,44 @@ def main():
                 "theme": "ACTU"
             })
     
-    if tweet and len(tweet) > 10 and len(tweet) <= 240:
-        print(f"\n📝 Tweet généré ({len(tweet)} chars):")
-        print(tweet)
-        print()
-        post_to_twitter(tweet)
-    elif tweet:
-        print(f"⚠️ Tweet trop long ({len(tweet)} chars) ou trop court")
-        print(f"Contenu: {tweet[:200]}")
+    if tweet and len(tweet) > 10:
+        # Si le tweet est trop long, retenter avec une consigne plus stricte
+        if len(tweet) > 240:
+            print(f"⚠️ Tweet trop long ({len(tweet)} chars), tentative de retry...")
+            # Retry en tronquant le prompt
+            excess = len(tweet) - 220
+            retry_prompt = (
+                f"Raccourcis ce tweet de {excess} caractères min. "
+                f"Garde l'idée principale et la ref pop culture. "
+                f"MAX 240 CARACTÈRES. "
+                f"Tweet: {tweet}"
+            )
+            retry_tweet = call_deepseek(
+                "Tu es un éditeur de tweet. Réécris le tweet en max 240 caractères.",
+                retry_prompt,
+                temp=0.4,
+                max_tokens=300
+            )
+            if retry_tweet:
+                tweet = retry_tweet.strip('"').strip("'").strip()
+                # Nettoyer les préfixes
+                for prefix in ["Rubrique", "**", "Voici", "Tweet", "Version"]:
+                    if tweet.startswith(prefix) and ":" in tweet[:20]:
+                        tweet = tweet.split(":", 1)[1].strip()
+        
+        # Troncature de dernier recours
+        if len(tweet) > 240:
+            print(f"⚠️ Toujours trop long ({len(tweet)} chars), troncature forcée")
+            tweet = tweet[:237] + "..."
+        
+        if len(tweet) > 10:
+            print(f"\n📝 Tweet généré ({len(tweet)} chars):")
+            print(tweet)
+            print()
+            post_to_twitter(tweet)
+        else:
+            print(f"❌ Tweet trop court après correction")
+            sys.exit(0)
     else:
         print("❌ Aucun tweet généré")
         sys.exit(0)

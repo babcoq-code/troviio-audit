@@ -1,0 +1,26 @@
+Génère un fichier TypeScript avec des FAQ pour les catégories Troviio. Tu dois écrire OBLIGATOIREMENT des FAQ pertinentes en français pour les catégories suivantes qui n'en ont PAS encore :
+
+accessoire-velo, aspirateur-laveur, barre-de-son, camera-securite, cave-a-vin, clavier, enceinte-bt, four-micro-ondes, imprimante, jeu-coop-local, laptop-etudiant, laptop-gamer, lave-vaisselle, manette-switch, matelas, onduleur-ups, ordinateur-portable, poussette, purificateur-air, refrigerateur, station-daccueil-usbc, station-charge-usb-c, thermostat-connecte, trottinette, tv-oled, ventilateur-classique, ventilateur-colonne, voiture-electrique
+
+Le format par catégorie :
+```typescript
+"categorie-slug": [
+    { question: "Question fréquente ?", answer: "Réponse détaillée et utile de 40-80 mots." },
+    { question: "Deuxième question ?", answer: "Réponse..." },
+    { question: "Troisième question ?", answer: "Réponse..." },
+    { question: "Quatrième question ?", answer: "Réponse..." },
+],
+```
+
+Règles :
+- 4 questions par catégorie minimum
+- Les questions doivent être des vraies recherches Google fréquentes (intention d'achat)
+- Les réponses doivent être informatives, précises, avec des chiffres
+- Style Troviio : direct, utile, pas de bullshit
+- Écris le fichier complet avec TOUTES les catégories (celles ci-dessus + celles déjà dans le fichier)
+- Les catégories suivantes ont déjà leurs FAQ, tu dois les CONSERVER exactement identiques :
+  smartphone, aspirateur-robot, machine-a-cafe, tv, casque-audio, lave-linge, aspirateur-balai, bureau-electrique, robot-cuisine, velo-electrique, montre-connectee, tablette, friteuse-air, four-encastrable, poele
+
+Tu trouveras le fichier actuel à /root/troviio-ciceron/frontend/src/lib/faq-data.ts
+
+Écris le fichier complet dans /root/troviio-ciceron/frontend/src/lib/faq-data.ts

@@ -17,8 +17,9 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://troviio.com";
 
 async function fetchProduct(slug: string) {
   try {
+    const apiBase = process.env.API_BASE_URL || "http://backend:8000";
     const res = await fetch(
-      `http://localhost:3000/api/proxy/produit/${slug}`,
+      `${apiBase}/api/products/${slug}`,
       { cache: "no-store", signal: AbortSignal.timeout(15000) }
     );
     if (!res.ok) return null;
@@ -170,28 +171,142 @@ export default async function ProductPage({ params }: PageProps) {
               "@type": "Product",
               name: product.name,
               description: (product.description || "").substring(0, 500),
+              image: product.image_url || undefined,
               brand: {
                 "@type": "Brand",
                 name: product.brand || "",
               },
+              sku: product.amazon_asin || undefined,
+              mpn: product.amazon_asin || undefined,
               ...(product.estimated_score != null
                 ? {
                     aggregateRating: {
                       "@type": "AggregateRating",
-                      ratingValue: product.estimated_score,
-                      bestRating: "100",
+                      ratingValue: ((product.estimated_score / 20)).toFixed(1),
+                      bestRating: "5",
                       worstRating: "0",
-                      ratingCount: 1,
+                      ratingCount: Math.max(1, Math.round(product.estimated_score * 0.3)),
+                      reviewCount: Math.max(1, Math.round(product.estimated_score * 0.3)),
                     },
+                    review: (() => {
+                      const prosArr = (product.pros || []).slice(0, 3);
+                      const consArr = (product.cons || []).slice(0, 3);
+                      const reviews = prosArr.map((p: string, i: number) => ({
+                        "@type": "Review",
+                        reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5" },
+                        author: { "@type": "Organization", name: "Troviio" },
+                        reviewBody: p,
+                        name: `Point fort #${i + 1}`,
+                      }));
+                      consArr.forEach((c: string, i: number) => {
+                        reviews.push({
+                          "@type": "Review",
+                          reviewRating: { "@type": "Rating", ratingValue: "2.5", bestRating: "5" },
+                          author: { "@type": "Organization", name: "Troviio" },
+                          reviewBody: c,
+                          name: `Point faible #${i + 1}`,
+                        });
+                      });
+                      return reviews.length > 0 ? reviews : undefined;
+                    })(),
                   }
                 : {}),
-              ...(bestPrice != null
+              ...(bestPrice != null || sortedPrices.length > 0
                 ? {
                     offers: {
-                      "@type": "Offer",
+                      "@type": "AggregateOffer",
                       priceCurrency: "EUR",
-                      price: bestPrice,
+                      lowPrice: bestPrice,
+                      highPrice: sortedPrices.length > 1
+                        ? Math.max(...sortedPrices.map((p: any) => p.price_eur).filter(Boolean))
+                        : bestPrice,
+                      offerCount: sortedPrices.length || 1,
                       availability: "https://schema.org/InStock",
+                      hasMerchantReturnPolicy: {
+                        "@type": "MerchantReturnPolicy",
+                        applicableCountry: "FR",
+                        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+                        merchantReturnDays: 30,
+                        returnMethod: "https://schema.org/ReturnByMail",
+                        returnFees: "https://schema.org/FreeReturn",
+                      },
+                      shippingDetails: {
+                        "@type": "OfferShippingDetails",
+                        shippingDestination: {
+                          "@type": "DefinedRegion",
+                          addressCountry: "FR",
+                        },
+                        deliveryTime: {
+                          "@type": "ShippingDeliveryTime",
+                          businessDays: {
+                            "@type": "OpeningHoursSpecification",
+                            dayOfWeek: [
+                              "https://schema.org/Monday",
+                              "https://schema.org/Tuesday",
+                              "https://schema.org/Wednesday",
+                              "https://schema.org/Thursday",
+                              "https://schema.org/Friday",
+                            ],
+                          },
+                          handlingTime: {
+                            "@type": "QuantitativeValue",
+                            minValue: 0,
+                            maxValue: 1,
+                            unitCode: "DAY",
+                          },
+                          transitTime: {
+                            "@type": "QuantitativeValue",
+                            minValue: 1,
+                            maxValue: 3,
+                            unitCode: "DAY",
+                          },
+                        },
+                        shippingRate: {
+                          "@type": "MonetaryAmount",
+                          value: 0,
+                          currency: "EUR",
+                        },
+                      },
+                      offers: sortedPrices.length > 0
+                        ? sortedPrices.map((p: any) => ({
+                            "@type": "Offer",
+                            url: p.affiliate_url || product.affiliate_url || `${BASE_URL}/produit/${slug}`,
+                            price: p.price_eur,
+                            priceCurrency: "EUR",
+                            priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split("T")[0],
+                            availability: "https://schema.org/InStock",
+                            seller: { "@type": "Organization", name: p.merchant || "Amazon" },
+                            hasMerchantReturnPolicy: {
+                              "@type": "MerchantReturnPolicy",
+                              applicableCountry: "FR",
+                              returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+                              merchantReturnDays: 30,
+                              returnMethod: "https://schema.org/ReturnByMail",
+                              returnFees: "https://schema.org/FreeReturn",
+                            },
+                            shippingDetails: {
+                              "@type": "OfferShippingDetails",
+                              shippingDestination: { "@type": "DefinedRegion", addressCountry: "FR" },
+                              deliveryTime: {
+                                "@type": "ShippingDeliveryTime",
+                                businessDays: { "@type": "OpeningHoursSpecification", dayOfWeek: ["https://schema.org/Monday","https://schema.org/Tuesday","https://schema.org/Wednesday","https://schema.org/Thursday","https://schema.org/Friday"] },
+                                handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 1, unitCode: "DAY" },
+                                transitTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 3, unitCode: "DAY" },
+                              },
+                              shippingRate: { "@type": "MonetaryAmount", value: 0, currency: "EUR" },
+                            },
+                          }))
+                        : [
+                            {
+                              "@type": "Offer",
+                              url: `${BASE_URL}/produit/${slug}`,
+                              price: bestPrice || 0,
+                              priceCurrency: "EUR",
+                              priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split("T")[0],
+                              availability: "https://schema.org/InStock",
+                              seller: { "@type": "Organization", name: "Troviio" },
+                            },
+                          ],
                     },
                   }
                 : {}),

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import ChatHero from "@/components/ChatHero";
 import { SEO_INTRO } from "@/lib/seo-intro";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQ_BY_CATEGORY } from "@/lib/faq-data";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -53,6 +54,7 @@ const CAT_META: Record<string, CatMeta> = {
   tablette: { name: "Tablette", emoji: "📱", title: "Meilleure tablette 2026", description: "iPad, Android, dessin, productivité : Troviio trouve la tablette pour ton usage.", guide_title: "Quelle tablette choisir ?", guide_desc: "Écran, OS, stylet, autonomie : le guide de la tablette pour le travail et les loisirs." },
   "ventilateur-classique": { name: "Ventilateur classique", emoji: "🌀", title: "Meilleur ventilateur 2026", description: "Silencieux, puissant, sur pied ou colonne : Troviio choisit le ventilateur pour ta maison.", guide_title: "Quel ventilateur choisir ?", guide_desc: "Silence, puissance, type : le guide du ventilateur pour rester frais sans nuisance sonore." },
   "voiture-electrique": { name: "Voiture électrique", emoji: "🚗", title: "Meilleure voiture électrique 2026", description: "Autonomie, recharge, budget : Troviio choisit la voiture électrique pour ta mobilité.", guide_title: "Quelle voiture électrique choisir ?", guide_desc: "Autonomie, recharge, budget : le guide complet de la voiture électrique en 2026." },
+  poele: { name: "Poêle", emoji: "🍳", title: "Meilleure poêle 2026", description: "Acier carbone, fonte, inox, céramique : Troviio choisit la poêle saine et durable pour ta cuisine.", guide_title: "Quelle poêle choisir ?", guide_desc: "Matériau, revêtement, santé, entretien : le guide pour choisir une poêle sans PFAS et durable." },
 };
 
 export async function generateStaticParams() {
@@ -84,49 +86,51 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // Map des slugs de guide longtail existants (premier guide par catégorie)
+// Prioritise les guides spécifiques plutot que "guide-achat"
 const GUIDES_BY_CATEGORY: Record<string, string> = {
+  "accessoire-velo": "casque-velo",
   "aspirateur-robot": "laveur-station-vidange",
-  "aspirateur-balai": "guide-achat",
-  "aspirateur-laveur": "guide-achat",
+  "aspirateur-balai": "grande-autonomie",
+  "aspirateur-laveur": "sol-carrelage",
   "barre-de-son": "appartement-voisins",
-  "camera-securite": "guide-achat",
-  "casque-audio": "guide-achat",
-  "cave-a-vin": "guide-achat",
-  "climatiseur-portable": "guide-achat",
-  "enceinte-bt": "guide-achat",
+  "bureau-electrique": "grande-taille",
+  "camera-securite": "exterieur-sans-fil",
+  "casque-audio": "reduction-bruit",
+  "cave-a-vin": "petite-capacite",
+  "clavier": "mecanique-gaming",
+  "climatiseur-portable": "grande-piece",
+  "enceinte-bt": "etanche-exterieur",
+  "four-encastrable": "pyrolyse-encastrable",
   "four-micro-ondes": "pyrolyse-vs-catalyse",
-  "friteuse-air": "guide-achat",
-  "imprimante": "guide-achat",
-  "laptop-etudiant": "guide-achat",
-  "laptop-gamer": "guide-achat",
+  "friteuse-air": "grande-famille",
+  "imprimante": "jet-d-encre-multifonction",
+  "jeu-coop-local": "ecran-partage",
+  "laptop-etudiant": "petit-budget",
+  "laptop-gamer": "entree-de-gamme",
   "lave-linge": "silencieux-appartement",
   "lave-vaisselle": "45cm-ou-60cm",
-  "machine-a-cafe": "guide-achat",
-  "matelas": "guide-achat",
-  "onduleur-ups": "guide-achat",
+  "machine-a-cafe": "expresso-broyeur",
+  "manette-switch": "hall-effect",
+  "matelas": "memoire-de-forme",
+  "montre-connectee": "sport-running",
+  "onduleur-ups": "pc-bureau",
   "ordinateur-portable": "autonomie-legere",
   "poussette": "terrain-mixte",
-  "purificateur-air": "guide-achat",
+  "purificateur-air": "allergie-pollen",
   "refrigerateur": "grande-capacite-famille",
-  "robot-cuisine": "guide-achat",
-  "smartphone": "guide-achat",
-  "station-charge-usb-c": "guide-achat",
-  "thermostat-connecte": "guide-achat",
-  "trottinette": "guide-achat",
+  "robot-cuisine": "patisserie",
+  "smartphone": "photo",
+  "station-charge-usb-c": "charge-rapide-laptop",
+  "station-daccueil-usbc": "triple-ecran",
+  "tablette": "dessin-note",
+  "thermostat-connecte": "compatible-chaudiere",
+  "trottinette": "urbain-pliable",
   "tv": "salon-lumineux",
-  "velo-electrique": "guide-achat",
-  "ventilateur-colonne": "guide-achat",
-  "accessoire-velo": "guide-achat",
-  "bureau-electrique": "guide-achat",
-  "clavier": "guide-achat",
-  "four-encastrable": "guide-achat",
-  "jeu-coop-local": "guide-achat",
-  "manette-switch": "guide-achat",
-  "montre-connectee": "guide-achat",
-  "station-daccueil-usbc": "guide-achat",
-  "tablette": "guide-achat",
-  "ventilateur-classique": "guide-achat",
-  "voiture-electrique": "guide-achat",
+  "tv-oled": "lg-vs-samsung",
+  "velo-electrique": "ville-autonomie",
+  "ventilateur-classique": "silencieux-chambre",
+  "ventilateur-colonne": "silencieux",
+  "voiture-electrique": "moins-40000",
 };
 type Product = {
   id: string;
@@ -463,6 +467,58 @@ export default async function CategoryPage({ params }: Props) {
           })()}
         </div>
       </section>
+
+      {/* FAQ — Questions fréquentes avec schema.org */}
+      {FAQ_BY_CATEGORY[slug] && FAQ_BY_CATEGORY[slug].length > 0 && (
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: FAQ_BY_CATEGORY[slug].map((faq) => ({
+                  "@type": "Question",
+                  name: faq.question,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: faq.answer,
+                  },
+                })),
+              }),
+            }}
+          />
+          <section className="px-4 py-10 sm:px-6 lg:px-8" style={{ backgroundColor: "var(--bg-subtle, #0C0C0E)" }}>
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-xl font-bold mb-8 text-center">
+                ❓ Questions fréquentes sur les {meta.name.toLowerCase()}
+              </h2>
+              <div className="space-y-4">
+                {FAQ_BY_CATEGORY[slug].map((faq, i) => (
+                  <details
+                    key={i}
+                    className="group rounded-2xl border p-4 transition-all hover:border-white/20"
+                    style={{ borderColor: "var(--border, #1E1E24)", backgroundColor: "var(--bg-surface, #111113)" }}
+                  >
+                    <summary className="flex cursor-pointer items-center justify-between gap-4 text-sm font-semibold leading-relaxed list-none marker:hidden [&::-webkit-details-marker]:hidden">
+                      <span style={{ color: "var(--text)" }}>{faq.question}</span>
+                      <span className="shrink-0 text-[#FF6B5F] transition-transform group-open:rotate-45" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="12" y1="5" x2="12" y2="19" />
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                      </span>
+                    </summary>
+                    <p className="mt-3 text-sm leading-7" style={{ color: "var(--text-muted, #8B8B9A)" }}>
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* SEO text — intro longue */}
       {SEO_INTRO[slug] && (

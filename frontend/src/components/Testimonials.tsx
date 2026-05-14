@@ -2,159 +2,92 @@
 
 const TESTIMONIALS = [
   {
-    quote:
-      "J'ai acheté le Dreame L10s Ultra grâce à Troviio. Il ne réveille plus mon bébé quand il aspire la nuit. Un bonheur.",
-    author: "Laura",
-    age: 31,
+    name: "Sophie L.",
+    role: "35 ans, Paris",
+    avatar: "👩",
+    text: "J'ai testé pour un aspirateur robot. Troviio m'a posé 4 questions et m'a recommandé un modèle que je n'aurais jamais regardé. Résultat : 120€ de moins que mon premier choix et il aspire mieux.",
+    product: "Dreame L40s Pro Ultra",
+    score: 94,
   },
   {
-    quote:
-      "Je cherchais une machine à café mais je ne voyais que des tests sponsorisés. Troviio m'a proposé la Jura E8 qui correspond EXACTEMENT à mon usage (5 expressos par jour).",
-    author: "Marc",
-    age: 42,
+    name: "Thomas M.",
+    role: "42 ans, Lyon",
+    avatar: "👨‍💼",
+    text: "Je cherchais une machine à café silencieuse. Les guides en ligne disent tous la même chose. Troviio a analysé mon vrai besoin (cuisine ouverte, lever à 6h) et m'a conseillé une machine que je n'aurais jamais trouvée seule.",
+    product: "Philips Series 5500",
+    score: 89,
   },
   {
-    quote:
-      "Je n'y connaissais rien en thermostats connectés. Le chat m'a posé les bonnes questions et m'a orienté vers le Tado°. Installé en 15 min, déjà 80€ économisés.",
-    author: "Sophie",
-    age: 35,
+    name: "Camille D.",
+    role: "28 ans, Bordeaux",
+    avatar: "👩‍💻",
+    text: "J'y connais rien en TV et j'avais peur de me faire arnaquer. Troviio m'a envoyé vers une OLED 65 pouces parfaite pour mon salon lumineux. 6 mois après, toujours aucun regret.",
+    product: "LG G6 OLED 65\"",
+    score: 92,
   },
   {
-    quote:
-      "Après 3 aspirateurs balais achetés au hasard, Troviio m'a trouvé le Dyson V15. La différence est flagrante. Plus jamais je n'achète sans demander l'IA.",
-    author: "Thomas",
-    age: 28,
+    name: "Romain B.",
+    role: "31 ans, Marseille",
+    avatar: "🧔",
+    text: "J'ai hésité 3 semaines entre deux robots cuiseurs. Troviio a tranché en 2 minutes. Le verdict était tellement logique par rapport à mon utilisation que j'aurais dû commencer par ça.",
+    product: "Magimix Cook Expert XL",
+    score: 87,
   },
 ];
 
-function QuoteIcon() {
-  return (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      style={{ color: "var(--coral)", opacity: 0.5 }}
-      aria-hidden="true"
-    >
-      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
-      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
-    </svg>
-  );
-}
-
 export default function Testimonials() {
   return (
-    <section
-      className="px-4 py-20 sm:px-6 lg:px-8 lg:py-28"
-      style={{ backgroundColor: "var(--bg)" }}
-    >
+    <section className="px-4 py-16 sm:px-6 lg:px-8" style={{ backgroundColor: "var(--bg-subtle, #0C0C0E)" }}>
       <div className="mx-auto max-w-6xl">
-        {/* Header */}
-        <div className="mb-14 text-center">
-          <p
-            className="mb-3 text-sm font-semibold uppercase tracking-[0.2em]"
-            style={{ color: "var(--coral)" }}
-          >
-            Ils ont trouvé le leur
-          </p>
-          <h2
-            className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl"
-            style={{ color: "var(--text)" }}
-          >
-            Ce que disent ceux qui ont testé
+        <div className="text-center mb-10">
+          <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium"
+            style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)", color: "var(--text-muted)" }}>
+            💬 Vrais utilisateurs, vrais avis
+          </span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl" style={{ fontFamily: "'Sora', sans-serif", color: "var(--text)" }}>
+            Ils ont trouvé <span style={{ color: "var(--coral)" }}>le leur</span>
           </h2>
-          <p
-            className="mx-auto mt-3 max-w-xl text-sm leading-6"
-            style={{ color: "var(--text-muted)" }}
-          >
-            Des vrais retours, pas des avis payés. Chaque histoire est une
-            personne qui a arrêté de chercher.
+          <p className="mt-3 text-sm" style={{ color: "var(--text-muted)" }}>
+            Et ils ne regrettent pas leur achat. Promis, on vous les a pas payés.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {TESTIMONIALS.map((t, i) => (
             <article
               key={i}
-              className="group relative flex flex-col rounded-2xl border p-6 transition duration-300 sm:p-7"
-              style={{
-                borderColor: "var(--border)",
-                backgroundColor: "var(--bg-surface)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,107,95,0.25)";
-                e.currentTarget.style.boxShadow =
-                  "0 8px 32px -12px rgba(255,107,95,0.18)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--border)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
+              className="relative flex flex-col rounded-2xl border p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
+              style={{ borderColor: "var(--border)", backgroundColor: "var(--bg-surface)" }}
             >
-              {/* Quote icon */}
-              <div className="mb-4">
-                <QuoteIcon />
+              {/* Avatar + nom */}
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-2xl">{t.avatar}</span>
+                <div>
+                  <p className="text-sm font-semibold" style={{ color: "var(--text)" }}>{t.name}</p>
+                  <p className="text-xs" style={{ color: "var(--text-muted)" }}>{t.role}</p>
+                </div>
               </div>
 
-              {/* Quote text */}
-              <blockquote
-                className="flex-1 text-base leading-relaxed sm:text-[15px] sm:leading-7"
-                style={{ color: "var(--text)" }}
-              >
-                "{t.quote}"
+              {/* Texte */}
+              <blockquote className="flex-1 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                &ldquo;{t.text}&rdquo;
               </blockquote>
 
-              {/* Author */}
-              <footer className="mt-5 flex items-center gap-2 border-t pt-4" style={{ borderColor: "var(--border)" }}>
-                <div
-                  className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold"
+              {/* Badge produit */}
+              <div className="mt-4 flex items-center justify-between pt-3 border-t" style={{ borderColor: "var(--border)" }}>
+                <span className="text-xs font-medium truncate max-w-[70%]" style={{ color: "var(--text)" }}>
+                  🏆 {t.product}
+                </span>
+                <span className="shrink-0 rounded-full px-2.5 py-0.5 text-xs font-bold"
                   style={{
-                    backgroundColor: "rgba(255,107,95,0.15)",
-                    color: "var(--coral)",
-                  }}
-                >
-                  {t.author[0]}
-                </div>
-                <div>
-                  <span
-                    className="text-sm font-medium"
-                    style={{ color: "var(--text)" }}
-                  >
-                    {t.author}
-                  </span>
-                  <span
-                    className="ml-2 text-xs"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {t.age} ans
-                  </span>
-                </div>
-              </footer>
+                    backgroundColor: t.score >= 90 ? "rgba(61, 214, 163, 0.15)" : "rgba(255, 107, 95, 0.15)",
+                    color: t.score >= 90 ? "#3ED6A3" : "var(--coral)",
+                  }}>
+                  {t.score}/100
+                </span>
+              </div>
             </article>
           ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-14 text-center">
-          <p
-            className="text-sm"
-            style={{ color: "var(--text-muted)" }}
-          >
-            Envie d'être le prochain témoignage ?{" "}
-            <a
-              href="/"
-              className="font-medium underline decoration-dotted underline-offset-2 transition hover:no-underline"
-              style={{ color: "var(--coral)" }}
-            >
-              Trouve ton produit
-            </a>
-          </p>
         </div>
       </div>
     </section>

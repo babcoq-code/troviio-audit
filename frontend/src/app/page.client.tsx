@@ -15,6 +15,7 @@ import TrustCounter from "@/components/TrustCounter";
 import HowItWorks from "@/components/HowItWorks";
 import WhyTroviio from "@/components/WhyTroviio";
 import RecoExample from "@/components/RecoExample";
+import Testimonials from "@/components/Testimonials";
 
 export default function HomePageClient() {
   const { history, loaded, remove, clear } = useHistory();
@@ -103,7 +104,10 @@ export default function HomePageClient() {
       {/* Section 6 — EXEMPLE DE RECOMMANDATION */}
       <RecoExample />
 
-      {/* Section 7 — CATÉGORIES POPULAIRES */}
+      {/* Section 7 — TÉMOIGNAGES */}
+      <Testimonials />
+
+      {/* Section 8 — CATÉGORIES POPULAIRES */}
       <CategoryGrid />
 
       {/* Section 8 — POURQUOI TROVIIO */}

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const BASE = "https://www.troviio.com";
+const SUPABASE_URL = "https://uukshxztoztkwxuuvqzc.supabase.co";
 
 // ── Catégories (43 — synchronisé avec DB le 12/05/2026) ─────────────
 const CATEGORIES = [
@@ -84,7 +85,33 @@ const GUIDES = [
   "voiture-electrique/moins-40000",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// ── Helper: fetch les slugs produits actifs depuis Supabase ─────────
+async function getProductSlugs(): Promise<string[]> {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/products?select=slug&is_active=eq.true`,
+      {
+        headers: {
+          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || \"\",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || \"\"}`,
+          Range: \"0-9999\",
+        },
+        next: { revalidate: 3600 },
+      },
+    );
+    if (!res.ok) {
+      console.error("Sitemap: failed to fetch product slugs", res.status);
+      return [];
+    }
+    const data: { slug: string }[] = await res.json();
+    return data.map((item) => item.slug);
+  } catch (err) {
+    console.error("Sitemap: error fetching product slugs", err);
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const urls: MetadataRoute.Sitemap = [];
 
   // Home
@@ -121,6 +148,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Guides longtail
   for (const g of GUIDES) {
     urls.push({ url: `${BASE}/guide-longtail/${g}`, changeFrequency: "monthly", priority: 0.4 });
+  }
+
+  // ── Produits dynamiques depuis Supabase ──────────────────────────
+  const productSlugs = await getProductSlugs();
+  for (const slug of productSlugs) {
+    urls.push({ url: `${BASE}/produit/${slug}`, changeFrequency: "weekly", priority: 0.6 });
   }
 
   return urls;

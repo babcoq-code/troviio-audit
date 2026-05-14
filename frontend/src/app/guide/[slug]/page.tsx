@@ -180,9 +180,9 @@ const GUIDES_META: Record<string, GuideMeta> = {
     ogImage: "https://troviio.com/og-guide-tv-oled.jpg",
     faq: [
       { question: "OLED, QLED ou Mini-LED : quelle différence en 2026 ?", answer: "OLED : noirs parfaits, contraste infini — le meilleur pour le cinéma. QLED : plus lumineux, meilleur en plein jour. Mini-LED : compromis lumineux, bon contraste. Pour le cinéma et le gaming, l'OLED reste roi." },
-      { question: "Quelle taille de TV OLED pour mon salon ?", answer: "À 2 mètres : 55\" est idéal. À 2,5 mètres : 65\". À 3 mètres : 75\". Les OLED 55\" et 65\" offrent le meilleur rapport qualité-prix." },
+      { question: "Quelle taille de TV OLED pour mon salon ?", answer: "À 2 mètres : 55 pouces est idéal. À 2,5 mètres : 65 pouces. À 3 mètres : 75 pouces. Les OLED 55 et 65 pouces offrent le meilleur rapport qualité-prix." },
       { question: "L'OLED est-il fait pour le gaming ?", answer: "Oui : temps de réponse < 1 ms, 120-165 Hz, VRR, G-Sync/FreeSync, HDMI 2.1. Les LG C/G sont la référence pour les joueurs." },
-      { question: "Quel budget pour une TV OLED en 2026 ?", answer: "900-1 300€ pour un 55\", 1 300-2 000€ pour un 65\", 2 000-3 500€ pour un 77\". Les prix baissent régulièrement." },
+      { question: "Quel budget pour une TV OLED en 2026 ?", answer: "900-1 300€ pour un 55 pouces, 1 300-2 000€ pour un 65 pouces, 2 000-3 500€ pour un 77 pouces. Les prix baissent régulièrement." },
     ],
   },
   "meilleur-machine-cafe": {
@@ -438,9 +438,25 @@ const GUIDES_META: Record<string, GuideMeta> = {
     ogImage: "https://troviio.com/og-guide-bureau-electrique.jpg",
     faq: [
       { question: "Double moteur ou simple moteur : quelle différence concrète ?", answer: "Le double moteur (un par pied) est plus rapide (35-40 mm/s contre 25 mm/s), plus silencieux, et soulève des charges plus lourdes (120-160 kg contre 60-80 kg). Le simple moteur est moins cher mais peut montrer des signes de fatigue sur les bureaux larges (>140 cm). En 2026, le double moteur est le standard pour un bureau qui tient la route — ou plutôt qui monte tout droit." },
-      { question: "Quelle charge maximale pour un setup gaming ou télétravail ?", answer: "Un moniteur 27\" pèse ~5 kg, un PC fixe ~10-15 kg, ajoute clavier, lampe, et tasse de café : tu arrives à 25-35 kg facile. Prends un bureau supportant au moins 80 kg pour avoir de la marge. Pour un setup double écran + tour + bras articulés, vise 120 kg minimum." },
+      { question: "Quelle charge maximale pour un setup gaming ou télétravail ?", answer: "Un moniteur 27 pouces pèse ~5 kg, un PC fixe ~10-15 kg, ajoute clavier, lampe, et tasse de café : tu arrives à 25-35 kg facile. Prends un bureau supportant au moins 80 kg pour avoir de la marge. Pour un setup double écran + tour + bras articulés, vise 120 kg minimum." },
       { question: "Un bureau assis-debout, est-ce que ça vaut vraiment le coup ?", answer: "La science est formelle : rester assis 8 heures par jour augmente les risques cardiovasculaires et les douleurs lombaires. Alterner assis/debout toutes les 45 minutes réduit la fatigue et améliore la concentration. Si tu bosses de chez toi, le retour sur investissement (300-500€) se fait en 3 mois de mal de dos en moins. Et non, debout toute la journée n'est pas mieux — l'astuce c'est l'alternance." },
       { question: "Quelle hauteur minimale pour être à l'aise quand on est petit/grand ?", answer: "Un bon bureau doit descendre à 65-70 cm pour les gabarits petits (1m60) et monter à 125-130 cm pour les grands gabarits (1m90+). La plupart des bureaux standard montent de 72 à 120 cm — ce qui convient à 90% des utilisateurs. Si tu mesures moins d'1m60 ou plus d'1m90, vérifie les spécifications avant d'acheter." },
+    ],
+  },
+  "meilleure-poele": {
+    title: "Meilleure poêle 2026 : acier, fonte, inox, céramique — le guide complet",
+    slug: "meilleure-poele",
+    category: "poele",
+    emoji: "🍳",
+    date: "2026-05-14",
+    description: "Poêle en acier carbone, fonte, inox ou céramique : les 10 meilleures poêles 2026 testées par Troviio. Guide d'achat complet pour cuisiner sain et durable.",
+    canonical: "https://troviio.com/guide/meilleure-poele",
+    ogImage: "https://troviio.com/og-guide-poele.jpg",
+    faq: [
+      { question: "Quelle est la meilleure poêle en 2026 ?", answer: "La De Buyer Mineral B Pro (60€) est la meilleure poêle pour les cuisiniers passionnés, avec un score de 94/100. La De Buyer Mineral B Element (50€) offre le meilleur rapport qualité-prix en acier carbone. La Lodge Fonte 26cm (46€) est imbattable pour la cuisson fonte à petit prix." },
+      { question: "Poêle antiadhésive ou acier carbone : que choisir ?", answer: "L'acier carbone (De Buyer) est plus sain (zéro PFAS), dure toute une vie, mais demande un culottage initial. L'antiadhésif (Tefal, Scanpan) est plus pratique au quotidien mais dure 2-3 ans et contient du PTFE. Si la santé est ta priorité, prends l'acier carbone ou la fonte." },
+      { question: "Les poêles sans PFAS sont-elles vraiment sans risque ?", answer: "Oui, les poêles en acier carbone, fonte brute, inox 18/10 et fonte émaillée sont totalement sans PFAS. Les poêles céramiques (GreenPan) sont certifiées sans PFAS mais durent 3-5 ans. évite les poêles PTFE rayées." },
+      { question: "Quel budget pour une bonne poêle en 2026 ?", answer: "30-50€ pour l'entrée de gamme (Tefal Unlimited On 43€), 45-65€ pour le milieu (De Buyer Mineral B Element 50€, Lodge 46€), 60-150€ pour le haut de gamme (De Buyer Mineral B Pro 60€, Cristel 145€), 200-300€ pour le prestige (Le Creuset 230€)." },
     ],
   },
 };

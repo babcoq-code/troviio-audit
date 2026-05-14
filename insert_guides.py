@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Insère de nouveaux guides longtail dans la table seo_pages de Supabase."""
 
-import http.client
-import json
+import os, json, http.client
 
 SUPABASE_URL = "uukshxztoztkwxuuvqzc.supabase.co"
 SERVICE_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")

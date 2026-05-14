@@ -120,6 +120,12 @@ const CATEGORY_META: Record<
     description:
       "Les meilleurs ventilateurs sur pied, colonne et table pour survivre a la canicule : Duux, Rowenta, Honeywell, Meaco.",
   },
+  poele: {
+    name: "Poêle",
+    emoji: "🍳",
+    description:
+      "Les meilleures poêles saines et durables — acier carbone, fonte, inox, céramique. Sans PFAS ni revêtement toxique.",
+  },
 };
 
 function getCategoryMeta(slug: string) {

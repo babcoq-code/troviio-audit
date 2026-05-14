@@ -46,6 +46,7 @@ const CATS: Cat[] = [
   { id: "poussettes",               label: "Poussette",           desc: "Légère, pliable, tout terrain",group: "Confort",  emoji: "👶", category_slug: "poussette" },
   { id: "tablettes",                label: "Tablette / iPad",     desc: "Créa, stream, productivité",   group: "Tech",     emoji: "📱", category_slug: "tablette" },
   { id: "manettes-switch",          label: "Manette Switch",      desc: "Pro, Hall Effect, budget",     group: "Tech",     emoji: "🎮", category_slug: "manette-switch" },
+  { id: "poeles",    label: "Poêle",     desc: "Antiadhésif, acier, santé",  group: "Maison",  emoji: "🍳", category_slug: "poele" },
 ];
 
 const CAT_PROMPTS: Record<string, string> = {
@@ -83,6 +84,7 @@ const CAT_PROMPTS: Record<string, string> = {
   "poussette": "Je vais être parent et je dois trouver une poussette qui passe partout sans me ruiner",
   "tablette": "Je veux une tablette pour dessiner, regarder des films et bosser en mobilité, tu me conseilles laquelle ?",
   "manette-switch": "Je viens d'acheter une Nintendo Switch et je sais pas quelle manette prendre, la Pro officielle ou une alternative ?",
+  "poele": "Ma poêle antiadhésive commence à s'écailler et j'ai peur des PFAS, je cherche une poêle saine et durable sans produits toxiques",
 };
 
 function openChatForCat(cat: Cat) {

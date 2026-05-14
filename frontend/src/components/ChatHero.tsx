@@ -208,7 +208,7 @@ export default function ChatHero({ category }: { category?: string }) {
   }, [messages, streamedResponse]);
   // Le bouton apparaît si :
   // - DeepSeek a explicitement proposé "Lancer la recherche" dans son texte, OU
-  // - On est au tour 5 ou plus (le SYTEM_PROMPT demande d'ajouter l'option à partir du tour 5)
+  // - On est au tour 5 ou plus (le SYTEM_PROMPT demande d'ajouter l'option a partir du tour 5)
   const showLaunchButton = (lastAIMessage && hasLaunchOption(lastAIMessage)) || (!busy && exchangeCount >= 5);
 
   return (
@@ -297,6 +297,29 @@ export default function ChatHero({ category }: { category?: string }) {
               />
             ))}
           </div>
+
+          {/* Barre de progression — visible pendant l'entretien */}
+          {messages.length > 0 && !showLaunchButton && state !== "done" && (
+            <div className="mt-4 w-full max-w-md mx-auto">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-xs font-medium" style={{ color: "var(--text-muted)" }}>
+                  Question {exchangeCount}/5
+                </span>
+                <span className="text-xs" style={{ color: "var(--text-muted)" }}>
+                  {exchangeCount >= 5 ? "Derniere etape !" : "Encore " + (5 - exchangeCount) + " questions"}
+                </span>
+              </div>
+              <div className="h-1.5 w-full rounded-full" style={{ backgroundColor: "var(--border)" }}>
+                <div
+                  className="h-full rounded-full transition-all duration-500 ease-out"
+                  style={{
+                    width: `${Math.min((exchangeCount / 5) * 100, 100)}%`,
+                    background: "linear-gradient(90deg, #FF6B5F, #3ED6A3)",
+                  }}
+                />
+              </div>
+            </div>
+          )}
           </>
         )}
 

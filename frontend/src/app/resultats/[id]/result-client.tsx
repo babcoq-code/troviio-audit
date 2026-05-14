@@ -118,7 +118,7 @@ export function ResultClientComponents({
         </Link>
       </div>
 
-      <section className="rounded-[2rem] bg-[#0E1020] p-6 text-white shadow-[0_24px_80px_rgba(14,16,32,0.20)] sm:p-8">
+        <section className="rounded-[2rem] bg-[#0E1020] p-6 text-white shadow-[0_24px_80px_rgba(14,16,32,0.20)] sm:p-8">
         <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <h2 className="font-sora text-2xl font-bold tracking-tight">
@@ -133,9 +133,12 @@ export function ResultClientComponents({
           <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
             <ShareButton resultId={resultId} />
             <WhatsAppShareButton resultId={resultId} />
+            <EmailRecoButton resultId={resultId} />
             <RefineSearchButton />
           </div>
         </div>
+
+        <FeedbackButtons resultId={resultId} />
       </section>
     </>
   );
@@ -197,6 +200,66 @@ function WhatsAppShareButton({ resultId }: { resultId: string }) {
   );
 }
 
+// ─── Feedback post-recommandation ─────────────────────────────────────────────
+
+type FeedbackOption = "matches" | "too_expensive" | "not_suitable";
+
+function FeedbackButtons({ resultId }: { resultId: string }) {
+  const [selected, setSelected] = useState<FeedbackOption | null>(null);
+  const [sent, setSent] = useState(false);
+
+  const handleFeedback = async (value: FeedbackOption) => {
+    if (sent || selected) return;
+    setSelected(value);
+    try {
+      const { trackEvent } = await import("@/lib/analytics");
+      trackEvent("recommendation_feedback", { result_id: resultId, feedback: value });
+      setSent(true);
+      setTimeout(() => setSent(false), 3000);
+    } catch {
+      setSent(false);
+    }
+  };
+
+  const buttons: { value: FeedbackOption; emoji: string; label: string }[] = [
+    { value: "matches", emoji: "✅", label: "Ça correspond" },
+    { value: "too_expensive", emoji: "💰", label: "Trop cher" },
+    { value: "not_suitable", emoji: "🔄", label: "Pas adapté" },
+  ];
+
+  return (
+    <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+      <p className="text-sm font-semibold text-white/80 mb-3">
+        Cette recommandation te correspond ?
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {buttons.map(({ value, emoji, label }) => (
+          <button
+            key={value}
+            type="button"
+            onClick={() => handleFeedback(value)}
+            disabled={sent}
+            className={[
+              "inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all",
+              selected === value
+                ? "bg-[#FF6B5F] text-white shadow-md"
+                : "border border-white/15 text-white/70 hover:bg-white/10 hover:text-white",
+              sent ? "opacity-50 cursor-not-allowed" : "",
+            ].join(" ")}
+          >
+            {emoji} {label}
+          </button>
+        ))}
+        {sent && (
+          <span className="inline-flex items-center text-xs text-[#3ED6A3] animate-fade-in ml-2">
+            ✓ Merci de ton avis !
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function RefineSearchButton() {
   return (
     <Link
@@ -205,5 +268,61 @@ function RefineSearchButton() {
     >
       🔍 Affiner ma recherche
     </Link>
+  );
+}
+
+// ─── Email de la recommandation ──────────────────────────────────────────────
+
+function EmailRecoButton({ resultId }: { resultId: string }) {
+  const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
+  const [email, setEmail] = useState("");
+
+  const handleSend = async () => {
+    if (!email || !email.includes("@")) return;
+    setStatus("idle");
+    try {
+      const res = await fetch("/api/email/reco", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, result_id: resultId }),
+      });
+      setStatus(res.ok ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
+    setTimeout(() => setStatus("idle"), 5000);
+  };
+
+  return (
+    <div className="relative">
+      {status === "sent" ? (
+        <div className="inline-flex items-center gap-2 rounded-full bg-[#3ED6A3]/20 px-4 py-2.5 text-sm font-medium text-[#3ED6A3]">
+          ✓ Reco envoyée !
+        </div>
+      ) : (
+        <div className="flex items-center gap-1.5">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-32 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs text-white placeholder-white/40 outline-none transition focus:border-[#FF6B5F]/50"
+          />
+          <button
+            type="button"
+            onClick={handleSend}
+            disabled={!email || !email.includes("@")}
+            className="inline-flex shrink-0 items-center gap-1 rounded-full bg-white px-3 py-2 text-xs font-bold text-[#0E1020] transition hover:bg-white/90 disabled:opacity-40"
+          >
+            ✉️ Envoyer
+          </button>
+        </div>
+      )}
+      {status === "error" && (
+        <p className="absolute -bottom-5 left-0 text-[10px] text-[#FF6B5F]">
+          Erreur d&apos;envoi
+        </p>
+      )}
+    </div>
   );
 }

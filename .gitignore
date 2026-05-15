@@ -9,3 +9,5 @@ __pycache__/
 .env.local
 frontend/scripts/.env.local
 .env*
+secrets/
+logs/

@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
+#!/opt/oscar-env/bin/python3
 """
 Troviio Twitter Bot — Publication automatique toutes les 2h
 3 thèmes aléatoires : produit Troviio, duel Troviio, actu tech fraîche
 Style : humour pop culture
+Utilise twikit avec les cookies Oscar (même IP fixe)
 """
 
-import json, httpx, os, random, re, sys, requests, base64
+import json, httpx, os, random, re, sys, asyncio
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -17,12 +18,8 @@ with open('/tmp/deepseek_key.txt') as f:
     DEEPSEEK_KEY = f.read().strip()
 DEEPSEEK_MODEL = "deepseek-chat"
 
-TWITTER_AUTH="a51424...b024"
-TWITTER_CT0 = "ce6c9ee705134112dd651540473e2b8d6cb79e713c8d430a51dc37ee9e7f8424abfc0c5a735cbe4959a9dce4c689c0f14be2e22708646c6860b70ec0dead0c278f4b83c5e7e83101fa1afd05205b9401"
-
-# ── Twitter GraphQL constants ──────────────────────────────
-TWITTER_BEARER_PUBLIC = 'AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA'
-TWITTER_CREATE_TWEET_QID = 'S1qcGUn68_U0lDKdMlYSGg'
+# Cookies partagés avec Oscar (même IP fixe)
+COOKIES_FILE = "/root/troviio-ciceron/secrets/troviio_cookies.json"
 
 HISTORY_FILE = "/tmp/troviio_twitter_history.json"
 NEWS_FILE = "/tmp/troviio_news_cache.json"
@@ -217,113 +214,50 @@ def call_deepseek(system_prompt, user_prompt, temp=0.85, max_tokens=250):
         print(f"DeepSeek call failed: {e}")
         return None
 
-# ── Twitter API call (GraphQL interne) ──────────────────────
+# ── Twitter post via twikit (comme Oscar) ─────────────────────────
 
-def _get_twitter_session():
-    """Crée une session requests authentifiée pour l'API GraphQL Twitter."""
-    s = requests.Session()
-    s.cookies.set('auth_token', TWITTER_AUTH, domain='.x.com')
-    s.cookies.set('ct0', TWITTER_CT0, domain='.x.com')
-    s.headers.update({
-        'authorization': f'Bearer {TWITTER_BEARER_PUBLIC}',
-        'x-csrf-token': TWITTER_CT0,
-        'x-twitter-auth-type': 'OAuth2Session',
-        'x-twitter-active-user': 'yes',
-        'x-twitter-client-language': 'fr',
-        'content-type': 'application/json',
-        'referer': 'https://x.com/',
-        'origin': 'https://x.com',
-        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        'x-client-transaction-id': base64.b64encode(os.urandom(32)).decode(),
-    })
-    return s
+async def post_to_twitter_async(tweet_text):
+    """Poste le tweet via twikit avec les cookies Oscar (même IP fixe)."""
+    from twikit import Client
+    client = Client("fr-FR")
 
-def post_to_twitter(tweet_text):
-    """
-    Poste le tweet via l'API GraphQL interne de Twitter (gratuit, sans OAuth payant).
-    Utilise les credentials auth_token + ct0.
-    """
+    with open(COOKIES_FILE) as f:
+        raw = json.load(f)
+    client.set_cookies({c["name"]: c["value"] for c in raw})
 
-    s = _get_twitter_session()
-
-    variables = {
-        "tweet_text": tweet_text,
-        "dark_request": False,
-        "media": {"media_entities": [], "possibly_sensitive": False},
-        "semantic_annotation_ids": [],
-        "disallowed_reply_options": None,
-    }
-
-    payload = {
-        "variables": variables,
-        "features": {
-            "interactive_text_enabled": True,
-            "responsive_web_graphql_exclude_directive_enabled": True,
-            "verified_phone_label_enabled": False,
-            "creator_subscriptions_tweet_preview_api_enabled": True,
-            "responsive_web_graphql_timeline_navigation_enabled": True,
-            "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled": True,
-            "longform_notetweets_consumption_enabled": True,
-            "responsive_web_graphql_skip_user_profile_image_extensions_enabled": False,
-            "tweetypie_unmention_optimization_enabled": True,
-            "view_counts_everywhere_api_enabled": True,
-            "longform_notetweets_rich_text_read_enabled": True,
-            "freedom_of_speech_not_reach_fetch_enabled": True,
-            "responsive_web_enhance_cards_enabled": False,
-        },
-        "queryId": TWITTER_CREATE_TWEET_QID
-    }
-
-    url = f'https://x.com/i/api/graphql/{TWITTER_CREATE_TWEET_QID}/CreateTweet'
+    # Warmup session
+    try:
+        await client.get_user_by_screen_name("Troviio_com")
+    except Exception:
+        pass
 
     try:
-        r = s.post(url, json=payload, timeout=15)
-        print(f"📡 Twitter API status: {r.status_code}")
-
-        if r.status_code == 200:
-            data = r.json()
-            errors = data.get('errors', [])
-            if errors:
-                code = errors[0].get('code', 0)
-                msg = errors[0].get('message', '')
-                print(f"⚠️ Twitter GraphQL error (code {code}): {msg[:200]}")
-                # Sauvegarde de secours
-                with open("/tmp/troviio_last_tweet.txt", "w") as f:
-                    f.write(tweet_text)
-                print(f"✅ Tweet sauvegardé dans /tmp/troviio_last_tweet.txt (fallback)")
-                return True
-
-            tweet_results = data.get('data', {}).get('create_tweet', {}).get('tweet_results', {})
-            if not tweet_results:
-                print(f"⚠️ Twitter: réponse vide (tweet non posté ?)")
-                with open("/tmp/troviio_last_tweet.txt", "w") as f:
-                    f.write(tweet_text)
-                return True
-
-            tweet_id = tweet_results.get('result', {}).get('rest_id')
-            if tweet_id:
-                print(f"✅ Tweet posté ! ID: {tweet_id}")
-                print(f"   URL: https://x.com/Troviio_com/status/{tweet_id}")
-                print(f"   Taille: {len(tweet_text)} chars")
-                print(f"   Contenu: {tweet_text[:100]}...")
-                return True
-            else:
-                print(f"⚠️ Twitter: rest_id absent")
-                with open("/tmp/troviio_last_tweet.txt", "w") as f:
-                    f.write(tweet_text)
-                return True
-        else:
-            print(f"⚠️ Twitter HTTP {r.status_code}: {r.text[:300]}")
-            with open("/tmp/troviio_last_tweet.txt", "w") as f:
-                f.write(tweet_text)
-            print(f"✅ Tweet sauvegardé dans /tmp/troviio_last_tweet.txt (fallback HTTP {r.status_code})")
-            return True
+        tweet = await client.create_tweet(tweet_text)
     except Exception as e:
-        print(f"⚠️ Twitter API exception: {e}")
+        err_msg = str(e)[:300]
+        print(f"⚠️ Twikit error: {err_msg}")
+        with open("/tmp/troviio_last_tweet.txt", "w") as f:
+            f.write(tweet_text + f"\n\n--- ERROR: {err_msg}")
+        print(f"✅ Tweet sauvegardé dans /tmp/troviio_last_tweet.txt (fallback)")
+        return True
+    tweet_id = getattr(tweet, "id", None) or getattr(tweet, "rest_id", None)
+
+    if tweet_id:
+        print(f"✅ Tweet posté ! ID: {tweet_id}")
+        print(f"   URL: https://x.com/Troviio_com/status/{tweet_id}")
+        print(f"   Taille: {len(tweet_text)} chars")
+        print(f"   Contenu: {tweet_text[:100]}...")
+        return True
+    else:
+        print(f"⚠️ Twikit: pas d'ID retourné")
         with open("/tmp/troviio_last_tweet.txt", "w") as f:
             f.write(tweet_text)
-        print(f"✅ Tweet sauvegardé dans /tmp/troviio_last_tweet.txt (fallback exception)")
+        print(f"✅ Tweet sauvegardé dans /tmp/troviio_last_tweet.txt (fallback)")
         return True
+
+def post_to_twitter(tweet_text):
+    """Wrapper synchrone pour post_to_twitter_async."""
+    return asyncio.run(post_to_twitter_async(tweet_text))
 
 # ── Generate tweet per theme ───────────────────────────────
 

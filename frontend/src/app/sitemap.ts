@@ -92,9 +92,9 @@ async function getProductSlugs(): Promise<string[]> {
       `${SUPABASE_URL}/rest/v1/products?select=slug&is_active=eq.true`,
       {
         headers: {
-          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || \"\",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || \"\"}`,
-          Range: \"0-9999\",
+          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""}`,
+          Range: "0-9999",
         },
         next: { revalidate: 3600 },
       },
